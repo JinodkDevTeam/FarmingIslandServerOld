@@ -1,2 +1,0 @@
-# FarmingIslandServer
-FarmingIsland Server Files
