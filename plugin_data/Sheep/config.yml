@@ -1,0 +1,21 @@
+---
+updater:
+  interval: 120
+  message: Checking for plugin updates...
+  nag:
+    interval: 30
+    message: '%d update(s) has/have been downloaded since you last restarted your
+      server. These update(s) will not be applied until you restart your server.'
+  restart:
+    enabled: false
+    player-threshold: 5
+    delay: 120
+    warning:
+      interval: 30
+      console: Restarting to apply %d plugin update(s) in %d minutes.
+      broadcast: The server is restarting to apply plugin updates in %2$d minutes.
+    alert:
+      console: Restarting to apply %d plugin update(s).
+      broadcast: The server is restarting to apply plugin updates.
+version: 0
+...

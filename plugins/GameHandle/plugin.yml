@@ -1,0 +1,57 @@
+name: GameHandle
+main: NgLamVN\GameHandle\Core
+version: 0.1-ngl_dk
+api: 3.14.0
+description: "Make only for jinodk network"
+author: NgLamVN
+
+permissions:
+  gh.feed:
+    default: op
+    children:
+      gh.feed.use:
+        default: op
+      gh.feed.other:
+        default: op
+  gh.heal:
+    default: op
+    children:
+      gh.heal.use:
+        default: op
+      gh.heal.other:
+        default: op
+  gh.fly:
+    default: op
+    children:
+      gh.fly.use:
+        default: op
+      gh.fly.other:
+        default: op
+  gh.gm1:
+    default: op
+    children:
+      gh.gm1.use:
+        default: op
+      gh.gm1.other:
+        default: op
+  gh.gm0:
+    default: op
+    children:
+      gh.gm0.use:
+        default: op
+      gh.gm0.other:
+        default: op
+  gh.gm2:
+    default: op
+    children:
+      gh.gm2.use:
+        default: op
+      gh.gm2.other:
+        default: op
+  gh.gm3:
+    default: op
+    children:
+      gh.gm3.use:
+        default: op
+      gh.gm3.other:
+        default: op

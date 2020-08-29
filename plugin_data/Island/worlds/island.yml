@@ -1,0 +1,12 @@
+---
+RestrictEntityMovement: true
+RestrictPVP: false
+UpdatePlotLiquids: true
+EditBorderBlocks: true
+ClaimPrice: 0
+ClearPrice: 0
+DisposePrice: 0
+ResetPrice: 0
+ClonePrice: 0
+MaxPlotsPerPlayer: ~
+...

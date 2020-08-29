@@ -1,0 +1,9 @@
+name: AutoNapthe
+version: 1.0
+api: 3.0.0
+author: NguyenDongQuy
+main: HWings\Main
+commands:
+ naptien: 
+  description: Hệ thống nạp tiền
+  default: true

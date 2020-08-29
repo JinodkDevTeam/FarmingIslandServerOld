@@ -1,0 +1,67 @@
+{
+    "language": "vie",
+	"commands": {
+		"mypoint": {
+			"usage": "/mypoint",
+			"description": "Xem số point của bạn"
+		},
+		"toppoint": {
+			"usage": "/toppoint [page]",
+			"description": "Xem top người nhiều point nhất server."
+		},
+		"setpoint": {
+			"usage": "/setpoint <player> <amount>",
+			"description": "Chỉnh số point cho 1 người chơi"
+		},
+		"seepoint": {
+			"usage": "/seepoint <player>",
+			"description": "Xem số point của người chơi khác"
+		},
+		"givepoint": {
+			"usage": "/givepoint <player> <amount>",
+			"description": "Tặng point cho 1 người chơi"
+		},
+		"takepoint": {
+			"usage": "/takepoint <player> <amount>",
+			"description": "Lấy point của 1 người chơi"
+		},
+		"payp": {
+			"usage": "/payp <player> <amount>",
+			"description": "Tặng point cho 1 người chơi khác"
+		},
+		"setlangp": {
+			"usage": "/setlangp <language>",
+			"description": "Set your language"
+		},
+		"mystatusp": {
+			"usage": "/mystatusp",
+			"description": "Xem tình trạng point của bạn"
+		}
+	},
+    "language-set": "Language set to %1 by onebone",
+    "request-cancelled": "Your request was cancelled",
+    "player-not-connected": "Người chơi tên %1 hiện không có trực tuyến.",
+    "player-never-connected": "Người chơi tên %1 không tìm thấy trong server.",
+    "toppoint-tag": "-= Top point %1/%2 =-",
+    "toppoint-format": "]%1] %2: %3 point",
+    "pay-failed": "Chuyển point thất bại.",
+    "pay-success": "Bạn đã chuyển %1 point cho %2",
+    "point-paid": "Người chơi %1 đã gửi %2 point cho bạn.",
+    "takepoint-must-be-number": "Amount must be numeric",
+    "takepoint-invalid-number": "Invalid number",
+    "takepoint-player-lack-of-point": "%1 does not have enough %MONETARY_UNIT%%2. %1's point : %MONETARY_UNIT%%3",
+    "takepoint-point-taken": "Point của bạn đã bị lấy: %1 point",
+    "takepoint-took-point": "Đã tịch thu %2 point của người chơi %1",
+    "takepoint-failed": "You have failed to take point",
+    "givepoint-must-be-number": "Amount must be numeric",
+    "givepoint-invalid-number": "Invalid number",
+    "givepoint-point-given": "Bạn đã nhận được: %1 §epoint",
+    "givepoint-gave-point": "Đã tặng %1 point cho người chơi %2",
+    "seepoint-seepoint": "Người chơi %1 hiện đang có: %2 §epoint",
+    "setpoint-setpoint": "Người chơi %1's đã được chỉnh point thành %2 §epoint",
+    "setpoint-set": "Point của bạn đã được đặt lại thành: %1 §epoint",
+    "setpoint-failed": "Failed to set point due to unknown error",
+    "setpoint-invalid-number": "%MONETARY_UNIT%%1 must be a numeric value",
+    "mypoint-mypoint": "Point của bạn: %1 point",
+    "mystatus-show": "Trạng thái point của bạn: %1%"
+}

@@ -1,0 +1,57 @@
+---
+LamPocketVN:
+  1598513279:
+    card_id: Vinaphone
+    card_value: "100000"
+    pin_field: "8289923343234"
+    seri_field: "2346643111343"
+    status: Lỗi tài khoản
+  1598522479:
+    card_id: Vcoin
+    card_value: "1000000"
+    pin_field: "48940209232423"
+    seri_field: "23423134324445"
+    status: Lỗi nhà mạng đang bảo trì hoặc gặp sự cố.
+  1598523088:
+    card_id: Vinaphone
+    card_value: "100000"
+    pin_field: jinodk-22448285
+    seri_field: "93434323"
+    status: Nạp thành công
+  1598523316:
+    card_id: Vcoin
+    card_value: "1000000"
+    pin_field: jinodk-22448285
+    seri_field: that is fake
+    status: Nạp thành công
+  1598671121:
+    card_id: Mobifone
+    card_value: "50000"
+    pin_field: "32894810323343"
+    seri_field: "23434133445456"
+    status: Sai định dạng thẻ cào
+  1598671289:
+    card_id: Viettel
+    card_value: "20000"
+    pin_field: "357587755435889"
+    seri_field: "39099499445674"
+    status: Lỗi nhà mạng đang bảo trì hoặc gặp sự cố.
+  1598671584:
+    card_id: Viettel
+    card_value: "100000"
+    pin_field: "4589490539095"
+    seri_field: "343490953495"
+    status: Thông tin thẻ không chính xác hoặc hệ thống gặp sự cố
+  1598671687:
+    card_id: Viettel
+    card_value: "100000"
+    pin_field: "3909490390495"
+    seri_field: "2354943089509"
+    status: Thông tin thẻ không chính xác hoặc hệ thống gặp sự cố
+  1598672676:
+    card_id: Viettel
+    card_value: "500000"
+    pin_field: 9304-034-2340
+    seri_field: "2342342344455"
+    status: Sai định dạng thẻ cào
+...

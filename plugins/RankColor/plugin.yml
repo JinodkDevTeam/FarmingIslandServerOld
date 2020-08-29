@@ -1,0 +1,7 @@
+name: RankColor
+main: NgLamVN\RankColor\RankColor
+version: 0.1-ngl_alpha
+author: NgLamVN
+api: 3.12.0
+
+

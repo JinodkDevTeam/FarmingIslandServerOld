@@ -1,0 +1,10 @@
+---
+name: cayphattai
+author: Lettihl
+main: cpt\Main
+api: 3.0.0
+version: 1.1.0
+commands:
+ cay:
+  description: "cây phát tài ui"
+...

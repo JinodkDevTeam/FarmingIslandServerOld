@@ -1,0 +1,11 @@
+shop-name: "§l§aCua§eHang§6Plussss"
+msg:
+    buy-done: "Mua thành công"
+    buy-fail: "Bạn không đủ tiền để mua"
+item-price:
+    money: "§l§aGiá {price}$"
+    point: "§l§aGiá {price} §6point"
+confirm:
+    content: "Bạn có muốn mua item này ?"
+    button-1: "Có"
+    button-2: "Không"
