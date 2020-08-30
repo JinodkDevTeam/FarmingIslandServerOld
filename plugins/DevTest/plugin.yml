@@ -1,9 +1,0 @@
-name: DevTest
-main: NgLamVN\Dev\Test
-api: 3.15.0
-author: NgLamVN
-version: 0.1-ngl-bla
-permissions:
-  ngl.dev.test:
-    default: op
-    description: "Prevent player to crash the server LOL"
