@@ -55,3 +55,16 @@ permissions:
         default: op
       gh.gm3.other:
         default: op
+  gh.coin:
+    default: false
+    children:
+      gh.coin.use:
+        default: true
+      gh.coin.pay:
+        default: true
+      gh.coin.add:
+        default: op
+      gh.coin.set:
+        default: op
+      gh.coin.reduce:
+        default: op

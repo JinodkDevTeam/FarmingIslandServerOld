@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace MyPlot\subcommand;
 
 use pocketmine\command\CommandSender;
+use pocketmine\item\Item;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 
@@ -61,6 +62,18 @@ class ClaimSubCommand extends SubCommand
 		}
 		if($this->getPlugin()->claimPlot($plot, $sender->getName(), $name)) {
 			$sender->sendMessage($this->translateString("claim.success"));
+			$inv = $sender->getInventory();
+
+			$item = Item::get(Item::FISHING_ROD, 0, 1);
+			$nbt = $item->getNamedTag();
+			$nbt->setByte("Unbreakable", 1);
+			$item->setNamedTag($nbt);
+			$item->setLore(["Unbreakable"]);
+			$inv->addItem($item);
+			$inv->addItem(Item::get(Item::DIAMOND_HOE));
+            $inv->addItem(Item::get(Item::SEEDS, 0, 10));
+            $inv->addItem(Item::get(Item::DYE, 15, 20));
+            $inv->addItem(Item::get(Item::DIRT, 0, 10));
 		}else{
 			$sender->sendMessage(TextFormat::RED . $this->translateString("error"));
 		}

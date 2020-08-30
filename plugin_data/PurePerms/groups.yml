@@ -51,8 +51,7 @@ Vip:
   alias: ""
   isDefault: false
   inheritance: []
-  permissions:
-  - gh.fly.use
+  permissions: []
   worlds: []
 Staff:
   alias: ""

@@ -114,13 +114,11 @@ class Menu
         $inv->setItem(26,$item5);
 
         $item6 = Item::get(Item::INFO_UPDATE);
-        $item6->setCustomName("Sell All Inventory");
-        $item6->setLore(["Will available soon !"]);
+        $item6->setCustomName("Sell All Inventory !");
         $inv->setItem(22, $item6);
 
         $item7 = Item::get(Item::EMERALD);
         $item7->setCustomName("Shop");
-        $item7->setLore(["Will available soon !"]);
         $inv->setItem(4, $item7);
 
         if (in_array($this->getCore()->getPlayerGroupName($player), ["Vip", "VipPlus", "Staff", "Admin", "Youtuber"]))
@@ -172,6 +170,12 @@ class Menu
                 break;
             case 26:
                 return new VipManager($player);
+                break;
+            case 4:
+                Server::getInstance()->dispatchCommand($player, "shop");
+                break;
+            case 22:
+                Server::getInstance()->dispatchCommand($player, "sell all");
                 break;
         }
     }

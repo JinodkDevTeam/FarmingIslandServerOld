@@ -1,0 +1,56 @@
+lol:
+  item:
+    1:
+      id: "2:0:5"
+      name: "YEPPPPPP"
+      lore: "ZZZZZZZZ"
+      enchantment:
+        1:
+          id: "fortune"
+          lvl: 3
+        2:
+          id: "jackpot"
+          lvl: 2
+  command:
+    - "givemoney {player} 10"
+    - "say {player} USE CODE 2"
+wtf:
+  item:
+    1:
+      id: "7:0:1"
+  command:
+    - "say BEDROCK"
+    - "say {player} đã bị troll"
+    
+money1000:
+    command:
+    - "givemoney {player} 1000"
+    - "say {player} use giftcode and reward 1000 "
+money5000:
+    command:
+    - "givemoney {player} 5000"
+    - "say {player} use giftcode and reward 5000 "
+money10000:
+    command:
+    - "givemoney {player} 10000"
+    - "say {player} use giftcode and reward 10000 "
+point1:
+    command:
+    - "givepoint {player} 1"
+    - "say {player} use giftcode and reward 1 point"
+point2:
+    command:
+    - "givepoint {player} 2"
+    - "say {player} use giftcode and reward 2 point"
+point5:
+    command:
+    - "givepoint {player} 5"
+    - "say {player} use giftcode and reward 5 point"
+point10:
+    command:
+    - "givepoint {player} 10"
+    - "say {player} use giftcode and reward 10 point"   
+point20:
+    command:
+    - "givepoint {player} 20"
+    - "say {player} use giftcode and reward 20 point"    

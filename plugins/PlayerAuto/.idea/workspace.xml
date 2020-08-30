@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3ede4643-2835-4d97-9ca3-7bf9f9ebccd7" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="ProjectId" id="1YEqXn9Q1RXgftnEw7QVWNNARPg" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/LamPocketVN/PlayerAuto/features" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Minecraft Tool\JINODK DEV\plugins\PlayerAuto\src\LamPocketVN\PlayerAuto\features" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3ede4643-2835-4d97-9ca3-7bf9f9ebccd7" name="Default Changelist" comment="" />
+      <created>1582518142989</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1582518142989</updated>
+      <workItem from="1582518145917" duration="414000" />
+      <workItem from="1582523846006" duration="10161000" />
+      <workItem from="1582550589393" duration="5454000" />
+      <workItem from="1582603880650" duration="16000" />
+      <workItem from="1582603919231" duration="5385000" />
+      <workItem from="1582703687548" duration="79000" />
+      <workItem from="1582703799664" duration="1739000" />
+      <workItem from="1582775763701" duration="1507000" />
+      <workItem from="1582787928767" duration="1592000" />
+      <workItem from="1583828203302" duration="792000" />
+      <workItem from="1583931109209" duration="687000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="390" y="0" key="#PHP" timestamp="1582518259715">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="390" y="0" key="#PHP/0.0.1366.728@0.0.1366.728" timestamp="1582518259715" />
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582775808782">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1582775808782" />
+    <state x="505" y="263" key="Github.CreateGistDialog" timestamp="1582527699533">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="505" y="263" key="Github.CreateGistDialog/0.0.1366.728@0.0.1366.728" timestamp="1582527699533" />
+    <state x="348" y="178" key="NewPhpClassDialog" timestamp="1582604117783">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="348" y="178" key="NewPhpClassDialog/0.0.1366.728@0.0.1366.728" timestamp="1582604117783" />
+    <state x="517" y="287" key="NewPhpFileDialog" timestamp="1582604135781">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="517" y="287" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1582604135781" />
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1582775763717">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1582775763717" />
+  </component>
+</project>
