@@ -1,7 +1,0 @@
-name: Prestige
-main: ThinkerS\Prestige\Loader
-version: 4.0.0
-authors:
-  - ThinkerS
-  - NgLamVN
-api: 3.12.0
