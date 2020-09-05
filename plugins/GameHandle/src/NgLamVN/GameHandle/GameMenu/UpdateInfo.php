@@ -16,11 +16,10 @@ class UpdateInfo
     {
         $form = new CustomForm(function (Player $player, $data){ return; });
         $form->setTitle("UPDATES");
-        $form->addLabel("Add Items when claim Island !");
-        $form->addLabel("RedStone now available to use.");
-        $form->addLabel("Sell and shop now available to use :)");
-        $form->addLabel("Vui lòng liên hệ admin nếu thấy giá không phù hợp hoặc thêm item bla bla :3");
-        $form->addLabel("Server Version: 0.1.3-beta");
+        $form->addLabel("Thêm mầm cây vào đồ có sẳn khi claim island !");
+        $form->addLabel("Improve Fishing System");
+        $form->addLabel("**Vui lòng liên hệ admin nếu thấy giá không phù hợp hoặc thêm item bla bla :3");
+        $form->addLabel("Server Version: 0.1.4-beta");
         $player->sendForm($form);
     }
 }

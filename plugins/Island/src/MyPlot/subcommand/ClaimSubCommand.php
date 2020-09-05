@@ -74,6 +74,7 @@ class ClaimSubCommand extends SubCommand
             $inv->addItem(Item::get(Item::SEEDS, 0, 10));
             $inv->addItem(Item::get(Item::DYE, 15, 20));
             $inv->addItem(Item::get(Item::DIRT, 0, 10));
+            $inv->addItem(Item::get(Item::SAPLING, 0, 1));
 		}else{
 			$sender->sendMessage(TextFormat::RED . $this->translateString("error"));
 		}

@@ -1,0 +1,202 @@
+"1":
+  Sell:
+    money: "true"
+    point: "false"
+    price: 1000
+  Item:
+    Id: "278:0:1"
+    Name: "§1Cúp§8Member"
+    Lore: "§2§3Đây là cúp dành cho dân cày"
+    Enchantments:
+        1:
+            Id: "efficiency"
+            Level: 3
+        2:
+            Id: "unbreaking"
+            Level: 5
+"2":
+  Sell:
+    money: "false"
+    point: "true"
+    price: 10
+  Item:
+    Id: "278:0:1"
+    Name: "§8§eCúp§6Vip§aI"
+    Lore: "§6§7Dành cho dân cày vote"
+    Enchantments:
+        1:
+            Id: "efficiency"
+            Level: 10
+        2:    
+            Id: "unbreaking"
+            Level: 20
+        3:
+            Id: "haste"
+            Level: 2
+"3":
+  Sell:
+    money: "false"
+    point: "true"
+    price: 40
+  Item:
+    Id: "278:0:1"
+    Name: "§8§eCúp§6Vip§7II"
+    Lore: "§bDân Vote 40day"
+    Enchantments:
+        1:
+            Id: "efficiency"
+            Level: 15
+        2:    
+            Id: "unbreaking"
+            Level: 25
+        3:
+            Id: "Jackpot"
+            Level: 5
+        4:  
+            Id: "autorepair"
+            Level: 3
+"4":
+  Sell:
+    money: "false"
+    point: "true"
+    price: 50
+  Item:
+    Id: "278:0:1"
+    Name: "§8§eCúp§6Vip§4III"
+    Lore: "§8Chúc Mừng bạn là người sở hữu bộ 3 cúp VIP"
+    Enchantments:
+        1:
+            Id: "efficiency"
+            Level: 15
+        2:
+            Id: "unbreaking"
+            Level: 30
+        3:
+            Id: "haste"
+            Level: 3
+        4:
+            Id: "autorepair"
+            Level: 5
+"5"    :        
+  Sell:
+    money: "false"
+    point: "true"
+    price: 60
+  Item:
+    Id: "278:0:1"
+    Name: "§8§eCúp§6Vip§3VI"
+    Lore: "§0Cúp dành cho người ở sv§6lâu Ngày\nMong bạn ủng hộ sever lâu dài nhé"
+    Enchantments:
+        1:
+            Id: "unbreaking" 
+            Level: 40
+        2:
+            Id: "efficiency"
+            Level: 18
+        3:
+            Id: "autorepair"
+            Level: 3
+        4:
+            Id: "haste"
+            Level: 4
+"6":
+  Sell:
+    money: "false"
+    point: "true"
+    price: 80
+  Item:
+    Id: "278:0:1"
+    Name: "§8§eCúp§6Vip§4V"
+    Lore: "§bChúc mừng bạn đã có cúp mạnh ngang ngữa cúp huyền thoại"
+    Enchantments:
+        1:
+            Id: "efficiency"
+            Level: 50
+        2:
+            Id: "unbreaking"
+            Level: 50
+        3: 
+            Id: "autorepair"
+            Level: 5
+        4:
+            Id: "Haste"
+            Level: 5
+        5: 
+            Id: "Jackpot"
+            Level: 5
+"7":
+  Sell:
+    money: "false"
+    point: "true"
+    price: 3110
+  Item:
+    Id: "278:0:1"
+    Name: "§cCúp§0Halloween"
+    Lore: "§4Cúp chỉ có ở sự kiện Halloween không được để mất"
+    Enchantments:
+        1:
+            Id: "Driller"
+            Level: 3
+        2:
+            Id: "unbreaking"
+            Level: 10
+        3: 
+            Id: "efficiency"
+            Level: 5
+"8":
+  Sell:
+    money: "false"
+    point: "true"
+    price: 2512
+  Item:
+    Id: "278:0:1:"
+    Name: "§4Cúp§bnoel"
+    Lore: "§4Cúp§bChỉ có thể mua được vào ngày noel\nKhông được làm mất"
+    Enchantments:
+        1:
+            Id: "unbreaking"
+            Level: 25
+        2: 
+            Id: "efficiency"
+            Level: 12
+"9":            
+  Sell:
+    money: "true"
+    point: "false"
+    price: 2502
+  Item:
+    Id: "278:0:1"
+    Name: "§bCúp§2Wuibu"
+    Lore: "§bCúp§2độc quyền dành cho wuibu\nCấm để làm mất"
+    Enchantments:
+        1:
+            Id: "unbreaking"
+            Level: 25
+        2:
+            Id: "efficiency"
+            Level: 20
+        3:
+            Id: "autorepair"
+            Level: 5
+        4: 
+            Id: "Haste"
+            Level: 3
+"10":            
+  Sell:
+    money: "false"
+    point: "true"
+    price: 600
+  Item:
+    Id: "278:0:1"
+    Name: "§bCúp§6Event 600sub"
+    Lore: "§6§3Cúp Event 600Sub của HK"
+    Enchantments:
+        1:
+            Id: "unbreaking"
+            Level: 10
+        2:
+            Id: "efficiency"
+            Level: 5
+        3:
+            Id: "autorepair"
+            Level: 3

@@ -46,7 +46,7 @@ class PlayerFishEvent extends PlayerEvent implements Cancellable{
     /** @var mixed */
 	protected $itemResult = null;
 
-	public function __construct(Player $fisher, FishingHook $hook, int $state, int $xpDropAmount = 0, $itemResult = null){
+	public function __construct(Player $fisher, FishingHook $hook, int $state, int $xpDropAmount = 0, $itemResult = []){
 		$this->player = $fisher;
 		$this->hook = $hook;
 		$this->state = $state;
@@ -87,24 +87,33 @@ class PlayerFishEvent extends PlayerEvent implements Cancellable{
 	}
 
     /**
-     * @return Item|null
+     * @return Item[]|null
      */
-	public function getItemResult(): ?Item
+	public function getItemResult()
     {
-        $item = $this->itemResult;
-        if (isset($item))
+        $items = $this->itemResult;
+        $result = [];
+        if (isset($items))
         {
-            return Item::get($item->getId(), $item->getDamage(), $item->getCount(), $item->getNamedTag());
+            foreach ($items as $item)
+            {
+                array_push($result, Item::get($item->getId(), $item->getDamage(), $item->getCount(), $item->getNamedTag()));
+            }
+            return $result;
         }
         return null;
     }
 
     /**
-     * @param Item $item
+     * @param Item[] $item
      */
-    public function setItemResult(Item $item)
+    public function setItemResult(array $items)
     {
-        $itemr = ItemFactory::get($item->getId(), $item->getDamage(), $item->getCount(), $item->getNamedTag());
-        $this->itemResult = clone $itemr;
+        $itemr = [];
+        foreach ($items as $item)
+        {
+            array_push($itemr, ItemFactory::get($item->getId(), $item->getDamage(), $item->getCount(), $item->getNamedTag()));
+        }
+        $this->itemResult = $itemr;
     }
 }
