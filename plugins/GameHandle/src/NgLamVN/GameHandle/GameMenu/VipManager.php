@@ -67,10 +67,11 @@ class VipManager
         $form->setTitle("VIP");
         $form->addLabel("Quyền hạn:");
         $form->addLabel("- Feed: No ngay lập tức");
-        $form->addLabel("- Heal: Hồi máu ngay lập tức ");
+        $form->addLabel("- Heal: Hồi máu ngay lập tức");
+        $form->addLabel("- Cây mọc nhanh gấp 2 lần");
         $form->addLabel("- Tăng 1/10 giá sell cho tất cả items");
         $form->addLabel("- Custom Rank Color");
-        $form->addLabel("Quyền hạn khác có thể có sau những bảng cập nhật server");
+        $form->addLabel("- Quyền hạn có thể thay đổi sau những bảng cập nhật server");
 
         $player->sendForm($form);
     }

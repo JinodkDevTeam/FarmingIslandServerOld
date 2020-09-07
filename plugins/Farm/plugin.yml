@@ -1,0 +1,13 @@
+name: Farms
+main: NgLamVN\Farms\Farms
+version: 0.1-ngl_dk
+author: NgLamVN
+api: 3.0.0
+
+permissions:
+  Farms:
+    default: true
+  Farms.VIP:
+    default: op
+  Farms.OP:
+    default: op

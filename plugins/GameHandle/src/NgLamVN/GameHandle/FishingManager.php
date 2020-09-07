@@ -12,9 +12,10 @@ class FishingManager
     public const R3 = [0, 20, 30, 20, 20, 7, 3];
     public const R4 = [5, 30, 30, 20, 10, 4, 1];
     public const R5 = [10, 40, 30, 10, 5, 5, 0];
+    public const R6 = [15, 40, 20, 10, 5, 0, 0];
     public const R10 = [90, 10, 0, 0, 0, 0, 0];
 
-    public const RARE_LEVEL = [self::R1, self::R2, self::R3, self::R4, self::R5];
+    public const RARE_LEVEL = [self::R1, self::R2, self::R3, self::R4, self::R5, self::R6];
 
     public const MORE_ITEMS = [100, 50, 50, 25, 25, 10];
 

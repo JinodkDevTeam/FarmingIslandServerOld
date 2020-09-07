@@ -45,13 +45,15 @@ VipPlus:
   isDefault: false
   inheritance: []
   permissions:
+  - Farms.VIP
   - gh.fly.use
   worlds: []
 Vip:
   alias: ""
   isDefault: false
   inheritance: []
-  permissions: []
+  permissions:
+  - Farms.VIP
   worlds: []
 Staff:
   alias: ""

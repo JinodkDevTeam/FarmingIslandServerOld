@@ -18,6 +18,7 @@ class UpdateInfo
         $form->setTitle("UPDATES");
         $form->addLabel("Thêm mầm cây vào đồ có sẳn khi claim island !");
         $form->addLabel("Improve Fishing System");
+        $form->addLabel("Improve Farming System");
         $form->addLabel("**Vui lòng liên hệ admin nếu thấy giá không phù hợp hoặc thêm item bla bla :3");
         $form->addLabel("Server Version: 0.1.4-beta");
         $player->sendForm($form);
