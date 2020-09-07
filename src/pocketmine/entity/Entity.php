@@ -134,6 +134,7 @@ use const M_PI_2;
 abstract class Entity extends Location implements Metadatable, EntityIds{
 
 	public const MOTION_THRESHOLD = 0.00001;
+	protected const STEP_CLIP_MULTIPLIER = 0.4;
 
 	public const NETWORK_ID = -1;
 
@@ -868,7 +869,14 @@ abstract class Entity extends Location implements Metadatable, EntityIds{
 	protected function recalculateBoundingBox() : void{
 		$halfWidth = $this->width / 2;
 
-		$this->boundingBox->setBounds($this->x - $halfWidth, $this->y, $this->z - $halfWidth, $this->x + $halfWidth, $this->y + $this->height, $this->z + $halfWidth);
+		$this->boundingBox->setBounds(
+			$this->x - $halfWidth,
+			$this->y + $this->ySize,
+			$this->z - $halfWidth,
+			$this->x + $halfWidth,
+			$this->y + $this->height + $this->ySize,
+			$this->z + $halfWidth
+		);
 	}
 
 	/**
@@ -2072,7 +2080,7 @@ abstract class Entity extends Location implements Metadatable, EntityIds{
 		if($this->keepMovement){
 			$this->boundingBox->offset($dx, $dy, $dz);
 		}else{
-			$this->ySize *= 0.4;
+			$this->ySize *= self::STEP_CLIP_MULTIPLIER;
 
 			/*
 			if($this->isColliding){ //With cobweb?
@@ -2139,7 +2147,7 @@ abstract class Entity extends Location implements Metadatable, EntityIds{
 
 			$this->boundingBox->offset(0, 0, $dz);
 
-			if($this->stepHeight > 0 and $fallingFlag and $this->ySize < 0.05 and ($movX != $dx or $movZ != $dz)){
+			if($this->stepHeight > 0 and $fallingFlag and ($movX != $dx or $movZ != $dz)){
 				$cx = $dx;
 				$cy = $dy;
 				$cz = $dz;
@@ -2171,13 +2179,20 @@ abstract class Entity extends Location implements Metadatable, EntityIds{
 
 				$this->boundingBox->offset(0, 0, $dz);
 
+				$reverseDY = -$dy;
+				foreach($list as $bb){
+					$reverseDY = $bb->calculateYOffset($this->boundingBox, $reverseDY);
+				}
+				$dy += $reverseDY;
+				$this->boundingBox->offset(0, $reverseDY, 0);
+
 				if(($cx ** 2 + $cz ** 2) >= ($dx ** 2 + $dz ** 2)){
 					$dx = $cx;
 					$dy = $cy;
 					$dz = $cz;
 					$this->boundingBox->setBB($axisalignedbb1);
 				}else{
-					$this->ySize += 0.5; //FIXME: this should be the height of the block it walked up, not fixed 0.5
+					$this->ySize += $dy;
 				}
 			}
 		}
