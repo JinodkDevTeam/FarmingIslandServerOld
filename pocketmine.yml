@@ -25,20 +25,20 @@ settings:
 memory:
   #Global soft memory limit in megabytes. Set to 0 to disable
   #This will trigger low-memory-triggers and fire an event to free memory when the usage goes over this
-  global-limit: 0
+  global-limit: 1024
 
   #Main thread soft memory limit in megabytes. Set to 0 to disable
   #This will trigger low-memory-triggers and fire an event to free memory when the usage goes over this
-  main-limit: 0
+  main-limit: 1024
 
   #Main thread hard memory limit in megabytes. Set to 0 to disable
   #This will stop the server when the limit is surpassed
-  main-hard-limit: 0
+  main-hard-limit: 1536
 
   #AsyncWorker threads' hard memory limit in megabytes. Set to 0 to disable
   #This will crash the task currently executing on the worker if the task exceeds the limit
   #NOTE: THIS LIMIT APPLIES PER WORKER, NOT TO THE WHOLE PROCESS.
-  async-worker-hard-limit: 0
+  async-worker-hard-limit: 1024
 
   #Period in ticks to check memory (default 1 second)
   check-rate: 20
@@ -135,7 +135,7 @@ ticks-per:
 
 auto-report:
   #Send crash reports for processing
-  enabled: true
+  enabled: false
   send-code: true
   send-settings: true
   send-phpinfo: false
@@ -148,7 +148,7 @@ anonymous-statistics:
   host: stats.pocketmine.net
 
 auto-updater:
-  enabled: true
+  enabled: false
   on-update:
     warn-console: true
     warn-ops: true

@@ -168,6 +168,13 @@
             "version": "0.3.lpk",
             "update": null,
             "state": 3
+        },
+        "customshopui": {
+            "source": "Local",
+            "name": "CustomShopUI",
+            "version": "4.0.5",
+            "update": null,
+            "state": 3
         }
     }
 }
