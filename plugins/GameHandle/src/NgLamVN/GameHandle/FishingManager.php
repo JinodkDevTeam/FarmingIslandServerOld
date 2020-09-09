@@ -42,7 +42,7 @@ class FishingManager
             Item::get(Item::BONE, 0, 1),
             Item::get(Item::SALMON, 0, 1),
             Item::get(Item::ROTTEN_FLESH, 0 ,1),
-            Item::get(Item::DIAMOND, 0, 1)
+            Item::get(Item::DIAMOND, 0, 1),
         ];
         $this->rlevel = [
             Item::COBBLESTONE => 1,

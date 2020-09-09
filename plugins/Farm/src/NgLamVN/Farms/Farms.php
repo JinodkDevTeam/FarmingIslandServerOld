@@ -41,7 +41,7 @@ class Farms extends PluginBase implements Listener
         $this->speedData = $this->speedConfig->getAll();
 
         $this->getScheduler()->scheduleRepeatingTask( new FarmsTask($this), 20);
-        $this->getServer()->getPluginManager()->registerEvents($this, $this );
+        $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
     public function onDisable() {
         $this->farmConfig->setAll($this->farmData );
@@ -94,8 +94,9 @@ class Farms extends PluginBase implements Listener
     public function onBlockBreak(BlockBreakEvent $event) {
         $key = $event->getBlock()->x.".".$event->getBlock()->y.".".$event->getBlock()->z;
         foreach($this->crops as $crop){
-            if($event->getItem()->getId() == $crop["item"] and isset($this->farmData[$key])) {
-                unset($this->farmData[$key] );
+            if(isset($this->farmData[$key]))
+            {
+                unset($this->farmData[$key]);
             }
         }
     }
