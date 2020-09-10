@@ -68,3 +68,10 @@ permissions:
         default: op
       gh.coin.reduce:
         default: op
+  gh.sell:
+    default: true
+    children:
+      gh.sell.use:
+        default: true
+      gh.sell.all:
+        default: true
