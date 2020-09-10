@@ -32,7 +32,29 @@ class CoinCommand extends PluginCommand
 
     public function execute(CommandSender $sender, string $commandLabel, array $args)
     {
-        $this->CoinForm($sender);
+        if ($sender instanceof Player)
+        {
+            $this->CoinForm($sender);
+            return;
+        }
+        if ($args[0] == "add")
+        {
+            if (isset($args[1]))
+            {
+                if (isset($args[2]))
+                {
+                    if (is_numeric($args[2]))
+                    {
+                        $player = $this->getSystem()->getCore()->getServer()->getPlayer($args[1]);
+                        if ($player !== null)
+                        {
+                            $this->getSystem()->addCoin($player, $args[2]);
+                            $player->sendMessage("Bạn được nhận thêm " . $args[2] . " coin");
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public function CoinForm (Player $player)

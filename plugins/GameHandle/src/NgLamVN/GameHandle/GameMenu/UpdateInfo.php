@@ -17,10 +17,13 @@ class UpdateInfo
         $form = new CustomForm(function (Player $player, $data){ return; });
         $form->setTitle("BREAKING NEWS");
         $form->addLabel("Updates:");
-        $form->addLabel("-Null");
+        $form->addLabel("-Vote system");
         $form->addLabel("Fixes:");
-        $form->addLabel("Fix lỗi cây vẫn tiếp tục mọc mặc dù đã bị đập trước đó.");
+        $form->addLabel("Fix lỗi không dùng được lệnh sell");
         $form->addLabel("**Vui lòng liên hệ admin nếu thấy giá không phù hợp hoặc thêm item bla bla :3");
+        $form->addLabel("LƯU Ý:");
+        $form->addLabel("• Vì server đang ở BETA (Thử nghiệm), nên chắc chắn rồi, nó không phải là 1 server hoàn thiện, do đó còn tồn tại rất nhiều lỗi, 1 số thứ không hoạt động.
+    • Bạn có thể mất dữ liệu về inventory, mất items, mất tiền, thậm chí mất cả đảo, do đó nên cân nhắc khi chơi ở phiên bản beta. (Bọn mình cũng sẽ hạn chế việc này hết mức có thể"));
         $form->addLabel("Server Version: 0.1.5-beta");
         $player->sendForm($form);
     }
