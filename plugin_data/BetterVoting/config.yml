@@ -25,7 +25,7 @@ items:
     #  "enchant_name:enchant_level" can be repeated as many times as you want.
     # Enchantments from PiggyCustomEnchants are also supported, use them the same as regular enchants.
     # They should also always be encased in quotes to make sure they get parsed properly.
-    #- "diamond_block:0:32"
+    - "stone:0:0"
     #- "steak:0:64:Porkchops"
     #- "diamond_sword:0:1:&lPowerful Sword:sharpness:5:unbreaking:3"
     #- "bow:0:1:&dPiggy's Bow:power:5:unbreaking:3:porkified:3"
