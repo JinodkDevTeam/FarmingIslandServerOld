@@ -18,5 +18,5 @@ messages:
   entities-cleared: "§c[Cleaner]§aCleared a total of {COUNT} entities"
 
 # Countdown times
-times: [60, 30, 15, 10, 5, 3, 2, 1]
+times: [3, 2, 1]
 ...
