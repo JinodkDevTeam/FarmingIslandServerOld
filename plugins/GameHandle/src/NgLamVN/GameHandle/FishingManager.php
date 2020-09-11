@@ -120,7 +120,10 @@ class FishingManager
             $item = $this->items[array_rand($this->items)];
             $level = $this->rlevel[$item->getId()];
             $item->setCount($this->multiply[$level - 1][array_rand($this->multiply[$level - 1])]);
-            array_push($items, $item);
+            if ($item->getCount() > 0)
+            {
+                array_push($items, $item);
+            }
             $i++;
             if ($i <= 5)
             {
@@ -136,11 +139,11 @@ class FishingManager
 
     public function getTest(): array
     {
-        $result = [];
-        foreach ($this->items as $item)
-        {
-            array_push($result, $item);
-        }
+        $result = [Item::get(Item::STONE, 0, 0)];
+        //foreach ($this->items as $item)
+        //{
+        //    array_push($result, $item);
+        //}
         return $result;
     }
 

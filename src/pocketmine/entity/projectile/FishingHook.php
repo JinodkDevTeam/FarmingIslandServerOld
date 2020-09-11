@@ -310,8 +310,6 @@ class FishingHook extends Projectile{
                     $results = $ev->getItemResult();
                     foreach ($results as $result)
                     {
-                        var_dump($result->getName());
-                        var_dump($result->getCount());
                         $nbt = Entity::createBaseNBT($this);
                         $nbt->setTag($result->nbtSerialize(-1, "Item"));
 
