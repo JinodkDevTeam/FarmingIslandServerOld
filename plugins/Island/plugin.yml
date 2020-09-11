@@ -118,7 +118,9 @@ permissions:
   myplot.claimplots:
     default: op
     children:
-      myplot.claimplots.2:
+      myplot.claimplots.1:
         default: true
+      myplot.claimplots.2:
+        default: op
       myplot.claimplots.unlimited:
         default: op
