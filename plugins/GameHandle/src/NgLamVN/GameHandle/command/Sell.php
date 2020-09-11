@@ -22,7 +22,7 @@ class Sell extends PluginCommand
         parent::__construct("sell", $plugin);
         $this->plugin = $plugin;
         $this->setDescription("Sell items in your inventory");
-        $this->setPermission("sell.use");
+        $this->setPermission("gh.sell.use");
 
         $this->getDataConfig();
     }
