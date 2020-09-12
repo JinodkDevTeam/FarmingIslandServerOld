@@ -69,7 +69,7 @@ class Sell extends PluginCommand
 
     public function execute(CommandSender $sender, string $commandLabel, array $args)
     {
-        if (!$sender->hasPermission("sell.use"))
+        if (!$sender->hasPermission("gh.sell.use"))
         {
             return;
         }
