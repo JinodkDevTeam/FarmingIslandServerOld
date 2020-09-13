@@ -23,7 +23,7 @@ class UpdateInfo
         $form->addLabel("Fix lỗi câu cá đôi khi bị văng game");
         $form->addLabel("Fix lỗi dùng cần câu mở rương người khác.
 Fix lỗi drop hạt giống khi đất bị phá.
-Farmland giờ sẽ không bị chuyển thành dirt khi nhảy lên.
+Farmland giờ sẽ không bị chuyển thành dirt khi nhảy lên.");
         $form->addLabel("**Vui lòng liên hệ admin nếu thấy giá không phù hợp hoặc thêm item bla bla :3");
         $form->addLabel("LƯU Ý:");
         $form->addLabel("• Vì server đang ở BETA (Thử nghiệm), nên chắc chắn rồi, nó không phải là 1 server hoàn thiện, do đó còn tồn tại rất nhiều lỗi, 1 số thứ không hoạt động.
