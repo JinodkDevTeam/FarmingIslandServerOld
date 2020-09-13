@@ -114,7 +114,7 @@ class EventListener implements Listener
 	 * @param PlayerInteractEvent $event
 	 */
 	public function onPlayerInteract(PlayerInteractEvent $event) : void {
-		if(($event->getAction() === PlayerInteractEvent::RIGHT_CLICK_AIR and $event->getItem() instanceof Food) or ($event->getItem() instanceof FishingRod))
+		if(($event->getAction() === PlayerInteractEvent::RIGHT_CLICK_AIR and $event->getItem() instanceof Food) or ($event->getItem() instanceof FishingRod and $event->getAction() === PlayerInteractEvent::RIGHT_CLICK_AIR))
 			return;
 		$this->onEventOnBlock($event);
 	}
