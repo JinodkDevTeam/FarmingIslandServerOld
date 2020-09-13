@@ -28,7 +28,10 @@ class Menu
 
     public function registerMenuItem(Player $player)
     {
-        $i = Item::get(Item::NETHER_STAR);
+        $i = Item::get(Item::PAPER);
+        $nbt = $i->getNamedTag();
+        $nbt->setByte("menu", 1);
+        $i->setNamedTag($nbt);
         $i->setCustomName("Island Menu");
         $i->setLore(["Hold and tap to open menu !"]);
         $player->getInventory()->setItem(8, $i);
@@ -49,9 +52,13 @@ class Menu
     public function onDrop (PlayerDropItemEvent $event)
     {
         $item = $event->getItem();
-        if ($item->getName() == "Island Menu")
+        $nbt = $item->getNamedTag();
+        if ($nbt->getTag("menu") !== null)
         {
-            $event->setCancelled(true);
+            if ($nbt->getTag("menu")->getValue() == 1)
+            {
+                $event->setCancelled(true);
+            }
         }
     }
 
@@ -61,9 +68,13 @@ class Menu
         $actions = $trans->getActions();
         foreach ($actions as $action)
         {
-            if ($action->getSourceItem()->getName() == "Island Menu")
+            $nbt = $action->getSourceItem()->getNamedTag();
+            if ($nbt->getTag("menu") !== null)
             {
-                $event->setCancelled(true);
+                if ($nbt->getTag("menu")->getValue() == 1)
+                {
+                    $event->setCancelled(true);
+                }
             }
         }
     }
