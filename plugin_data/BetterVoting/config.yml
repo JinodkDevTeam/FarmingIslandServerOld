@@ -13,7 +13,7 @@ commands:
     - "say {username} haz vote for server and earn a COOOL reward!"
     - "title \"{username}\" title &aThank for your voting !"
     - "coin add {username} 1"
-    - "addmoney {username} 100"
+    - "givemoney {username} 100"
 # If droprewards is true, rewards will be dropped on the floor if a player's inventory is full
 # If droprewards if false, rewards will dissapear if a player's inventory is full
 droprewards: true
