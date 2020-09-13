@@ -7,10 +7,13 @@ use MyPlot\events\MyPlotBorderChangeEvent;
 use MyPlot\events\MyPlotPlayerEnterPlotEvent;
 use MyPlot\events\MyPlotPlayerLeavePlotEvent;
 use MyPlot\events\MyPlotPvpEvent;
+use pocketmine\block\Block;
 use pocketmine\block\Sapling;
 use pocketmine\event\block\BlockBreakEvent;
+use pocketmine\event\block\BlockFormEvent;
 use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\block\BlockSpreadEvent;
+use pocketmine\event\block\BlockUpdateEvent;
 use pocketmine\event\block\SignChangeEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityExplodeEvent;
@@ -86,6 +89,20 @@ class EventListener implements Listener
 			$this->plugin->getLogger()->debug("Level " . $event->getLevel()->getFolderName() . " unloaded!");
 		}
 	}
+
+    /**
+     * @ignoreCancelled false
+     * @priority LOWEST
+     *
+     * @param BlockUpdateEvent $event
+     */
+	public function onBlockForm(BlockFormEvent $event)
+    {
+        if ($event->getBlock()->getId() == Block::FARMLAND)  //TODO: block giefing farm use jumping.
+        {
+            $event->setCancelled();
+        }
+    }
 
 	/**
 	 * @ignoreCancelled false
