@@ -2,6 +2,7 @@
 
 namespace NgLamVN\Farms;
 
+use pocketmine\block\Farmland;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\utils\Config;
@@ -93,7 +94,13 @@ class Farms extends PluginBase implements Listener
     }
     public function onBlockBreak(BlockBreakEvent $event) {
         $key = $event->getBlock()->x.".".$event->getBlock()->y.".".$event->getBlock()->z;
-        foreach($this->crops as $crop){
+        if(isset($this->farmData[$key]))
+        {
+            unset($this->farmData[$key]);
+        }
+        if ($event->getBlock() instanceof Farmland)
+        {
+            $key = $event->getBlock()->x.".".$event->getBlock()->y + 1 .".".$event->getBlock()->z;
             if(isset($this->farmData[$key]))
             {
                 unset($this->farmData[$key]);
