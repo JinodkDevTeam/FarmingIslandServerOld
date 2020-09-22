@@ -14,6 +14,7 @@ class FishingManager
     public const R5 = [10, 40, 30, 10, 5, 5, 0];
     public const R6 = [15, 40, 20, 10, 5, 0, 0];
     public const R10 = [90, 10, 0, 0, 0, 0, 0];
+    public const MAX_LEVEL = 6;
 
     public const RARE_LEVEL = [self::R1, self::R2, self::R3, self::R4, self::R5, self::R6];
 
@@ -43,6 +44,9 @@ class FishingManager
             Item::get(Item::SALMON, 0, 1),
             Item::get(Item::ROTTEN_FLESH, 0 ,1),
             Item::get(Item::DIAMOND, 0, 1),
+            Item::get(Item::POTATO, 0, 1),
+            Item::get(Item::CACTUS, 0, 1),
+            Item::get(Item::SUGARCANE, 0, 1)
         ];
         $this->rlevel = [
             Item::COBBLESTONE => 1,
@@ -57,7 +61,10 @@ class FishingManager
             Item::BONE => 2,
             Item::SALMON => 2,
             Item::ROTTEN_FLESH => 2,
-            Item::DIAMOND => 5
+            Item::DIAMOND => 6,
+            Item::POTATO => 2,
+            Item::CACTUS => 3,
+            Item::SUGARCANE => 2
         ];
 
         $this->build();
@@ -66,7 +73,7 @@ class FishingManager
     public function build()
     {
         //TODO: Build Multiply items
-        for ($i = 0; $i <= 4; $i++)
+        for ($i = 0; $i <= (self::MAX_LEVEL - 1); $i++)
         {
             $test = [];
             for ($j = 0; $j <= 6; $j++)
