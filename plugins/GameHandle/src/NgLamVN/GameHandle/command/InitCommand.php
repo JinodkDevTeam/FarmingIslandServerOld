@@ -17,5 +17,6 @@ class InitCommand
         $cmd->register("gm2", new Gm2($plugin));
         $cmd->register("gm3", new Gm3($plugin));
         $cmd->register("sell", new Sell($plugin));
+        $cmd->register("tpall", new TpAll($plugin));
     }
 }

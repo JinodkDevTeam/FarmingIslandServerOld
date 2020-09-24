@@ -75,3 +75,5 @@ permissions:
         default: true
       gh.sell.all:
         default: true
+  gh.tpall:
+    default: op
