@@ -4,8 +4,10 @@ namespace NgLamVN\GameHandle\GameMenu;
 
 use jojoe77777\FormAPI\CustomForm;
 use jojoe77777\FormAPI\SimpleForm;
+use MyPlot\MyPlot;
 use pocketmine\Player;
 use pocketmine\Server;
+use pocketmine\level\Position;
 
 class IslandManager
 {
@@ -21,15 +23,12 @@ class IslandManager
             switch ($data)
             {
                 case 1:
-                    Server::getInstance()->dispatchCommand($player, "is auto");
-                    break;
-                case 2:
                     $this->AddHelperForm($player);
                     break;
-                case 3:
+                case 2:
                     $this->RemoveHelperForm($player);
                     break;
-                case 4:
+                case 3:
                     $this->WarpForm($player);
                     break;
                 default:
@@ -40,7 +39,6 @@ class IslandManager
         $form->setTitle("Island Manager");
 
         $form->addButton("Exit");
-        $form->addButton("Create Island");
         $form->addButton("Add Helper");
         $form->addButton("Remove Helper");
         $form->addButton("Go to another island");
@@ -50,25 +48,53 @@ class IslandManager
 
     public function AddHelperForm(Player $player)
     {
-        $form = new CustomForm(function (Player $player, $data)
+        $players = ["<None>"];
+        foreach (Server::getInstance()->getOnlinePlayers() as $p)
+        {
+            array_push($players, $p->getName());
+        }
+
+        $form = new CustomForm(function (Player $player, $data) use ($players)
         {
             if (!isset($data[0])) return;
-            Server::getInstance()->dispatchCommand($player, "is addhelper ". $data[0]);
+            $pname = $players[$data[0]];
+            if ($pname == "<None>")
+            {
+                return;
+            }
+            Server::getInstance()->dispatchCommand($player, "is addhelper ". $pname);
         });
         $form->setTitle("Add Helper");
-        $form->addInput("Player Name", "Steve123");
+        $form->addDropdown("Player:", $players);
         $player->sendForm($form);
     }
 
     public function RemoveHelperForm(Player $player)
     {
-        $form = new CustomForm(function (Player $player, $data)
+        $pos = new Position($player->getX(), $player->getY(), $player->getZ(), $player->getLevel());
+        $plot = MyPlot::getInstance()->getPlotByPosition($pos);
+        if ($plot == null)
+        {
+            $player->sendMessage("Bạn không đứng trong island");
+            return;
+        }
+        $helpers = ["<None>"];
+        foreach ($plot->helpers as $h)
+        {
+            array_push($helpers, $h);
+        }
+        $form = new CustomForm(function (Player $player, $data) use ($helpers)
         {
             if (!isset($data[0])) return;
-            Server::getInstance()->dispatchCommand($player, "is removehelper ". $data[0]);
+            $pname = $helpers[$data[0]];
+            if ($pname == "<None>")
+            {
+                return;
+            }
+            Server::getInstance()->dispatchCommand($player, "is removehelper ". $pname);
         });
         $form->setTitle("Remove Helper");
-        $form->addInput("Player Name", "Steve123");
+        $form->addDropdown("Helpers:", $helpers);
         $player->sendForm($form);
     }
 

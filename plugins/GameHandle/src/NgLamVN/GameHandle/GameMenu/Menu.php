@@ -123,20 +123,27 @@ class Menu
             $item4->setCustomName("Island Info:");
             $pos = new Position($player->getX(), $player->getY(), $player->getZ(), $player->getLevel());
             $plot = MyPlot::getInstance()->getPlotByPosition($pos);
-            $h = "";
-            foreach ($plot->helpers as $helper)
+            if ($plot !== null)
             {
-                if ($h == "") {$h = $h . "" . $helper;} else
-                {$h = $h . "," . $helper;}
+                $h = "";
+                foreach ($plot->helpers as $helper)
+                {
+                    if ($h == "")
+                    {
+                        $h = $h . "" . $helper;
+                    } else {
+                        $h = $h . "," . $helper;
+                    }
+                }
+                $lore = [
+                    "Island ID: " . $plot->X . ";" . $plot->Z,
+                    "Owner: " . $plot->owner,
+                    "Island Name: " . $plot->name,
+                    "Helpers: " . $h,
+                ];
+                $item4->setLore($lore);
+                $inv->setItem(0, $item4);
             }
-            $lore = [
-                "Island ID: " . $plot->X . ";" . $plot->Z,
-                "Owner: " . $plot->owner,
-                "Island Name: " . $plot->name,
-                "Helpers: " . $h,
-            ];
-            $item4->setLore($lore);
-            $inv->setItem(0, $item4);
         }
 
         $item5 = Item::get(Item::GOLD_INGOT);
