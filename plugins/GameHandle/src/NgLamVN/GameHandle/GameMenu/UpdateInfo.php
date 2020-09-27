@@ -19,7 +19,8 @@ class UpdateInfo
         $form->addLabel("Updates:");
         $form->addLabel("- Shop and loot items");
         $form->addLabel("Fixes:");
-        $form->addLabel("- Null");
+        $form->addLabel("- Fix block rương và một số block khác khi dùng island menu tap lên.");
+        $form->addLabel("Fix lỗi người chơi với khoảng trống trong tên của họ có thể bug money và coin (server sẽ lưu lại dữ liệu để có thể đền bù khi có yêu cầu)");
         $form->addLabel("**Vui lòng liên hệ admin nếu thấy giá không phù hợp hoặc thêm item bla bla :3");
         $form->addLabel("Official wiki: bit.ly/fi-wiki");
         $form->addLabel("Vote for server: bit.ly/fi-vote");

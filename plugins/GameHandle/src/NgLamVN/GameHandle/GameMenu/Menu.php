@@ -5,6 +5,7 @@ namespace NgLamVN\GameHandle\GameMenu;
 use muqsit\invmenu\InvMenu;
 use muqsit\invmenu\transaction\DeterministicInvMenuTransaction;
 use NgLamVN\GameHandle\Core;
+use pocketmine\block\Block;
 use pocketmine\event\inventory\InventoryTransactionEvent;
 use pocketmine\event\player\PlayerDropItemEvent;
 use pocketmine\event\player\PlayerInteractEvent;
@@ -17,6 +18,19 @@ use MyPlot\MyPlot;
 
 class Menu
 {
+
+    public const BAN_BLOCK = [
+        Block::CHEST,
+        Block::ENCHANTING_TABLE,
+        Block::CRAFTING_TABLE,
+        Block::FURNACE,
+        Block::ANVIL,
+        Block::WOODEN_DOOR_BLOCK,
+        Block::WOODEN_TRAPDOOR,
+        Block::IRON_DOOR_BLOCK,
+        Block::IRON_TRAPDOOR
+    ];
+
     public function __construct()
     {
     }
@@ -42,6 +56,11 @@ class Menu
         $player = $event->getPlayer();
 
         $slot = $player->getInventory()->getHeldItemIndex();
+
+        if (in_array($event->getBlock()->getId(), self::BAN_BLOCK))
+        {
+            return;
+        }
 
         if ($slot == 8)
         {
