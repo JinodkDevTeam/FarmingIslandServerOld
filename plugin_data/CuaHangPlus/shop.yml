@@ -1,0 +1,47 @@
+"1":
+  Sell:
+    money: "true"
+    coin: "false"
+    price: 89999
+  Item:
+    Id: "279:0:1"
+    Name: "§l§e•§bLazy §fAxe§e•"
+    Lore: "§fAn axe for lazy player \n\n§f•Unbreakable"
+    Unbreakable: "true"
+    Enchantments:
+      1:
+        Id: "efficiency"
+        Level: 5
+      2:
+        Id: "lumberjack"
+        Level: 1
+"2":
+  Sell:
+    money: "true"
+    coin: "false"
+    price: 87777
+  Item:
+    Id: "292:0:1"
+    Name: "§l§e•§bLazy §fHoe§e•"
+    Lore: "§fA hoe for lazy player \n\n§f•Unbreakable"
+    Unbreakable: "true"
+    Enchantments:
+      1:
+        Id: "efficiency"
+        Level: 6
+      2:
+        Id: "farmer"
+        Level: 1
+"3":
+  Sell:
+    money: "false"
+    coin: "true"
+    price: 9696969
+  Item:
+    Id: "280:0:1"
+    Name: "§l§b•§cBan §aStick§b•"
+    Lore: "A stick that have massive knockback level"
+    Enchantments:
+      1:
+        Id: "knockback"
+        Level: 32767

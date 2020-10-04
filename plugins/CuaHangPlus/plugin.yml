@@ -1,0 +1,8 @@
+name: CuaHangPlus
+main: LamPocketVN\CuaHangPlus\CuaHang
+api: 3.2.0
+version: 0.2.lpk
+author: LamPocketVN
+commands:
+  cuahang:
+    description: CuaHangPlus command

@@ -1,0 +1,16 @@
+name: LpkTag
+main: LamPocketVN\LpkTag\LpkTag
+version: 0.1.lpk
+api: 3.2.0
+author: LamPocketVN
+depend:
+ - PureChat
+commands:
+  settag:
+    description: LpkTag command
+  tag:
+    description: LpkTag command
+permissions:
+  lpktag.command.settag:
+    default: op
+    description: Allows use of the /settag command

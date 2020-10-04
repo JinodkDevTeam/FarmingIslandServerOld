@@ -4,33 +4,33 @@ default-factions-plugin: FactionsPro
 enable-multiworld-chat: false
 groups:
   Guest:
-    chat: '§7{display_name} §f► {msg}'
-    nametag: '&7{display_name}'
+    chat: '{prefix}|§7{display_name} §f► {msg}'
+    nametag: '{prefix}|&7{display_name}'
     worlds: []
   Admin:
-    chat: '{suffix}{display_name} §f► {msg}'
-    nametag: '{suffix}{display_name}'
+    chat: '{prefix}{suffix}{display_name} §f► {msg}'
+    nametag: '{prefix}{suffix}{display_name}'
     worlds: []
   Owner:
-    chat: '{suffix}{display_name} §f► {msg}'
-    nametag: '{suffix}{display_name}'
+    chat: '{prefix}{suffix}{display_name} §f► {msg}'
+    nametag: '{prefix}{suffix}{display_name}'
     worlds: []
   OP:
-    chat: '{suffix}{display_name} §f► {msg}'
-    nametag: '{suffix}{display_name}'
+    chat: '{prefix}{suffix}{display_name} §f► {msg}'
+    nametag: '{prefix}{suffix}{display_name}'
     worlds: []
   Vip:
-    chat: '{suffix}§e{display_name} §f► {msg}'
-    nametag: '{suffix}§e{display_name}'
+    chat: '{prefix}{suffix}§e{display_name} §f► {msg}'
+    nametag: '{prefix}{suffix}§e{display_name}'
     worlds: []
   VipPlus:
-    chat: '{suffix}§6{display_name} §f► {msg}'
-    nametag: '{suffix}§6{display_name}'
+    chat: '{prefix}{suffix}§6{display_name} §f► {msg}'
+    nametag: '{prefix}{suffix}§6{display_name}'
     worlds: []
   Staff:
-    nametag: '{suffix}{display_name}'
-    chat: '{suffix}{display_name} §f► {msg}'
+    nametag: '{prefix}{suffix}{display_name}'
+    chat: '{prefix}{suffix}{display_name} §f► {msg}'
   Youtuber:
-    chat: '{suffix}§f{display_name} §f► {msg}'
-    nametag: '{suffix}§f{display_name}'
+    chat: '{prefix}{suffix}§f{display_name} §f► {msg}'
+    nametag: '{prefix}{suffix}§f{display_name}'
 ...
