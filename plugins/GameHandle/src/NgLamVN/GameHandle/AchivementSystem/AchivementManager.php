@@ -46,4 +46,6 @@ class AchivementManager
         $this->data = $this->cfg->getAll();
     }
 
+    public function
+
 }

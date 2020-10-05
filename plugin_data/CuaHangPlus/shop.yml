@@ -6,7 +6,7 @@
   Item:
     Id: "279:0:1"
     Name: "§l§e•§bLazy §fAxe§e•"
-    Lore: "§fAn axe for lazy player \n\n§f•Unbreakable"
+    Lore: "§r§fAn axe for lazy player \n\n§f§lUnbreakable"
     Unbreakable: "true"
     Enchantments:
       1:
@@ -23,7 +23,7 @@
   Item:
     Id: "292:0:1"
     Name: "§l§e•§bLazy §fHoe§e•"
-    Lore: "§fA hoe for lazy player \n\n§f•Unbreakable"
+    Lore: "§r§fA hoe for lazy player \n\n§f§lUnbreakable"
     Unbreakable: "true"
     Enchantments:
       1:
@@ -40,7 +40,7 @@
   Item:
     Id: "280:0:1"
     Name: "§l§b•§cBan §aStick§b•"
-    Lore: "A stick that have massive knockback level"
+    Lore: "§r§fA stick that have massive knockback level"
     Enchantments:
       1:
         Id: "knockback"

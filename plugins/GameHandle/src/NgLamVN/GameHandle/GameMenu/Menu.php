@@ -2,9 +2,11 @@
 
 namespace NgLamVN\GameHandle\GameMenu;
 
+use LamPocketVN\CuaHangPlus\CuaHang;
 use muqsit\invmenu\InvMenu;
 use muqsit\invmenu\transaction\DeterministicInvMenuTransaction;
 use NgLamVN\GameHandle\Core;
+use NgLamVN\GameHandle\task\DelayTask;
 use pocketmine\block\Block;
 use pocketmine\event\inventory\InventoryTransactionEvent;
 use pocketmine\event\player\PlayerDropItemEvent;
@@ -170,6 +172,15 @@ class Menu
         $item9->setLore(["Will available soon !"]);
         $inv->setItem(8, $item9);
 
+        $item10 = Item::get(Item::NETHER_STAR);
+        $item10->setCustomName("VipItem Shop");
+        $inv->setItem(11, $item10);
+
+        $item11 = Item::get(Item::OBSIDIAN);
+        $item11->setCustomName("???");
+        $item11->setLore(["Comming Soon !"]);
+        $inv->setItem(15, $item11);
+
         $menu->send($player);
     }
 
@@ -213,6 +224,12 @@ class Menu
                 break;
             case 22:
                 Server::getInstance()->dispatchCommand($player, "sell all");
+                break;
+            case 11:
+                new DelayTask(100, function () use ($player)
+                {
+                    Server::getInstance()->dispatchCommand($player, "cuahang");
+                }, $this->getCore(), $player);
                 break;
         }
     }
