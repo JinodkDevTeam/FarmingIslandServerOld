@@ -3,15 +3,26 @@
 namespace NgLamVN\GameHandle\AchivementSystem\type;
 
 use pocketmine\event\block\BlockBreakEvent;
-use pocketmine\event\Listener;
 
-class BreakType implements Listener
+class BreakType extends BaseType
 {
-    public function onBreak (BlockBreakEvent $event)
+
+    /**
+     * @param BlockBreakEvent $event
+     * @priority LOWEST
+     */
+    public function onBreak(BlockBreakEvent $event)
     {
+        if ($event->isCancelled())
+        {
+            return;
+        }
         $player = $event->getPlayer();
         $block = $event->getBlock();
-        $item = $event->getItem();
-
+        if (($this->getAchivement()->getItem()->getId()) == 0 OR ($this->getAchivement()->getItem()->getId() == $block->getId()))
+        {
+            $newcount = $this->getAManager()->getPlayerData($player->getName())->getCount($this->getAchivement()->getId()) + 1;
+            $this->getAManager()->getPlayerData($player->getName())->setCount($this->getAchivement()->getId(), $newcount);
+        }
     }
 }

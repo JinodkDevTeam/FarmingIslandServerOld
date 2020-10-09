@@ -8,7 +8,7 @@
 #       count: <>
 #       reward: <amount> (coin)
 
-1:
+0:
   name: "Miner"
   type: "break"
   item: "all"
@@ -23,7 +23,7 @@
     3:
       count: 1000
       reward: 5
-2:
+1:
   name: "Rare Loot"
   type: "fish"
   item: 264
