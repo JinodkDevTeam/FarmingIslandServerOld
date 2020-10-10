@@ -13,6 +13,7 @@
   type: "break"
   item: "all"
   description: "Break {count} blocks"
+  max-level: 3
   level:
     1:
       count: 100
@@ -28,6 +29,7 @@
   type: "fish"
   item: 264
   description: "Get {count} diamond from sea"
+  max-level: 3
   level:
     1:
       count: 10

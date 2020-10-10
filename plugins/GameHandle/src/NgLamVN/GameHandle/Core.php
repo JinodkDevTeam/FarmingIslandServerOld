@@ -4,6 +4,7 @@ namespace NgLamVN\GameHandle;
 
 use _64FF00\PurePerms\PurePerms;
 use muqsit\invmenu\InvMenuHandler;
+use NgLamVN\GameHandle\AchivementSystem\AchivementManager;
 use NgLamVN\GameHandle\CoinSystem\CoinSystem;
 use NgLamVN\GameHandle\command\InitCommand;
 use pocketmine\Player;
@@ -17,6 +18,7 @@ class Core extends PluginBase
     public static $instance;
 
     public $coin;
+    public $achivement;
 
     public static function getInstance():Core
     {
@@ -37,9 +39,11 @@ class Core extends PluginBase
         $this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
         $cmd = new InitCommand($this);
         $this->coin = new CoinSystem($this);
+        $this->achivement = new AchivementManager($this);
     }
     public function onDisable()
     {
+        $this->getAchivementManager()->saveData();
     }
 
     public function CreateIsland (Player $player)
@@ -63,5 +67,9 @@ class Core extends PluginBase
     public function getCoinSystem():CoinSystem
     {
         return $this->coin;
+    }
+    public function getAchivementManager(): AchivementManager
+    {
+        return $this->achivement;
     }
 }

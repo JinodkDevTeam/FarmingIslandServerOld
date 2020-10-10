@@ -17,12 +17,12 @@ class UpdateInfo
         $form = new CustomForm(function (Player $player, $data){ return; });
         $form->setTitle("BREAKING NEWS");
         $form->addLabel("Updates:");
-        $form->addLabel("- Lazy combo (check in VipItem Shop)");
-        $form->addLabel("- TagSystem !");
+        $form->addLabel("- Achievement !!!");
         $form->addLabel("Official wiki: bit.ly/fi-wiki");
         $form->addLabel("Vote for server: bit.ly/fi-vote");
         $form->addLabel("Official Facebook group: bit.ly/jinodkgroupfb");
-        $form->addLabel("Server Version: 0.1.7-beta");
+        $form->addLabel("Lưu ý: Achivement sau update này sẽ đc reset và khó hơn do đó hãy nhanh tay kiếm coin :)");
+        $form->addLabel("Server Version: 0.1.8-beta");
         $player->sendForm($form);
     }
 }

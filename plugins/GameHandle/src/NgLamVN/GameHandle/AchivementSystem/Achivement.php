@@ -7,7 +7,7 @@ use NgLamVN\GameHandle\AchivementSystem\AchivementManager;
 
 class Achivement
 {
-    public $name, $id, $type, $level, $item, $des;
+    public $name, $id, $type, $level, $item, $des, $max;
 
     /**
      * Achivement constructor.
@@ -17,9 +17,10 @@ class Achivement
      * @param array $level
      * @param int|string $item
      * @param string $des
+     * @param int $max
      */
 
-    public function __construct(string $name, int $id, string $type, array $level, $item, string $des = "")
+    public function __construct(string $name, int $id, string $type, array $level, $item, string $des = "",int $max)
     {
         $this->name = $name;
         $this->id = $id;
@@ -27,6 +28,7 @@ class Achivement
         $this->level = $level;
         $this->item = $item;
         $this->des = $des;
+        $this->max = $max;
     }
 
     /**
@@ -112,5 +114,10 @@ class Achivement
     public function getDescription(): string
     {
         return $this->des;
+    }
+
+    public function getMaxLevel(): int
+    {
+        return $this->max;
     }
 }

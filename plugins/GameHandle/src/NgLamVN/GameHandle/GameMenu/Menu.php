@@ -168,8 +168,7 @@ class Menu
         }
 
         $item9 = Item::get(Item::DIAMOND);
-        $item9->setCustomName("Achivements");
-        $item9->setLore(["Will available soon !"]);
+        $item9->setCustomName("Achievements");
         $inv->setItem(8, $item9);
 
         $item10 = Item::get(Item::NETHER_STAR);
@@ -230,6 +229,9 @@ class Menu
                 {
                     Server::getInstance()->dispatchCommand($player, "cuahang");
                 }, $this->getCore(), $player);
+                break;
+            case 8:
+                Server::getInstance()->dispatchCommand($player, "achievement");
                 break;
         }
     }

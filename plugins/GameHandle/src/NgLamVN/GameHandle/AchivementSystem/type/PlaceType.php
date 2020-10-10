@@ -6,17 +6,22 @@ use pocketmine\event\block\BlockPlaceEvent;
 
 class PlaceType extends BaseType
 {
+    /**
+     * @param BlockPlaceEvent $event
+     * @priority LOWEST
+     */
     public function onPlace (BlockPlaceEvent $event)
     {
-        $player = $event->getPlayer();
-        $block = $event->getBlock();
-        if ($this->getAItem()->getId() == 0)
+        if ($event->isCancelled())
         {
             return;
         }
-        if ($this->getAItem()->getId() == $block->getId())
+        $player = $event->getPlayer();
+        $block = $event->getBlock();
+        if (($this->getAchivement()->getItem()->getId()) == 0 OR ($this->getAchivement()->getItem()->getId() == $block->getId()))
         {
-            return;
+            $newcount = $this->getAManager()->getPlayerData($player->getName())->getCount($this->getAchivement()->getId()) + 1;
+            $this->getAManager()->getPlayerData($player->getName())->setCount($this->getAchivement()->getId(), $newcount);
         }
     }
 }

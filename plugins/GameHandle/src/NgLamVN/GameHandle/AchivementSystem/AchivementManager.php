@@ -8,6 +8,7 @@
 
 namespace NgLamVN\GameHandle\AchivementSystem;
 
+use NgLamVN\GameHandle\AchivementSystem\command\AchivementCommand;
 use NgLamVN\GameHandle\AchivementSystem\type\BreakType;
 use NgLamVN\GameHandle\AchivementSystem\type\FishType;
 use NgLamVN\GameHandle\AchivementSystem\type\PlaceType;
@@ -16,6 +17,7 @@ use NgLamVN\GameHandle\Core;
 use pocketmine\utils\Config;
 use NgLamVN\GameHandle\AchivementSystem\Achivement;
 use NgLamVN\GameHandle\AchivementSystem\AchivementData;
+use pocketmine\Player;
 
 class AchivementManager
 {
@@ -31,6 +33,11 @@ class AchivementManager
     {
         $this->core = $plugin;
         self::$instance = $this;
+        $this->getData();
+        $this->registerAchivement();
+        $this->registerPlayerData();
+        $this->registerEvent();
+        $this->getCore()->getServer()->getCommandMap()->register("achievement", new AchivementCommand($this->getCore()));
     }
 
     /**
@@ -88,8 +95,9 @@ class AchivementManager
             $item = $this->data[$id]["item"];
             $des = $this->data[$id]["description"];
             $level = $this->data[$id]["level"];
+            $max = $this->data[$id]["max-level"];
 
-            array_push($this->achivements, new Achivement($name, $id, $type, $level, $item, $des));
+            array_push($this->achivements, new Achivement($name, $id, $type, $level, $item, $des, $max));
         }
 
     }
@@ -121,6 +129,17 @@ class AchivementManager
                     $this->getCore()->getServer()->getPluginManager()->registerEvents(new FishType($ac), $this->getCore());
                     break;
             }
+        }
+    }
+
+    public function registerBaseData(Player $player)
+    {
+        foreach ($this->getAllAchivement() as $achivement)
+        {
+            $id = $achivement->getId();
+            $this->playerdata[$player->getName()][$id]["level"] = 1;
+            $this->playerdata[$player->getName()][$id]["count"] = 0;
+            $this->playerdata[$player->getName()][$id]["claimed"] = 0;
         }
     }
 
@@ -160,6 +179,15 @@ class AchivementManager
     public function getAllPlayerData()
     {
         return $this->pdatas;
+    }
+
+    public function isHaveData(Player $player): bool
+    {
+        if (!isset($this->playerdata[$player->getName()]))
+        {
+            return false;
+        }
+        return true;
     }
 
 }

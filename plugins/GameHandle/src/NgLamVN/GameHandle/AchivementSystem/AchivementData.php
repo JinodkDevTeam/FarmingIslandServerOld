@@ -78,6 +78,10 @@ class AchivementData
     {
         $this->getManager()->playerdata[$this->getPlayerName()][$id]["count"] = $newcount;
     }
+    public function setLevel($id, $newlevel): void
+    {
+        $this->getManager()->playerdata[$this->getPlayerName()][$id]["level"] = $newlevel;
+    }
 
     /**
      * @param $id

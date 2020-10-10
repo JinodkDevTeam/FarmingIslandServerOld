@@ -4,7 +4,6 @@ namespace NgLamVN\GameHandle\AchivementSystem\type;
 
 use NgLamVN\GameHandle\AchivementSystem\Achivement;
 use pocketmine\event\Listener;
-use pocketmine\item\Item;
 use NgLamVN\GameHandle\AchivementSystem\AchivementManager;
 
 abstract class BaseType implements Listener

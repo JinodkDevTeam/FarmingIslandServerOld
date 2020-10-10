@@ -8,21 +8,21 @@ class FishType extends BaseType
 {
     public function onFish(PlayerFishEvent $event)
     {
+        if ($event->isCancelled())
+        {
+            return;
+        }
         if ($event->getState() !== PlayerFishEvent::STATE_CAUGHT_FISH)
         {
             return;
         }
         $player = $event->getPlayer();
         $loot = $event->getItemResult();
-        if ($this->getAchivement()->getItem()->getId() == 0)
-        {
-            return;
-        }
         foreach ($loot as $item)
-            if ($this->getAItem()->getId() == $item->getId())
+            if (($this->getAchivement()->getItem()->getId()) == 0 OR ($this->getAchivement()->getItem()->getId() == $item->getId()))
             {
-                $itemcount = $item->getCount();
-                return;
+                $newcount = $this->getAManager()->getPlayerData($player->getName())->getCount($this->getAchivement()->getId()) + 1;
+                $this->getAManager()->getPlayerData($player->getName())->setCount($this->getAchivement()->getId(), $newcount);
             }
     }
 }
