@@ -21,7 +21,8 @@ class FishType extends BaseType
         foreach ($loot as $item)
             if (($this->getAchivement()->getItem()->getId()) == 0 OR ($this->getAchivement()->getItem()->getId() == $item->getId()))
             {
-                $newcount = $this->getAManager()->getPlayerData($player->getName())->getCount($this->getAchivement()->getId()) + 1;
+                $item->getCount();
+                $newcount = $this->getAManager()->getPlayerData($player->getName())->getCount($this->getAchivement()->getId()) + $count;
                 $this->getAManager()->getPlayerData($player->getName())->setCount($this->getAchivement()->getId(), $newcount);
             }
     }
