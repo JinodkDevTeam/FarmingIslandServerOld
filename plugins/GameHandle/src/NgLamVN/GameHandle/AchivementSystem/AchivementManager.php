@@ -14,6 +14,7 @@ use NgLamVN\GameHandle\AchivementSystem\type\FishType;
 use NgLamVN\GameHandle\AchivementSystem\type\PlaceType;
 use NgLamVN\GameHandle\Core;
 
+use pocketmine\Server;
 use pocketmine\utils\Config;
 use NgLamVN\GameHandle\AchivementSystem\Achivement;
 use NgLamVN\GameHandle\AchivementSystem\AchivementData;
@@ -170,6 +171,10 @@ class AchivementManager
      */
     public function getPlayerData(string $playername)
     {
+        if (!isset($this->playerdata[$playername]))
+        {
+            $this->registerBaseData(Server::getInstance()->getPlayer($playername));
+        }
         return new AchivementData($playername, $this->playerdata[$playername]);
     }
 
