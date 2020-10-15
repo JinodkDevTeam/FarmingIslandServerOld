@@ -9,7 +9,7 @@ class BreakType extends BaseType
 
     /**
      * @param BlockBreakEvent $event
-     * @priority LOWEST
+     * @priority HIGHEST
      */
     public function onBreak(BlockBreakEvent $event)
     {

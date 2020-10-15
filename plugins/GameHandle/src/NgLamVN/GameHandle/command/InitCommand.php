@@ -18,5 +18,6 @@ class InitCommand
         $cmd->register("gm3", new Gm3($plugin));
         $cmd->register("sell", new Sell($plugin));
         $cmd->register("tpall", new TpAll($plugin));
+        $cmd->register("fiversion", new FiVersion($plugin));
     }
 }

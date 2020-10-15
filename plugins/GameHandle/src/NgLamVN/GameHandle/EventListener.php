@@ -33,7 +33,7 @@ class EventListener implements Listener
 
     /**
      * @param PlayerJoinEvent $event
-     * @priority LOWEST
+     * @priority HIGHEST
      */
     public function onJoin(PlayerJoinEvent $event)
     {
@@ -50,7 +50,7 @@ class EventListener implements Listener
 
     /**
      * @param PlayerRespawnEvent $event
-     * @priority LOWEST
+     * @priority HIGHEST
      */
     public function onRespawn (PlayerRespawnEvent $event)
     {
@@ -74,6 +74,10 @@ class EventListener implements Listener
         $this->menu->onTap($event);
     }
 
+    /**
+     * @param PlayerFishEvent $event
+     * @priority LOWEST
+     */
     public function onFish(PlayerFishEvent $event)
     {
         $this->fish->onFish($event);

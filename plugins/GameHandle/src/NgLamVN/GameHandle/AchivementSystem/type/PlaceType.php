@@ -8,7 +8,7 @@ class PlaceType extends BaseType
 {
     /**
      * @param BlockPlaceEvent $event
-     * @priority LOWEST
+     * @priority HIGHEST
      */
     public function onPlace (BlockPlaceEvent $event)
     {
