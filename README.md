@@ -2,7 +2,9 @@
 FarmingIsland Server Files
 
 
-**Current server version: 0.1.8-beta**
+**Current server version: 0.1.9-beta**
 
-# NOTE
-* This project is no longer update...
+# Note
+
+This branch is update version of this server
+MCBE Version: 1.16.100
