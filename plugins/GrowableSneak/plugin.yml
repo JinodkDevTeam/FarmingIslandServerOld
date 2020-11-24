@@ -1,0 +1,6 @@
+name: GrowableSneak
+main: NgLamVN\GrowableSneak\Loader
+api: 3.14.0
+version: 0.1-ngl-dk
+author: NgLamVN
+description: Make Tree or another plant grow faster use sneak.

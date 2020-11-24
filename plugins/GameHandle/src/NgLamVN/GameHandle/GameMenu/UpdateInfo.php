@@ -17,11 +17,11 @@ class UpdateInfo
         $form = new CustomForm(function (Player $player, $data){ return; });
         $form->setTitle("BREAKING NEWS");
         $form->addLabel("Updates:");
-        $form->addLabel("- Update server for mcbe 1.16.100");
+        $form->addLabel("- Add Tree Growing Simulator feature. Now you can sneak to make tree grow faster.");
         $form->addLabel("Official wiki: bit.ly/fi-wiki");
         $form->addLabel("Vote for server: bit.ly/fi-vote");
         $form->addLabel("Official Facebook group: bit.ly/jinodkgroupfb");
-        $form->addLabel("Server Version: 0.1.9-beta");
+        $form->addLabel("Server Version: 0.1.10-beta");
         $player->sendForm($form);
     }
 }

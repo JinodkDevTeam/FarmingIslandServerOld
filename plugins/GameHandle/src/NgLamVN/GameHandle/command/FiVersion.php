@@ -19,6 +19,6 @@ class FiVersion extends PluginCommand
     }
     public function execute(CommandSender $sender, string $commandLabel, array $args)
     {
-        $sender->sendMessage("Server version: 0.1.9-beta");
+        $sender->sendMessage("Server version: 0.1.10-beta");
     }
 }
