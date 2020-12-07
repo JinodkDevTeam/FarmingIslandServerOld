@@ -7,6 +7,7 @@ use muqsit\invmenu\InvMenuHandler;
 use NgLamVN\GameHandle\AchivementSystem\AchivementManager;
 use NgLamVN\GameHandle\CoinSystem\CoinSystem;
 use NgLamVN\GameHandle\command\InitCommand;
+use NgLamVN\GameHandle\task\InitTask;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
@@ -38,6 +39,7 @@ class Core extends PluginBase
 
         $this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
         $cmd = new InitCommand($this);
+        $task = new InitTask($this);
         $this->coin = new CoinSystem($this);
         $this->achivement = new AchivementManager($this);
     }
