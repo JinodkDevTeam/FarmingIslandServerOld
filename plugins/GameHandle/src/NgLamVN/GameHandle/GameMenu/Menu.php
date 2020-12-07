@@ -2,6 +2,7 @@
 
 namespace NgLamVN\GameHandle\GameMenu;
 
+use LamPocketVN\CuaHangPlus\CuaHang;
 use muqsit\invmenu\InvMenu;
 use muqsit\invmenu\transaction\DeterministicInvMenuTransaction;
 use NgLamVN\GameHandle\Core;
