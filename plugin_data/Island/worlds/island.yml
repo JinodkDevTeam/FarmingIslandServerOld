@@ -8,4 +8,5 @@ ClearPrice: 0
 DisposePrice: 0
 ResetPrice: 0
 ClonePrice: 0
+MaxPlotsPerPlayer: ~
 ...

@@ -175,6 +175,34 @@
             "version": "4.0.5",
             "update": null,
             "state": 3
+        },
+        "autoinv": {
+            "source": "Poggit",
+            "name": "AutoInv",
+            "version": "0.0.10",
+            "update": null,
+            "state": 3
+        },
+        "bettervoting": {
+            "source": "Local",
+            "name": "BetterVoting",
+            "version": "2.0.2",
+            "update": null,
+            "state": 3
+        },
+        "namespaceremover": {
+            "source": "Poggit",
+            "name": "NameSpaceRemover",
+            "version": "1.0.0",
+            "update": null,
+            "state": 3
+        },
+        "lpktag": {
+            "source": "Local",
+            "name": "LpkTag",
+            "version": "0.1.lpk",
+            "update": null,
+            "state": 3
         }
     }
 }

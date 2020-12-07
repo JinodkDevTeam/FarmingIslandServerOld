@@ -37,6 +37,6 @@ class Gm0 extends PluginCommand
             return;
         }
         $sender->setGamemode(0);
-        $sender->sendMessage("Your game mode have changed to creative !");
+        $sender->sendMessage("Your game mode have changed to survival !");
     }
 }

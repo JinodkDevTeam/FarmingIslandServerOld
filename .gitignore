@@ -1,0 +1,51 @@
+.idea/
+7.4bin/
+players/
+plugins(fb)/
+worlds/
+maps/
+bin/
+crashdumps/
+AltayYepYep.phar
+coin.yml
+banned-players.txt
+ops.txt
+NGL VERSION INFO
+plugin_data/AcidIsland/
+plugin_data/AutoClearLagg/
+GIT SSH TOKEN.txt
+start.cmd
+vc_redist.x64.exe
+white-list.txt
+plugin_data/Boss
+plugin_data/cayphattai
+plugin_data/NapThe
+plugin_data/PointAPI
+plugin_data/PureChat
+plugin_data/PurePerms
+plugin_data/ThrowableTNT
+plugin_data/GiftCode
+plugin_data/EconomyAPI
+plugins/NapThe
+plugins/Boss
+plugins/CPTv1.1.0
+plugins/CrazyBan
+plugins/DevTest
+plugins/FireBall
+plugins/MineSweeperPE-master
+plugins/PointAPI-master
+plugins/Prestige
+plugins/SmeltWands
+plugins/ThrowableTNT
+plugins/FartBattle
+plugins/AutoNapThe
+plugins/GiftCode
+plugin_data/EconomyAPI
+plugin_data/Island
+server(fb).properties
+PocketMine-MP 3.14.2.phar
+plugin_data/GameHandle/Achivement/player.yml
+plugins/CayPhatTai/comming soon project.bla
+plugins/MyPlot.phar.update
+plugins/OreGen.phar.update
+plugin_data/RedstoneCircuit/ScheduledBlockUpdate.yml
