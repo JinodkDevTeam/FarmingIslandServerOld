@@ -49,3 +49,7 @@ plugins/CayPhatTai/comming soon project.bla
 plugins/MyPlot.phar.update
 plugins/OreGen.phar.update
 plugin_data/RedstoneCircuit/ScheduledBlockUpdate.yml
+bin/
+bin/php7/bin/php
+bin/php7/bin/php-config
+server.log
