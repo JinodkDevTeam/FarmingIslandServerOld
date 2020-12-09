@@ -31,7 +31,7 @@ class MultiProtocol extends PluginBase implements Listener {
     public function onDataPacketRecieve (DataPacketReceiveEvent $ev) {
     	$pk = $ev->getPacket();
     	if ($pk instanceof LoginPacket) {
-    		if ($pk->protocol > 400) {
+    		if ($pk->protocol > 422) {
     			$pk->protocol = ProtocolInfo::CURRENT_PROTOCOL;
     		}
     	}

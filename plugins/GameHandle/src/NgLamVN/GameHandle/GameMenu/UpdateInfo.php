@@ -17,6 +17,7 @@ class UpdateInfo
         $form = new CustomForm(function (Player $player, $data){ return; });
         $form->setTitle("BREAKING NEWS");
         $form->addLabel("Updates:");
+        $form->addLabel("- Update base mcbe version to 1.16.200");
         $form->addLabel("- AfkArea: Get money by afk in this world (500xu per 30mins)");
         $form->addLabel("Official wiki: bit.ly/fi-wiki");
         $form->addLabel("Vote for server: bit.ly/fi-vote");
