@@ -57,3 +57,4 @@ plugin_data/RedstoneCircuit/ScheduledBlockUpdate.yml
 plugin_data/GameHandle/Achivement/data.yml
 *.lock
 *.log
+start.sh
