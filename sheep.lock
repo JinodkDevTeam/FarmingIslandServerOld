@@ -203,6 +203,13 @@
             "version": "0.1.lpk",
             "update": null,
             "state": 3
+        },
+        "onlinetime": {
+            "source": "Poggit",
+            "name": "OnlineTime",
+            "version": "1.3",
+            "update": null,
+            "state": 3
         }
     }
 }

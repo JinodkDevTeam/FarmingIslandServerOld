@@ -58,3 +58,4 @@ plugin_data/GameHandle/Achivement/data.yml
 *.lock
 *.log
 start.sh
+plugin_data/OnlineTime/players.db

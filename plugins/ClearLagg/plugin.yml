@@ -1,0 +1,6 @@
+name: ClearLagg
+description: Auto Clear Lagg in server
+main: NgLamVN\ClearLagg\ClearLagg
+version: 0.1
+api: 3.9.0
+author: NgLamVN

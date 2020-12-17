@@ -1,0 +1,22 @@
+---
+# ClearLagg Config
+
+# Seconds between each clear lagg
+seconds: 120
+
+# Entities to clear
+clear:
+  items: true
+  mobs: true
+  xp-orbs: true
+  exempt: # Array of entities not to clear
+    - Cow
+    - Pig
+
+messages:
+  time-left: "§c[Cleaner]§eEntities will clear in {SECONDS} seconds"
+  entities-cleared: "§c[Cleaner]§aCleared a total of {COUNT} entities"
+
+# Countdown times
+times: [3, 2, 1]
+...
