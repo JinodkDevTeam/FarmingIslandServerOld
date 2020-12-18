@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace NgLamVN\ClearLagg;
 
+use pocketmine\command\Command;
+use pocketmine\command\CommandSender;
 use pocketmine\entity\Human;
 use pocketmine\entity\Mob;
 use pocketmine\entity\object\ExperienceOrb;
@@ -126,5 +128,39 @@ class ClearLagg extends PluginBase{
         foreach ($this->getServer()->getOnlinePlayers() as $player){
             $player->sendMessage($msg);
         }
+    }
+
+    public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool
+    {
+        if (strtolower($command->getName()) !== "clearlagg")
+        {
+            return;
+        }
+        if ($sender->hasPermission("clearlagg.cmd"))
+        {
+            $sender->sendMessage("You dont have permission to use this command");
+            return true;
+        }
+        $entitiesCleared = 0;
+        foreach($this->getServer()->getLevels() as $level){
+            foreach($level->getEntities() as $entity){
+                if($this->clearItems && $entity instanceof ItemEntity){
+                    $entity->flagForDespawn();
+                    ++$entitiesCleared;
+                }else if($this->clearMobs && $entity instanceof Mob && !$entity instanceof Human){
+                    if(!in_array(strtolower($entity->getName()), $this->exemptEntities)){
+                        $entity->flagForDespawn();
+                        ++$entitiesCleared;
+                    }
+                }else if($this->clearXpOrbs && $entity instanceof ExperienceOrb){
+                    $entity->flagForDespawn();
+                    ++$entitiesCleared;
+                }
+            }
+        }
+        if($this->messages[self::LANG_ENTITIES_CLEARED] !== ""){
+            $this->broadcastMessage(str_replace("{COUNT}", $entitiesCleared, $this->messages[self::LANG_ENTITIES_CLEARED]));
+        }
+        return true;
     }
 }

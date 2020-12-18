@@ -4,3 +4,11 @@ main: NgLamVN\ClearLagg\ClearLagg
 version: 0.1
 api: 3.9.0
 author: NgLamVN
+
+commands:
+  clearlagg:
+    description: Instant Clear lagggg !!
+permissions:
+  clearlagg.cmd:
+    default: op
+    description: Allow player use /clearlagg command
