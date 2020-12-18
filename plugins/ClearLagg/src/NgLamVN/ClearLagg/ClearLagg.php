@@ -134,7 +134,7 @@ class ClearLagg extends PluginBase{
     {
         if (strtolower($command->getName()) !== "clearlagg")
         {
-            return;
+            return true;
         }
         if ($sender->hasPermission("clearlagg.cmd"))
         {
