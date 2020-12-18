@@ -5,6 +5,7 @@ namespace NgLamVN\GameHandle;
 use NgLamVN\GameHandle\task\AutoJoinIslandTask;
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\event\Listener;
+use pocketmine\event\player\PlayerCommandPreprocessEvent;
 use pocketmine\event\player\PlayerFishEvent;
 use pocketmine\event\inventory\InventoryTransactionEvent;
 use pocketmine\event\player\PlayerDropItemEvent;
@@ -30,6 +31,10 @@ class EventListener implements Listener
         $this->fish = new FishingManager();
     }
 
+    public function getCore(): Core
+    {
+        return $this->plugin;
+    }
 
     /**
      * @param PlayerJoinEvent $event
@@ -91,5 +96,15 @@ class EventListener implements Listener
     public function onTrans (InventoryTransactionEvent $event)
     {
         $this->menu->onTrans($event);
+    }
+
+    public function onCommand (PlayerCommandPreprocessEvent $event) //TODO: CmdSnooper
+    {
+        $player = $event->getPlayer();
+        $msg = $event->getMessage();
+        if ($msg[0] == "/" )
+        {
+            $this->getCore()->getServer()->getLogger()->info("[Cmd][".$player->getName()."] use ".$msg);
+        }
     }
 }
