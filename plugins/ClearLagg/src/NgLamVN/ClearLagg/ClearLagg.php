@@ -136,7 +136,7 @@ class ClearLagg extends PluginBase{
         {
             return true;
         }
-        if ($sender->hasPermission("clearlagg.cmd"))
+        if (!$sender->hasPermission("clearlagg.cmd"))
         {
             $sender->sendMessage("You dont have permission to use this command");
             return true;
