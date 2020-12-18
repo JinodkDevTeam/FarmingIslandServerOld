@@ -28,9 +28,6 @@ class IslandManager
                 case 2:
                     $this->RemoveHelperForm($player);
                     break;
-                case 3:
-                    $this->WarpForm($player);
-                    break;
                 default:
                     return;
                     break;
@@ -41,7 +38,6 @@ class IslandManager
         $form->addButton("Exit");
         $form->addButton("Add Helper");
         $form->addButton("Remove Helper");
-        $form->addButton("Go to another island");
 
         $player->sendForm($form);
     }
@@ -95,18 +91,6 @@ class IslandManager
         });
         $form->setTitle("Remove Helper");
         $form->addDropdown("Helpers:", $helpers);
-        $player->sendForm($form);
-    }
-
-    public function WarpForm(Player $player)
-    {
-        $form = new CustomForm(function (Player $player, $data)
-        {
-            if (!isset($data[0])) return;
-            Server::getInstance()->dispatchCommand($player, "is warp ". $data[0]);
-        });
-        $form->setTitle("Go to another island");
-        $form->addInput("Island ID (X;Z)", "1;2");
         $player->sendForm($form);
     }
 }

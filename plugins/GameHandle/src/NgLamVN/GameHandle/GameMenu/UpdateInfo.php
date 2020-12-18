@@ -20,6 +20,7 @@ class UpdateInfo
         $form->addLabel("- Update base mcbe version to 1.16.200");
         $form->addLabel("- AfkArea: Get money by afk in this world (500xu per 30mins)");
         $form->addLabel("- Menu: UI mode support");
+        $form->addLabel("- Now use Teleport menu to go warp to another island");
         $form->addLabel("Official wiki: bit.ly/fi-wiki");
         $form->addLabel("Vote for server: bit.ly/fi-vote");
         $form->addLabel("Official Facebook group: bit.ly/jinodkgroupfb");
