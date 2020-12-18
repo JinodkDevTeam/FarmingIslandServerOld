@@ -3,11 +3,10 @@ declare(strict_types=1);
 
 namespace NgLamVN\ClearLagg;
 
-use pocketmine\entity\Creature;
 use pocketmine\entity\Human;
+use pocketmine\entity\Mob;
 use pocketmine\entity\object\ExperienceOrb;
 use pocketmine\entity\object\ItemEntity;
-use pocketmine\level\generator\VoidGenerator;
 use pocketmine\plugin\PluginBase;
 use pocketmine\scheduler\ClosureTask;
 use function array_map;
@@ -101,7 +100,7 @@ class ClearLagg extends PluginBase{
                         if($this->clearItems && $entity instanceof ItemEntity){
                             $entity->flagForDespawn();
                             ++$entitiesCleared;
-                        }else if($this->clearMobs && $entity instanceof Creature && !$entity instanceof Human){
+                        }else if($this->clearMobs && $entity instanceof Mob && !$entity instanceof Human){
                             if(!in_array(strtolower($entity->getName()), $this->exemptEntities)){
                                 $entity->flagForDespawn();
                                 ++$entitiesCleared;
