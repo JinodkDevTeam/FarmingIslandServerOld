@@ -2,7 +2,9 @@
 
 namespace NgLamVN\GameHandle\GameMenu;
 
+use jojoe77777\FormAPI\CustomForm;
 use jojoe77777\FormAPI\SimpleForm;
+use MyPlot\MyPlot;
 use NgLamVN\GameHandle\Core;
 use pocketmine\Player;
 use pocketmine\Server;
@@ -79,6 +81,9 @@ class UiMenu
                 case "gui":
                     $this->GuiMode($player);
                     break;
+                case "is-info":
+                    $this->IslandInfoForm($player);
+                    break;
             }
         });
         if ($player->getLevel()->getName() == "island")
@@ -113,5 +118,28 @@ class UiMenu
         $i->setCustomName("Island Menu");
         $i->setLore(["Hold and tap to open menu !"]);
         $player->getInventory()->setItem(8, $i);
+    }
+
+    public function IslandInfoForm(Player $player)
+    {
+        $form = new CustomForm(function (Player $player, $data) {});
+        $form->setTitle("Island Info");
+        $plot = MyPlot::getInstance()->getPlotByPosition($player->asPosition());
+        $h = "";
+        foreach ($plot->helpers as $helper)
+        {
+            if ($h == "")
+            {
+                $h = $h . "" . $helper;
+            } else {
+                $h = $h . "," . $helper;
+            }
+        }
+        $form->addLabel("Island ID: " . $plot->X . ";" . $plot->Z);
+        $form->addLabel("Owner: " . $plot->owner);
+        $form->addLabel("Island Name: " . $plot->name);
+        $form->addLabel("Helpers: " . $h);
+
+        $player->sendForm($form);
     }
 }

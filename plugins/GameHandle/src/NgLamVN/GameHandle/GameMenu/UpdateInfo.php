@@ -21,6 +21,8 @@ class UpdateInfo
         $form->addLabel("- AfkArea: Get money by afk in this world (500xu per 30mins)");
         $form->addLabel("- Menu: UI mode support");
         $form->addLabel("- Now use Teleport menu to go warp to another island");
+        $form->addLabel("- Add some options to Island Manager");
+        $form->addLabel("- Add some features for admin");
         $form->addLabel("Official wiki: bit.ly/fi-wiki");
         $form->addLabel("Vote for server: bit.ly/fi-vote");
         $form->addLabel("Official Facebook group: bit.ly/jinodkgroupfb");

@@ -28,6 +28,15 @@ class IslandManager
                 case 2:
                     $this->RemoveHelperForm($player);
                     break;
+                case 3:
+                    $this->ReNameForm($player);
+                    break;
+                case 4:
+                    $this->ChangeBiomeForm($player);
+                    break;
+                case 5:
+                    Server::getInstance()->dispatchCommand($player, "is pvp");
+                    break;
                 default:
                     return;
                     break;
@@ -36,8 +45,19 @@ class IslandManager
         $form->setTitle("Island Manager");
 
         $form->addButton("Exit");
-        $form->addButton("Add Helper");
-        $form->addButton("Remove Helper");
+        $form->addButton("Add Helper\nThêm người giúp");
+        $form->addButton("Remove Helper\nXóa Người giúp");
+        $form->addButton("Rename island\nĐổi tên đảo");
+        $form->addButton("Change island biome\n Thay đổi hệ sinh thái đảo");
+        $plot = MyPlot::getInstance()->getPlotByPosition($player->asPosition());
+        if ($plot->pvp == true)
+        {
+            $form->addButton("Disable PvP\nTắt PvP");
+        }
+        else
+        {
+            $form->addButton("Enable PvP\nBật PvP");
+        }
 
         $player->sendForm($form);
     }
@@ -91,6 +111,42 @@ class IslandManager
         });
         $form->setTitle("Remove Helper");
         $form->addDropdown("Helpers:", $helpers);
+        $player->sendForm($form);
+    }
+
+    public function ReNameForm (Player $player)
+    {
+        $form = new CustomForm(function (Player $player, $data)
+        {
+            if(!isset($data[0])) return;
+
+            $plot = MyPlot::getInstance()->getPlotByPosition($player->asPosition());
+            if (($player->getName() == $plot->owner) or $player->isOp())
+            {
+                $plot->name = $data[0];
+                $player->sendMessage("Island Renamed !");
+            }
+            else
+            {
+                $player->sendMessage("You not have permission to rename this island");
+            }
+        });
+
+        $form->setTitle("Rename island");
+        $form->addInput("Name", "MyIsland123");
+        $player->sendForm($form);
+    }
+
+    public function ChangeBiomeForm(Player $player)
+    {
+        $arr = ["<none>", "PLAINS", "DESERT", "MOUNTAINS", "FOREST", "TAIGA", "SWAMP", "NETHER", "HELL", "ICE_PLAINS"];
+        $form = new CustomForm(function (Player $player, $data)
+        {
+            if (!isset($data[0])) return;
+            if ($data[0] == "<none>") return;
+            Server::getInstance()->dispatchCommand($player, "is biome ".$data[0]);
+        });
+        $form->addDropdown("Biome:", $arr);
         $player->sendForm($form);
     }
 }
