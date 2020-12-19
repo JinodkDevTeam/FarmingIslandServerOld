@@ -4,6 +4,7 @@ namespace NgLamVN\GameHandle\GameMenu;
 
 use jojoe77777\FormAPI\SimpleForm;
 use jojoe77777\FormAPI\CustomForm;
+use pocketmine\command\ConsoleCommandSender;
 use pocketmine\Player;
 use pocketmine\Server;
 
@@ -22,10 +23,14 @@ class TeleportManager
             switch ($data)
             {
                 case 1:
+                    if ($player->getLevel()->getName() !== "island")
+                        Server::getInstance()->dispatchCommand(new ConsoleCommandSender(), "mw tp island ".$player);
                     Server::getInstance()->dispatchCommand($player, "is home");
                     break;
                 case 2:
                     $this->WarpForm($player);
+                case 3:
+                    Server::getInstance()->dispatchCommand(new ConsoleCommandSender(), "mw tp afk ".$player->getName());
                 default:
                     return;
                     break;
@@ -35,6 +40,7 @@ class TeleportManager
         $form->addButton("EXIT");
         $form->addButton("Your Island");
         $form->addButton("Go to another island");
+        $form->addButton("Afk Area");
         $form->addButton("Comming Soon");
 
         $player->sendForm($form);
