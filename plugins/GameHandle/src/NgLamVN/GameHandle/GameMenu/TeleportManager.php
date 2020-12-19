@@ -24,7 +24,7 @@ class TeleportManager
             {
                 case 1:
                     if ($player->getLevel()->getName() !== "island")
-                        Server::getInstance()->dispatchCommand(new ConsoleCommandSender(), "mw tp island ".$player);
+                        Server::getInstance()->dispatchCommand(new ConsoleCommandSender(), "mw tp island ".$player->getName());
                     Server::getInstance()->dispatchCommand($player, "is home");
                     break;
                 case 2:

@@ -21,6 +21,6 @@ class InitTask
 
     public function init()
     {
-        $this->getCore()->getScheduler()->scheduleRepeatingTask(new AfkRewardTask(), 200); //TODO: AfkRewardTask (10secs)
+        $this->getCore()->getScheduler()->scheduleRepeatingTask(new AfkRewardTask(), 36000); //TODO: AfkRewardTask (30min)
     }
 }
