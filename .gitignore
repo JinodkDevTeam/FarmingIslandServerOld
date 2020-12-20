@@ -60,3 +60,9 @@ plugin_data/GameHandle/Achivement/data.yml
 start.sh
 plugin_data/OnlineTime/players.db
 plugin_data/RedstoneCircuit/ScheduledBlockUpdate.yml
+plugin/CTG
+plugin_data/CTG
+plugins/CTG/plugin.yml
+plugins/CTG/src/NgLamVN/CTG/CTG.php
+plugins/CTG/src/NgLamVN/CTG/Generator.php
+plugins/CTG/src/NgLamVN/CTG/GoldenTree.php
