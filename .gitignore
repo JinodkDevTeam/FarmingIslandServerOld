@@ -66,3 +66,6 @@ plugins/CTG/plugin.yml
 plugins/CTG/src/NgLamVN/CTG/CTG.php
 plugins/CTG/src/NgLamVN/CTG/Generator.php
 plugins/CTG/src/NgLamVN/CTG/GoldenTree.php
+resource_packs
+plugins/CustomItemLoader
+plugin_data/CustomItemLoader
