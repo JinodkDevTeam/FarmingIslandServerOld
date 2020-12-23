@@ -1,0 +1,20 @@
+---
+#The Ammount of time that you wish for the MOTD Delay.
+#This doesn't make the client's query change,
+#this effects the ammount of time the server sends the message.
+#Default: 100
+MOTD Delay: 600
+
+#Here you can set if you want the shuffle on, or off.
+#It is required to use quotations. :D
+#Default: "off"
+MOTD Shuffle: "on"
+
+#The MOTD Messages.
+#You can add to as much as you like! 
+#Just make sure you copy it correctly. 
+MOTD Message:
+    - "§bFarming§aIsland§e §cBETA"
+    - "§eMerry§bChristmas §a!!!"
+    - "§4J§ci§6n§eo§ad§2k§eNet§bwork"
+...

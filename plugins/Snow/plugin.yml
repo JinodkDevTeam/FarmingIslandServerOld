@@ -1,0 +1,10 @@
+name: Snow
+author: VixikCZ | Edited by NgLamVN
+api: 3.0.0
+version: 1.0.2
+main: vixikhd\snow\Snow
+description: It will snow in almost all the levels!
+
+commands:
+  weatherclear:
+    description: Clear Snow.
