@@ -69,3 +69,4 @@ plugins/CTG/src/NgLamVN/CTG/GoldenTree.php
 resource_packs
 plugins/CustomItemLoader
 plugin_data/CustomItemLoader
+resource_packs/resource_packs.yml

@@ -17,11 +17,11 @@ class UpdateInfo
         $form = new CustomForm(function (Player $player, $data){ return; });
         $form->setTitle("BREAKING NEWS");
         $form->addLabel("Updates:");
-        $form->addLabel("- MERRY CHRISTMAS !!!");
+        $form->addLabel("- HAPPY NEW YEAR 2021 !!!");
         $form->addLabel("Official wiki: bit.ly/fi-wiki");
         $form->addLabel("Vote for server: bit.ly/fi-vote");
         $form->addLabel("Official Facebook group: bit.ly/jinodkgroupfb");
-        $form->addLabel("Server Version: 0.1.11-build2");
+        $form->addLabel("Server Version: 0.1.11-build3");
         $player->sendForm($form);
     }
 }
