@@ -29,6 +29,7 @@ class TeleportManager
                     break;
                 case 2:
                     $this->WarpForm($player);
+                    break;
                 case 3:
                     Server::getInstance()->dispatchCommand(new ConsoleCommandSender(), "mw tp afk ".$player->getName());
                 default:
