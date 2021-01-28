@@ -1,9 +1,9 @@
 # monetary-unit: Set what monetary unit you want to use
-monetary-unit: "$"
+monetary-unit: "xu"
 # add-op-at-rank: Set whether to show OPs at top money rank
 add-op-at-rank: false
 # default-money: Set default money when player joined the server first
-default-money: 1000
+default-money: 100
 # max-money: Set max money that player can have
 max-money: 9999999999
 # Whether to allow player to pay when taret player is offline
@@ -12,7 +12,7 @@ allow-pay-offline: true
 # default-lang: Set default language
 default-lang: def
 # auto-save-interval: Set interval of auto-save
-auto-save-interval: 10
+auto-save-interval: 20
 
 # provider: Set provider of database (Available: yaml, mysql)
 provider: yaml
