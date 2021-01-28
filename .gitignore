@@ -70,3 +70,17 @@ resource_packs
 plugins/CustomItemLoader
 plugin_data/CustomItemLoader
 resource_packs/resource_packs.yml
+plugin_data/RedstoneCircuit/ScheduledBlockUpdate.yml
+plugins/AutoInv.phar
+plugins/AutoInv.pharz
+plugins/CursedDrop/plugin.yml
+plugins/CursedDrop/src/NgLamVN/CursedDrop/CursedDrop.php
+plugins/InvCraft/plugin.yml
+plugins/InvCraft/src/NgLamVN/InvCraft/command/InvCraftCommand.php
+plugins/InvCraft/src/NgLamVN/InvCraft/Loader.php
+plugins/InvCraft/src/NgLamVN/InvCraft/menu/AddRecipeMenu.php
+plugins/InvCraft/src/NgLamVN/InvCraft/menu/BaseMenu.php
+plugins/InvCraft/src/NgLamVN/InvCraft/menu/CraftMenu.php
+plugins/InvCraft/src/NgLamVN/InvCraft/menu/EditRecipeMenu.php
+plugins/InvCraft/src/NgLamVN/InvCraft/Recipe.php
+resource_packs/resource_packs.yml
