@@ -34,13 +34,8 @@ class SleeperHandler{
 	/** @var ThreadedSleeper */
 	private $threadedSleeper;
 
-	/** @var SleeperNotifier[] */
+	/** @var NotifierEntry[] */
 	private $notifiers = [];
-	/**
-	 * @var callable[]
-	 * this is stored separately from notifiers otherwise pthreads would break closures referencing variables
-	 */
-	private $handlers = [];
 
 	/** @var int */
 	private $nextSleeperId = 0;
@@ -54,31 +49,26 @@ class SleeperHandler{
 	}
 
 	/**
-	 * @param SleeperNotifier $notifier
 	 * @param callable        $handler Called when the notifier wakes the server up, of the signature `function() : void`
+	 * @phpstan-param callable() : void $handler
 	 */
 	public function addNotifier(SleeperNotifier $notifier, callable $handler) : void{
 		$id = $this->nextSleeperId++;
 		$notifier->attachSleeper($this->threadedSleeper, $id);
-		$this->notifiers[$id] = $notifier;
-		$this->handlers[$id] = $handler;
+		$this->notifiers[$id] = new NotifierEntry($notifier, $handler);
 	}
 
 	/**
 	 * Removes a notifier from the sleeper. Note that this does not prevent the notifier waking the sleeper up - it just
 	 * stops the notifier getting actions processed from the main thread.
-	 *
-	 * @param SleeperNotifier $notifier
 	 */
 	public function removeNotifier(SleeperNotifier $notifier) : void{
-		unset($this->notifiers[$notifier->getSleeperId()], $this->handlers[$notifier->getSleeperId()]);
+		unset($this->notifiers[$notifier->getSleeperId()]);
 	}
 
 	/**
 	 * Sleeps until the given timestamp. Sleep may be interrupted by notifications, which will be processed before going
 	 * back to sleep.
-	 *
-	 * @param float $unixTime
 	 */
 	public function sleepUntil(float $unixTime) : void{
 		while(true){
@@ -108,7 +98,8 @@ class SleeperHandler{
 	public function processNotifications() : void{
 		while($this->threadedSleeper->hasNotifications()){
 			$processed = 0;
-			foreach($this->notifiers as $id => $notifier){
+			foreach($this->notifiers as $id => $entry){
+				$notifier = $entry->getNotifier();
 				if($notifier->hasNotification()){
 					++$processed;
 
@@ -119,15 +110,12 @@ class SleeperHandler{
 						 * iterates on a copy of the notifiers array, the removal isn't reflected by the foreach. This
 						 * ensures that we do not attempt to fire callbacks for notifiers which have been removed.
 						 */
-						assert(isset($this->handlers[$id]));
-						$this->handlers[$id]();
+						$entry->getCallback()();
 					}
 				}
 			}
 
 			assert($processed > 0);
-
-			$this->threadedSleeper->clearNotifications($processed);
 		}
 	}
 }

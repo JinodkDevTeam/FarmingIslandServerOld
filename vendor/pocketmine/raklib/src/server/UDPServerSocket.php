@@ -33,7 +33,6 @@ use const AF_INET;
 use const AF_INET6;
 use const IPV6_V6ONLY;
 use const SO_RCVBUF;
-use const SO_REUSEADDR;
 use const SO_SNDBUF;
 use const SOCK_DGRAM;
 use const SOCKET_EADDRINUSE;
@@ -41,7 +40,10 @@ use const SOL_SOCKET;
 use const SOL_UDP;
 
 class UDPServerSocket{
-	/** @var resource */
+	/**
+	 * @var resource
+	 * @phpstan-var PhpSocket
+	 */
 	protected $socket;
 	/**
 	 * @var InternetAddress
@@ -72,15 +74,13 @@ class UDPServerSocket{
 		socket_set_nonblock($this->socket);
 	}
 
-	/**
-	 * @return InternetAddress
-	 */
 	public function getBindAddress() : InternetAddress{
 		return $this->bindAddress;
 	}
 
 	/**
 	 * @return resource
+	 * @phpstan-return PhpSocket
 	 */
 	public function getSocket(){
 		return $this->socket;
@@ -106,10 +106,6 @@ class UDPServerSocket{
 	}
 
 	/**
-	 * @param string $buffer
-	 * @param string $dest
-	 * @param int    $port
-	 *
 	 * @return int|bool
 	 */
 	public function writePacket(string $buffer, string $dest, int $port){
@@ -117,8 +113,6 @@ class UDPServerSocket{
 	}
 
 	/**
-	 * @param int $size
-	 *
 	 * @return $this
 	 */
 	public function setSendBuffer(int $size){
@@ -128,8 +122,6 @@ class UDPServerSocket{
 	}
 
 	/**
-	 * @param int $size
-	 *
 	 * @return $this
 	 */
 	public function setRecvBuffer(int $size){
