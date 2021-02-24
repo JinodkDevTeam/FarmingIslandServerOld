@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '9d76984be4cd719588d07950c0d864c8eb78896a',
+    'reference' => '56fb65dc13a13bf5eec63529537e0f10f7b29739',
     'name' => 'pocketmine/pocketmine-mp',
   ),
   'versions' => 
@@ -263,7 +263,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '9d76984be4cd719588d07950c0d864c8eb78896a',
+      'reference' => '56fb65dc13a13bf5eec63529537e0f10f7b29739',
     ),
     'pocketmine/raklib' => 
     array (
