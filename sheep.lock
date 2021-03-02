@@ -217,6 +217,13 @@
             "version": "1.0.1",
             "update": null,
             "state": 3
+        },
+        "buykitfm": {
+            "source": "Local",
+            "name": "BuyKitFM",
+            "version": "0.0.1",
+            "update": null,
+            "state": 3
         }
     }
 }

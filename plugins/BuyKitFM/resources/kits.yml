@@ -1,0 +1,106 @@
+Test:
+  items:
+    1:
+      id: "1:0:1"
+      name: "HACKED STONE"
+      lore:
+        - "LINE 1"
+        - "LINE 2"
+        - "LINE 3"
+      enchants:
+        1:
+          id: 1
+          lvl: 5
+        2:
+          id: 2
+          lvl: 50
+        3:
+          id: unbreaking
+          lvl: 50
+        4:
+          id: haste
+          lvl: 2
+    2:
+      id: "1:0:1"
+      name: "HACKED STONE 2"
+      lore:
+        - "LINE 1"
+        - "LINE 2"
+        - "LINE 3"
+      enchants:
+        1:
+          id: 1
+          lvl: 5
+        2:
+          id: 2
+          lvl: 50
+        3:
+          id: unbreaking
+          lvl: 50
+        4:
+          id: haste
+          lvl: 2
+      unbreakable: true
+  effects:
+    - "1:1"
+    - "2:5"
+    - "6:4"
+  description:
+    - "LINE 1"
+    - "LINE 2"
+    - "LINE 3"
+  price: 10
+Test2:
+  items:
+    1:
+      id: "1:0:1"
+      name: "HACKED STONE"
+      lore:
+        - "LINE 1"
+        - "LINE 2"
+        - "LINE 3"
+      enchants:
+        1:
+          id: 1
+          lvl: 5
+        2:
+          id: 2
+          lvl: 50
+        3:
+          id: unbreaking
+          lvl: 50
+        4:
+          id: haste
+          lvl: 2
+      lock: true
+    2:
+      id: "1:0:1"
+      name: "HACKED STONE 2"
+      lore:
+        - "LINE 1"
+        - "LINE 2"
+        - "LINE 3"
+      enchants:
+        1:
+          id: 1
+          lvl: 5
+        2:
+          id: 2
+          lvl: 50
+        3:
+          id: unbreaking
+          lvl: 50
+        4:
+          id: haste
+          lvl: 2
+      unbreakable: true
+      lock: true
+  effects:
+    - "13:1"
+    - "5:10"
+    - "11:10"
+  description:
+    - "FUCK"
+    - "THIS"
+    - "KIT"
+  price: 300

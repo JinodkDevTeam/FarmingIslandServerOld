@@ -9,9 +9,9 @@
 
 player:
   # Keep player's inventory if they die
-  keep-inventory: false
+  keep-inventory: true
   # Keep player's experience if they die
-  keep-experience: false
+  keep-experience: true
 
 dimensions:
   # Choose if the nether is allowed. The level of nether will generate automatically
