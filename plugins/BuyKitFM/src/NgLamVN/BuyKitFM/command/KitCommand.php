@@ -46,11 +46,11 @@ class KitCommand extends PluginCommand
             if (!isset($data)) return;
             if (!isset($this->plugin->pd[$player->getName()]))
             {
-                $this->confirmForm($player, $id[$data]);
+                $this->DescriptionForm($player, $id[$data]);
                 return;
             }
             if ($this->plugin->pd[$player->getName()] !== $id[$data])
-            $this->confirmForm($player, $id[$data]);
+            $this->DescriptionForm($player, $id[$data]);
             else $this->owned($player);
         });
         foreach (array_keys($this->getLoader()->getAllKits()) as $kit)
@@ -82,11 +82,7 @@ class KitCommand extends PluginCommand
             }
         });
         $form->setTitle("Confirm");
-        $descriptions = "";
-        foreach ($this->getLoader()->getKit($id)->getDescription() as $description)
-        {
-            $descriptions = $descriptions . "\n" . $description;
-        }
+        $descriptions = "Are you want to buy this kit ?";
         $form->setContent($descriptions);
         $form->setButton1("YES");
         $form->setButton2("NO");
@@ -98,6 +94,23 @@ class KitCommand extends PluginCommand
         $form = new CustomForm(function (Player $player, $data){});
         $form->setTitle("Tips");
         $form->addLabel("You already have that kit !");
+        $player->sendForm($form);
+    }
+
+    public function DescriptionForm(Player $player, $id)
+    {
+        $form = new CustomForm(function (Player $player, $data) use ($id)
+        {
+            $this->confirmForm($player, $id);
+        });
+
+        $form->setTitle("Description");
+
+        foreach ($this->getLoader()->getKit($id)->getDescription() as $description)
+        {
+            $form->addLabel($description);
+        }
+
         $player->sendForm($form);
     }
 

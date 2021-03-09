@@ -12,8 +12,6 @@ use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
 
-use NgLamVN\GameHandle\EventListener;
-
 class Core extends PluginBase
 {
     public static $instance;
