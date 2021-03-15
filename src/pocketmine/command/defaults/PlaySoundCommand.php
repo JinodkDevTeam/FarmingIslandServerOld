@@ -20,7 +20,7 @@
  *
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace pocketmine\command\defaults;
 
@@ -38,14 +38,14 @@ class PlaySoundCommand extends VanillaCommand{
 
 	public function __construct(string $name){
 		parent::__construct($name, "Plays a sound", "/playsound <sound: string> [player: target] [position: x y z] [volume: float] [pitch: float]", [], [
-				[
-					new CommandParameter("sound", AvailableCommandsPacket::ARG_TYPE_STRING, false),
-					new CommandParameter("player", AvailableCommandsPacket::ARG_TYPE_TARGET),
-					new CommandParameter("pos", AvailableCommandsPacket::ARG_TYPE_POSITION),
-					new CommandParameter("volume", AvailableCommandsPacket::ARG_TYPE_FLOAT),
-					new CommandParameter("pitch", AvailableCommandsPacket::ARG_TYPE_FLOAT)
-				]
-			]);
+			[
+				new CommandParameter("sound", AvailableCommandsPacket::ARG_TYPE_STRING, false),
+				new CommandParameter("player", AvailableCommandsPacket::ARG_TYPE_TARGET),
+				new CommandParameter("pos", AvailableCommandsPacket::ARG_TYPE_POSITION),
+				new CommandParameter("volume", AvailableCommandsPacket::ARG_TYPE_FLOAT),
+				new CommandParameter("pitch", AvailableCommandsPacket::ARG_TYPE_FLOAT)
+			]
+		]);
 
 		$this->setPermission("altay.command.playsound");
 	}
@@ -59,27 +59,24 @@ class PlaySoundCommand extends VanillaCommand{
 			throw new InvalidCommandSyntaxException();
 		}
 
-		$pos = null;
-
-		if(count($args) >= 5){
-			$pos = [$args[2], $args[3], $args[4]];
-			$pos = array_map("intval", $pos);
-
-			$pos = new Vector3(...$pos);
-		}
-
 		$soundName = $args[0];
+		$pos = $sender instanceof Player ? $sender->asVector3() : new Vector3();
 
-		if(isset($args[1])){
+		if(count($args) > 1){
 			/** @var Player[] $targets */
 			$targets = CommandSelector::findTargets($sender, $args[1], Player::class, $pos);
-		}else{
-			if($sender instanceof Player){
-				$targets = [$sender];
-				$pos = $sender->asVector3();
-			}else{
-				throw new InvalidCommandSyntaxException();
+
+			if(count($args) >= 5){
+				$pos = new Vector3(
+					$this->getRelativeDouble($pos->x, $sender, $args[2]),
+					$this->getRelativeDouble($pos->y, $sender, $args[3]),
+					$this->getRelativeDouble($pos->y, $sender, $args[4])
+				);
 			}
+		}elseif($sender instanceof Player){
+			$targets = [$sender];
+		}else{
+			throw new InvalidCommandSyntaxException();
 		}
 
 		$pk = new PlaySoundPacket();

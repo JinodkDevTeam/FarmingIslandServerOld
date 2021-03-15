@@ -171,6 +171,8 @@ use pocketmine\network\mcpe\protocol\types\inventory\UIInventorySlotOffset;
 use pocketmine\network\mcpe\protocol\types\NetworkInventoryAction;
 use pocketmine\network\mcpe\protocol\types\PersonaPieceTintColor;
 use pocketmine\network\mcpe\protocol\types\PersonaSkinPiece;
+use pocketmine\network\mcpe\protocol\types\PlayerMovementSettings;
+use pocketmine\network\mcpe\protocol\types\PlayerMovementType;
 use pocketmine\network\mcpe\protocol\types\PlayerPermissions;
 use pocketmine\network\mcpe\protocol\types\SkinAdapterSingleton;
 use pocketmine\network\mcpe\protocol\types\SkinAnimation;
@@ -1757,13 +1759,6 @@ class Player extends Human implements CommandSender, ChunkLoader, IPlayer{
 		$deltaAngle = abs($this->lastYaw - $to->yaw) + abs($this->lastPitch - $to->pitch);
 
 		if($delta > 0.0001 or $deltaAngle > 1.0){
-			$this->lastX = $to->x;
-			$this->lastY = $to->y;
-			$this->lastZ = $to->z;
-
-			$this->lastYaw = $to->yaw;
-			$this->lastPitch = $to->pitch;
-
 			$ev = new PlayerMoveEvent($this, $from, $to);
 
 			$ev->call();
@@ -1778,6 +1773,12 @@ class Player extends Human implements CommandSender, ChunkLoader, IPlayer{
 				return;
 			}
 
+			$this->lastX = $to->x;
+			$this->lastY = $to->y;
+			$this->lastZ = $to->z;
+
+			$this->lastYaw = $to->yaw;
+			$this->lastPitch = $to->pitch;
 			$this->broadcastMovement();
 
 			$distance = sqrt((($from->x - $to->x) ** 2) + (($from->z - $to->z) ** 2));
@@ -1801,13 +1802,6 @@ class Player extends Human implements CommandSender, ChunkLoader, IPlayer{
 	}
 
 	protected function revertMovement(Location $from) : void{
-		$this->lastX = $from->x;
-		$this->lastY = $from->y;
-		$this->lastZ = $from->z;
-
-		$this->lastYaw = $from->yaw;
-		$this->lastPitch = $from->pitch;
-
 		$this->setPosition($from);
 		$this->sendPosition($from, $from->yaw, $from->pitch, MovePlayerPacket::MODE_RESET);
 	}
@@ -1875,6 +1869,7 @@ class Player extends Human implements CommandSender, ChunkLoader, IPlayer{
 
 		if(!$this->isAlive() and $this->spawned){
 			if(!$this->isKilled){
+				$this->isKilled = true;
 				$this->kill();
 			}else{
 				$this->onDeathUpdate($tickDiff);
@@ -2086,6 +2081,7 @@ class Player extends Human implements CommandSender, ChunkLoader, IPlayer{
 
 		$skinData = new SkinData(
 			$packet->clientData["SkinId"],
+			$packet->clientData["PlayFabId"],
 			base64_decode($packet->clientData["SkinResourcePatch"] ?? "", true),
 			new SkinImage(
 				$packet->clientData["SkinImageHeight"],
@@ -2202,32 +2198,40 @@ class Player extends Human implements CommandSender, ChunkLoader, IPlayer{
 	 * @return void
 	 */
 	protected function processLogin(){
-		$this->namedtag = $this->server->getOfflinePlayerData($this->username);
-		if((bool) $this->server->getProperty("player.verify-xuid", true)){
-			$recordedXUID = $this->namedtag->getTag("LastKnownXUID");
-			if(!($recordedXUID instanceof StringTag)){
-				$this->server->getLogger()->debug("No previous XUID recorded for " . $this->getName() . ", no choice but to trust this player");
-			}elseif($this->xuid !== $recordedXUID->getValue()){
+		$checkXUID = (bool) $this->server->getProperty("player.verify-xuid", true);
+		$kickForXUIDMismatch = function(string $xuid) use ($checkXUID) : bool{
+			if($checkXUID && $this->xuid !== $xuid){
 				if($this->kick("XUID does not match (possible impersonation attempt)", false)){
 					//TODO: Longer term, we should be identifying playerdata using something more reliable, like XUID or UUID.
 					//However, that would be a very disruptive change, so this will serve as a stopgap for now.
 					//Side note: this will also prevent offline players hijacking XBL playerdata on online servers, since their
 					//XUID will always be empty.
-					return;
+					return true;
 				}
 				$this->server->getLogger()->debug("XUID mismatch for " . $this->getName() . ", but plugin cancelled event allowing them to join anyway");
-			}else{
-				$this->server->getLogger()->debug("XUID match for " . $this->getName());
 			}
-		}
+			return false;
+		};
 
 		foreach($this->server->getLoggedInPlayers() as $p){
 			if($p !== $this and ($p->iusername === $this->iusername or $this->getUniqueId()->equals($p->getUniqueId()))){
-				if(!$p->kick("logged in from another location")){
-					$this->close($this->getLeaveMessage(), "Logged in from another location");
-
+				if($kickForXUIDMismatch($p->getXuid())){
 					return;
 				}
+				if(!$p->kick("logged in from another location")){
+					$this->close($this->getLeaveMessage(), "Logged in from another location");
+					return;
+				}
+			}
+		}
+
+		$this->namedtag = $this->server->getOfflinePlayerData($this->username);
+		if($checkXUID){
+			$recordedXUID = $this->namedtag->getTag("LastKnownXUID");
+			if(!($recordedXUID instanceof StringTag)){
+				$this->server->getLogger()->debug("No previous XUID recorded for " . $this->getName() . ", no choice but to trust this player");
+			}elseif(!$kickForXUIDMismatch($recordedXUID->getValue())){
+				$this->server->getLogger()->debug("XUID match for " . $this->getName());
 			}
 		}
 
@@ -2390,6 +2394,7 @@ class Player extends Human implements CommandSender, ChunkLoader, IPlayer{
 		$pk->worldName = $this->server->getMotd();
 		$pk->experiments = new Experiments([], false);
 		$pk->itemTable = ItemTypeDictionary::getInstance()->getEntries();
+		$pk->playerMovementSettings = new PlayerMovementSettings(PlayerMovementType::LEGACY, 0, false);
 		$this->dataPacket($pk);
 
 		$this->sendDataPacket(new AvailableActorIdentifiersPacket());
@@ -3141,7 +3146,7 @@ class Player extends Human implements CommandSender, ChunkLoader, IPlayer{
 			case PlayerActionPacket::ACTION_STOP_GLIDE:
 				$this->toggleGlide(false);
 				break;
-			case PlayerActionPacket::ACTION_CONTINUE_BREAK:
+			case PlayerActionPacket::ACTION_CRACK_BREAK:
 				$block = $this->level->getBlock($pos);
 				$this->level->broadcastLevelEvent($pos, LevelEventPacket::EVENT_PARTICLE_PUNCH_BLOCK, $block->getRuntimeId() | ($packet->face << 24));
 				//TODO: destroy-progress level event

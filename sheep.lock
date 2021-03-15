@@ -224,6 +224,13 @@
             "version": "0.0.1",
             "update": null,
             "state": 3
+        },
+        "invcraft": {
+            "source": "Local",
+            "name": "InvCraft",
+            "version": "0.1-ngl_pub",
+            "update": null,
+            "state": 3
         }
     }
 }
