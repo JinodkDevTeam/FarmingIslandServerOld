@@ -6,6 +6,7 @@ use jojoe77777\FormAPI\CustomForm;
 use jojoe77777\FormAPI\ModalForm;
 use jojoe77777\FormAPI\SimpleForm;
 use NgLamVN\BuyKitFM\Loader;
+use NgLamVN\GameHandle\CoinSystem\CoinSystem;
 use pocketmine\command\CommandSender;
 use pocketmine\command\PluginCommand;
 use pocketmine\Player;
@@ -56,7 +57,7 @@ class KitCommand extends PluginCommand
         foreach (array_keys($this->getLoader()->getAllKits()) as $kit)
         {
             $price = $this->getLoader()->getKit($kit)->getPrice();
-            $form->addButton($kit . "\n" . $price . " point");
+            $form->addButton($kit . "\n" . $price . " coin");
         }
         $form->setTitle("KITS");
         $sender->sendForm($form);
@@ -68,9 +69,9 @@ class KitCommand extends PluginCommand
             if ($data === true)
             {
                 $price = $this->getLoader()->getKit($id)->getPrice();
-                if (PointAPI::getInstance()->myPoint($player) >= $price)
+                if (CoinSystem::getInstance()->getCoin($player) >= $price)
                 {
-                    PointAPI::getInstance()->reducePoint($player, $price);
+                    CoinSystem::getInstance()->reduceCoin($player, $price);
                     $this->getLoader()->getKit($id)->giveItem($player);
                     $this->getLoader()->pd[$player->getName()] = $id;
                     $this->BuyDone($player, $id);

@@ -1,6 +1,0 @@
-name: CrazyThing
-main: NgLamVN\CrazyThing\Loader
-api: 3.15.0
-author: NgLamVN
-description: AdminTools plugin, inlucde something that need in your server.
-version: 0.0.1
