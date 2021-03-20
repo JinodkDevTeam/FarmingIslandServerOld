@@ -1,6 +1,6 @@
 name: GameHandle
 main: NgLamVN\GameHandle\Core
-version: 0.1-ngl_dk
+version: 0.1.12-build2
 api: 3.14.0
 description: "Make only for jinodk network"
 author: NgLamVN

@@ -43,6 +43,9 @@ class Snow extends PluginBase implements Listener {
     public $task;
 
     public function onEnable() {
+        $this->getServer()->getPluginManager()->disablePlugin($this); //TODO: You are no longer used.
+
+
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
 
         /** @var NetworkLittleEndianNBTStream $stream */

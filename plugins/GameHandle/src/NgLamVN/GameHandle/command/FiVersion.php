@@ -10,8 +10,12 @@ use pocketmine\plugin\Plugin;
 class FiVersion extends PluginCommand
 {
 
+    public $version;
+
     public function __construct(Core $core)
     {
+        $this->version = $core->getDescription()->getVersion();
+
         parent::__construct("fiversion", $core);
         $this->setDescription("FarmingIsland Version");
         $this->setPermission("gh.fiver");
@@ -19,6 +23,6 @@ class FiVersion extends PluginCommand
     }
     public function execute(CommandSender $sender, string $commandLabel, array $args)
     {
-        $sender->sendMessage("Server version: 0.1.12");
+        $sender->sendMessage("Server version: " . $this->version);
     }
 }
