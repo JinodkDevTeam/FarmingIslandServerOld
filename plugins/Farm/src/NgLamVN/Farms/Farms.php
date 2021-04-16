@@ -100,7 +100,10 @@ class Farms extends PluginBase implements Listener
         }
         if ($event->getBlock() instanceof Farmland)
         {
-            $key = $event->getBlock()->x.".".$event->getBlock()->y + 1 .".".$event->getBlock()->z;
+            $x = $event->getBlock()->x;
+            $y = $event->getBlock()->y + 1;
+            $z = $event->getBlock()->z;
+            $key = $x.".".$y .".".$z;
             if(isset($this->farmData[$key]))
             {
                 unset($this->farmData[$key]);
