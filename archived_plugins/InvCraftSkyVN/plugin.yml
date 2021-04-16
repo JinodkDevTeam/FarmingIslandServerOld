@@ -1,0 +1,12 @@
+name: InvCraft
+main: NgLamVN\InvCraft\Loader
+api: 3.11.2
+version: 0.1.1-skyvn
+author: NgLamVN
+description: This is a special version, make for SkyVN Network
+
+permissions:
+  ic.command:
+    default: true
+  ic.admin:
+    default: op

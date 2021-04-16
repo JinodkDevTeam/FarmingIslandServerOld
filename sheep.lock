@@ -4,7 +4,7 @@
         "scorehud": {
             "source": "Poggit",
             "name": "ScoreHud",
-            "version": "5.2.0",
+            "version": "6.0.0",
             "update": null,
             "state": 3
         },
@@ -229,6 +229,41 @@
             "source": "Local",
             "name": "InvCraft",
             "version": "0.1-ngl_pub",
+            "update": null,
+            "state": 3
+        },
+        "worldprotect": {
+            "source": "Poggit",
+            "name": "WorldProtect",
+            "version": "2.3.8",
+            "update": null,
+            "state": 3
+        },
+        "customcrafting": {
+            "source": "Poggit",
+            "name": "CustomCrafting",
+            "version": "1.0.1-Working",
+            "update": null,
+            "state": 3
+        },
+        "custombreaktimeapi": {
+            "source": "Local",
+            "name": "CustomBreakTimeAPI",
+            "version": "0.1",
+            "update": null,
+            "state": 3
+        },
+        "redstonecircuit": {
+            "source": "Local",
+            "name": "RedstoneCircuit",
+            "version": "2.0.0",
+            "update": null,
+            "state": 3
+        },
+        "renameitems": {
+            "source": "Poggit",
+            "name": "RenameItems",
+            "version": "2.0",
             "update": null,
             "state": 3
         }

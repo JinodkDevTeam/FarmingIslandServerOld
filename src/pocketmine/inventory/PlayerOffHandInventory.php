@@ -29,7 +29,6 @@ use pocketmine\item\Item;
 use pocketmine\network\mcpe\protocol\MobEquipmentPacket;
 use pocketmine\network\mcpe\protocol\types\ContainerIds;
 use pocketmine\network\mcpe\protocol\InventoryContentPacket;
-use pocketmine\network\mcpe\protocol\InventorySlotPacket;
 use pocketmine\network\mcpe\protocol\types\inventory\ItemStackWrapper;
 use pocketmine\Player;
 
@@ -77,7 +76,7 @@ class PlayerOffHandInventory extends BaseInventory{
 
 		$pk = new MobEquipmentPacket();
 		$pk->entityRuntimeId = $this->getHolder()->getId();
-		$pk->item = $this->getItem(0);
+		$pk->item = ItemStackWrapper::legacy($this->getItem(0));
 		$pk->inventorySlot = $pk->hotbarSlot = 0;
 		$pk->windowId = ContainerIds::OFFHAND;
 		$pk->encode();

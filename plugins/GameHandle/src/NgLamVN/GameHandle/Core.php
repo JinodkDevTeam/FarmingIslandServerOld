@@ -8,6 +8,7 @@ use NgLamVN\GameHandle\AchivementSystem\AchivementManager;
 use NgLamVN\GameHandle\CoinSystem\CoinSystem;
 use NgLamVN\GameHandle\command\InitCommand;
 use NgLamVN\GameHandle\task\InitTask;
+use pocketmine\item\ItemFactory;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
@@ -30,6 +31,7 @@ class Core extends PluginBase
 
     public function onEnable()
     {
+
         if(!InvMenuHandler::isRegistered())
         {
             InvMenuHandler::register($this);

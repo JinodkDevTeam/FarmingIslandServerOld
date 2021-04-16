@@ -1,0 +1,5 @@
+name: SmartMine
+main: NgLamVN\SmartMine\Loader
+api: 3.0.0
+author: NgLamVN
+version: 0.1

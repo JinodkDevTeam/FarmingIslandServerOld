@@ -45,5 +45,6 @@ class Feed extends PluginCommand
         }
         $sender->setFood(20);
         $sender->sendMessage("You have been fed !");
+
     }
 }

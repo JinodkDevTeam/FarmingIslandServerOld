@@ -79,3 +79,10 @@ permissions:
     default: op
   gh.ac:
     default: true
+  gh.haste:
+    default: op
+    children:
+      gh.haste.use:
+        default: op
+      gh.haste.other:
+        default: op

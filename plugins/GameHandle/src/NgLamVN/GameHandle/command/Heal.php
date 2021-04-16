@@ -5,7 +5,6 @@ namespace NgLamVN\GameHandle\command;
 use NgLamVN\GameHandle\Core;
 use pocketmine\command\PluginCommand;
 use pocketmine\command\CommandSender;
-use pocketmine\plugin\Plugin;
 use pocketmine\Server;
 
 class Heal extends PluginCommand

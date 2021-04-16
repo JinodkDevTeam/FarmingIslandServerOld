@@ -142,8 +142,8 @@ abstract class AbstractHorse extends Tamable{
 		return parent::onUpdate($currentTick);
 	}
 
-	public function onBehaviorUpdate() : void{
-		parent::onBehaviorUpdate();
+	public function onBehaviorUpdate() : bool{
+		$hasUpdate = parent::onBehaviorUpdate();
 
 		$this->sendAttributes();
 
@@ -155,6 +155,8 @@ abstract class AbstractHorse extends Tamable{
 				$this->throwRider();
 			}
 		}
+
+		return $hasUpdate;
 	}
 
 	public function onInteract(Player $player, Item $item, Vector3 $clickPos) : bool{

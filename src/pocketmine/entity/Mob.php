@@ -166,25 +166,36 @@ abstract class Mob extends Living{
 	public function onUpdate(int $currentTick) : bool{
 		if($this->closed) return false;
 
+		$hasUpdate = false;
+
 		if(!$this->isImmobile()){
 			if($this->jumpTicks > 0){
 				$this->jumpTicks--;
 			}
 
-			$this->onBehaviorUpdate();
+			$hasUpdate = $this->onBehaviorUpdate();
 		}
 
-		return parent::onUpdate($currentTick);
+		return parent::onUpdate($currentTick) or $hasUpdate;
 	}
 
-	protected function onBehaviorUpdate() : void{
+	public function hasMovementUpdate() : bool{
+		return parent::hasMovementUpdate()
+			or abs($this->yaw - $this->lastYaw) > 0
+			or abs($this->pitch - $this->lastPitch) > 0
+			or abs($this->headYaw - $this->lastHeadYaw) > 0;
+	}
+
+	protected function onBehaviorUpdate() : bool{
+		$hasUpdate = false;
+
 		Timings::$mobBehaviorUpdateTimer->startTiming();
-		$this->targetBehaviorPool->onUpdate();
-		$this->behaviorPool->onUpdate();
+		$hasUpdate |= $this->targetBehaviorPool->onUpdate();
+		$hasUpdate |= $this->behaviorPool->onUpdate();
 		Timings::$mobBehaviorUpdateTimer->stopTiming();
 
 		Timings::$mobNavigationUpdateTimer->startTiming();
-		$this->navigator->onNavigateUpdate();
+		$hasUpdate |= $this->navigator->onNavigateUpdate();
 		Timings::$mobNavigationUpdateTimer->stopTiming();
 
 		$this->moveHelper->onUpdate();
@@ -213,6 +224,8 @@ abstract class Mob extends Living{
 		$this->bodyHelper->onUpdate();
 		
 		$this->tryToDespawn();
+
+		return (bool) $hasUpdate;
 	}
 
 	/**

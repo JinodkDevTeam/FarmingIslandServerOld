@@ -32,6 +32,7 @@ use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\IntTag;
 use pocketmine\network\mcpe\protocol\LevelSoundEventPacket;
 use pocketmine\network\mcpe\protocol\MobArmorEquipmentPacket;
+use pocketmine\network\mcpe\protocol\types\inventory\ItemStackWrapper;
 use pocketmine\network\mcpe\protocol\types\WindowTypes;
 use pocketmine\network\mcpe\protocol\UpdateEquipPacket;
 use pocketmine\Player;
@@ -90,12 +91,12 @@ class HorseInventory extends AbstractHorseInventory{
 	}
 
 	public function sendArmor(Player $player) : void{
-		$air = ItemFactory::get(Item::AIR);
+		$air = ItemStackWrapper::legacy(ItemFactory::get(Item::AIR));
 
 		$pk = new MobArmorEquipmentPacket();
 		$pk->entityRuntimeId = $this->getHolder()->getId();
 		$pk->head = $air;
-		$pk->chest = $this->getItem(1);
+		$pk->chest = ItemStackWrapper::legacy($this->getItem(1));
 		$pk->legs = $air;
 		$pk->feet = $air;
 

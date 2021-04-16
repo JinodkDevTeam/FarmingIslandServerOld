@@ -28,6 +28,7 @@ use pocketmine\entity\Living;
 use pocketmine\inventory\utils\EquipmentSlot;
 use pocketmine\item\Item;
 use pocketmine\network\mcpe\protocol\MobEquipmentPacket;
+use pocketmine\network\mcpe\protocol\types\inventory\ItemStackWrapper;
 use pocketmine\Player;
 
 class AltayEntityEquipment extends BaseInventory{
@@ -60,7 +61,7 @@ class AltayEntityEquipment extends BaseInventory{
 		$pk = new MobEquipmentPacket();
 		$pk->entityRuntimeId = $this->holder->getId();
 		$pk->inventorySlot = $pk->hotbarSlot = $index;
-		$pk->item = $this->getItem($index);
+		$pk->item = ItemStackWrapper::legacy($this->getItem($index));
 
 		if($target instanceof Player){
 			$target = [$target];

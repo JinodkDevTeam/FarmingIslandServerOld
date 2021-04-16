@@ -79,8 +79,8 @@ class Blaze extends Monster implements RangedAttackerMob{
 		];
 	}
 
-	public function onBehaviorUpdate() : void{
-		parent::onBehaviorUpdate();
+	public function onBehaviorUpdate() : bool{
+		$hasUpdate = parent::onBehaviorUpdate();
 
 		if($this->isWet()){
 			$this->attack(new EntityDamageEvent($this, EntityDamageEvent::CAUSE_DROWNING, 1));
@@ -90,6 +90,8 @@ class Blaze extends Monster implements RangedAttackerMob{
 		if($target !== null and $target->y + $target->getEyeHeight() > $this->y + $this->getEyeHeight()){
 			$this->motion->y += (0.30000001192092896 - $this->motion->y) * 0.30000001192092896;
 		}
+
+		return $hasUpdate;
 	}
 
 	public function onRangedAttackToTarget(Entity $target, float $power) : void{
