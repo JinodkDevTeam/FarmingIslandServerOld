@@ -1,0 +1,7 @@
+name: FarmingIslandScore
+main: NgLamVN\FIScore\Loader
+version: 0.1
+author: NgLamVN
+description: ScoreBoard Tags event update for ScoreHud v6+
+depend: ScoreHud
+api: 3.18.0
