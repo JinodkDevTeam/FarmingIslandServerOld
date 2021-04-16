@@ -26,7 +26,6 @@ server-names:
 score-lines:
 - "§2•§l§eWelcome:§r §f{name}"
 - "§2•§l§eOnline: §r §f{online}/{max_online}"
-- "§2•§l§eFaction:§r §f{faction}"
 - "§2•§l§eXu:     §r §f{money}$"
 - "§2•§l§ePing:   §r §f{ping}"
 - ""

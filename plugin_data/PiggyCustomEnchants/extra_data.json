@@ -264,7 +264,8 @@
         "drainMultiplier": 1,
         "sprintDrainMultiplier": 1.25,
         "speedMultiplier": 1,
-        "sprintSpeedMultiplier": 1.25
+        "sprintSpeedMultiplier": 1.25,
+        "enableAmount": 25
     },
     "lifesteal": {
         "base": 2,
