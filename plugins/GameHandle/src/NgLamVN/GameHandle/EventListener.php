@@ -3,9 +3,7 @@
 namespace NgLamVN\GameHandle;
 
 use NgLamVN\GameHandle\task\AutoJoinIslandTask;
-use pocketmine\block\Block;
 use pocketmine\command\ConsoleCommandSender;
-use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerCommandPreprocessEvent;
 use pocketmine\event\player\PlayerFishEvent;
@@ -18,7 +16,6 @@ use NgLamVN\GameHandle\GameMenu\Menu;
 
 use MyPlot\MyPlot;
 use pocketmine\event\player\PlayerRespawnEvent;
-use pocketmine\network\mcpe\protocol\LevelEventPacket;
 use pocketmine\Server;
 
 class EventListener implements Listener
@@ -78,22 +75,7 @@ class EventListener implements Listener
     public function onTap(PlayerInteractEvent $event)
     {
         $this->menu->onTap($event);
-        /*$vector = $event->getBlock()->asVector3();
-        $item = $event->getItem();
-        $player = $event->getPlayer();
-        $event->getPlayer()->getLevel()->useBreakOn($vector, $item, $player, true);*/
     }
-
-    /*public function onPlace (BlockPlaceEvent $event)
-    {
-        $block = $event->getBlock();
-        $player = $event->getPlayer();
-        $item = $event->getItem()->pop();
-        $player->getInventory()->setItemInHand($item);
-        $event->setCancelled();
-        $newblock = Block::get(mt_rand(1,255));
-        $block->getLevel()->setBlock($block->asVector3(), $newblock, true, true);
-    }*/
 
     /**
      * @param PlayerFishEvent $event
