@@ -1,0 +1,16 @@
+# MineStorage Setting File
+
+allow-block-id:
+  - 1 #Stone
+  - 4 #CobbleStone
+  - 14 #GoldOre
+  - 15 #IronOre
+  - 16 #CoalOre
+  - 21 #LapisOre
+  - 56 #DiamondOre
+  - 73 #RedStoneOre
+  - 129 #EmeraldOre
+  - 153 #QuartzOre
+# - 566 CopperOre (Comming Soon)
+
+

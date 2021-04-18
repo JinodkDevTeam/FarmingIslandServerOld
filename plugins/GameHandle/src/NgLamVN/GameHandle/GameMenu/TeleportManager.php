@@ -32,6 +32,10 @@ class TeleportManager
                     break;
                 case 3:
                     Server::getInstance()->dispatchCommand(new ConsoleCommandSender(), "mw tp afk ".$player->getName());
+                    break;
+                case 4:
+                    Server::getInstance()->dispatchCommand(new ConsoleCommandSender(), "mw tp mine ".$player->getName());
+                    break;
                 default:
                     return;
                     break;
@@ -42,6 +46,7 @@ class TeleportManager
         $form->addButton("Your Island");
         $form->addButton("Go to another island");
         $form->addButton("Afk Area");
+        $form->addButton("Mine Area");
         $form->addButton("Comming Soon");
 
         $player->sendForm($form);

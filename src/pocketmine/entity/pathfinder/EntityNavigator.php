@@ -624,7 +624,7 @@ class EntityNavigator{
 	/**
 	 * Update for navigation movement
 	 */
-	public function onNavigateUpdate() : void{
+	public function onNavigateUpdate() : bool{
 		if($this->currentPath !== null){
 			if($this->havePath()){
 				$this->pathFollow();
@@ -659,7 +659,11 @@ class EntityNavigator{
 				$this->lastPoint = $currentPos;
 				$this->stuckTick = 0;
 			}
+
+			return true;
 		}
+
+		return false;
 	}
 
 	/**

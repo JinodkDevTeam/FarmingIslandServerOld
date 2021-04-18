@@ -1,0 +1,5 @@
+name: MineStorage #In vietnamese we called it "Kho"
+main: malgn\MineStorage\Loader
+version: 0.1
+author: NgLamVN
+description: "Nothing"

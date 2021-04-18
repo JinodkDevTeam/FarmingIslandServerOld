@@ -1,0 +1,13 @@
+name: CustomBreakTimeExample
+main: NgLamVN\Example\Loader
+version: 0.1
+api: 3.18.0
+depend: CustomBreakTimeAPI
+
+commands:
+  givetestitem:
+    permission: give.test.item
+
+permissions:
+  give.test.item:
+    default: op

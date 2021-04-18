@@ -30,6 +30,7 @@ class Core extends PluginBase
 
     public function onEnable()
     {
+
         if(!InvMenuHandler::isRegistered())
         {
             InvMenuHandler::register($this);

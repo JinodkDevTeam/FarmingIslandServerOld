@@ -34,6 +34,7 @@ use pocketmine\inventory\transaction\action\SlotChangeAction;
 use pocketmine\inventory\transaction\action\InventoryAction;
 use pocketmine\item\Item;
 use pocketmine\network\mcpe\NetworkBinaryStream;
+use pocketmine\network\mcpe\protocol\types\inventory\ItemStackWrapper;
 use pocketmine\network\mcpe\protocol\types\inventory\UIInventorySlotOffset;
 use pocketmine\Player;
 use function array_key_exists;
@@ -86,17 +87,15 @@ class NetworkInventoryAction{
 	public $sourceFlags = 0;
 	/** @var int */
 	public $inventorySlot;
-	/** @var Item */
+	/** @var ItemStackWrapper */
 	public $oldItem;
-	/** @var Item */
+	/** @var ItemStackWrapper */
 	public $newItem;
-	/** @var int|null */
-	public $newItemStackId = null;
 
 	/**
 	 * @return $this
 	 */
-	public function read(NetworkBinaryStream $packet, bool $hasItemStackIds){
+	public function read(NetworkBinaryStream $packet){
 		$this->sourceType = $packet->getUnsignedVarInt();
 
 		switch($this->sourceType){
@@ -119,11 +118,8 @@ class NetworkInventoryAction{
 		}
 
 		$this->inventorySlot = $packet->getUnsignedVarInt();
-		$this->oldItem = $packet->getSlot();
-		$this->newItem = $packet->getSlot();
-		if($hasItemStackIds){
-			$this->newItemStackId = $packet->readGenericTypeNetworkId();
-		}
+		$this->oldItem = ItemStackWrapper::read($packet);
+		$this->newItem = ItemStackWrapper::read($packet);
 
 		return $this;
 	}
@@ -131,7 +127,7 @@ class NetworkInventoryAction{
 	/**
 	 * @return void
 	 */
-	public function write(NetworkBinaryStream $packet, bool $hasItemStackIds){
+	public function write(NetworkBinaryStream $packet){
 		$packet->putUnsignedVarInt($this->sourceType);
 
 		switch($this->sourceType){
@@ -154,14 +150,8 @@ class NetworkInventoryAction{
 		}
 
 		$packet->putUnsignedVarInt($this->inventorySlot);
-		$packet->putSlot($this->oldItem);
-		$packet->putSlot($this->newItem);
-		if($hasItemStackIds){
-			if($this->newItemStackId === null){
-				throw new \InvalidStateException("Item stack ID for newItem must be provided");
-			}
-			$packet->writeGenericTypeNetworkId($this->newItemStackId);
-		}
+		$this->oldItem->write($packet);
+		$this->newItem->write($packet);
 	}
 
 	/**
@@ -170,7 +160,9 @@ class NetworkInventoryAction{
 	 * @throws \UnexpectedValueException
 	 */
 	public function createInventoryAction(Player $player){
-		if($this->oldItem->equalsExact($this->newItem)){
+		$oldItem = $this->oldItem->getItemStack();
+		$newItem = $this->newItem->getItemStack();
+		if($oldItem->equalsExact($newItem)){
 			//filter out useless noise in 1.13
 			return null;
 		}
@@ -180,10 +172,10 @@ class NetworkInventoryAction{
 				if($window !== null){
 					if($window instanceof PlayerUIInventory and $this->inventorySlot > 0){
 						// TODO: HACK! dont rely on client due to creation of new item with result inventory actions
-						$this->oldItem = $window->getItem($this->inventorySlot);
+						$oldItem = $window->getItem($this->inventorySlot);
 					}
 
-					return new SlotChangeAction($window, $this->inventorySlot, $this->oldItem, $this->newItem);
+					return new SlotChangeAction($window, $this->inventorySlot, $oldItem, $newItem);
 				}
 
 				throw new \UnexpectedValueException("Player " . $player->getName() . " has no open container with window ID $this->windowId");
@@ -192,7 +184,7 @@ class NetworkInventoryAction{
 					throw new \UnexpectedValueException("Only expecting drop-item world actions from the client!");
 				}
 
-				return new DropItemAction($this->newItem);
+				return new DropItemAction($newItem);
 			case self::SOURCE_CREATIVE:
 				switch($this->inventorySlot){
 					case self::ACTION_MAGIC_SLOT_CREATIVE_DELETE_ITEM:
@@ -206,20 +198,20 @@ class NetworkInventoryAction{
 
 				}
 
-				return new CreativeInventoryAction($this->oldItem, $this->newItem, $type);
+				return new CreativeInventoryAction($oldItem, $newItem, $type);
 			case self::SOURCE_UNTRACKED_INTERACTION_UI:
 			case self::SOURCE_TODO:
 				$window = $player->findWindow(FakeInventory::class);
 
 				switch($this->windowId){
 					case self::SOURCE_TYPE_CONTAINER_DROP_CONTENTS: //TODO: this type applies to all fake windows, not just crafting
-						return new SlotChangeAction($window ?? $player->getCraftingGrid(), $this->inventorySlot, $this->oldItem, $this->newItem);
+						return new SlotChangeAction($window ?? $player->getCraftingGrid(), $this->inventorySlot, $oldItem, $newItem);
 					case self::SOURCE_TYPE_CRAFTING_RESULT:
 					case self::SOURCE_TYPE_CRAFTING_USE_INGREDIENT:
 						return null;
 					case self::SOURCE_TYPE_ENCHANT_OUTPUT:
 						if($window instanceof EnchantInventory){
-							return new EnchantAction($window, $this->inventorySlot, $this->oldItem, $this->newItem);
+							return new EnchantAction($window, $this->inventorySlot, $oldItem, $newItem);
 						}else{
 							if($window === null){
 								throw new \InvalidStateException("Window not found");
@@ -232,7 +224,7 @@ class NetworkInventoryAction{
 						return null; // useless noise
 					case self::SOURCE_TYPE_FAKE_INVENTORY_RESULT:
 						if($window instanceof FakeResultInventory){
-							if(!$window->onResult($player, $this->oldItem)){
+							if(!$window->onResult($player, $oldItem)){
 								throw new \InvalidStateException("Output doesnt match for Player " . $player->getName() . " in " . get_class($window));
 							}
 						}

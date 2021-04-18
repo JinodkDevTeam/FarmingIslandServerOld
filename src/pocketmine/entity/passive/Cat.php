@@ -29,6 +29,7 @@ use pocketmine\entity\behavior\LookAtPlayerBehavior;
 use pocketmine\entity\behavior\MateBehavior;
 use pocketmine\entity\behavior\PanicBehavior;
 use pocketmine\entity\behavior\RandomLookAroundBehavior;
+use pocketmine\entity\behavior\RandomStrollBehavior;
 use pocketmine\entity\behavior\StayWhileSittingBehavior;
 use pocketmine\entity\behavior\TemptBehavior;
 use pocketmine\entity\Tamable;
@@ -59,8 +60,9 @@ class Cat extends Tamable{
 			Item::RAW_FISH
 		], 1.0));
 		$this->behaviorPool->setBehavior(5, new FollowOwnerBehavior($this, 1, 10, 2));
-		$this->behaviorPool->setBehavior(6, new LookAtPlayerBehavior($this, 14.0));
-		$this->behaviorPool->setBehavior(7, new RandomLookAroundBehavior($this));
+		$this->behaviorPool->setBehavior(6, new RandomStrollBehavior($this, 0.8));
+		$this->behaviorPool->setBehavior(7, new LookAtPlayerBehavior($this, 14.0));
+		$this->behaviorPool->setBehavior(8, new RandomLookAroundBehavior($this));
 
 
 		// TODO: attack turtle and rabbit
@@ -72,7 +74,6 @@ class Cat extends Tamable{
 		$this->setFollowRange(16);
 		$this->setAttackDamage(3);
 		$this->propertyManager->setInt(self::DATA_VARIANT, intval($this->namedtag->getInt("CatType", mt_rand(0, 10))));
-		$this->propertyManager->setInt(self::DATA_COLOR, intval($this->namedtag->getInt("CollarColor", mt_rand(0, 15))));
 
 		parent::initEntity();
 	}

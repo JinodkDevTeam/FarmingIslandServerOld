@@ -7,14 +7,12 @@ use pocketmine\command\ConsoleCommandSender;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerCommandPreprocessEvent;
 use pocketmine\event\player\PlayerFishEvent;
-use pocketmine\event\inventory\InventoryTransactionEvent;
 use pocketmine\event\player\PlayerDropItemEvent;
-use pocketmine\event\player\PlayerDeathEvent;
-
-use NgLamVN\GameHandle\Core;
-use NgLamVN\GameHandle\GameMenu\Menu;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\event\inventory\InventoryTransactionEvent;
+
+use NgLamVN\GameHandle\GameMenu\Menu;
 
 use MyPlot\MyPlot;
 use pocketmine\event\player\PlayerRespawnEvent;
@@ -102,9 +100,8 @@ class EventListener implements Listener
     {
         $player = $event->getPlayer();
         $msg = $event->getMessage();
-        if ($msg[0] == "/" )
-        {
-            $this->getCore()->getServer()->getLogger()->info("[Cmd][".$player->getName()."] use ".$msg);
+        if ($msg[0] == "/") {
+            $this->getCore()->getServer()->getLogger()->info("[CMD][" . $player->getName() . "] use " . $msg);
         }
     }
 }

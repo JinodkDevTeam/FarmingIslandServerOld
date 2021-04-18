@@ -49,7 +49,7 @@ class BehaviorPool{
 	/**
 	 * Updates behaviors
 	 */
-	public function onUpdate() : void{
+	public function onUpdate() : bool{
 		if($this->tickCounter++ % $this->tickRate === 0){
 			foreach($this->behaviorEntries as $id => $entry){
 				$behavior = $entry->getBehavior();
@@ -81,6 +81,8 @@ class BehaviorPool{
 		foreach($this->workingBehaviors as $entry){
 			$entry->getBehavior()->onTick();
 		}
+
+		return count($this->workingBehaviors) > 0;
 	}
 
 	public function canUse(BehaviorEntry $entry) : bool{
