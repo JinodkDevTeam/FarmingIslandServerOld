@@ -21,22 +21,22 @@ class TagResloveListener implements Listener
 
         switch ($name)
         {
-            case "farmingislandscore.money":
+            case "fi-scoreloader.money":
                 $value = EconomyAPI::getInstance()->myMoney($player);
                 $tag->setValue($value);
                 break;
-            case "farmingislandscore.online":
+            case "fi-scoreloader.online":
                 $online = count(Server::getInstance()->getOnlinePlayers());
                 $tag->setValue($online);
-            case "farmingislandscore.max_online":
+            case "fi-scoreloader.max_online":
                 $max_online = Server::getInstance()->getMaxPlayers();
                 $tag->setValue($max_online);
                 break;
-            case "farmingislandscore.ping":
+            case "fi-scoreloader.ping":
                 $ping = $player->getPing();
                 $tag->setValue($ping);
                 break;
-            case "farmingislandscore.name":
+            case "fi-scoreloader.name":
                 $pname = $player->getName();
                 $tag->setValue($pname);
                 break;

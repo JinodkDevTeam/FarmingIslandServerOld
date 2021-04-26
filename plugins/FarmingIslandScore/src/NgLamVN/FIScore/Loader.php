@@ -15,7 +15,7 @@ class Loader extends PluginBase
         {
             foreach ($this->getServer()->getOnlinePlayers() as $player)
             {
-                (new PlayerTagUpdateEvent($player, new ScoreTag("farmingislandscore.ping", $player->getPing())))->call();
+                (new PlayerTagUpdateEvent($player, new ScoreTag("fi-scoreloader.ping", $player->getPing())))->call();
             }
         });
         $this->getScheduler()->scheduleRepeatingTask($task, 5*20);

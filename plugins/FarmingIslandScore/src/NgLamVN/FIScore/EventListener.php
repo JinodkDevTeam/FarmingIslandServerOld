@@ -17,12 +17,12 @@ class EventListener implements Listener
 {
     public function onJoin(PlayerJoinEvent $event)
     {
-        (new ServerTagUpdateEvent(new ScoreTag("farmingislandscore.online", strval(count(Server::getInstance()->getOnlinePlayers())))))->call();
+        (new ServerTagUpdateEvent(new ScoreTag("fi-scoreloader.online", strval(count(Server::getInstance()->getOnlinePlayers())))))->call();
     }
 
     public function onQuit(PlayerQuitEvent $event)
     {
-        (new ServerTagUpdateEvent(new ScoreTag("farmingislandscore.online", strval(count(Server::getInstance()->getOnlinePlayers())))))->call();
+        (new ServerTagUpdateEvent(new ScoreTag("fi-scoreloader.online", strval(count(Server::getInstance()->getOnlinePlayers())))))->call();
     }
 
     public function onMoneyChange(MoneyChangedEvent $event)
@@ -38,7 +38,7 @@ class EventListener implements Listener
 
         if($player instanceof Player && $player->isOnline())
         {
-            (new PlayerTagUpdateEvent($player, new ScoreTag("farmingislandscore.money", $event->getMoney())))->call();
+            (new PlayerTagUpdateEvent($player, new ScoreTag("fi-scoreloader.money", $event->getMoney())))->call();
         }
     }
 }

@@ -1,4 +1,4 @@
-name: GameHandle
+name: FI-GameHandle
 main: NgLamVN\GameHandle\Core
 version: 0.2-beta
 api: 3.14.0

@@ -1,4 +1,4 @@
-name: FarmingIslandScore
+name: FI-ScoreLoader
 main: NgLamVN\FIScore\Loader
 version: 0.1
 author: NgLamVN

@@ -65,10 +65,10 @@ titles:
 # in 'scoreboards' key below then set 'multi-world.active' along
 # with 'multi-world.use-default' keys to true in config.yml.
 default-board:
-  - "§2•§l§eWelcome:§r §f{farmingislandscore.name}"
-  - "§2•§l§eOnline: §r §f{farmingislandscore.online}/{farmingislandscore.max_online}"
-  - "§2•§l§eXu:     §r §f{farmingislandscore.money}$"
-  - "§2•§l§ePing:   §r §f{farmingislandscore.ping}"
+  - "§2•§l§eWelcome:§r §f{fi-scoreloader.name}"
+  - "§2•§l§eOnline: §r §f{fi-scoreloader.online}/{fi-scoreloader.max_online}"
+  - "§2•§l§eXu:     §r §f{fi-scoreloader.money}$"
+  - "§2•§l§ePing:   §r §f{fi-scoreloader.ping}"
   - ""
   - "§4jinodk§f.§eddns§f.§bnet§f:§e19132"
 
