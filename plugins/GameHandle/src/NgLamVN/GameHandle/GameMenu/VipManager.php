@@ -20,7 +20,7 @@ class VipManager
 
     public function getCore(): Core
     {
-        return Server::getInstance()->getPluginManager()->getPlugin("GameHandle");
+        return Server::getInstance()->getPluginManager()->getPlugin("FI-GameHandle");
     }
 
     public function execute (Player $player)

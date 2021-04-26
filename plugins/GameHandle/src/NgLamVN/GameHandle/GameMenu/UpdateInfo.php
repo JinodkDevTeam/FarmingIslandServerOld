@@ -12,7 +12,7 @@ class UpdateInfo
 
     public function __construct(Player $player)
     {
-        $this->version = Server::getInstance()->getPluginManager()->getPlugin("GameHandle")->getDescription()->getVersion();
+        $this->version = Server::getInstance()->getPluginManager()->getPlugin("FI-GameHandle")->getDescription()->getVersion();
         $this->execute($player);
     }
 

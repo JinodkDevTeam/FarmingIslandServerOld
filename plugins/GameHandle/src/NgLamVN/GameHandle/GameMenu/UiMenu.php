@@ -19,7 +19,7 @@ class UiMenu
 
     public function getCore(): ?Core
     {
-        return Server::getInstance()->getPluginManager()->getPlugin("GameHandle");
+        return Server::getInstance()->getPluginManager()->getPlugin("FI-GameHandle");
     }
 
     public function MenuForm(Player $player)

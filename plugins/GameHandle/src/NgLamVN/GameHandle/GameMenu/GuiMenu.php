@@ -23,7 +23,7 @@ class GuiMenu
 
     public function getCore(): ?Core
     {
-        return Server::getInstance()->getPluginManager()->getPlugin("GameHandle");
+        return Server::getInstance()->getPluginManager()->getPlugin("FI-GameHandle");
     }
 
     public function menuForm(Player $player)
