@@ -1,4 +1,4 @@
-prefix=/home/bin/php7
+prefix=/home/maintainer/test/php-build-scripts/bin/php7
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 sharedlibdir=${libdir}

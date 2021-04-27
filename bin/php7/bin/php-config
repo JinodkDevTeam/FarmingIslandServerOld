@@ -1,24 +1,26 @@
 #! /bin/sh
 
-SED="/bin/sed"
-prefix="/home/bin/php7"
-datarootdir="/home/bin/php7/php"
-exec_prefix="/home/bin/php7"
-version="7.3.7"
-vernum="70307"
+SED="/usr/bin/sed"
+prefix="/home/maintainer/test/php-build-scripts/bin/php7"
+datarootdir="/home/maintainer/test/php-build-scripts/bin/php7/php"
+exec_prefix="/home/maintainer/test/php-build-scripts/bin/php7"
+version="7.4.16"
+vernum="70416"
 include_dir="${prefix}/include/php"
 includes="-I$include_dir -I$include_dir/main -I$include_dir/TSRM -I$include_dir/Zend -I$include_dir/ext -I$include_dir/ext/date/lib"
-ldflags=" -L/home/bin/php7/lib"
-libs="-lcrypt   -lcrypto -lssl -lcrypto -lzip -lzip -lz -lyaml -lresolv -lcrypt -lgmp -lcrypto -lssl -lcrypto -lz -lcrypto -lssl -lcrypto -lrt -lm -ldl -lnsl  -lpthread -lcurl -lcrypt -lcrypt "
-extension_dir='/home/bin/php7/lib/php/extensions/no-debug-zts-20180731'
+ldflags=" -L/home/maintainer/test/php-build-scripts/bin/php7/lib"
+libs="-lcrypt   -lyaml -lresolv -lcrypt -lrt -lgmp -lrt -lm -ldl  -lpthread -lxml2 -lssl -lcrypto -lsqlite3 -lz -lssl -lcrypto -lcurl -lxml2 -lssl -lcrypto -lsqlite3 -lxml2 -lcrypt -lxml2 -lxml2 -lxml2 -lzip -lz -lssl -lcrypto -lcrypt "
+extension_dir='/home/maintainer/test/php-build-scripts/bin/php7/lib/php/extensions/no-debug-zts-20190902'
 man_dir=`eval echo ${datarootdir}/man`
 program_prefix=""
 program_suffix=""
 exe_extension=""
 php_cli_binary=NONE
 php_cgi_binary=NONE
-configure_options=" '--disable-inline-optimization' '--prefix=/home/bin/php7' '--exec-prefix=/home/bin/php7' '--with-curl=/home/bin/php7' '--with-zlib=/home/bin/php7' '--with-zlib-dir=/home/bin/php7' '--with-gmp=/home/bin/php7' '--with-yaml=/home/bin/php7' '--with-openssl=/home/bin/php7' '--with-libzip=/home/bin/php7' '--without-ncurses' '--without-readline' '--disable-debug' '--enable-mbstring' '--enable-calendar' '--enable-pthreads' '--disable-fileinfo' '--disable-libxml' '--disable-xml' '--disable-dom' '--disable-simplexml' '--disable-xmlreader' '--disable-xmlwriter' '--disable-cgi' '--disable-phpdbg' '--disable-session' '--disable-pdo' '--without-pear' '--without-iconv' '--without-pdo-sqlite' '--with-pic' '--enable-phar' '--enable-ctype' '--enable-sockets' '--enable-shared=no' '--enable-static=yes' '--enable-shmop' '--enable-maintainer-zts' '--disable-short-tags' '--enable-pcntl' '--enable-embedded-mysqli' '--enable-mysqlnd' '--with-mysqli=mysqlnd' '--enable-bcmath' '--enable-cli' '--enable-zip' '--enable-ftp' '--enable-opcache=no' '--enable-igbinary' '--enable-ds' '--with-crypto' '--enable-recursionguard' '--without-valgrind' 'CFLAGS=-O2 -fPIC -march=native -mtune=native -fno-gcse ' 'LDFLAGS=-Wl,-rpath='"
+configure_options=" '--enable-inline-optimization' '--prefix=/home/maintainer/test/php-build-scripts/bin/php7' '--exec-prefix=/home/maintainer/test/php-build-scripts/bin/php7' '--with-curl' '--with-zlib' '--with-gmp' '--with-yaml' '--with-openssl' '--with-zip' '--without-readline' '--disable-debug' '--enable-pocketmine-chunkutils' '--enable-mbstring' '--disable-mbregex' '--enable-calendar' '--enable-pthreads' '--disable-fileinfo' '--with-libxml' '--enable-xml' '--enable-dom' '--enable-simplexml' '--enable-xmlreader' '--enable-xmlwriter' '--disable-cgi' '--disable-phpdbg' '--disable-session' '--without-pear' '--without-iconv' '--with-pdo-sqlite' '--with-pdo-mysql' '--with-pic' '--enable-phar' '--enable-ctype' '--enable-sockets' '--enable-shared=no' '--enable-static=yes' '--enable-shmop' '--enable-maintainer-zts' '--disable-short-tags' '--enable-pcntl' '--enable-mysqlnd' '--with-mysqli=mysqlnd' '--enable-bcmath' '--enable-cli' '--enable-ftp' '--enable-opcache=yes' '--enable-igbinary' '--enable-ds' '--with-crypto' '--enable-recursionguard' '--without-valgrind' 'PKG_CONFIG_PATH=/home/maintainer/test/php-build-scripts/bin/php7/lib/pkgconfig' 'CFLAGS=-O2 -fPIC -march=native -mtune=native -fno-gcse -O2 -ffast-math -ftree-vectorize -fomit-frame-pointer -funswitch-loops -fivopts -funsafe-loop-optimizations -fpredictive-commoning -ftracer -ftree-loop-im -frename-registers -fcx-limited-range ' 'LDFLAGS=-Wl,-rpath='"
 php_sapis=" cli"
+ini_dir=""
+ini_path="/home/maintainer/test/php-build-scripts/bin/php7/lib"
 
 # Set php_cli_binary and php_cgi_binary if available
 for sapi in $php_sapis; do
@@ -63,6 +65,10 @@ case "$1" in
   echo $configure_options;;
 --man-dir)
   echo $man_dir;;
+--ini-path)
+  echo $ini_path;;
+--ini-dir)
+  echo $ini_dir;;
 --version)
   echo $version;;
 --vernum)
@@ -80,6 +86,8 @@ Options:
   --man-dir           [$man_dir]
   --php-binary        [$php_binary]
   --php-sapis         [$php_sapis]
+  --ini-path          [$ini_path]
+  --ini-dir           [$ini_dir]
   --configure-options [$configure_options]
   --version           [$version]
   --vernum            [$vernum]
