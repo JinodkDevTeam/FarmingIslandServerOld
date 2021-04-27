@@ -6,6 +6,7 @@ use Ifera\ScoreHud\event\PlayerTagUpdateEvent;
 use pocketmine\plugin\PluginBase;
 use Ifera\ScoreHud\scoreboard\ScoreTag;
 use pocketmine\scheduler\ClosureTask;
+use pocketmine\utils\TextFormat;
 
 class Loader extends PluginBase
 {
@@ -15,7 +16,13 @@ class Loader extends PluginBase
         {
             foreach ($this->getServer()->getOnlinePlayers() as $player)
             {
-                (new PlayerTagUpdateEvent($player, new ScoreTag("fi-scoreloader.ping", $player->getPing())))->call();
+                $ping = $player->getPing();
+                if ($ping < 80) $color = "§a";
+                elseif ($ping < 150) $color = "§e";
+                elseif ($ping < 200) $color = "§6";
+                else $color = "§c";
+                
+                (new PlayerTagUpdateEvent($player, new ScoreTag("fi-scoreloader.ping",$color . $player->getPing())))->call();
             }
         });
         $this->getScheduler()->scheduleRepeatingTask($task, 5*20);
