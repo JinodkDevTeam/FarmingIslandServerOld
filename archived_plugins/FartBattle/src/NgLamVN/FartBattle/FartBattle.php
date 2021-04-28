@@ -35,9 +35,49 @@ class FartBattle extends PluginBase implements Listener
     public function onEnable()
     {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
+        Entity::registerEntity(WeirdArrow::class, false, ['Arrow', 'minecraft:arrow']);
     }
 
     public function onTap(PlayerInteractEvent $event)
+    {
+        //The kill aura paper
+        $player = $event->getPlayer();
+        $action = $event->getAction();
+
+        if (($action !== PlayerInteractEvent::LEFT_CLICK_AIR) and ($action !== PlayerInteractEvent::RIGHT_CLICK_AIR))
+        {
+            return;
+        }
+        $item = $player->getInventory()->getItemInHand();
+        if ($item->getId() !== Item::PAPER)
+        {
+            return;
+        }
+
+        $level = $player->getLevel();
+
+        foreach ($level->getEntities() as $entity)
+        {
+            if ($entity instanceof Living)
+            {
+                if ($entity instanceof Player)
+                {
+                    if ($entity->getName() !== $player->getName())
+                    {
+                        $ev = new EntityDamageByEntityEvent($player, $entity, EntityDamageByEntityEvent::CAUSE_ENTITY_ATTACK, 0.5);
+                        $entity->attack($ev);
+                    }
+                }
+                else
+                {
+                    $ev = new EntityDamageByEntityEvent($player, $entity, EntityDamageByEntityEvent::CAUSE_ENTITY_ATTACK, 0.5);
+                    $entity->attack($ev);
+                }
+            }
+        }
+    }
+
+    /*public function onTap(PlayerInteractEvent $event)
     {
         //Knockback gun
 
@@ -80,9 +120,9 @@ class FartBattle extends PluginBase implements Listener
                 if ($pass) break;
             }
         }
-    }
+    }*/
 
-    public function onTap(PlayerInteractEvent $event)
+    /*public function onTap(PlayerInteractEvent $event)
     {
         //fake Explosive stick
         $player = $event->getPlayer();
@@ -119,7 +159,7 @@ class FartBattle extends PluginBase implements Listener
                 }
             }
         }
-    }
+    }*/
 
     public function fakeExplosive(Vector3 $vector3, Level $level, Player $damager)
     {
@@ -147,7 +187,7 @@ class FartBattle extends PluginBase implements Listener
     }
 
 
-    public function onSneak(PlayerToggleSneakEvent $event)
+    /*public function onSneak(PlayerToggleSneakEvent $event)
     {
         //Shooting a beam and deal damage to nearby entity.
 
@@ -194,7 +234,8 @@ class FartBattle extends PluginBase implements Listener
                 }
             }
         }
-    }
+    }*/
+
     /*public function onSneak (PlayerToggleSneakEvent $event)
     {
 
