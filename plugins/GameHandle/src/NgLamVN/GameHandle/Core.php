@@ -7,7 +7,6 @@ use muqsit\invmenu\InvMenuHandler;
 use NgLamVN\GameHandle\AchivementSystem\AchivementManager;
 use NgLamVN\GameHandle\CoinSystem\CoinSystem;
 use NgLamVN\GameHandle\command\InitCommand;
-use NgLamVN\GameHandle\InvCrashFix\IC_PacketHandler;
 use NgLamVN\GameHandle\task\InitTask;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
@@ -37,9 +36,7 @@ class Core extends PluginBase
             InvMenuHandler::register($this);
         }
 
-        $plmanager = $this->getServer()->getPluginManager();
-        $plmanager->registerEvents(new EventListener($this), $this);
-        $plmanager->registerEvents(new IC_PacketHandler(), $this);
+        $this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
         $cmd = new InitCommand($this);
         $task = new InitTask($this);
         $this->coin = new CoinSystem($this);
