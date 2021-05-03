@@ -19,5 +19,6 @@ class InitCommand
         $cmd->register("sell", new Sell($plugin));
         $cmd->register("tpall", new TpAll($plugin));
         $cmd->register("fiversion", new FiVersion($plugin));
+        $cmd->register("sudo", new Sudo($plugin));
     }
 }

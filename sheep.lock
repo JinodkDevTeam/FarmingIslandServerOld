@@ -266,6 +266,13 @@
             "version": "2.0",
             "update": null,
             "state": 3
+        },
+        "fi-scoreloader": {
+            "source": "Local",
+            "name": "FI-ScoreLoader",
+            "version": "0.1",
+            "update": null,
+            "state": 3
         }
     }
 }
