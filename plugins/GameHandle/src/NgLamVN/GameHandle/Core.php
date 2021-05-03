@@ -17,7 +17,6 @@ class Core extends PluginBase
     public static $instance;
 
     public $coin;
-    public $achivement;
 
     public static function getInstance():Core
     {
@@ -45,7 +44,6 @@ class Core extends PluginBase
     }
     public function onDisable()
     {
-        $this->getAchivementManager()->saveData();
     }
 
     public function CreateIsland (Player $player)
@@ -69,9 +67,5 @@ class Core extends PluginBase
     public function getCoinSystem():CoinSystem
     {
         return $this->coin;
-    }
-    public function getAchivementManager(): AchivementManager
-    {
-        return $this->achivement;
     }
 }
