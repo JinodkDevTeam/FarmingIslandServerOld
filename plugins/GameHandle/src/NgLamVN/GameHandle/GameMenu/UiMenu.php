@@ -31,7 +31,6 @@ class UiMenu
             array_push($list, "is-info");
         }
         array_push($list, "teleport");
-        array_push($list, "achievement");
         array_push($list, "shop");
         array_push($list, "vip-shop");
         array_push($list, "sell-all");
@@ -75,9 +74,6 @@ class UiMenu
                 case "vip-shop":
                     Server::getInstance()->dispatchCommand($player, "cuahang");
                     break;
-                case "achievement":
-                    Server::getInstance()->dispatchCommand($player, "achievement");
-                    break;
                 case "gui":
                     $this->GuiMode($player);
                     break;
@@ -93,7 +89,6 @@ class UiMenu
 
         }
         $form->addButton("Teleport");
-        $form->addButton("Achievement");
         $form->addButton("Shop");
         $form->addButton("VipItem Shop");
         $form->addButton("Sell All Inventory");

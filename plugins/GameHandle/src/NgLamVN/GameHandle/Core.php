@@ -4,7 +4,6 @@ namespace NgLamVN\GameHandle;
 
 use _64FF00\PurePerms\PurePerms;
 use muqsit\invmenu\InvMenuHandler;
-use NgLamVN\GameHandle\AchivementSystem\AchivementManager;
 use NgLamVN\GameHandle\CoinSystem\CoinSystem;
 use NgLamVN\GameHandle\command\InitCommand;
 use NgLamVN\GameHandle\InvCrashFix\IC_PacketHandler;
@@ -43,7 +42,6 @@ class Core extends PluginBase
         $cmd = new InitCommand($this);
         $task = new InitTask($this);
         $this->coin = new CoinSystem($this);
-        $this->achivement = new AchivementManager($this);
     }
     public function onDisable()
     {

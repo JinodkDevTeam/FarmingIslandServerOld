@@ -93,10 +93,6 @@ class GuiMenu
             $inv->setItem(18, $item8);
         }
 
-        $item9 = Item::get(Item::DIAMOND);
-        $item9->setCustomName("Achievements");
-        $inv->setItem(8, $item9);
-
         $item10 = Item::get(Item::NETHER_STAR);
         $item10->setCustomName("VipItem Shop");
         $inv->setItem(11, $item10);
@@ -159,9 +155,6 @@ class GuiMenu
                 {
                     Server::getInstance()->dispatchCommand($player, "cuahang");
                 }, $this->getCore(), $player);
-                break;
-            case 8:
-                Server::getInstance()->dispatchCommand($player, "achievement");
                 break;
             case 17:
                 $this->UiMode($player);
