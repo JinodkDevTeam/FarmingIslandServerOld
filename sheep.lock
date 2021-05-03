@@ -273,6 +273,13 @@
             "version": "0.1",
             "update": null,
             "state": 3
+        },
+        "basicscore": {
+            "source": "Local",
+            "name": "BasicScore",
+            "version": "1.2.0",
+            "update": null,
+            "state": 3
         }
     }
 }
