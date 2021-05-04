@@ -280,6 +280,13 @@
             "version": "1.2.0",
             "update": null,
             "state": 3
+        },
+        "admintrollv2": {
+            "source": "Poggit",
+            "name": "AdminTrollV2",
+            "version": "1.2.0",
+            "update": null,
+            "state": 3
         }
     }
 }
