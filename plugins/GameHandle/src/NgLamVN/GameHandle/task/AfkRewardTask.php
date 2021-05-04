@@ -16,7 +16,7 @@ class AfkRewardTask extends Task
         {
             if ($player->getLevel()->getName() == "afk")
             {
-                EconomyAPI::getInstance()->addMoney($player, 500);
+                EconomyAPI::getInstance()->addMoney($player, 200);
                 $player->sendMessage("You have get 500xu in AFK Area !");
             }
         }
