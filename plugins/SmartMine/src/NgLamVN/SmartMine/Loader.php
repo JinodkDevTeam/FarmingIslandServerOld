@@ -3,6 +3,7 @@
 namespace NgLamVN\SmartMine;
 
 use pocketmine\block\Block;
+use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\Listener;
 use pocketmine\level\particle\DestroyBlockParticle;
 use pocketmine\level\Position;
@@ -96,6 +97,24 @@ class Loader extends PluginBase implements Listener
         $this->setBlockData($pos->asVector3(), $block->getId());
         $pos->getLevel()->setBlock($pos->asVector3(), Block::get(Block::COBBLESTONE));
         $this->AddToQueue($pos);
+    }
+
+    public function onPlace (BlockPlaceEvent $event)
+    {
+        if ($event->isCancelled())
+        {
+            return;
+        }
+        if ($this->is_edit)
+        {
+            return;
+        }
+        $block = $event->getBlock();
+        if ($block->getLevel()->getName() !== self::WORLD)
+        {
+            return;
+        }
+        $event->setCancelled();
     }
 
     public function AddToQueue (Position $pos)
