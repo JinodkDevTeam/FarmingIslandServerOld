@@ -21,8 +21,8 @@ class UpdateInfo
         $form = new CustomForm(function (Player $player, $data){ return; });
         $form->setTitle("BREAKING NEWS");
         $form->addLabel("Updates:");
-        $form->addLabel("- Update Server to 1.16.220");
-        $form->addLabel("- Removed Factions");
+        $form->addLabel("- Removed AchievementSystem.");
+        $form->addLabel("- Fixed some error.");
         $form->addLabel("Official wiki: bit.ly/fi-wiki");
         $form->addLabel("Vote for server: bit.ly/fi-vote");
         $form->addLabel("Official Facebook group: bit.ly/jinodkgroupfb");
