@@ -12,12 +12,26 @@ use pocketmine\event\block\BlockBreakEvent;
 class Loader extends PluginBase implements Listener
 {
     public const WORLD = "mine";
-    public const ALLOW_BLOCK = [Block::STONE, Block::COBBLESTONE, Block::COAL_ORE, Block::IRON_ORE, Block::GOLD_ORE, Block::DIAMOND_ORE, Block::EMERALD_ORE];
+    public const ALLOW_BLOCK = [
+        Block::STONE,
+        Block::COBBLESTONE,
+        Block::COAL_ORE,
+        Block::IRON_ORE,
+        Block::GOLD_ORE,
+        Block::DIAMOND_ORE,
+        Block::EMERALD_ORE,
+        Block::REDSTONE_ORE,
+        Block::GLOWING_REDSTONE_ORE,
+        Block::QUARTZ_ORE,
+        Block::LAPIS_ORE
+        ];
 
     /** @var Position[] */
     public $queue = [];
     /** @var int[] */
     public $data = [];
+    /** @var bool */
+    public $is_edit = false;
 
     public function onEnable()
     {
@@ -39,6 +53,10 @@ class Loader extends PluginBase implements Listener
     public function onBreak(BlockBreakEvent $event)
     {
         if ($event->isCancelled())
+        {
+            return;
+        }
+        if ($this->is_edit)
         {
             return;
         }
