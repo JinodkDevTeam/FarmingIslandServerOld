@@ -53,7 +53,7 @@ shop: # if you want the shop to have a custom name you must add the options in t
       - "1:0:1:2:0:Default:textures/blocks/stone"
       - "12:0:1:2:0:Default:textures/blocks/sand"
       - "13:0:1:2:0:Default:textures/blocks/gravel"
-      - "155:0:1:100:0:Default:textures/block/quartz_block_side"
+      - "155:0:1:100:0:Default:textures/blocks/quartz_block_side"
   2:
     Name: "Material:textures/ui/icon_recipe_item"
     Items:
