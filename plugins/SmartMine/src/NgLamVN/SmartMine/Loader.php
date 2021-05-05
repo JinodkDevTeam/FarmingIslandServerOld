@@ -5,6 +5,7 @@ namespace NgLamVN\SmartMine;
 use pocketmine\block\Block;
 use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\Listener;
+use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\level\particle\DestroyBlockParticle;
 use pocketmine\level\Position;
 use pocketmine\math\Vector3;
@@ -100,6 +101,24 @@ class Loader extends PluginBase implements Listener
     }
 
     public function onPlace (BlockPlaceEvent $event)
+    {
+        if ($event->isCancelled())
+        {
+            return;
+        }
+        if ($this->is_edit)
+        {
+            return;
+        }
+        $block = $event->getBlock();
+        if ($block->getLevel()->getName() !== self::WORLD)
+        {
+            return;
+        }
+        $event->setCancelled();
+    }
+
+    public function onInteract (PlayerInteractEvent $event)
     {
         if ($event->isCancelled())
         {
