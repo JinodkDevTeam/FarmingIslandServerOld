@@ -47,31 +47,25 @@ shop: # if you want the shop to have a custom name you must add the options in t
           - "293:0:1:200:0:Default:textures/items/diamond_hoe"
           - "747:0:1:1000:0:Default:textures/items/netherite_hoe"
   1:
-    Name: "Blocks:textures/blocks/stone"
-    Sub:
-      0:
-        Name: "Basic Blocks:textures/blocks/stone"
-        Items:
-          - "3:0:1:1.5:0:Default:textures/blocks/dirt"
-          - "4:0:1:2:0:Default:textures/blocks/cobblestone"
-          - "12:0:1:2:0:Default:textures/blocks/sand"
-          - "45:0:1:5:0:Default:textures/blocks/brick"
-      1:
-        Name: "Wools:textures/items/white_wool.png"
-        Items:
-          - "35:0:1:2.5:0:Default:textures/blocks/white_wool.png"
-          - "35:1:1:2.5:0:Default:textures/blocks/orange_wool.png"
-          - "35:2:1:2.5:0:Default:textures/blocks/magenta_wool.png"
-          - "35:3:1:2.5:0:Default:textures/blocks/light_blue_wool.png"
-          - "35:4:1:2.5:0:Default:textures/blocks/yellow_wool.png"
-          - "35:5:1:2.5:0:Default:textures/blocks/lime_wool.png"
-          - "35:6:1:2.5:0:Default:textures/blocks/pink_wool.png"
-          - "35:7:1:2.5:0:Default:textures/blocks/gray_wool.png"
-          - "35:8:1:2.5:0:Default:textures/blocks/light_gray_wool.png"
-          - "35:9:1:2.5:0:Default:textures/blocks/cyan_wool.png"
-          - "35:10:1:2.5:0:Default:textures/blocks/purple_wool.png"
-          - "35:11:1:2.5:0:Default:textures/blocks/blue_wool.png"
-          - "35:12:1:2.5:0:Default:textures/blocks/brown_wool.png"
-          - "35:13:1:2.5:0:Default:textures/blocks/green_wool.png"
-          - "35:14:1:2.5:0:Default:textures/blocks/red_wool.png"
-          - "35:15:1:2.5:0:Default:textures/blocks/black_wool.png"
+    Name: "Blocks:textures/ui/worldsIcon"
+    Items:
+      - "3:0:1:2:0:Default:textures/blocks/dirt"
+      - "1:0:1:2:0:Default:textures/blocks/stone"
+      - "12:0:1:2:0:Default:textures/blocks/sand"
+      - "13:0:1:2:0:Default:textures/blocks/gravel"
+      - "155:0:1:100:0:Default:textures/block/quartz_block_side"
+  2:
+    Name: "Material:textures/ui/icon_recipe_item"
+    Items:
+      - "337:0:1:5:0:Default:textures/items/clay_ball"
+  3:
+    Name: "Dye:textures/ui/color_picker"
+    Items:
+      - "351:16:1:10:0:Default:textures/items/dye_powder_black_new"
+      - "351:18:1:10:0:Default:textures/items/dye_powder_blue_new"
+      - "351:17:1:10:0:Default:textures/items/dye_powder_brown_new"
+      - "351:2:1:10:0:Default:textures/items/dye_powder_green"
+      - "351:1:1:10:0:Default:textures/items/dye_powder_red"
+      - "351:19:1:10:0:Default:textures/items/dye_powder_white_new"
+      - "351:11:1:10:0:Default:textures/items/dye_powder_yellow"
+
