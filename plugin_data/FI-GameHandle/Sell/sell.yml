@@ -1,15 +1,22 @@
 ---
-4: 0.78
-296: 0.23
-391: 0.31
-265: 1.56
-266: 2.34
-264: 7.81
-263: 1.17
-352: 1.4
-367: 1.4
-392: 0.3
-81: 0.4
-338: 0.4
+4: 0.06 #CobbleStone
+296: 0.12 #Wheat
+391: 0.12 #Carrot
+265: 1.56 #IronIngot
+266: 2.34 #GoldIngot
+264: 7.81 #Diamond
+263: 1.17 #Coal
+352: 1.4 #Bone
+367: 1.4 #RottenFresh
+392: 0.12 #Potato
+81: 0.12 #Cactus
+338: 0.12 #SurgaCane
+17: 0.09 #OakLog
+260: 0.15 #Apple
+360: 0.15 #Melon
+103: 0.6 #MelonBlock
+86: 0.15 #Pumpkin
+295: 0.1 #WheatSeed
+
 ...
 
