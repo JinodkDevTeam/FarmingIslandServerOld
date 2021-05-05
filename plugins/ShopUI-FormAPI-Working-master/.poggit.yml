@@ -1,0 +1,10 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/AlexPads/ShopUI-FormAPI-Working
+branches:
+- master
+projects:
+  ShopUI-FormAPI-Working:
+    path: ""
+    libs:
+    - src: jojoe77777/FormAPI/libFormAPI
+      version: ^1.3
+...

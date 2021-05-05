@@ -1,0 +1,15 @@
+name: CustomShopUI
+main: SaltyPixelDevz\CustomShopUIv2\Shop
+version: 4.0.5
+api: [3.0.0]
+author: WitherHosting
+website: https://witherhosting.com
+depend:
+- EconomyAPI
+commands:
+  shop:
+    description: "Opens CustomShopUI"
+permissions:
+  shop.shop:
+    default: true
+    description: "Allows use of the /shop command"
