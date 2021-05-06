@@ -50,22 +50,35 @@ shop: # if you want the shop to have a custom name you must add the options in t
     Name: "Blocks:textures/ui/worldsIcon"
     Items:
       - "3:0:1:2:0:Default:textures/blocks/dirt"
-      - "1:0:1:2:0:Default:textures/blocks/stone"
+      - "1:0:1:1:0:Default:textures/blocks/stone"
       - "12:0:1:2:0:Default:textures/blocks/sand"
       - "13:0:1:2:0:Default:textures/blocks/gravel"
       - "155:0:1:100:0:Default:textures/blocks/quartz_block_side"
+      - "35:0:1:2:0:Default:textures/blocks/wool_colored_white"
+      - "121:0:1:10:0:Default:textures/blocks/end_stone"
   2:
     Name: "Material:textures/ui/icon_recipe_item"
     Items:
-      - "337:0:1:5:0:Default:textures/items/clay_ball"
+      - "337:0:1:1:0:Default:textures/items/clay_ball"
   3:
     Name: "Dye:textures/ui/color_picker"
     Items:
-      - "351:16:1:10:0:Default:textures/items/dye_powder_black_new"
-      - "351:18:1:10:0:Default:textures/items/dye_powder_blue_new"
-      - "351:17:1:10:0:Default:textures/items/dye_powder_brown_new"
-      - "351:2:1:10:0:Default:textures/items/dye_powder_green"
-      - "351:1:1:10:0:Default:textures/items/dye_powder_red"
-      - "351:19:1:10:0:Default:textures/items/dye_powder_white_new"
-      - "351:11:1:10:0:Default:textures/items/dye_powder_yellow"
+      - "351:16:1:0.5:0:Default:textures/items/dye_powder_black_new"
+      - "351:18:1:0.5:0:Default:textures/items/dye_powder_blue_new"
+      - "351:17:1:0.5:0:Default:textures/items/dye_powder_brown_new"
+      - "351:2:1:0.5:0:Default:textures/items/dye_powder_green"
+      - "351:1:1:0.5:0:Default:textures/items/dye_powder_red"
+      - "351:19:1:0.5:0:Default:textures/items/dye_powder_white_new"
+      - "351:11:1:0.5:0:Default:textures/items/dye_powder_yellow"
+  4:
+    Name: "For players who think they have enough money to buy:textures/ui/icon_minecoin_9x9"
+    Items:
+      - "218:0:1:2000000:0:Default:textures/blocks/shulker_top_white"
+      - "130:0:1:5000000:0:Default:textures/blocks/ender_chest_front"
+      - "138:0:1:2500000:0:Default:textures/blocks/beacon"
+      - "89:0:1:250000:0:Default:textures/blocks/glowstone"
+      - "169:0:1:250000:0:Default:textures/blocks/sea_lantern"
+      - "213:0:1:100000:0:Default:textures/blocks/magma"
+      - "247:0:1:8000000:0:Default:textures/blocks/reactor_core_stage_0"
+      - "246:0:1:5000000:0:Default:textures/blocks/glowing_obsidian"
 
