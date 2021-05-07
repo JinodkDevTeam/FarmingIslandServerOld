@@ -21,8 +21,7 @@ class UpdateInfo
         $form = new CustomForm(function (Player $player, $data){ return; });
         $form->setTitle("BREAKING NEWS");
         $form->addLabel("Updates:");
-        $form->addLabel("- Fix some bug in MineArea");
-        $form->addLabel("- Updated Shop, Sell Price");
+        $form->addLabel("- Add toggle auto pickup item drop.");
         $form->addLabel("Official wiki: bit.ly/fi-wiki");
         $form->addLabel("Vote for server: bit.ly/fi-vote");
         $form->addLabel("Official Facebook group: bit.ly/jinodkgroupfb");
