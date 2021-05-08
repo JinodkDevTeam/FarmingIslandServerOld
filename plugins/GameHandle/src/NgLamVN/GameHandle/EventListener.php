@@ -4,6 +4,7 @@ namespace NgLamVN\GameHandle;
 
 use NgLamVN\GameHandle\task\AutoJoinIslandTask;
 use pocketmine\command\ConsoleCommandSender;
+use pocketmine\event\entity\EntityLevelChangeEvent;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerCommandPreprocessEvent;
 use pocketmine\event\player\PlayerFishEvent;
@@ -15,7 +16,9 @@ use pocketmine\event\inventory\InventoryTransactionEvent;
 use NgLamVN\GameHandle\GameMenu\Menu;
 
 use MyPlot\MyPlot;
+use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerRespawnEvent;
+use pocketmine\Player;
 use pocketmine\Server;
 
 class EventListener implements Listener
@@ -103,5 +106,20 @@ class EventListener implements Listener
         if ($msg[0] == "/") {
             $this->getCore()->getServer()->getLogger()->info("[CMD][" . $player->getName() . "] use " . $msg);
         }
+    }
+
+    public function onChangeLevel (EntityLevelChangeEvent $event)
+    {
+        $entity = $event->getEntity();
+        if ($entity instanceof Player)
+        {
+            $this->getCore()->afktime[$entity->getName()] = 0;
+        }
+    }
+
+    public function onQuit (PlayerQuitEvent $event)
+    {
+        $player = $event->getPlayer();
+        $this->getCore()->afktime[$player->getName()] = 0;
     }
 }

@@ -14,11 +14,14 @@ use pocketmine\Server;
 
 class Core extends PluginBase
 {
+    /** @var int[] */
+    public $afktime = [];
+    /** @var Core */
     public static $instance;
-
+    /** @var CoinSystem */
     public $coin;
 
-    public static function getInstance():Core
+    public static function getInstance(): Core
     {
         return self::$instance;
     }
