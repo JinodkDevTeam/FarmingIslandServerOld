@@ -36,7 +36,7 @@ class UiMenu
         array_push($list, "sell-all");
         array_push($list, "coin");
         array_push($list, "vip");
-        if (in_array($this->getCore()->getPlayerGroupName($player), ["Vip", "VipPlus", "Staff", "Admin", "Youtuber"]))
+        if (in_array($this->getCore()->getPlayerGroupName($player), ["Vip", "VipPlus", "Staff", "Admin", "Youtuber", "Member"]))
         {
             array_push($list, "rankcolor");
         }
