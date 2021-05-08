@@ -38,7 +38,12 @@ class Farms extends PluginBase implements Listener
         $this->farmConfig = new Config($this->getDataFolder()."farmlist.yml", Config::YAML);
         $this->farmData = $this->farmConfig->getAll();
 
-        $this->speedConfig = new Config($this->getDataFolder()."speed.yml", Config::YAML, [ "growing-time" => 1200,"vip-growing-time" => 600, "op-growing-time" => 10]);
+        $this->speedConfig = new Config($this->getDataFolder()."speed.yml", Config::YAML, [
+            "growing-time" => 1200,
+            "vip-growing-time" => 600,
+            "op-growing-time" => 10,
+            "member-growing-time" => 1080
+        ]);
         $this->speedData = $this->speedConfig->getAll();
 
         $this->getScheduler()->scheduleRepeatingTask( new FarmsTask($this), 20);
@@ -81,6 +86,10 @@ class Farms extends PluginBase implements Listener
                     elseif ($event->getPlayer()->hasPermission("Farms.VIP"))
                     {
                         $growing = $this->speedData["vip-growing-time"];
+                    }
+                    elseif ($event->getPlayer()->hasPermission("Farms.Member"))
+                    {
+                        $growing = $this->speedData["member-growing-time"];
                     }
                     else
                     {

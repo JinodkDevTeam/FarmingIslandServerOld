@@ -23,6 +23,7 @@ class UpdateInfo
         $form->addLabel("Updates:");
         $form->addLabel("- Add toggle auto pickup item drop.");
         $form->addLabel("- Add Member rank.");
+        $form->addLabel("- Youtuber: +1/10 money reward when sell item.");
         $form->addLabel("Official wiki: bit.ly/fi-wiki");
         $form->addLabel("Vote for server: bit.ly/fi-vote");
         $form->addLabel("Official Facebook group: bit.ly/jinodkgroupfb");

@@ -15,7 +15,7 @@ class Sell extends PluginCommand
 
     public $cfg, $data;
 
-    const VIP_RANK = ["Vip", "VipPlus", "Member"];
+    const VIP_RANK = ["Vip", "VipPlus", "Member", "Youtuber"];
 
     public function __construct(Core $plugin)
     {

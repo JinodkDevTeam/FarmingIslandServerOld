@@ -11,3 +11,5 @@ permissions:
     default: op
   Farms.OP:
     default: op
+  Farms.Member:
+    default: op
