@@ -7,8 +7,6 @@ use onebone\economyapi\EconomyAPI;
 use pocketmine\command\CommandSender;
 use pocketmine\command\PluginCommand;
 use pocketmine\item\Item;
-use pocketmine\Player;
-use pocketmine\plugin\Plugin;
 use pocketmine\utils\Config;
 
 class Sell extends PluginCommand
@@ -16,6 +14,8 @@ class Sell extends PluginCommand
     public $plugin;
 
     public $cfg, $data;
+
+    const VIP_RANK = ["Vip", "VipPlus", "Member"];
 
     public function __construct(Core $plugin)
     {
@@ -83,7 +83,7 @@ class Sell extends PluginCommand
                 $item = $sender->getInventory()->getItemInHand();
                 if ($this->toPrice($item) >= 0)
                 {
-                    if ($this->getCore()->getPlayerGroupName($sender) == "Vip")
+                    if (in_array($this->getCore()->getPlayerGroupName($sender), self::VIP_RANK))
                     {
                         EconomyAPI::getInstance()->addMoney($sender, $this->toPrice($item) + $this->toPrice($item)*(1/10));
                         $sender->sendMessage("Sell ".$item->getCount() ." item for ". $this->toPrice($item) . "xu (+ 1/10)");
@@ -112,7 +112,7 @@ class Sell extends PluginCommand
                         $sender->getInventory()->removeItem($item);
                     }
                 }
-                if ($this->getCore()->getPlayerGroupName($sender) == "Vip")
+                if (in_array($this->getCore()->getPlayerGroupName($sender), self::VIP_RANK))
                 {
                     $price = $price + $price*(1/10);
 

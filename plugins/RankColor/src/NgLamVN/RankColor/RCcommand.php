@@ -2,6 +2,7 @@
 
 namespace NgLamVN\RankColor;
 
+use NgLamVN\RankColor\forms\Member;
 use pocketmine\command\PluginCommand;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
@@ -48,6 +49,8 @@ class RCcommand extends PluginCommand
             case "Admin":
                 return new Admin($this->plugin, $sender);
                 break;
+            case "Member":
+                return new Member($this->plugin, $sender);
             default:
                 $sender->sendMessage("Change Color is not available for your rank !");
                 break;

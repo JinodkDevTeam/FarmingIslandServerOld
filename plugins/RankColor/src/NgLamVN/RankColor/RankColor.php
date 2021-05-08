@@ -69,6 +69,9 @@ class RankColor extends PluginBase
             case "Youtuber":
                 $this->setColor($player, "§f|§l§cYou§ftuber§r§f|");
                 break;
+            case "Member":
+                $this->setColor($player, "§f|§l§bMember§r§f|");
+                break;
         }
 
 

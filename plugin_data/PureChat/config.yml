@@ -33,4 +33,7 @@ groups:
   Youtuber:
     chat: '{prefix}{suffix}§f{display_name} §f► {msg}'
     nametag: '{prefix}{suffix}§f{display_name}'
+  Member:
+    nametag: '{prefix}{suffix}{display_name}'
+    chat: '{prefix}{suffix}{display_name} §f► {msg}'
 ...

@@ -118,24 +118,6 @@ class Loader extends PluginBase implements Listener
         $event->setCancelled();
     }
 
-    public function onInteract (PlayerInteractEvent $event)
-    {
-        if ($event->isCancelled())
-        {
-            return;
-        }
-        if ($this->is_edit)
-        {
-            return;
-        }
-        $block = $event->getBlock();
-        if ($block->getLevel()->getName() !== self::WORLD)
-        {
-            return;
-        }
-        $event->setCancelled();
-    }
-
     public function AddToQueue (Position $pos)
     {
         array_push($this->queue, $pos);

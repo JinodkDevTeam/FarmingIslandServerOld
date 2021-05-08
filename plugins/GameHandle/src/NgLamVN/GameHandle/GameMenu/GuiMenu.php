@@ -86,7 +86,7 @@ class GuiMenu
         $item7->setCustomName("Shop");
         $inv->setItem(4, $item7);
 
-        if (in_array($this->getCore()->getPlayerGroupName($player), ["Vip", "VipPlus", "Staff", "Admin", "Youtuber"]))
+        if (in_array($this->getCore()->getPlayerGroupName($player), ["Vip", "VipPlus", "Staff", "Admin", "Youtuber", "Member"]))
         {
             $item8 = Item::get(Item::DYE, 11, 1);
             $item8->setCustomName("RankColor");

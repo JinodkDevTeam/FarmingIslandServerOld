@@ -94,7 +94,7 @@ class UiMenu
         $form->addButton("Sell All Inventory");
         $form->addButton("Coin");
         $form->addButton("VIP");
-        if (in_array($this->getCore()->getPlayerGroupName($player), ["Vip", "VipPlus", "Staff", "Admin", "Youtuber"]))
+        if (in_array($this->getCore()->getPlayerGroupName($player), ["Vip", "VipPlus", "Staff", "Admin", "Youtuber", "Member"]))
         {
             $form->addButton("RankColor");
         }
