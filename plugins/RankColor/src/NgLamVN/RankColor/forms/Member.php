@@ -25,11 +25,8 @@ class Member
     {
         foreach ($this->colors as $color)
         {
-            foreach ($this->colors as $color2)
-            {
-                $format = "§f|§l§" . $color . "Member§" . $color2 . "+§r§f|";
-                array_push($this->formats, $format);
-            }
+            $format = "§f|§l§".$color."Member§r§f|";
+            array_push($this->formats, $format);
         }
     }
 
