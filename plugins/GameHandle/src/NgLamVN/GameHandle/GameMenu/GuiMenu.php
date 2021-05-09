@@ -38,13 +38,13 @@ class GuiMenu
         $inv->setItem(12, $item2);
 
         $item3 = Item::get(Item::ENDER_PEARL);
-        $item3->setCustomName("Teleport");
+        $item3->setCustomName("Teleport\nDịch chuyển");
         $inv->setItem(14, $item3);
 
         if ($player->getLevel()->getName() == "island")
         {
             $item1 = Item::get(Item::BOOK);
-            $item1->setCustomName("Island Manager");
+            $item1->setCustomName("Island Manager\nQuản lý đảo");
             $inv->setItem(13, $item1);
 
             $item4 = Item::get(Item::PAPER);
@@ -79,7 +79,7 @@ class GuiMenu
         $inv->setItem(26,$item5);
 
         $item6 = Item::get(Item::INFO_UPDATE);
-        $item6->setCustomName("Sell All Inventory !");
+        $item6->setCustomName("Sell All Inventory !\nBán toàn bộ vật phẩm");
         $inv->setItem(22, $item6);
 
         $item7 = Item::get(Item::EMERALD);
@@ -103,7 +103,7 @@ class GuiMenu
         $inv->setItem(15, $item11);
 
         $item12 = Item::get(Item::PAINTING);
-        $item12->setCustomName("UI mode");
+        $item12->setCustomName("UI mode\nChế độ UI");
         $inv->setItem(17, $item12);
 
         $menu->send($player);

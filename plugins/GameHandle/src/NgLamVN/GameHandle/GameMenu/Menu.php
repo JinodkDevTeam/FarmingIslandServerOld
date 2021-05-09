@@ -44,7 +44,7 @@ class Menu
         $i = Item::get(Item::PAPER);
         $nbt = $i->getNamedTag();
         $nbt->setByte("menu", 1);
-        $nbt->setString("menu-mode", "gui");
+        $nbt->setString("menu-mode", "ui");
         $i->setNamedTag($nbt);
         $i->setCustomName("Island Menu");
         $i->setLore(["Hold and tap to open menu !"]);

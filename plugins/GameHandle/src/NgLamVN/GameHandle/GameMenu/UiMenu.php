@@ -84,21 +84,21 @@ class UiMenu
         });
         if ($player->getLevel()->getName() == "island")
         {
-            $form->addButton("Island Manager");
-            $form->addButton("Island Info");
+            $form->addButton("Island Manager\nQuản lý đảo");
+            $form->addButton("Island Info\nThông tin đảo");
 
         }
-        $form->addButton("Teleport");
+        $form->addButton("Teleport\nDịch chuyển");
         $form->addButton("Shop");
         $form->addButton("VipItem Shop");
-        $form->addButton("Sell All Inventory");
+        $form->addButton("Sell All Inventory\nBán toàn bộ vật phẩm");
         $form->addButton("Coin");
         $form->addButton("VIP");
         if (in_array($this->getCore()->getPlayerGroupName($player), ["Vip", "VipPlus", "Staff", "Admin", "Youtuber", "Member"]))
         {
             $form->addButton("RankColor");
         }
-        $form->addButton("GUI Mode");
+        $form->addButton("GUI Mode\nChuyển sang chế độ GUI");
         $form->setTitle("Island Menu");
         $player->sendForm($form);
     }

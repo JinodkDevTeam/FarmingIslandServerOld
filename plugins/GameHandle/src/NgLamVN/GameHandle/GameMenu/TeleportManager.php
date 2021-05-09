@@ -43,11 +43,11 @@ class TeleportManager
         });
         $form->setTitle("Teleport");
         $form->addButton("EXIT");
-        $form->addButton("Your Island");
-        $form->addButton("Go to another island");
-        $form->addButton("Afk Area");
-        $form->addButton("Mine Area");
-        $form->addButton("Comming Soon");
+        $form->addButton("My Island\nVề đảo của bạn");
+        $form->addButton("Go to another island\nDịch chuyển sang đảo khác");
+        $form->addButton("Afk Area\nKhu vực afk");
+        $form->addButton("Mine Area\nKhu mine");
+        $form->addButton("Comming Soon !!");
 
         $player->sendForm($form);
     }
