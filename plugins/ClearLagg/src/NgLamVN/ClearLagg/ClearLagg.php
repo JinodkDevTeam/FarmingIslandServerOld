@@ -9,6 +9,7 @@ use pocketmine\entity\Human;
 use pocketmine\entity\Mob;
 use pocketmine\entity\object\ExperienceOrb;
 use pocketmine\entity\object\ItemEntity;
+use pocketmine\entity\object\PrimedTNT;
 use pocketmine\plugin\PluginBase;
 use pocketmine\scheduler\ClosureTask;
 use function array_map;
@@ -110,6 +111,9 @@ class ClearLagg extends PluginBase{
                         }else if($this->clearXpOrbs && $entity instanceof ExperienceOrb){
                             $entity->flagForDespawn();
                             ++$entitiesCleared;
+                        }elseif ($entity instanceof PrimedTNT){
+                            $entity->flagForDespawn();
+                            ++$entitiesCleared;
                         }
                     }
                 }
@@ -153,6 +157,9 @@ class ClearLagg extends PluginBase{
                         ++$entitiesCleared;
                     }
                 }else if($this->clearXpOrbs && $entity instanceof ExperienceOrb){
+                    $entity->flagForDespawn();
+                    ++$entitiesCleared;
+                }elseif ($entity instanceof PrimedTNT){
                     $entity->flagForDespawn();
                     ++$entitiesCleared;
                 }
