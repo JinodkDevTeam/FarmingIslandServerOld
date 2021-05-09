@@ -46,7 +46,8 @@ class FishingManager
             Item::get(Item::DIAMOND, 0, 1),
             Item::get(Item::POTATO, 0, 1),
             Item::get(Item::CACTUS, 0, 1),
-            Item::get(Item::SUGARCANE, 0, 1)
+            Item::get(Item::SUGARCANE, 0, 1),
+            Item::get(Item::EMERALD, 0, 1)
         ];
         $this->rlevel = [
             Item::COBBLESTONE => 1,
@@ -64,7 +65,8 @@ class FishingManager
             Item::DIAMOND => 6,
             Item::POTATO => 2,
             Item::CACTUS => 3,
-            Item::SUGARCANE => 2
+            Item::SUGARCANE => 2,
+            Item::EMERALD => 5
         ];
 
         $this->build();
