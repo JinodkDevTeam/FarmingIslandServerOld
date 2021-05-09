@@ -145,15 +145,4 @@ class FishingManager
         }
         return $items;
     }
-
-    public function getTest(): array
-    {
-        $result = [Item::get(Item::STONE, 0, 0)];
-        //foreach ($this->items as $item)
-        //{
-        //    array_push($result, $item);
-        //}
-        return $result;
-    }
-
 }
