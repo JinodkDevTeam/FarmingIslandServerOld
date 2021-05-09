@@ -2,7 +2,7 @@
 # ClearLagg Config
 
 # Seconds between each clear lagg
-seconds: 120
+seconds: 180
 
 # Entities to clear
 clear:

@@ -12,11 +12,11 @@ commands:
     #  {z}: The player's Z coordinate
     - "say {username} haz vote for server and earn a COOOL reward!"
     - "title \"{username}\" title &aThank for your voting !"
-    - "coin add {username} 1"
-    - "addmoney {username} 100"
+    - "coin add {username} 2"
+    - "addmoney {username} 200"
 # If droprewards is true, rewards will be dropped on the floor if a player's inventory is full
 # If droprewards if false, rewards will dissapear if a player's inventory is full
-droprewards: true
+droprewards: false
 items:
     # Items to be given to a player when they claim their vote.
     # They should follow the format: "item_name:meta:amount:name:enchant_name:enchant_level".
