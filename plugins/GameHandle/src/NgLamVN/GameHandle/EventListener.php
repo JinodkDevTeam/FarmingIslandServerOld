@@ -18,6 +18,7 @@ use NgLamVN\GameHandle\GameMenu\Menu;
 use MyPlot\MyPlot;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerRespawnEvent;
+use pocketmine\level\Position;
 use pocketmine\Player;
 use pocketmine\Server;
 
@@ -61,18 +62,16 @@ class EventListener implements Listener
     public function onRespawn (PlayerRespawnEvent $event)
     {
         $player = $event->getPlayer();
-        if ($player->getLevel()->getName() == "island")
-        {
-            $plot = MyPlot::getInstance()->getPlotsOfPlayer($player->getName(), "island")[0];
 
-            $plotLevel = MyPlot::getInstance()->getLevelSettings($plot->levelName);
-            $pos = MyPlot::getInstance()->getPlotPosition($plot);
-            $pos->x += floor($plotLevel->plotSize / 2) + 0.5;
-            $pos->y += 1;
-            $pos->z -= -90.5;
+        $plot = MyPlot::getInstance()->getPlotsOfPlayer($player->getName(), "island")[0];
 
-            $event->setRespawnPosition($pos);
-        }
+        $plotLevel = MyPlot::getInstance()->getLevelSettings($plot->levelName);
+        $pos = MyPlot::getInstance()->getPlotPosition($plot);
+        $pos->x += floor($plotLevel->plotSize / 2) + 0.5;
+        $pos->y += 1;
+        $pos->z -= -90.5;
+
+        $event->setRespawnPosition($pos);
     }
 
     public function onTap(PlayerInteractEvent $event)
