@@ -2,7 +2,7 @@
   Sell:
     money: "true"
     coin: "false"
-    price: 89999
+    price: 59999
   Item:
     Id: "279:0:1"
     Name: "§l§e•§bLazy §fAxe§e•"
@@ -19,7 +19,7 @@
   Sell:
     money: "true"
     coin: "false"
-    price: 87777
+    price: 47777
   Item:
     Id: "292:0:1"
     Name: "§l§e•§bLazy §fHoe§e•"
@@ -45,3 +45,113 @@
       1:
         Id: "knockback"
         Level: 32767
+"4":
+  Sell:
+    money: "true"
+    coin: "false"
+    price: 46666
+  Item:
+    Id: "257:0:1"
+    Name: "§l§e•§bLazy §fPickaxe§e•"
+    Lore: "§r§fA pickaxe for lazy player \n\n§f§lUnbreakable"
+    Unbreakable: "true"
+    Enchantments:
+      1:
+        Id: "efficiency"
+        Level: 8
+      2:
+        Id: "smelting"
+        Level: 1
+"5":
+  Sell:
+    money: "true"
+    coin: "false"
+    price: 65555
+  Item:
+    Id: "298:0:1"
+    Name: "§l§e•§6Glowing §fHelmet§e•"
+    Lore: "§r§fYep, everything is glowing... \n\n§f§lUnbreakable"
+    Unbreakable: "true"
+    Enchantments:
+      1:
+        Id: "glowing"
+        Level: 1
+"6":
+  Sell:
+    money: "true"
+    coin: "false"
+    price: 64444
+  Item:
+    Id: "299:0:1"
+    Name: "§l§e•§6Spider §fChestplate§e•"
+    Lore: "§r§fNow, you can climb every walls like spiderman \n\n§f§lUnbreakable"
+    Unbreakable: "true"
+    Enchantments:
+      1:
+        Id: "spider"
+        Level: 1
+"7":
+  Sell:
+    money: "true"
+    coin: "false"
+    price: 2000
+  Item:
+    Id: "403:0:1"
+    Name: "§l§e•§dEfficiency §aI §fBook§e•"
+    Lore: "§r§fCan you enchant your item without anvil ?"
+    Enchantments:
+      1:
+        Id: "efficiency"
+        Level: 1
+"8":
+  Sell:
+    money: "true"
+    coin: "false"
+    price: 4000
+  Item:
+    Id: "403:0:1"
+    Name: "§l§e•§dEfficiency §aII §fBook§e•"
+    Lore: "§r§fCan you enchant your item without anvil ?"
+    Enchantments:
+      1:
+        Id: "efficiency"
+        Level: 2
+"9":
+  Sell:
+    money: "true"
+    coin: "false"
+    price: 8000
+  Item:
+    Id: "403:0:1"
+    Name: "§l§e•§dEfficiency §aIII §fBook§e•"
+    Lore: "§r§fCan you enchant your item without anvil ?"
+    Enchantments:
+      1:
+        Id: "efficiency"
+        Level: 3
+"10":
+  Sell:
+    money: "true"
+    coin: "false"
+    price: 16000
+  Item:
+    Id: "403:0:1"
+    Name: "§l§e•§dEfficiency §aIV §fBook§e•"
+    Lore: "§r§fCan you enchant your item without anvil ?"
+    Enchantments:
+      1:
+        Id: "efficiency"
+        Level: 4
+"11":
+  Sell:
+    money: "true"
+    coin: "false"
+    price: 32000
+  Item:
+    Id: "403:0:1"
+    Name: "§l§e•§dEfficiency §aV §fBook§e•"
+    Lore: "§r§fCan you enchant your item without anvil ?"
+    Enchantments:
+      1:
+        Id: "efficiency"
+        Level: 5
