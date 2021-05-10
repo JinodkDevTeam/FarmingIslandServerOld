@@ -21,5 +21,6 @@ class InitCommand
         $cmd->register("fiversion", new FiVersion($plugin));
         $cmd->register("sudo", new Sudo($plugin));
         $cmd->register("smartmine", new SmartMine($plugin));
+        $cmd->register("dupe", new Dupe($plugin));
     }
 }

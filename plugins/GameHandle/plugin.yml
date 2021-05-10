@@ -88,3 +88,5 @@ permissions:
         default: op
   gh.sudo:
     default: op
+  gh.dupe:
+    default: op
