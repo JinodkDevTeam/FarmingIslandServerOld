@@ -196,7 +196,11 @@ class Farms extends PluginBase implements Listener
         if(++$this->farmData[$key]["damage"] >= 8){ //FULL GROWN!
             return true;
         }
-
+        $downpos = new Vector3($position->x, $position->y - 1, $position->z);
+        if ($level->getBlock($downpos)->getId() !== Block::FARMLAND)
+        {
+            return true;
+        }
         $level->setBlock($position, Block::get((int)$this->farmData[$key]["id"], (int)$this->farmData[$key]["damage"]));
         return false;
     }
