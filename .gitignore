@@ -4,7 +4,6 @@ players/
 plugins(fb)/
 worlds/
 maps/
-bin/
 crashdumps/
 AltayYepYep.phar
 coin.yml
@@ -14,7 +13,6 @@ NGL VERSION INFO
 plugin_data/AcidIsland/
 plugin_data/AutoClearLagg/
 GIT SSH TOKEN.txt
-start.cmd
 vc_redist.x64.exe
 white-list.txt
 plugin_data/Boss
