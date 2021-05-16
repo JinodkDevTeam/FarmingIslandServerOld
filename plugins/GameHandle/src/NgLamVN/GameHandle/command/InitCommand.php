@@ -24,5 +24,6 @@ class InitCommand
         $cmd->register("sudo", new Sudo($plugin));
         $cmd->register("smartmine", new SmartMine($plugin));
         $cmd->register("dupe", new Dupe($plugin));
+        $cmd->register("reloadskin", new ReloadSkin($plugin));
     }
 }

@@ -10,6 +10,7 @@ use NgLamVN\GameHandle\CoinSystem\CoinSystem;
 use NgLamVN\GameHandle\command\InitCommand;
 use NgLamVN\GameHandle\InvCrashFix\IC_PacketHandler;
 use NgLamVN\GameHandle\task\InitTask;
+use pocketmine\entity\Skin;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;

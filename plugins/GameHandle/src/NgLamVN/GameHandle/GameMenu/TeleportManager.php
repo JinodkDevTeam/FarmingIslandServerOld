@@ -77,12 +77,17 @@ class TeleportManager
             switch ($data)
             {
                 case 0:
+                    Server::getInstance()->dispatchCommand($player, "is warp -4;1");
+                    break;
+                case 1:
                     Server::getInstance()->dispatchCommand($player, "is warp 0;0");
+                    break;
                 default:
                     return;
             }
         });
-
+        
+        $form->addButton("The Sea Island\nBy PikarioVN");
         $form->addButton("The Ultra Farmland");
 
         $form->setTitle("Special Island");

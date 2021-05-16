@@ -6,6 +6,7 @@ use NgLamVN\GameHandle\task\AutoJoinIslandTask;
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\event\entity\EntityLevelChangeEvent;
 use pocketmine\event\Listener;
+use pocketmine\event\player\PlayerChangeSkinEvent;
 use pocketmine\event\player\PlayerCommandPreprocessEvent;
 use pocketmine\event\player\PlayerFishEvent;
 use pocketmine\event\player\PlayerDropItemEvent;
@@ -55,6 +56,16 @@ class EventListener implements Listener
         $this->menu->registerMenuItem($player);
         $this->menu->sendUpdatesForm($player);
         Server::getInstance()->dispatchCommand($player, "is home");
+
+        $this->getCore()->skin[$player->getName()] = $player->getSkin();
+    }
+
+    public function onSkinChange (PlayerChangeSkinEvent $event)
+    {
+        $player = $event->getPlayer();
+        $newSkin = $event->getNewSkin();
+
+        $this->getCore()->skin[$player->getName()] = $newSkin;
     }
 
     /**

@@ -19,7 +19,7 @@ class CraftMenu extends BaseMenu
     public function menu(Player $player)
     {
         $this->menu = InvMenu::create(InvMenu::TYPE_DOUBLE_CHEST);
-        if ($this->mode = self::VIxVI_MODE)
+        if ($this->mode == self::VIxVI_MODE)
         {
             $this->menu->setName($this->getLoader()->getProvider()->getMessage("menu.craft6x6"));
         }
