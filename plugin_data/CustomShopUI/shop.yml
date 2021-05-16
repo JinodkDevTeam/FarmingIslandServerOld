@@ -74,11 +74,11 @@ shop: # if you want the shop to have a custom name you must add the options in t
     Name: "Skin for tree:textures/blocks/sapling_oak"
     Items:
       - "6:0:1:10:0:Default:textures/blocks/sapling_oak"
-      - "6:1:1:1000:0:Default:textures/blocks/sapling_spruce"
+      - "6:1:1:2000:0:Default:textures/blocks/sapling_spruce"
       - "6:2:1:1000:0:Default:textures/blocks/sapling_birch"
-      - "6:3:1:1500:0:Default:textures/blocks/sapling_jungle"
-      - "6:4:1:1500:0:Default:textures/blocks/sapling_acacia"
-      - "6:5:1:1500:0:Default:textures/blocks/sapling_roofed_oak"
+      - "6:3:1:2000:0:Default:textures/blocks/sapling_jungle"
+      - "6:4:1:2500:0:Default:textures/blocks/sapling_acacia"
+      - "6:5:1:5000:0:Default:textures/blocks/sapling_roofed_oak"
   5:
     Name: "For players who think they have enough money to buy:textures/ui/icon_minecoin_9x9"
     Items:
