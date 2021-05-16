@@ -73,6 +73,10 @@ class CoinSystem
         return $this->data[$player];
     }
 
+    /**
+     * @param Player|string $player
+     * @return bool
+     */
     public function IsHasData ($player): bool
     {
         if ($player instanceof Player)

@@ -38,23 +38,125 @@ class CoinCommand extends PluginCommand
             $this->CoinForm($sender);
             return;
         }
-        if ($args[0] == "add")
+        if (!isset($args[0]))
         {
-            if (isset($args[1]))
-            {
-                if (isset($args[2]))
+            $sender->sendMessage("/coin <add|set|top|reduce>");
+            return;
+        }
+        switch ($args[0])
+        {
+            default:
+                $sender->sendMessage("/coin <add|set|top|reduce>");
+                break;
+            case "add":
+                if (!isset($args[1]))
                 {
-                    if (is_numeric($args[2]))
+                    $sender->sendMessage("/coin add <player> <amount>");
+                    return;
+                }
+                if (!isset($args[2]))
+                {
+                    $sender->sendMessage("/coin add <player> <amount>");
+                    return;
+                }
+                if (!is_numeric($args[2]))
+                {
+                    $sender->sendMessage("Amount must be numeric !");
+                    return;
+                }
+                $amount = $args[2];
+                $player = Server::getInstance()->getPlayer($args[1]);
+
+                if ($player instanceof Player)
+                {
+                    if ($this->system->IsHasData($player))
                     {
-                        $player = $this->getSystem()->getCore()->getServer()->getPlayer($args[1]);
-                        if ($player !== null)
-                        {
-                            $this->getSystem()->addCoin($player, $args[2]);
-                            $player->sendMessage("Bạn được nhận thêm " . $args[2] . " coin");
-                        }
+                        $this->system->addCoin($player, $amount);
+                        $sender->sendMessage("Add " . $amount . " coin to player " . $player->getName() . " successfully !");
+                    }
+                    else
+                    {
+                        $sender->sendMessage("Cant find player data: " . $player->getName());
                     }
                 }
-            }
+                else
+                {
+                    $sender->sendMessage("Player not found !");
+                }
+                break;
+            case "set":
+                if (!isset($args[1]))
+                {
+                    $sender->sendMessage("/coin set <player> <amount>");
+                    return;
+                }
+                if (!isset($args[2]))
+                {
+                    $sender->sendMessage("/coin set <player> <amount>");
+                    return;
+                }
+                if (!is_numeric($args[2]))
+                {
+                    $sender->sendMessage("Amount must be numeric !");
+                    return;
+                }
+                $amount = $args[2];
+                $player = Server::getInstance()->getPlayer($args[1]);
+
+                if ($player instanceof Player)
+                {
+                    if ($this->system->IsHasData($player))
+                    {
+                        $this->system->setCoin($player, $amount);
+                        $sender->sendMessage("Set " . $amount . " coin to player " . $player->getName() . " successfully !");
+                    }
+                    else
+                    {
+                        $sender->sendMessage("Cant find player data: " . $player->getName());
+                    }
+                }
+                else
+                {
+                    $sender->sendMessage("Player not found !");
+                }
+                break;
+            case "reduce":
+                if (!isset($args[1]))
+                {
+                    $sender->sendMessage("/coin reduce <player> <amount>");
+                    return;
+                }
+                if (!isset($args[2]))
+                {
+                    $sender->sendMessage("/coin reduce <player> <amount>");
+                    return;
+                }
+                if (!is_numeric($args[2]))
+                {
+                    $sender->sendMessage("Amount must be numeric !");
+                    return;
+                }
+                $amount = $args[2];
+                $player = Server::getInstance()->getPlayer($args[1]);
+
+                if ($player instanceof Player)
+                {
+                    if ($this->system->IsHasData($player))
+                    {
+                        $this->system->addCoin($player, $amount);
+                        $sender->sendMessage("Reduce " . $amount . " coin to player " . $player->getName() . " successfully !");
+                    }
+                    else
+                    {
+                        $sender->sendMessage("Cant find player data: " . $player->getName());
+                    }
+                }
+                else
+                {
+                    $sender->sendMessage("Player not found !");
+                }
+                break;
+
         }
     }
 
