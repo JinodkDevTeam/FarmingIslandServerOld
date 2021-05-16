@@ -1,0 +1,10 @@
+---
+branches:
+- PocketMine-MP
+- api-4.0.0
+- Generators
+projects:
+  MultiWorld:
+    path: MultiWorld
+    icon: icon.png
+...
