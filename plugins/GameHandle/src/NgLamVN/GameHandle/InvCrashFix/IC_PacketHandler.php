@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NgLamVN\GameHandle\InvCrashFix;
 
 use pocketmine\event\Listener;
@@ -9,7 +11,7 @@ use pocketmine\network\mcpe\protocol\ContainerClosePacket;
 
 class IC_PacketHandler implements Listener
 {
-    private $cancel_send = true;
+    private bool $cancel_send = true;
 
     /**
      * @param DataPacketReceiveEvent $event

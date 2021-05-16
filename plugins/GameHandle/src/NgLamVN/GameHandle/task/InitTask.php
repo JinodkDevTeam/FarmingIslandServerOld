@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NgLamVN\GameHandle\task;
 
 use NgLamVN\GameHandle\Core;
 
 class InitTask
 {
-    public $core;
+    public Core $core;
 
     public function __construct(Core $core)
     {

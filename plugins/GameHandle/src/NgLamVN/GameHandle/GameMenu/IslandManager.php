@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NgLamVN\GameHandle\GameMenu;
 
 use jojoe77777\FormAPI\CustomForm;

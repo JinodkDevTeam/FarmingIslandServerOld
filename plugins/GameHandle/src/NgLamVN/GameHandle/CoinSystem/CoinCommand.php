@@ -1,7 +1,8 @@
 <?php
 
-namespace NgLamVN\GameHandle\CoinSystem;
+declare(strict_types=1);
 
+namespace NgLamVN\GameHandle\CoinSystem;
 
 use jojoe77777\FormAPI\CustomForm;
 use jojoe77777\FormAPI\SimpleForm;
@@ -9,13 +10,13 @@ use NgLamVN\GameHandle\Core;
 use pocketmine\command\CommandSender;
 use pocketmine\command\PluginCommand;
 use pocketmine\Player;
-use pocketmine\plugin\Plugin;
 use pocketmine\Server;
 
 class CoinCommand extends PluginCommand
 {
-    public $system;
-    public $users;
+    public CoinSystem $system;
+    /** @var array */
+    public array $users;
 
     public function __construct(Core $plugin, CoinSystem $system)
     {

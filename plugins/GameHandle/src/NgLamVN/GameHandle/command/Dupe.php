@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NgLamVN\GameHandle\command;
 
 use NgLamVN\GameHandle\Core;
@@ -9,7 +11,7 @@ use pocketmine\Player;
 
 class Dupe extends PluginCommand
 {
-    private $plugin;
+    private Core $plugin;
 
     public function __construct(Core $core)
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NgLamVN\GameHandle\GameMenu;
 
 use jojoe77777\FormAPI\CustomForm;
@@ -8,7 +10,7 @@ use pocketmine\Server;
 
 class UpdateInfo
 {
-    public $version;
+    public string $version;
 
     public function __construct(Player $player)
     {
@@ -32,5 +34,10 @@ class UpdateInfo
         $form->addLabel("Official Facebook group: bit.ly/jinodkgroupfb");
         $form->addLabel("Server Version: " . $this->version);
         $player->sendForm($form);
+    }
+
+    public function TutorialForm(Player $player)
+    {
+
     }
 }

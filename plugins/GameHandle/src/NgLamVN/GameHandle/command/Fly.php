@@ -5,12 +5,11 @@ namespace NgLamVN\GameHandle\command;
 use NgLamVN\GameHandle\Core;
 use pocketmine\command\PluginCommand;
 use pocketmine\command\CommandSender;
-use pocketmine\plugin\Plugin;
 use pocketmine\Server;
 
 class Fly extends PluginCommand
 {
-    private $plugin;
+    private Core $plugin;
 
     public function __construct(Core $plugin)
     {

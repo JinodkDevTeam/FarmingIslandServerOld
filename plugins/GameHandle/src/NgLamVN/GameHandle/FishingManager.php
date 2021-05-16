@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NgLamVN\GameHandle;
 
 use pocketmine\event\player\PlayerFishEvent;
@@ -22,11 +24,14 @@ class FishingManager
 
     public const COUNT = [0, 1, 2, 3, 4, 5, 10];
 
-    public $items = [];
-    public $rlevel = [];
-
-    public $multiply = [];
-    public $more_items = [];
+    /** @var Item[] */
+    public array $items = [];
+    /** @var int[] */
+    public array $rlevel = [];
+    /** @var int[] */
+    public array $multiply = [];
+    /** @var int[] */
+    public array $more_items = [];
 
     public function __construct()
     {
@@ -119,6 +124,9 @@ class FishingManager
         }
     }
 
+    /**
+     * @return Item[]
+     */
     public function getRandomItems(): array
     {
         $i = 0;

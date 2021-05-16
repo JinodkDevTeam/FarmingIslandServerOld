@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NgLamVN\GameHandle\task;
 
 use NgLamVN\GameHandle\Core;
@@ -23,7 +25,7 @@ class AfkRewardTask extends Task
             {
                 if (isset($this->getCore()->afktime[$player->getName()]))
                 {
-                    if ($this->getCore()->afktime[$player->getName()] == 2) //Tự hiểu
+                    if ($this->getCore()->afktime[$player->getName()] == 1) //Tự hiểu
                     {
                         EconomyAPI::getInstance()->addMoney($player, 200);
                         $player->sendMessage("You have get 200xu in AFK Area !");

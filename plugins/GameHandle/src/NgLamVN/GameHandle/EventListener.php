@@ -24,7 +24,9 @@ use pocketmine\Server;
 
 class EventListener implements Listener
 {
-    public $plugin, $menu, $fish;
+    public Core $plugin;
+    public Menu $menu;
+    public FishingManager $fish;
 
     public function __construct(Core $plugin)
     {

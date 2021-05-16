@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NgLamVN\GameHandle\GameMenu;
 
 use jojoe77777\FormAPI\CustomForm;
@@ -103,7 +105,7 @@ class VipManager
     {
         $form = new CustomForm(function (Player $player, $data)
         {
-
+            //NOTHING.
         });
         $form->setTitle("NOTE");
         $form->addLabel("Please contact admin to get this rank :)");

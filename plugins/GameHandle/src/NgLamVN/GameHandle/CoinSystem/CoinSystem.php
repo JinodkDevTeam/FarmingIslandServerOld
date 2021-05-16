@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NgLamVN\GameHandle\CoinSystem;
 
 use NgLamVN\GameHandle\Core;
@@ -9,7 +11,7 @@ use pocketmine\utils\Config;
 
 class CoinSystem
 {
-    public static $instance;
+    public static CoinSystem $instance;
 
     public $cfg, $data;
 

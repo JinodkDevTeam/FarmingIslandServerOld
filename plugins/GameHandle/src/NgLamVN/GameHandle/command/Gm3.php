@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NgLamVN\GameHandle\command;
 
 use NgLamVN\GameHandle\Core;
 use pocketmine\command\CommandSender;
-use pocketmine\Player;
 use pocketmine\Server;
 use pocketmine\command\PluginCommand;
 

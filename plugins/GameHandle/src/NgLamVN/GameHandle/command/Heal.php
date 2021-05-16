@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NgLamVN\GameHandle\command;
 
 use NgLamVN\GameHandle\Core;
@@ -9,7 +11,7 @@ use pocketmine\Server;
 
 class Heal extends PluginCommand
 {
-    private $plugin;
+    private Core $plugin;
 
     public function __construct(Core $plugin)
     {

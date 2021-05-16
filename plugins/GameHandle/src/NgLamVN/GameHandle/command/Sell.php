@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NgLamVN\GameHandle\command;
 
 use NgLamVN\GameHandle\Core;
@@ -11,7 +13,7 @@ use pocketmine\utils\Config;
 
 class Sell extends PluginCommand
 {
-    public $plugin;
+    public Core $plugin;
 
     public $cfg, $data;
 

@@ -1,16 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NgLamVN\GameHandle\command;
 
 use NgLamVN\GameHandle\Core;
 use pocketmine\command\CommandSender;
 use pocketmine\command\PluginCommand;
-use pocketmine\plugin\Plugin;
 
 class FiVersion extends PluginCommand
 {
 
-    public $version;
+    public string $version;
 
     public function __construct(Core $core)
     {

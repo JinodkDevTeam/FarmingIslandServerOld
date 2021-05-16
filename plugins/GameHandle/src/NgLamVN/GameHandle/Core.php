@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NgLamVN\GameHandle;
 
 use _64FF00\PurePerms\PurePerms;
@@ -15,11 +17,13 @@ use pocketmine\Server;
 class Core extends PluginBase
 {
     /** @var int[] */
-    public $afktime = [];
-    /** @var Core */
-    public static $instance;
-    /** @var CoinSystem */
-    public $coin;
+    public array $afktime = [];
+
+    public static Core $instance;
+
+    public CoinSystem $coin;
+    /** @var Skin[] */
+    public array $skin = [];
 
     public static function getInstance(): Core
     {
@@ -67,7 +71,7 @@ class Core extends PluginBase
         return $group;
     }
 
-    public function getCoinSystem():CoinSystem
+    public function getCoinSystem(): CoinSystem
     {
         return $this->coin;
     }
