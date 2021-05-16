@@ -12,10 +12,11 @@ class UpdateInfo
 {
     public string $version;
 
-    public function __construct(Player $player)
+    public function __construct(Player $player, string $mode = "")
     {
         $this->version = Server::getInstance()->getPluginManager()->getPlugin("FI-GameHandle")->getDescription()->getVersion();
-        $this->execute($player);
+        if ($mode == "") $this->execute($player);
+        else $this->TutorialForm($player);
     }
 
     public function ArrayToString(array $array): string
@@ -78,7 +79,7 @@ class UpdateInfo
             "- /autofeed: Luôn no",
             "- /autofix: tự động sửa đồ",
             "- /autopickup: tắt bật tự động nhặt vật phẩm khi đập block (mặc định là bật)",
-            "- /pay <player>: đưa tiền người chơi khác",
+            "- /pay <player>: đưa tiền cho người chơi khác",
             "- /topmoney: Top tiền",
             "Chúc các bạn chơi vui vẻ :)"
         ];
