@@ -33,5 +33,6 @@ class Sapling extends PMSapling
 
             return true;
         }
+        return true;
     }
 }
