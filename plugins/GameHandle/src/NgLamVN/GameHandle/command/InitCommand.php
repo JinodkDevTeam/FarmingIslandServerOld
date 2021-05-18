@@ -26,5 +26,6 @@ class InitCommand
         $cmd->register("dupe", new Dupe($plugin));
         $cmd->register("reloadskin", new ReloadSkin($plugin));
         $cmd->register("tutorial", new Tutorial($plugin));
+        $cmd->register("servercheck", new ServerCheck($plugin));
     }
 }
