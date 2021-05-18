@@ -38,6 +38,7 @@ class UiMenu
         array_push($list, "sell-all");
         array_push($list, "coin");
         array_push($list, "vip");
+        array_push($list, "tutorial");
         if (in_array($this->getCore()->getPlayerGroupName($player), ["Vip", "VipPlus", "Staff", "Admin", "Youtuber", "Member"]))
         {
             array_push($list, "rankcolor");
@@ -82,6 +83,9 @@ class UiMenu
                 case "is-info":
                     $this->IslandInfoForm($player);
                     break;
+                case "tutorial":
+                    Server::getInstance()->dispatchCommand($player, "tutorial");
+                    break;
             }
         });
         if ($player->getLevel()->getName() == "island")
@@ -96,6 +100,7 @@ class UiMenu
         $form->addButton("Sell All Inventory\nBán toàn bộ vật phẩm");
         $form->addButton("Coin");
         $form->addButton("VIP");
+        $form->addButton("Tutorial\nXem cách chơi");
         if (in_array($this->getCore()->getPlayerGroupName($player), ["Vip", "VipPlus", "Staff", "Admin", "Youtuber", "Member"]))
         {
             $form->addButton("RankColor");
