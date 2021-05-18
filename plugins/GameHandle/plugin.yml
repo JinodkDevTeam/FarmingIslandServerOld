@@ -90,3 +90,5 @@ permissions:
     default: op
   gh.dupe:
     default: op
+  gh.tutorial:
+    default: true

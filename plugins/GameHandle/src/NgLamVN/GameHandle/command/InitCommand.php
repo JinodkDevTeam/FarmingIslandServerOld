@@ -25,5 +25,6 @@ class InitCommand
         $cmd->register("smartmine", new SmartMine($plugin));
         $cmd->register("dupe", new Dupe($plugin));
         $cmd->register("reloadskin", new ReloadSkin($plugin));
+        $cmd->register("tutorial", new Tutorial($plugin));
     }
 }
