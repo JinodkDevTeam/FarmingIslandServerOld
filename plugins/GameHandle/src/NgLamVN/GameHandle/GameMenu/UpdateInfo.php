@@ -56,7 +56,8 @@ class UpdateInfo
     public function TutorialForm(Player $player)
     {
         $text = [
-            "Chào mừng bạn đã đến với chế độ FarmingIsland, đây là một chế độ hoàn toàn khác biệt so với SkyBlock hay AcidIsland vì ở đây chúng ta sẽ không bị rớt xuống the void hay nước biển có độc nữa.",
+            "Chào mừng bạn đã đến với chế độ FarmingIsland, đây là một chế độ hoàn toàn khác biệt so với SkyBlock hay AcidIsland vì ở đây chúng ta sẽ không bị rớt xuống the void hay phải tránh nước biển có độc nữa.",
+            "Ở đây đảo sẽ tự tạo sẵng cho bạn nên bạn không cần phải lo về việc tạo đảo như thế nào, claim ra sao bla bla.",
             "Bạn sẽ khởi đầu với một cái cần câu, đất và hạt giống.",
             "Là một người chơi Minecraft bạn hi vọng bạn sẽ biết mình sẽ làm gì. Đúng rồi chúng ta sẽ trồng cây và sử dụng cần câu để câu cá",
             "Tuy nhiên, trong chế độ này ngoài việc bạn câu được cá, bạn có thể câu được các vật phẩm khác như đá, khoáng sản, nông sản, vân vân",
@@ -81,7 +82,14 @@ class UpdateInfo
             "- /autopickup: tắt bật tự động nhặt vật phẩm khi đập block (mặc định là bật)",
             "- /pay <player>: đưa tiền cho người chơi khác",
             "- /topmoney: Top tiền",
-            "Chúc các bạn chơi vui vẻ :)"
+            "Chúc các bạn chơi vui vẻ :)",
+            "* FAQ *",
+            "  Q: server có máy farm không ?",
+            "  A: Tất nhiên là không, vì chả ai muốn một lối chơi đập đá là chính trong chế độ này",
+            "",
+            "  Q: Tại sao bán đồ được ít xu vậy ?",
+            "  A: Bởi vì chẳng ai muốn mua đồ với hàng tá số 0 ở phía sau cả.",
+            " *Tóm lại nếu bạn đã từng chơi server khác thì chế độ trong server bạn đang chơi là hoàn toàn khác biệt, do đó bạn đừng nên áp dụng cách chơi ở các server khác vào server này !"
         ];
 
         $form = new SimpleForm(function (Player $player, ?int $data)
