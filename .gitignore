@@ -79,3 +79,4 @@ resource_packs/resource_packs.yml
 plugin_data/BuyKitFM/players.yml
 plugin_data/BuyKitFM/kits.yml
 vendor/
+run.cmd

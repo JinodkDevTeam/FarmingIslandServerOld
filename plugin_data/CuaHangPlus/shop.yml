@@ -155,3 +155,11 @@
       1:
         Id: "efficiency"
         Level: 5
+"12":
+  Sell:
+    money: "true"
+    coin: "false"
+    price: 10000
+  IC_Code: 1f8b080000000000000ae36260606260ca4c619460646075ce2fcd2b616462607349cc4d4c4f6560e062602e494ce762604fc92c2ec849ace46060f14bcc4d65503eb43ce7d0f2d4470d8b0e2d4f763eb43ca9e8d0f294fc43cb1381d82c1b22c3003430b9283f3f9b91810100e63fcdbe66000000
+  Item:
+    Lore: "§r§fWorrying about leaves ?, this tool will help you :)"

@@ -8,6 +8,7 @@ namespace LamPocketVN\CuaHangPlus;
 
 use pocketmine\item\Item;
 use pocketmine\event\Listener;
+use pocketmine\nbt\BigEndianNBTStream;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Player;
 use pocketmine\command\Command;
@@ -100,6 +101,15 @@ class CuaHang extends PluginBase implements Listener
             $item->addEnchantment(new EnchantmentInstance($ench, (int) $level));
         }
     }
+
+    public function DecodeItem(string $data): Item
+    {
+        $edian = new BigEndianNBTStream();
+        $nbt = $edian->readCompressed(hex2bin($data));
+        $item = Item::nbtDeserialize($nbt);
+
+        return $item;
+    }
 	
 	public function onEnable()
 	{
@@ -152,35 +162,54 @@ class CuaHang extends PluginBase implements Listener
 		
 		foreach (array_keys($this->getShop()) as $id)
 		{
-			$item = $this->getItem($this->getShop()[$id]['Item']['Id']);
-			if ($this->getShop()[$id]['Item']['Name'] != "")
-			{
-				$item->setCustomName($this->getShop()[$id]['Item']['Name']);
-			}
-			if($this->getShop()[$id]['Item']['Lore'] != "")
-			{
-				if ($this->getShop()[$id]['Sell']['money'] === "true")
-				{
-					$item->setLore(array($this->getShop()[$id]['Item']['Lore'] . "\n\n" . str_replace("{price}", $this->getShop()[$id]['Sell']['price'], $this->getStg()['item-price']['money'])));
-				}
-				if ($this->getShop()[$id]['Sell']['coin'] === "true")
-				{
-					$item->setLore(array($this->getShop()[$id]['Item']['Lore'] . "\n\n" . str_replace("{price}", $this->getShop()[$id]['Sell']['price'], $this->getStg()['item-price']['coin'])));
-				}
-			}
-			foreach (array_keys($this->getShop()[$id]['Item']['Enchantments']) as $enchant)
-			{
-				$ide = $this->getShop()[$id]['Item']['Enchantments'][$enchant]['Id'];
-				$lve = $this->getShop()[$id]['Item']['Enchantments'][$enchant]['Level'];
-				$this->enchantItem($item, $lve, $ide);
-			}
-            if (isset($this->getShop()[$id]['Item']['Unbreakable']))
+		    if (!isset($this->getShop()[$id]["IC_Code"]))
             {
-                if ($this->getShop()[$id]['Item']['Unbreakable'] == "true")
+                $item = $this->getItem($this->getShop()[$id]['Item']['Id']);
+                if ($this->getShop()[$id]['Item']['Name'] != "")
                 {
-                    $nbt = $item->getNamedTag();
-                    $nbt->setByte("Unbreakable", 1);
-                    $item->setNamedTag($nbt);
+                    $item->setCustomName($this->getShop()[$id]['Item']['Name']);
+                }
+                if ($this->getShop()[$id]['Item']['Lore'] != "")
+                {
+                    if ($this->getShop()[$id]['Sell']['money'] === "true")
+                    {
+                        $item->setLore(array($this->getShop()[$id]['Item']['Lore'] . "\n\n" . str_replace("{price}", $this->getShop()[$id]['Sell']['price'], $this->getStg()['item-price']['money'])));
+                    }
+                    if ($this->getShop()[$id]['Sell']['coin'] === "true")
+                    {
+                        $item->setLore(array($this->getShop()[$id]['Item']['Lore'] . "\n\n" . str_replace("{price}", $this->getShop()[$id]['Sell']['price'], $this->getStg()['item-price']['coin'])));
+                    }
+                }
+                foreach (array_keys($this->getShop()[$id]['Item']['Enchantments']) as $enchant)
+                {
+                    $ide = $this->getShop()[$id]['Item']['Enchantments'][$enchant]['Id'];
+                    $lve = $this->getShop()[$id]['Item']['Enchantments'][$enchant]['Level'];
+                    $this->enchantItem($item, $lve, $ide);
+                }
+                if (isset($this->getShop()[$id]['Item']['Unbreakable']))
+                {
+                    if ($this->getShop()[$id]['Item']['Unbreakable'] == "true")
+                    {
+                        $nbt = $item->getNamedTag();
+                        $nbt->setByte("Unbreakable", 1);
+                        $item->setNamedTag($nbt);
+                    }
+                }
+            }
+            else
+            {
+                $item = $this->DecodeItem($this->getShop()[$id]["IC_Code"]);
+
+                if ($this->getShop()[$id]['Item']['Lore'] != "")
+                {
+                    if ($this->getShop()[$id]['Sell']['money'] === "true")
+                    {
+                        $item->setLore(array($this->getShop()[$id]['Item']['Lore'] . "\n\n" . str_replace("{price}", $this->getShop()[$id]['Sell']['price'], $this->getStg()['item-price']['money'])));
+                    }
+                    if ($this->getShop()[$id]['Sell']['coin'] === "true")
+                    {
+                        $item->setLore(array($this->getShop()[$id]['Item']['Lore'] . "\n\n" . str_replace("{price}", $this->getShop()[$id]['Sell']['price'], $this->getStg()['item-price']['coin'])));
+                    }
                 }
             }
 			$menuinv->setItem($id-1, $item);
