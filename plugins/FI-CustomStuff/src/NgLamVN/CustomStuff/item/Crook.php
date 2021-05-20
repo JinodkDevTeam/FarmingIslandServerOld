@@ -62,7 +62,9 @@ class Crook implements Listener
         }
     }
 
-    public function CrookMine(Block $block, Item $item, Player $player, array &$ignore = [])
+    //RECURSION (Wait, did you mean RECURSION ?)
+
+    /*public function CrookMine(Block $block, Item $item, Player $player, array &$ignore = [])
     {
         if($block->isValid())
         {
@@ -80,5 +82,83 @@ class Crook implements Listener
             }
             $block->getLevel()->useBreakOn($block, $item, $player, true);
         }
+    }*/
+
+    //DYNAMIC PROGRAMMING
+
+    /**
+     * @param Block $block
+     * @param Block[] $pending
+     * @return Block[]
+     */
+
+    public function getAllSide (Block $block, array $pending): array
+    {
+        $blocks = [];
+        for ($x = $block->getX() - 1; $x <= $block->getX() + 1; $x++)
+            for ($y = $block->getY() - 1; $y <= $block->getY() + 1; $y++)
+                for ($z = $block->getZ() - 1; $z <= $block->getZ() + 1; $z++)
+                {
+                    if ($x == $block->getX() and $y == $block->getY() and $z == $block->getZ())
+                    {
+                        continue;
+                    }
+                    $side = $block->getLevelNonNull()->getBlockAt($x, $y, $z);
+                    if (($side instanceof Leaves) or ($side instanceof Leaves2))
+                    {
+                        if (!$this->isChecked($side, $pending))
+                        {
+                            array_push($blocks, $side);
+                        }
+                    }
+                }
+        return $blocks;
     }
+
+    /**
+     * @param Block $block
+     * @param Block[] $pending
+     * @return bool
+     */
+    public function isChecked(Block $block, array $pending): bool
+    {
+        if (in_array($block, $pending)) return true;
+        return false;
+    }
+
+    public function CrookMine (Block $blockbreak, Item $item, Player $player)
+    {
+        $pending = [];
+        $done = false;
+        $pos = $blockbreak;
+
+        while (!$done)
+        {
+            $sides = $this->getAllSide($pos, $pending);
+
+            if ($sides !== [])
+            {
+                $pending = array_merge($pending, $sides);
+            }
+
+            if ($pos !== $blockbreak)
+            {
+                $pos->getLevel()->useBreakOn($pos , $item, $player, true);
+            }
+
+            if (!isset($pending))
+            {
+                break;
+            }
+            if ($pending == [])
+            {
+                break;
+            }
+
+            $pos = $pending[0];
+            unset($pending[0]);
+            $pending = array_values($pending);
+        }
+    }
+
 }
