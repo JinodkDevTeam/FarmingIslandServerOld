@@ -56,9 +56,7 @@ class Crook implements Listener
             }
             $this->isBreaking[$player->getName()] = true;
             $this->breaked[$player->getName()] = 0;
-            $time = time();
-            $this->CrookMineR($block, $item, $player);
-            $player->sendMessage("Time:" . (time() - $time) . "ms");
+            $this->CrookMine($block, $item, $player);
             $this->breaked[$player->getName()] = 0;
             $this->isBreaking[$player->getName()] = false;
         }
