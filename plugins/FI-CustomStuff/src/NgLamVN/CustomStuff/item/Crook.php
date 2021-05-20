@@ -56,19 +56,21 @@ class Crook implements Listener
             }
             $this->isBreaking[$player->getName()] = true;
             $this->breaked[$player->getName()] = 0;
-            $this->CrookMine($block, $item, $player);
+            $time = time();
+            $this->CrookMineR($block, $item, $player);
+            $player->sendMessage("Time:" . (time() - $time) . "ms");
             $this->breaked[$player->getName()] = 0;
             $this->isBreaking[$player->getName()] = false;
         }
     }
 
-    //RECURSION (Wait, did you mean RECURSION ?)
+    /*//RECURSION (Wait, did you mean RECURSION ?)
 
-    /*public function CrookMine(Block $block, Item $item, Player $player, array &$ignore = [])
+    public function CrookMineR(Block $block, Item $item, Player $player, array &$ignore = [])
     {
         if($block->isValid())
         {
-            if ($this->breaked[$player->getName()] > 50)
+            if ($this->breaked[$player->getName()] > 1100)
             {
                 return;
             }
@@ -76,7 +78,8 @@ class Crook implements Listener
             $this->breaked[$player->getName()]++;
             foreach($block->getAllSides() as $side)
             {
-                if((($side instanceof Leaves) or ($side instanceof Leaves2)) and !in_array($side->asVector3()->__toString(), $ignore)) {
+                if((($side instanceof Leaves) or ($side instanceof Leaves2)) and !in_array($side->asVector3()->__toString(), $ignore))
+                {
                     $this->CrookMine($side, $item, $player, $ignore);
                 }
             }
@@ -85,6 +88,7 @@ class Crook implements Listener
     }*/
 
     //DYNAMIC PROGRAMMING
+    //Algorithm by JINODK
 
     /**
      * @param Block $block
@@ -134,6 +138,10 @@ class Crook implements Listener
 
         while (!$done)
         {
+            if ($this->breaked[$player->getName()] > 100)
+            {
+                break;
+            }
             $sides = $this->getAllSide($pos, $pending);
 
             if ($sides !== [])
@@ -144,6 +152,7 @@ class Crook implements Listener
             if ($pos !== $blockbreak)
             {
                 $pos->getLevel()->useBreakOn($pos , $item, $player, true);
+                $this->breaked[$player->getName()]++;
             }
 
             if (!isset($pending))
