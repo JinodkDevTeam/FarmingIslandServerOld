@@ -1,0 +1,5 @@
+name: FI-Scanner
+main: NgLamVN\Scanner\Loader
+api: 3.19.0
+author: NgLamVN
+version: 0.0.1
