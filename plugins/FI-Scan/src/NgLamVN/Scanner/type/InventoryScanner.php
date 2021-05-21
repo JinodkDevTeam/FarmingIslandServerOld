@@ -2,6 +2,8 @@
 
 namespace NgLamVN\Scanner\type;
 
+use NgLamVN\Scanner\Loader;
+
 abstract class InventoryScanner
 {
     public const UNBANNED_BLOCKS_ID = [
@@ -15,6 +17,19 @@ abstract class InventoryScanner
     ]; //ITS FKING LONG
 
     public const UNBANNED_ITEMS_ID = [
-        
+        256, 257, 258, 259, 260, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281,
+        283, 284, 285, 286, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301, 306, 307, 308, 309, 310, 311, 312, 313,
+        314, 315, 316, 317, 318, 323, 324, 325, 328, 330, 333, 337, 338, 339, 346, 349, 350, 352, 353, 354, 355, 357, 358, 359,
+        360, 361, 362, 371, 373, 374, 380, 388, 390, 391, 392, 393, 394, 395, 396, 398, 400, 410, 425, 427, 428, 429, 430, 431,
+        457, 458, 460, 461, 463, 472, 473, 474, 475, 476, 513
     ];
+
+    public Loader $loader;
+
+    public int $deleted = 0;
+
+    public function __construct(Loader $loader)
+    {
+        $this->loader = $loader;
+    }
 }

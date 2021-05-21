@@ -32,6 +32,8 @@ class IslandScanner
         $this->loader = $loader;
         $this->x = $x;
         $this->y = $y;
+
+        $this->scan();
     }
 
     public function scan()
@@ -46,7 +48,8 @@ class IslandScanner
                     $block = $level->getBlockAt($x, $y, $z);
                     if ($block instanceof Chest)
                     {
-                        //TODO: CHEST SCANNER;
+                        new ChestScanner($this->loader, $block);
+                        continue;
                     }
                     if (!in_array($block->getId(), self::UNBANNED_BLOCKS_ID))
                     {
