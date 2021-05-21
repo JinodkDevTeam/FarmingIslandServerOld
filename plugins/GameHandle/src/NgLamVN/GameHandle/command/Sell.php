@@ -9,6 +9,7 @@ use onebone\economyapi\EconomyAPI;
 use pocketmine\command\CommandSender;
 use pocketmine\command\PluginCommand;
 use pocketmine\item\Item;
+use pocketmine\Server;
 use pocketmine\utils\Config;
 
 class Sell extends PluginCommand
@@ -79,6 +80,8 @@ class Sell extends PluginCommand
             $sender->sendMessage("/sell <hand|all>");
             return;
         }
+        $cp = count(Server::getInstance()->getOnlinePlayers());
+
         switch ($args[0])
         {
             case "hand":
@@ -87,13 +90,13 @@ class Sell extends PluginCommand
                 {
                     if (in_array($this->getCore()->getPlayerGroupName($sender), self::VIP_RANK))
                     {
-                        EconomyAPI::getInstance()->addMoney($sender, $this->toPrice($item) + $this->toPrice($item)*(1/10));
-                        $sender->sendMessage("Sell ".$item->getCount() ." item for ". $this->toPrice($item) . "xu (+ 1/10)");
+                        EconomyAPI::getInstance()->addMoney($sender, $this->toPrice($item) + $this->toPrice($item)*(1/10 + $cp/100));
+                        $sender->sendMessage("Sell ".$item->getCount() ." item for ". $this->toPrice($item) . "xu (+".(10 + $cp)." percent)");
                         $sender->getInventory()->removeItem($item);
                         return;
                     }
-                    EconomyAPI::getInstance()->addMoney($sender, $this->toPrice($item));
-                    $sender->sendMessage("Sell ". $item->getCount() ." item for ". $this->toPrice($item) . "xu");
+                    EconomyAPI::getInstance()->addMoney($sender, $this->toPrice($item) + $this->toPrice($item)*($cp/100));
+                    $sender->sendMessage("Sell ". $item->getCount() ." item for ". $this->toPrice($item) . "xu (+".($cp)." percent)");
                     $sender->getInventory()->removeItem($item);
                 }
                 else
@@ -116,13 +119,14 @@ class Sell extends PluginCommand
                 }
                 if (in_array($this->getCore()->getPlayerGroupName($sender), self::VIP_RANK))
                 {
-                    $price = $price + $price*(1/10);
+                    $price = $price + $price*(1/10 + $cp/100);
 
-                    $sender->sendMessage("Sell ". $count . " items for " . $price . " xu (x 1/10)");
+                    $sender->sendMessage("Sell ". $count . " items for " . $price . "xu (+".(10 + $cp)." percent)");
                     EconomyAPI::getInstance()->addMoney($sender, $price);
                     return;
                 }
-                $sender->sendMessage("Sell ". $count . " items for " . $price . " xu");
+                $price = $price + $price*($cp/100);
+                $sender->sendMessage("Sell ". $count . " items for " . $price . "xu (+".($cp)." percent)");
                 EconomyAPI::getInstance()->addMoney($sender, $price);
                 return;
 
