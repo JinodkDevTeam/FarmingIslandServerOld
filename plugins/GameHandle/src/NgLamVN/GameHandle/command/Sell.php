@@ -90,13 +90,15 @@ class Sell extends PluginCommand
                 {
                     if (in_array($this->getCore()->getPlayerGroupName($sender), self::VIP_RANK))
                     {
-                        EconomyAPI::getInstance()->addMoney($sender, $this->toPrice($item) + $this->toPrice($item)*(1/10 + $cp/100));
-                        $sender->sendMessage("Sell ".$item->getCount() ." item for ". $this->toPrice($item) . "xu (+".(10 + $cp)." percent)");
+                        $price = $this->toPrice($item) + $this->toPrice($item)*(1/10 + $cp/100);
+                        EconomyAPI::getInstance()->addMoney($sender, $price);
+                        $sender->sendMessage("Sell ".$item->getCount() ." item for ". $price . "xu (+".(10 + $cp)." percent)");
                         $sender->getInventory()->removeItem($item);
                         return;
                     }
-                    EconomyAPI::getInstance()->addMoney($sender, $this->toPrice($item) + $this->toPrice($item)*($cp/100));
-                    $sender->sendMessage("Sell ". $item->getCount() ." item for ". $this->toPrice($item) . "xu (+".($cp)." percent)");
+                    $price = $this->toPrice($item) + $this->toPrice($item)*($cp/100);
+                    EconomyAPI::getInstance()->addMoney($sender, $price);
+                    $sender->sendMessage("Sell ". $item->getCount() ." item for ". $price . "xu (+".($cp)." percent)");
                     $sender->getInventory()->removeItem($item);
                 }
                 else
