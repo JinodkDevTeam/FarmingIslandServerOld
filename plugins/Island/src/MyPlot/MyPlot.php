@@ -912,13 +912,15 @@ class MyPlot extends PluginBase
 		 * @var string $name
 		 * @var Permission $perm
 		 */
+		$max = 0;
+
 		foreach($perms as $name => $perm) {
 			$maxPlots = substr($name, 18);
 			if(is_numeric($maxPlots)) {
-				return (int) $maxPlots;
+				if ((int) $maxPlots > $max) $max = (int) $maxPlots;
 			}
 		}
-		return 0;
+		return $max;
 	}
 
 	/**
