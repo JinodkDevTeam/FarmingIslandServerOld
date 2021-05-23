@@ -6,6 +6,7 @@ namespace NgLamVN\GameHandle;
 
 use _64FF00\PurePerms\PurePerms;
 use muqsit\invmenu\InvMenuHandler;
+use NgLamVN\GameHandle\ChatThin\CT_PacketHandler;
 use NgLamVN\GameHandle\CoinSystem\CoinSystem;
 use NgLamVN\GameHandle\command\InitCommand;
 use NgLamVN\GameHandle\InvCrashFix\IC_PacketHandler;
@@ -46,6 +47,7 @@ class Core extends PluginBase
         $plmanager = $this->getServer()->getPluginManager();
         $plmanager->registerEvents(new EventListener($this), $this);
         $plmanager->registerEvents(new IC_PacketHandler(), $this);
+        $plmanager->registerEvents(new CT_PacketHandler(), $this);
         $cmd = new InitCommand($this);
         $task = new InitTask($this);
         $this->coin = new CoinSystem($this);
