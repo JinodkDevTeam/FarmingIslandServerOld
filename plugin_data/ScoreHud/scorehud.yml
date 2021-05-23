@@ -36,7 +36,7 @@ titles:
   period: 5
 
   # A simple title that will be displayed for scoreboard.
-  title: "§l§e•§bFarming§aIsland§e §cBETA•"
+  title: "§l§e•§bFarming§aIsland§e•"
 
   # Changing titles. Add as many as you desire.
   lines:
