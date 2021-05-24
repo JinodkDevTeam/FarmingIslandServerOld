@@ -43,9 +43,6 @@ class DarkOakTree extends Tree {
                 return false;
             } else {
                 $level->setBlockIdAt($x, $y - 1, $z, Block::DIRT);
-                $level->setBlockIdAt($x + 1, $y - 1, $z, Block::DIRT);
-                $level->setBlockIdAt($x + 1, $y - 1, $z + 1, Block::DIRT);
-                $level->setBlockIdAt($x, $y - 1, $z + 1, Block::DIRT);
 
                 $level->setBlockIdAt($x, $y, $z, Block::LOG2);
                 $level->setBlockIdAt($x + 1, $y, $z, Block::LOG2);
