@@ -39,7 +39,7 @@ class UpdateInfo
         });
         $text = [
             "Updates:",
-            "- Add Tutorial.",
+            "- Look Around!",
             "Official wiki: bit.ly/fi-wiki",
             "Vote for server: bit.ly/fi-vote",
             "Official Facebook group: bit.ly/jinodkgroupfb",
