@@ -24,6 +24,8 @@ class Core extends PluginBase
     public static Core $instance;
 
     public CoinSystem $coin;
+
+    public PlayerStatManager $pstatmanager;
     /** @var Skin[] */
     public array $skin = [];
 
@@ -51,6 +53,7 @@ class Core extends PluginBase
         $cmd = new InitCommand($this);
         $task = new InitTask($this);
         $this->coin = new CoinSystem($this);
+        $this->pstatmanager = new PlayerStatManager();
     }
     public function onDisable()
     {
@@ -77,5 +80,10 @@ class Core extends PluginBase
     public function getCoinSystem(): CoinSystem
     {
         return $this->coin;
+    }
+
+    public function getPlayerStatManager(): PlayerStatManager
+    {
+        return $this->pstatmanager;
     }
 }
