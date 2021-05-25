@@ -33,19 +33,19 @@ WorldChange:
 Death:
   hide: false
   custom: true
-  message: "&c{PLAYER} died"
+  message: "&7{PLAYER} died"
   death-contact-message:
     hide: false
     custom: true
-    message: "&cOops! {PLAYER} was killed by {BLOCK}"
+    message: "&eOops! {PLAYER} was killed by {BLOCK}"
   kill-message:
     hide: false
     custom: true
-    message: "&9{PLAYER} &ewas killed by &c{KILLER}"
+    message: "&e{PLAYER} &ewas killed by &c{KILLER}"
   death-projectile-message:
     hide: false
     custom: true
-    message: "&c{PLAYER} was killed by {KILLER} by arrow"
+    message: "&e{PLAYER} was killed by {KILLER} by arrow"
   death-suffocation-message:
     hide: false
     custom: true
@@ -53,23 +53,23 @@ Death:
   death-fall-message:
     hide: false
     custom: true
-    message: "&c{PLAYER} fell from a high place"
+    message: "&7{PLAYER} fell from a high place"
   death-fire-message:
     hide: false
     custom: true
-    message: "&c{PLAYER} went up in flames"
+    message: "&6{PLAYER} went up in flames"
   death-on-fire-message:
     hide: false
     custom: true
-    message: "&c{PLAYER} burned"
+    message: "&6{PLAYER} burned"
   death-lava-message:
     hide: false
     custom: true
-    message: "&c{PLAYER} tried to swim in lava"
+    message: "&6{PLAYER} tried to swim in lava"
   death-drowning-message:
     hide: false
     custom: true
-    message: "&c{PLAYER} drowned"
+    message: "&b{PLAYER} drowned"
   death-explosion-message:
     hide: false
     custom: true
@@ -77,13 +77,13 @@ Death:
   death-void-message:
     hide: false
     custom: true
-    message: "&c{PLAYER} fell into the void"
+    message: "&7{PLAYER} went to space"
   death-suicide-message:
     hide: false
     custom: true
-    message: "&c{PLAYER} committed suicide"
+    message: "&7{PLAYER} committed suicide"
   death-magic-message:
     hide: false
     custom: true
-    message: "&c{PLAYER} was killed by a spell"
+    message: "&a{PLAYER} was killed by a spell"
 ...
