@@ -6,6 +6,7 @@ namespace NgLamVN\GameHandle;
 
 use pocketmine\level\Position;
 use pocketmine\Player;
+use pocketmine\Server;
 
 /**
  * Class PlayerStat
@@ -55,6 +56,11 @@ class PlayerStat
     public function __construct(Player $player)
     {
         $this->player = $player;
+    }
+
+    public function getCore(): ?Core
+    {
+        return Server::getInstance()->getPluginManager()->getPlugin("FI-GameHandle");
     }
 
     /**
@@ -156,6 +162,7 @@ class PlayerStat
     public function setFly(bool $status = true)
     {
         $this->isFly = $status;
+        $this->save();
     }
 
     /**
@@ -175,6 +182,7 @@ class PlayerStat
             $this->setMuteTime(0);
             $this->setMuteStartTime(0);
         }
+        $this->save();
     }
 
     /**
@@ -183,6 +191,7 @@ class PlayerStat
     public function setMuteTime(int $time = 0)
     {
         $this->mute_time = $time;
+        $this->save();
     }
 
     /**
@@ -191,6 +200,7 @@ class PlayerStat
     public function setMuteStartTime(int $time = 0)
     {
         $this->mute_start_time = $time;
+        $this->save();
     }
 
     /**
@@ -210,6 +220,7 @@ class PlayerStat
             $this->setFreezeTime(0);
             $this->setFreezeStartTime(0);
         }
+        $this->save();
     }
 
     /**
@@ -218,6 +229,7 @@ class PlayerStat
     public function setFreezeTime(int $time = 0)
     {
         $this->freeze_time = $time;
+        $this->save();
     }
 
     /**
@@ -226,6 +238,7 @@ class PlayerStat
     public function setFreezeStartTime(int $time = 0)
     {
         $this->freeze_start_time = $time;
+        $this->save();
     }
 
     /**
@@ -234,5 +247,11 @@ class PlayerStat
     public function setDeathPos(?Position $pos)
     {
         $this->death_pos = $pos;
+        $this->save();
+    }
+
+    public function save()
+    {
+        $this->getCore()->getPlayerStatManager()->stats[$this->getPlayer()->getName()] = $this;
     }
 }
