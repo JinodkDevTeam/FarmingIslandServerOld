@@ -92,3 +92,5 @@ permissions:
     default: op
   gh.tutorial:
     default: true
+  gh.mute:
+    default: op

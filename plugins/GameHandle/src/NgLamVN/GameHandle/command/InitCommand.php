@@ -27,5 +27,6 @@ class InitCommand
         $cmd->register("reloadskin", new ReloadSkin($plugin));
         $cmd->register("tutorial", new Tutorial($plugin));
         $cmd->register("servercheck", new ServerCheck($plugin));
+        $cmd->register("mute", new Mute($plugin));
     }
 }
