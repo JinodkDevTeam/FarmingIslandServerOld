@@ -58,8 +58,9 @@ class EventListener implements Listener
         Server::getInstance()->dispatchCommand($player, "is home");
 
         $this->getCore()->skin[$player->getName()] = $player->getSkin();
-    }
 
+        $this->getCore()->getPlayerStatManager()->registerPlayerStat($player);
+    }
     public function onSkinChange (PlayerChangeSkinEvent $event)
     {
         $player = $event->getPlayer();
@@ -133,5 +134,6 @@ class EventListener implements Listener
     {
         $player = $event->getPlayer();
         $this->getCore()->afktime[$player->getName()] = 0;
+        $this->getCore()->getPlayerStatManager()->removePlayerStat($player);
     }
 }
