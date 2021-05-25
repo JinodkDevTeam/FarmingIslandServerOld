@@ -17,21 +17,21 @@ class PlayerStat
     /** @var Player  */
     protected Player $player;
     /** @var bool  */
-    public bool $isFly = false;
+    private bool $isFly = false;
     /** @var bool  */
-    public bool $isMuted = false;
+    private bool $isMuted = false;
     /** @var int  */
-    public int $mute_time = 0;
+    private int $mute_time = 0;
     /** @var int  */
-    public int $mute_start_time = 0;
+    private int $mute_start_time = 0;
     /** @var bool  */
-    public bool $isFreeze = false;
+    private bool $isFreeze = false;
     /** @var int  */
-    public int $freeze_time = 0;
+    private int $freeze_time = 0;
     /** @var int  */
-    public int $freeze_start_time = 0;
+    private int $freeze_start_time = 0;
     /** @var Position|null  */
-    public ?Position $death_pos = null;
+    private ?Position $death_pos = null;
 
     /**
      * PlayerStat constructor.
