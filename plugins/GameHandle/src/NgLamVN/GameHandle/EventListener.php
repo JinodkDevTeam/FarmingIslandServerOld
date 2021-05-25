@@ -122,9 +122,10 @@ class EventListener implements Listener
             $this->getCore()->getServer()->getLogger()->info("[CMD][" . $player->getName() . "] use " . $msg);
 
             if ($player->hasPermission("gh.notp.bypass")) return;
-
             $args = explode(" ", $event->getMessage());
+            if (!($args[0] == "/tp")) return;
             if (isset($args[3])) return;
+            if (!isset($args[1])) return;
             $target = $this->getCore()->getServer()->getPlayer($args[1]);
             if ($target == null) return;
             if ($this->getCore()->getPlayerStatManager()->getPlayerStat($target)->isNoTP())
@@ -133,6 +134,7 @@ class EventListener implements Listener
                 $this->getCore()->getServer()->getLogger()->info("[CMD][" . $player->getName() . "] Command Cancelled due to NoTP");
                 $event->setCancelled();
             }
+            if (!isset($args[2])) return;
             $target = $this->getCore()->getServer()->getPlayer($args[2]);
             if ($target == null) return;
             if ($this->getCore()->getPlayerStatManager()->getPlayerStat($target)->isNoTP())
