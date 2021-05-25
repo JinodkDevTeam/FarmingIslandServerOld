@@ -153,6 +153,7 @@ class PlayerStat
      */
     protected function getExpireTime($time, $starttime): int
     {
+        if (($time + $starttime) > PHP_INT_MAX) return PHP_INT_MAX;
         return $time + $starttime;
     }
 
