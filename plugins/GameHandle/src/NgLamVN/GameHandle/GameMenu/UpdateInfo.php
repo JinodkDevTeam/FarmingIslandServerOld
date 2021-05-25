@@ -38,17 +38,17 @@ class UpdateInfo
             if ($data == 1) $this->TutorialForm($player);
         });
         $text = [
-            "Updates:",
+            "§　Updates:",
             "- Look Around!",
             "Official wiki: bit.ly/fi-wiki",
             "Vote for server: bit.ly/fi-vote",
             "Official Facebook group: bit.ly/jinodkgroupfb",
             "Server Version: " . $this->version
         ];
-        $form->setTitle("BREAKING NEWS");
+        $form->setTitle("§　BREAKING NEWS");
         $form->setContent($this->ArrayToString($text));
-        $form->addButton("OK");
-        $form->addButton("Tutorial\nXem cách chơi.");
+        $form->addButton("§　§lOK");
+        $form->addButton("§　§lTutorial\nXem cách chơi.");
 
         $player->sendForm($form);
     }
@@ -96,9 +96,9 @@ class UpdateInfo
         {
             //NOTHING
         });
-        $form->setTitle("Tutorial");
+        $form->setTitle("§　§lTutorial");
         $form->setContent($this->ArrayToString($text));
-        $form->addButton("OK");
+        $form->addButton("§　§lOK");
 
         $player->sendForm($form);
     }

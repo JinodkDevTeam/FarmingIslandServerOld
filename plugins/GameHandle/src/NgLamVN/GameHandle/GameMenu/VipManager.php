@@ -41,8 +41,8 @@ class VipManager
                     break;
             }
         });
-        $form->setTitle("Advanced Rank");
-        $form->addButton("EXIT");
+        $form->setTitle("§　§lAdvanced Rank");
+        $form->addButton("§　§l§cEXIT");
         $form->addButton("§6§lVIP §r§b[Lifetime]\n§aBuy for 2000 coins");
         $form->addButton("§6§lVIP§a+\n§aBuy for 50000 VNĐ per month");
         $form->addButton("§c§lYou§ftuber");
@@ -54,26 +54,26 @@ class VipManager
     {
         if ($this->getCore()->getPlayerGroupName($player) == "Vip")
         {
-            $player->sendMessage("You already have this rank !");
+            $player->sendMessage("§eYou already have this rank !");
             return;
         }
         if ($this->getCore()->getPlayerGroupName($player) == "VipPlus")
         {
-            $player->sendMessage("You already have this rank !");
+            $player->sendMessage("§eYou already have this rank !");
             return;
         }
         $form = new CustomForm(function (Player $player, $data)
         {
             $this->BuyVipConfirmForm($player);
         });
-        $form->setTitle("VIP");
-        $form->addLabel("Quyền hạn:");
-        $form->addLabel("- Feed: No ngay lập tức");
-        $form->addLabel("- Heal: Hồi máu ngay lập tức");
-        $form->addLabel("- Cây mọc nhanh gấp 2 lần");
-        $form->addLabel("- Tăng 1/10 giá sell cho tất cả items");
-        $form->addLabel("- Custom Rank Color");
-        $form->addLabel("- Quyền hạn có thể thay đổi sau những bảng cập nhật server");
+        $form->setTitle("§　VIP");
+        $form->addLabel("§　Quyền hạn:");
+        $form->addLabel("§　- Feed: No ngay lập tức");
+        $form->addLabel("§　- Heal: Hồi máu ngay lập tức");
+        $form->addLabel("§　- Cây mọc nhanh gấp 2 lần");
+        $form->addLabel("§　- Tăng 1/10 giá sell cho tất cả items");
+        $form->addLabel("§　- Custom Rank Color");
+        $form->addLabel("§　- Quyền hạn có thể thay đổi sau những bảng cập nhật server");
 
         $player->sendForm($form);
     }
@@ -82,7 +82,7 @@ class VipManager
     {
         if (CoinSystem::getInstance()->getCoin($player) < 2000)
         {
-            $player->sendMessage("You not have enought coin to buy this rank !");
+            $player->sendMessage("§cYou not have enought coin to buy this rank !");
             return;
         }
         $form = new ModalForm(function (Player $player, $data)
@@ -93,10 +93,10 @@ class VipManager
                 Server::getInstance()->dispatchCommand(new ConsoleCommandSender(), "setgroup " . $player->getName() . " Vip");
             }
         });
-        $form->setTitle("Confirm");
-        $form->setContent("Bạn có chắc chắn mua rank VIP với giá 2000 coin ?");
-        $form->setButton1("Yes");
-        $form->setButton2("No");
+        $form->setTitle("§　§l§eConfirm");
+        $form->setContent("§　Bạn có chắc chắn mua rank VIP với giá 2000 coin ?");
+        $form->setButton1("§　§l§aYes");
+        $form->setButton2("§　§l§cNo");
 
         $player->sendForm($form);
     }
@@ -107,8 +107,8 @@ class VipManager
         {
             //NOTHING.
         });
-        $form->setTitle("NOTE");
-        $form->addLabel("Please contact admin to get this rank :)");
+        $form->setTitle("§　§l§bNOTE");
+        $form->addLabel("§　Please contact admin to get this rank :)");
 
         $player->sendForm($form);
     }

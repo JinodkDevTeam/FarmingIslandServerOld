@@ -46,19 +46,19 @@ class IslandManager
         });
         $form->setTitle("Island Manager");
 
-        $form->addButton("Exit");
-        $form->addButton("Add Helper\nThêm người giúp");
-        $form->addButton("Remove Helper\nXóa Người giúp");
-        $form->addButton("Rename island\nĐổi tên đảo");
-        $form->addButton("Change island biome\n Thay đổi hệ sinh thái đảo");
+        $form->addButton("§　§l§cEXIT");
+        $form->addButton("§lAdd Helper\nThêm người giúp");
+        $form->addButton("§lRemove Helper\nXóa Người giúp");
+        $form->addButton("§lRename island\nĐổi tên đảo");
+        $form->addButton("§lChange island biome\n Thay đổi hệ sinh thái đảo");
         $plot = MyPlot::getInstance()->getPlotByPosition($player->asPosition());
         if ($plot->pvp == true)
         {
-            $form->addButton("Disable PvP\nTắt PvP");
+            $form->addButton("§lDisable PvP\nTắt PvP");
         }
         else
         {
-            $form->addButton("Enable PvP\nBật PvP");
+            $form->addButton("§lEnable PvP\nBật PvP");
         }
 
         $player->sendForm($form);
@@ -82,8 +82,8 @@ class IslandManager
             }
             Server::getInstance()->dispatchCommand($player, "is addhelper ". $pname);
         });
-        $form->setTitle("Add Helper");
-        $form->addDropdown("Player:", $players);
+        $form->setTitle("§　§lAdd Helper");
+        $form->addDropdown("§　Player:", $players);
         $player->sendForm($form);
     }
 
@@ -93,7 +93,7 @@ class IslandManager
         $plot = MyPlot::getInstance()->getPlotByPosition($pos);
         if ($plot == null)
         {
-            $player->sendMessage("Bạn không đứng trong island");
+            $player->sendMessage("§cBạn không đứng trong island");
             return;
         }
         $helpers = ["<None>"];
@@ -111,8 +111,8 @@ class IslandManager
             }
             Server::getInstance()->dispatchCommand($player, "is removehelper ". $pname);
         });
-        $form->setTitle("Remove Helper");
-        $form->addDropdown("Helpers:", $helpers);
+        $form->setTitle("§　§lRemove Helper");
+        $form->addDropdown("§　Helper:", $helpers);
         $player->sendForm($form);
     }
 
@@ -126,16 +126,16 @@ class IslandManager
             if (($player->getName() == $plot->owner) or $player->isOp())
             {
                 $plot->name = $data[0];
-                $player->sendMessage("Island Renamed !");
+                $player->sendMessage("§aIsland Renamed !");
             }
             else
             {
-                $player->sendMessage("You not have permission to rename this island");
+                $player->sendMessage("§cYou don't have permission to rename this island");
             }
         });
 
-        $form->setTitle("Rename island");
-        $form->addInput("Name", "MyIsland123");
+        $form->setTitle("§　§lRename island");
+        $form->addInput("§　Name", "MyIsland123");
         $player->sendForm($form);
     }
 
@@ -148,7 +148,8 @@ class IslandManager
             if ($data[0] == "<none>") return;
             Server::getInstance()->dispatchCommand($player, "is biome ".$data[0]);
         });
-        $form->addDropdown("Biome:", $arr);
+        $form->addDropdown("§　Biome:", $arr);
+        $form->setTitle("§　§lChange Biome");
         $player->sendForm($form);
     }
 }

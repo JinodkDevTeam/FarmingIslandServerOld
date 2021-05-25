@@ -129,7 +129,7 @@ class EventListener implements Listener
             if ($target == null) return;
             if ($this->getCore()->getPlayerStatManager()->getPlayerStat($target)->isNoTP())
             {
-                $player->sendMessage("This Player Is Not Accepting TP");
+                $player->sendMessage("§cThis Player Is Not Accepting TP");
                 $this->getCore()->getServer()->getLogger()->info("[CMD][" . $player->getName() . "] Command Cancelled due to NoTP");
                 $event->setCancelled();
             }
@@ -137,7 +137,7 @@ class EventListener implements Listener
             if ($target == null) return;
             if ($this->getCore()->getPlayerStatManager()->getPlayerStat($target)->isNoTP())
             {
-                $player->sendMessage("This Player Is Not Accepting TP");
+                $player->sendMessage("§cThis Player Is Not Accepting TP");
                 $this->getCore()->getServer()->getLogger()->info("[CMD][" . $player->getName() . "] Command Cancelled due to NoTP");
                 $event->setCancelled();
             }

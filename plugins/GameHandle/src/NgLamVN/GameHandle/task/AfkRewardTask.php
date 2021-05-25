@@ -28,7 +28,7 @@ class AfkRewardTask extends Task
                     if ($this->getCore()->afktime[$player->getName()] == 1) //Tự hiểu
                     {
                         EconomyAPI::getInstance()->addMoney($player, 200);
-                        $player->sendMessage("You have get 200xu in AFK Area !");
+                        $player->sendMessage("§aYou have get 200xu in AFK Area !");
                         $this->getCore()->afktime[$player->getName()] = 0;
                     }
                     else

@@ -90,23 +90,23 @@ class UiMenu
         });
         if ($player->getLevel()->getName() == "island")
         {
-            $form->addButton("Island Manager\nQuản lý đảo");
-            $form->addButton("Island Info\nThông tin đảo");
+            $form->addButton("§　§lIsland Manager\nQuản lý đảo");
+            $form->addButton("§　§lIsland Info\nThông tin đảo");
 
         }
-        $form->addButton("Teleport\nDịch chuyển");
-        $form->addButton("Shop");
-        $form->addButton("VipItem Shop");
-        $form->addButton("Sell All Inventory\nBán toàn bộ vật phẩm");
-        $form->addButton("Coin");
-        $form->addButton("VIP");
-        $form->addButton("Tutorial\nXem cách chơi");
+        $form->addButton("§lTeleport\nDịch chuyển");
+        $form->addButton("§　§lShop");
+        $form->addButton("§　§lVipItem Shop");
+        $form->addButton("§lSell All Inventory\nBán toàn bộ vật phẩm");
+        $form->addButton("§　§lCoin");
+        $form->addButton("§　§lVIP");
+        $form->addButton("§lTutorial\nXem cách chơi");
         if (in_array($this->getCore()->getPlayerGroupName($player), ["Vip", "VipPlus", "Staff", "Admin", "Youtuber", "Member"]))
         {
-            $form->addButton("RankColor");
+            $form->addButton("§　§lRankColor");
         }
-        $form->addButton("GUI Mode\nChuyển sang chế độ GUI");
-        $form->setTitle("Island Menu");
+        $form->addButton("§lGUI Mode\nChuyển sang chế độ GUI");
+        $form->setTitle("§　Island Menu");
         $player->sendForm($form);
     }
 
@@ -125,7 +125,7 @@ class UiMenu
     public function IslandInfoForm(Player $player)
     {
         $form = new CustomForm(function (Player $player, $data) {});
-        $form->setTitle("Island Info");
+        $form->setTitle("§　§lIsland Info");
         $plot = MyPlot::getInstance()->getPlotByPosition($player->asPosition());
         $h = "";
         foreach ($plot->helpers as $helper)
@@ -137,10 +137,10 @@ class UiMenu
                 $h = $h . "," . $helper;
             }
         }
-        $form->addLabel("Island ID: " . $plot->X . ";" . $plot->Z);
-        $form->addLabel("Owner: " . $plot->owner);
-        $form->addLabel("Island Name: " . $plot->name);
-        $form->addLabel("Helpers: " . $h);
+        $form->addLabel("§　Island ID: " . $plot->X . ";" . $plot->Z);
+        $form->addLabel("§　Owner: " . $plot->owner);
+        $form->addLabel("§　Island Name: " . $plot->name);
+        $form->addLabel("§　Helpers: " . $h);
 
         $player->sendForm($form);
     }

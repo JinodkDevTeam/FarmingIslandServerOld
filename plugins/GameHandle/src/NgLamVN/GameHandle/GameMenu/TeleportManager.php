@@ -47,13 +47,12 @@ class TeleportManager
             }
         });
         $form->setTitle("Teleport");
-        $form->addButton("EXIT");
-        $form->addButton("Special Island");
+        $form->addButton("§　EXIT");
+        $form->addButton("§　Special Island");
         $form->addButton("My Island\nVề đảo của bạn");
         $form->addButton("Go to another island\nDịch chuyển sang đảo khác");
         $form->addButton("Afk Area\nKhu vực afk");
         $form->addButton("Mine Area\nKhu mine");
-        $form->addButton("Comming Soon !!");
 
         $player->sendForm($form);
     }
@@ -65,8 +64,8 @@ class TeleportManager
             if (!isset($data[0])) return;
             Server::getInstance()->dispatchCommand($player, "is warp ". $data[0]);
         });
-        $form->setTitle("Go to another island");
-        $form->addInput("Island ID (X;Z)", "1;2");
+        $form->setTitle("§　Go to another island");
+        $form->addInput("§　Island ID (X;Z)", "1;2");
         $player->sendForm($form);
     }
 
@@ -86,11 +85,11 @@ class TeleportManager
                     return;
             }
         });
-        $form->addButton("EXIT");
+        $form->addButton("§　EXIT");
         $form->addButton("The Sea Island\nBy PikarioVN");
-        $form->addButton("The Ultra Farmland");
+        $form->addButton("§　The Ultra Farmland");
 
-        $form->setTitle("Special Island");
+        $form->setTitle("§　Special Island");
 
         $player->sendForm($form);
     }
