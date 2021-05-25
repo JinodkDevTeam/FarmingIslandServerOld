@@ -5,6 +5,7 @@ namespace NgLamVN\GameHandle\command;
 use NgLamVN\GameHandle\Core;
 use pocketmine\command\PluginCommand;
 use pocketmine\command\CommandSender;
+use pocketmine\Player;
 use pocketmine\Server;
 
 class Fly extends PluginCommand
@@ -20,6 +21,11 @@ class Fly extends PluginCommand
     }
     public function execute(CommandSender $sender, string $commandLabel, array $args)
     {
+        if (!($sender instanceof Player))
+        {
+            $sender->sendMessage("Use this command in-game !");
+            return;
+        }
         if (isset($args[0]))
         {
             if (!$sender->hasPermission("gh.fly.other"))
@@ -33,16 +39,18 @@ class Fly extends PluginCommand
                 $sender->sendMessage("Player not exist !");
                 return;
             }
-            if (!$player->isFlying())
+            if ($this->plugin->getPlayerStatManager()->getPlayerStat($sender)->isFly())
             {
                 $player->setAllowFlight(true);
                 $player->setFlying(true);
+                $this->plugin->getPlayerStatManager()->getPlayerStat($sender)->setFly(true);
                 $sender->sendMessage($player->getName() . "  Enabled Fly");
             }
             else
             {
                 $player->setAllowFlight(false);
                 $player->setFlying(false);
+                $this->plugin->getPlayerStatManager()->getPlayerStat($sender)->setFly(false);
                 $sender->sendMessage($player->getName() . " Disabled Fly");
             }
             return;
