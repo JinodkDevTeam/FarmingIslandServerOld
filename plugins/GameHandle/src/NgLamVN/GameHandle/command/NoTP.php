@@ -26,7 +26,7 @@ class NoTP extends PluginCommand
     {
         if (!$sender instanceof Player)
         {
-            $sender->sendMessage("Use ingame only");
+            $sender->sendMessage("Use ingame only !");
             return;
         }
         if ($this->plugin->getPlayerStatManager()->getPlayerStat($sender)->isNoTP())
@@ -37,7 +37,7 @@ class NoTP extends PluginCommand
         else
         {
             $this->plugin->getPlayerStatManager()->getPlayerStat($sender)->setNoTP();
-            $sender->sendMessage("NoTP enabled");
+            $sender->sendMessage("NoTP enabled !");
         }
     }
 }

@@ -73,6 +73,7 @@ class CoinCommand extends PluginCommand
                     {
                         $this->system->addCoin($player, $amount);
                         $sender->sendMessage("Add " . $amount . " coin to player " . $player->getName() . " successfully !");
+                        $player->sendMessage("You have been gained " .$amount ." coin !");
                     }
                     else
                     {
