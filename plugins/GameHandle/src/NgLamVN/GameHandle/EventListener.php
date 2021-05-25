@@ -7,6 +7,7 @@ use pocketmine\command\ConsoleCommandSender;
 use pocketmine\event\entity\EntityLevelChangeEvent;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerChangeSkinEvent;
+use pocketmine\event\player\PlayerChatEvent;
 use pocketmine\event\player\PlayerCommandPreprocessEvent;
 use pocketmine\event\player\PlayerFishEvent;
 use pocketmine\event\player\PlayerDropItemEvent;
@@ -17,6 +18,7 @@ use pocketmine\event\inventory\InventoryTransactionEvent;
 use NgLamVN\GameHandle\GameMenu\Menu;
 
 use MyPlot\MyPlot;
+use pocketmine\event\player\PlayerMoveEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\level\Position;
@@ -135,5 +137,33 @@ class EventListener implements Listener
         $player = $event->getPlayer();
         $this->getCore()->afktime[$player->getName()] = 0;
         $this->getCore()->getPlayerStatManager()->removePlayerStat($player);
+    }
+
+    /**
+     * @param PlayerChatEvent $event
+     * @priority LOWEST
+     * @ignoreCancelled TRUE
+     */
+    public function onChat (PlayerChatEvent $event)
+    {
+        $player = $event->getPlayer();
+        if ($this->getCore()->getPlayerStatManager()->getPlayerStat($player)->isMuted())
+        {
+            $event->setCancelled();
+        }
+    }
+
+    /**
+     * @param PlayerMoveEvent $event
+     * @priority LOWEST
+     * @ignoreCancelled TRUE
+     */
+    public function onMove (PlayerMoveEvent $event)
+    {
+        $player = $event->getPlayer();
+        if ($this->getCore()->getPlayerStatManager()->getPlayerStat($player)->isFreeze())
+        {
+            $event->setCancelled();
+        }
     }
 }
