@@ -94,3 +94,13 @@ permissions:
     default: true
   gh.mute:
     default: op
+  gh.unmute:
+    default:op
+  gh.freeze:
+    default: op
+  gh.unfreeze:
+    default: op
+  gh.notp:
+    default: true
+  gh.notp.bypass:
+    default: op

@@ -29,5 +29,7 @@ class InitCommand
         $cmd->register("servercheck", new ServerCheck($plugin));
         $cmd->register("mute", new Mute($plugin));
         $cmd->register("unmute", new UnMute($plugin));
+        $cmd->register("freeze", new Freeze($plugin));
+        $cmd->register("unfreeze", new UnFreeze($plugin));
     }
 }
