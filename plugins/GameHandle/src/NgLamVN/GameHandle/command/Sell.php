@@ -80,7 +80,7 @@ class Sell extends PluginCommand
             $sender->sendMessage("/sell <hand|all>");
             return;
         }
-        $cp = count(Server::getInstance()->getOnlinePlayers());
+        $cp = 0;
 
         switch ($args[0])
         {
