@@ -124,7 +124,7 @@ class EventListener implements Listener
             if ($player->hasPermission("gh.notp.bypass")) return;
             $args = explode(" ", $event->getMessage());
             if (!($args[0] == "/tp")) return;
-            if (isset($args[3])) return;
+            if (!isset($args[3])) return;
             if (!isset($args[1])) return;
             $target = $this->getCore()->getServer()->getPlayer($args[1]);
             if ($target == null) return;
