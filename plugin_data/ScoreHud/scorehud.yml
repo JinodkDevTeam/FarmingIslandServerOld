@@ -36,7 +36,7 @@ titles:
   period: 5
 
   # A simple title that will be displayed for scoreboard.
-  title: "§l§e•§bFarming§aIsland§e•"
+  title: "§　§l§bFarming§aIsland"
 
   # Changing titles. Add as many as you desire.
   lines:
@@ -65,12 +65,12 @@ titles:
 # in 'scoreboards' key below then set 'multi-world.active' along
 # with 'multi-world.use-default' keys to true in config.yml.
 default-board:
-  - "§2•§l§eWelcome:§r §f{fi-scoreloader.name}"
-  - "§2•§l§eOnline: §r §f{fi-scoreloader.online}/{fi-scoreloader.max_online}"
-  - "§2•§l§eXu:     §r §f{fi-scoreloader.money}$"
-  - "§2•§l§ePing:   §r §f{fi-scoreloader.ping}"
+  - "§　§l§eWelcome:§r §f{fi-scoreloader.name}"
+  - "§　§l§eOnline: §r §f{fi-scoreloader.online}/{fi-scoreloader.max_online}"
+  - "§　§l§eXu:     §r §f{fi-scoreloader.money}$"
+  - "§　§l§ePing:   §r §f{fi-scoreloader.ping}"
   - ""
-  - "§4jinodk§f.§eddns§f.§bnet§f:§e19132"
+  - "§　§l§4j§ci§6n§eo§ad§2k§f.§eddns§f.§bnet§f:§e19132"
 
 # If you want to display different scoreboards for every world
 # then set 'multi-world.active' to true in config.yml.

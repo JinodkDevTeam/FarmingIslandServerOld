@@ -114,12 +114,33 @@ class EventListener implements Listener
         $this->menu->onTrans($event);
     }
 
-    public function onCommand (PlayerCommandPreprocessEvent $event) //TODO: CmdSnooper
+    public function onCommand (PlayerCommandPreprocessEvent $event)
     {
         $player = $event->getPlayer();
         $msg = $event->getMessage();
         if ($msg[0] == "/") {
             $this->getCore()->getServer()->getLogger()->info("[CMD][" . $player->getName() . "] use " . $msg);
+
+            if ($player->hasPermission("gh.notp.bypass")) return;
+
+            $args = explode(" ", $event->getMessage());
+            if (isset($args[3])) return;
+            $target = $this->getCore()->getServer()->getPlayer($args[1]);
+            if ($target == null) return;
+            if ($this->getCore()->getPlayerStatManager()->getPlayerStat($target)->isNoTP())
+            {
+                $player->sendMessage("This Player Is Not Accepting TP");
+                $this->getCore()->getServer()->getLogger()->info("[CMD][" . $player->getName() . "] Command Cancelled due to NoTP");
+                $event->setCancelled();
+            }
+            $target = $this->getCore()->getServer()->getPlayer($args[2]);
+            if ($target == null) return;
+            if ($this->getCore()->getPlayerStatManager()->getPlayerStat($target)->isNoTP())
+            {
+                $player->sendMessage("This Player Is Not Accepting TP");
+                $this->getCore()->getServer()->getLogger()->info("[CMD][" . $player->getName() . "] Command Cancelled due to NoTP");
+                $event->setCancelled();
+            }
         }
     }
 

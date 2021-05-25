@@ -31,5 +31,6 @@ class InitCommand
         $cmd->register("unmute", new UnMute($plugin));
         $cmd->register("freeze", new Freeze($plugin));
         $cmd->register("unfreeze", new UnFreeze($plugin));
+        $cmd->register("notp", new NoTP($plugin));
     }
 }

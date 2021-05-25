@@ -14,23 +14,25 @@ use pocketmine\Server;
  */
 class PlayerStat
 {
-    /** @var Player  */
+    /** @var Player */
     protected Player $player;
-    /** @var bool  */
+    /** @var bool */
     private bool $isFly = false;
-    /** @var bool  */
+    /** @var bool */
     private bool $isMuted = false;
-    /** @var int  */
+    /** @var int */
     private int $mute_time = 0;
-    /** @var int  */
+    /** @var int */
     private int $mute_start_time = 0;
-    /** @var bool  */
+    /** @var bool */
     private bool $isFreeze = false;
-    /** @var int  */
+    /** @var int */
     private int $freeze_time = 0;
-    /** @var int  */
+    /** @var int */
     private int $freeze_start_time = 0;
-    /** @var Position|null  */
+    /** @var bool */
+    private bool $is_notp = false;
+    /** @var Position|null */
     private ?Position $death_pos = null;
 
     /**
@@ -96,6 +98,14 @@ class PlayerStat
             $this->setFreeze(false);
         }
         return $this->isFreeze;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isNoTP(): bool
+    {
+        return $this->is_notp;
     }
 
     /**
@@ -240,6 +250,11 @@ class PlayerStat
     {
         $this->freeze_start_time = $time;
         $this->save();
+    }
+
+    public function setNoTP(bool $status = true)
+    {
+        $this->is_notp = $status;
     }
 
     /**
