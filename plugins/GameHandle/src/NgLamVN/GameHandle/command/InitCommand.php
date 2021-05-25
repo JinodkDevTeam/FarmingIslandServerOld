@@ -28,5 +28,6 @@ class InitCommand
         $cmd->register("tutorial", new Tutorial($plugin));
         $cmd->register("servercheck", new ServerCheck($plugin));
         $cmd->register("mute", new Mute($plugin));
+        $cmd->register("unmute", new UnMute($plugin));
     }
 }
