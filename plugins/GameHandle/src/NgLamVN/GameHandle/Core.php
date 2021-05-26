@@ -12,6 +12,11 @@ use NgLamVN\GameHandle\command\InitCommand;
 use NgLamVN\GameHandle\InvCrashFix\IC_PacketHandler;
 use NgLamVN\GameHandle\task\InitTask;
 use pocketmine\entity\Skin;
+use pocketmine\item\Item;
+use pocketmine\item\ItemFactory;
+use pocketmine\item\Record;
+use pocketmine\level\Level;
+use pocketmine\network\mcpe\protocol\LevelSoundEventPacket;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
@@ -54,6 +59,9 @@ class Core extends PluginBase
         $task = new InitTask($this);
         $this->coin = new CoinSystem($this);
         $this->pstatmanager = new PlayerStatManager();
+
+        ItemFactory::registerItem(new Record(759, LevelSoundEventPacket::SOUND_RECORD_PIGSTEP), true); //PIGSTEP
+        Item::addCreativeItem(new Record(759, LevelSoundEventPacket::SOUND_RECORD_PIGSTEP));
     }
     public function onDisable()
     {

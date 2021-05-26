@@ -82,6 +82,7 @@ class UpdateInfo
             "- /autopickup: tắt bật tự động nhặt vật phẩm khi đập block (mặc định là bật)",
             "- /pay <player>: đưa tiền cho người chơi khác",
             "- /topmoney: Top tiền",
+            "- /notp: Ngăn không cho người tác dịch chuyện đến bạn hay dịch chuyển bạn đi (*Trừ Admin*)",
             "Chúc các bạn chơi vui vẻ :)",
             "* FAQ *",
             "  Q: server có máy farm không ?",
