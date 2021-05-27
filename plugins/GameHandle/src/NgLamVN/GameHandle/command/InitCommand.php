@@ -11,6 +11,7 @@ class InitCommand
     public function __construct(Core $plugin)
     {
         $cmd = $plugin->getServer()->getCommandMap();
+
         $cmd->register("heal", new Heal($plugin));
         $cmd->register("feed", new Feed($plugin));
         $cmd->register("fly", new Fly($plugin));
@@ -32,5 +33,6 @@ class InitCommand
         $cmd->register("freeze", new Freeze($plugin));
         $cmd->register("unfreeze", new UnFreeze($plugin));
         $cmd->register("notp", new NoTP($plugin));
+        $cmd->register("icgive", new IcGive($plugin));
     }
 }
