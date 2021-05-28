@@ -6,6 +6,8 @@ namespace NgLamVN\GameHandle;
 
 use pocketmine\event\player\PlayerFishEvent;
 use pocketmine\item\Item;
+use pocketmine\nbt\NBT;
+use pocketmine\nbt\tag\ListTag;
 
 class FishingManager
 {
@@ -15,11 +17,12 @@ class FishingManager
     public const R4 = [5, 30, 30, 20, 10, 4, 1];
     public const R5 = [10, 40, 30, 10, 5, 5, 0];
     public const R6 = [15, 40, 20, 10, 5, 0, 0];
-    public const R10 = [90, 10, 0, 0, 0, 0, 0];
-    public const R7 = [99, 1, 0, 0, 0, 0, 0];
-    public const MAX_LEVEL = 7;
+    public const R7 = [90, 10, 0, 0, 0, 0, 0];
+    public const R8 = [99, 1, 0, 0, 0, 0, 0];
 
-    public const RARE_LEVEL = [self::R1, self::R2, self::R3, self::R4, self::R5, self::R6, self::R7];
+    public const MAX_LEVEL = 8;
+
+    public const RARE_LEVEL = [self::R1, self::R2, self::R3, self::R4, self::R5, self::R6, self::R7, self::R8];
 
     public const MORE_ITEMS = [100, 50, 50, 25, 25, 10];
 
@@ -44,6 +47,12 @@ class FishingManager
         $nbt->setString("CustomItem", "LazyShard");
         $item->setNamedTag($nbt);
 
+        $item2 = Item::get(Item::BEETROOT_SEEDS);
+        $item2->setCustomName("§aInferium §fSeed");
+        $nbt = $item2->getNamedTag();
+        $nbt->setString("CustomItem", "InferiumSeed");
+        $item2->setNamedTagEntry(new ListTag(Item::TAG_ENCH, [], NBT::TAG_Compound));
+
         $this->items = [
             Item::get(Item::COBBLESTONE, 0, 1),
             Item::get(Item::DIRT, 0 , 1),
@@ -62,7 +71,8 @@ class FishingManager
             Item::get(Item::CACTUS, 0, 1),
             Item::get(Item::SUGARCANE, 0, 1),
             Item::get(Item::EMERALD, 0, 1),
-            $item
+            $item,
+            $item2
         ];
         $this->rlevel = [
             Item::COBBLESTONE => 1,
@@ -85,7 +95,8 @@ class FishingManager
         ];
 
         $this->customItem_rlevel = [
-            "LazyShard" => 7
+            "LazyShard" => 8,
+            "InferiumSeed" => 7
         ];
 
         $this->build();
