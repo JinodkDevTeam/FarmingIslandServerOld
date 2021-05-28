@@ -39,7 +39,8 @@ class UpdateInfo
         });
         $text = [
             "§　Updates:",
-            "- Look Around!",
+            "- Fix Lumberjack enchants",
+            "- New Crops: Inferium Seed",
             "Official wiki: bit.ly/fi-wiki",
             "Vote for server: bit.ly/fi-vote",
             "Official Facebook group: bit.ly/jinodkgroupfb",

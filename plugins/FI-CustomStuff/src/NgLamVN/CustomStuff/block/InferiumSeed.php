@@ -56,6 +56,7 @@ class InferiumSeed implements Listener
                 $item->setNamedTagEntry(new ListTag(Item::TAG_ENCH, [], NBT::TAG_Compound));
 
                 $event->getBlock()->getLevel()->dropItem($event->getBlock()->asVector3(), $item);
+                $event->setCancelled();
             }
         }
     }
