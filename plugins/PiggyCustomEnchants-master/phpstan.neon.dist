@@ -1,0 +1,15 @@
+parameters:
+  paths:
+    - /source/src
+  level: 7
+  bootstrapFiles:
+    - phar:///pocketmine/PocketMine-MP.phar/vendor/autoload.php
+  scanDirectories:
+    - phar:///source/vendor/FormAPI.phar/src/
+    - phar:///source/vendor/Commando.phar/src/
+  excludes_analyse:
+    - source/vendor
+  reportUnmatchedIgnoredErrors: false
+  checkMissingIterableValueType: false
+  ignoreErrors:
+    - "#Strict comparison using === between pocketmine\\\\inventory\\\\PlayerInventory and null will always evaluate to false.#"
