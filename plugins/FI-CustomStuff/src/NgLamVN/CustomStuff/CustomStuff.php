@@ -24,17 +24,17 @@ class CustomStuff extends PluginBase
         $init = new __init($this);
         $blocinit = new __initBlock($this);
 
-        /*$this->piggyCE = $this->getServer()->getPluginManager()->getPlugin("PiggyCustomEnchants");*/
+        /*$this->piggyCE = $this->getServer()->getPluginManager()->getPlugin("PiggyCustomEnchants");
 
-        /*$edian = new BigEndianNBTStream();
-        $item = Item::get(Item::GOLDEN_APPLE);
-        $item->setCustomName("§r§dEnchanted Apple");*/
-        /*$nbt = $item->getNamedTag();
-        $nbt->setString("CustomItem", "KnockbackNemo");*/
+        $edian = new BigEndianNBTStream();
+        $item = Item::get(Item::DYE, 5);
+        $item->setCustomName("§r§dInsanium §fEssence");
+        $nbt = $item->getNamedTag();
+        $nbt->setString("CustomItem", "InsaniumEssence");*/
         /*$nbt->setByte("Unbreakable", 1);
-        $item->setNamedTag($nbt);*/
-        /*$this->enchantItem($item, 2, "knockback");*/
-        /*$item->setLore(["§r§fWhat cactus can do ? \n\n§f§lUnbreakable"]);*/
+        $item->setNamedTag($nbt);
+        $this->enchantItem($item, 5, "thorns");
+        $item->setLore(["§r§fWhat cactus can do ? \n\n§f§lUnbreakable"]);*/
         /*$item->setNamedTagEntry(new ListTag(Item::TAG_ENCH, [], NBT::TAG_Compound));
         $data = bin2hex($edian->writeCompressed($item->nbtSerialize()));
         $this->getLogger()->info($data);*/

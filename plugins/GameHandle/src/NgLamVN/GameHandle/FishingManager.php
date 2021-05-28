@@ -42,7 +42,7 @@ class FishingManager
     public function __construct()
     {
         $item = Item::get(Item::IRON_NUGGET);
-        $item->setCustomName("§bLazy §fShard");
+        $item->setCustomName("§r§bLazy §fShard");
         $nbt = $item->getNamedTag();
         $nbt->setString("CustomItem", "LazyShard");
         $item->setNamedTag($nbt);

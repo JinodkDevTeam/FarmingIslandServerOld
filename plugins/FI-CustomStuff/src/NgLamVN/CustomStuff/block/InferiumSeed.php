@@ -23,7 +23,7 @@ class InferiumSeed implements Listener
         if ($event->getBlock()->getId() == Block::BEETROOT_BLOCK)
         {
             $item = Item::get(Item::BEETROOT_SEEDS);
-            $item->setCustomName("§aInferium §fSeed");
+            $item->setCustomName("§r§aInferium §fSeed");
             $nbt = $item->getNamedTag();
             $nbt->setString("CustomItem", "InferiumSeed");
             $item->setNamedTagEntry(new ListTag(Item::TAG_ENCH, [], NBT::TAG_Compound));
@@ -50,7 +50,7 @@ class InferiumSeed implements Listener
                 $event->getBlock()->getLevel()->setBlock($event->getBlock()->asVector3(), Block::get(Block::BEETROOT_BLOCK), true, true);
 
                 $item = Item::get(Item::BEETROOT);
-                $item->setCustomName("§aInferium §fEssence");
+                $item->setCustomName("§r§aInferium §fEssence");
                 $nbt = $item->getNamedTag();
                 $nbt->setString("CustomItem", "InferiumEssence");
                 $item->setNamedTagEntry(new ListTag(Item::TAG_ENCH, [], NBT::TAG_Compound));
