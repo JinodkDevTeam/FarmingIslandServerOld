@@ -48,7 +48,7 @@ class FishingManager
         $item->setNamedTag($nbt);
 
         $item2 = Item::get(Item::BEETROOT_SEEDS);
-        $item2->setCustomName("§aInferium §fSeed");
+        $item2->setCustomName("§r§aInferium §fSeed");
         $nbt = $item2->getNamedTag();
         $nbt->setString("CustomItem", "InferiumSeed");
         $item2->setNamedTagEntry(new ListTag(Item::TAG_ENCH, [], NBT::TAG_Compound));
