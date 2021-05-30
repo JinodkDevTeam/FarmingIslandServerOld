@@ -1,0 +1,18 @@
+name: Minion
+version: 1.9.5
+api: 3.0.0
+main: CLADevs\Minion\Main
+author: CLADevs
+softdepend:
+  - EconomyAPI
+
+commands:
+  minion:
+    description: "get the Minion Spawner!"
+permissions:
+  minion.commands:
+    description: "/minion command permission"
+    default: op
+  minion.open.others:
+    description: "Open other people minions"
+    default: op

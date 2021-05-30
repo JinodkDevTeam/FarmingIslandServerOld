@@ -8,9 +8,12 @@ use pocketmine\event\player\PlayerFishEvent;
 use pocketmine\item\Item;
 use pocketmine\nbt\NBT;
 use pocketmine\nbt\tag\ListTag;
+use pocketmine\utils\SingletonTrait;
 
 class FishingManager
 {
+    use SingletonTrait;
+
     public const R1 = [0, 0, 10, 20, 20, 40, 10];
     public const R2 = [0, 10, 25, 20, 20, 20, 5];
     public const R3 = [0, 20, 30, 20, 20, 7, 3];

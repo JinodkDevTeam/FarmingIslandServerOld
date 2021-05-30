@@ -1,0 +1,13 @@
+name: GiveItem
+main: JuryUwU\DuaItem\Main
+author: JuryUwU
+version: 0.1
+api: 3.0.0
+commands:
+  duaitem:
+    description: "Đưa item"
+    permission: duaitem.command
+permissions:
+  duaitem.command:
+    description: "Cho phép player dùng lệnh Đưa item"
+    default: op
