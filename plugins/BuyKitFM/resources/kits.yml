@@ -49,7 +49,7 @@ Test:
     - "LINE 1"
     - "LINE 2"
     - "LINE 3"
-  price: 10
+  price: 999999
 Test2:
   items:
     1:
@@ -103,4 +103,4 @@ Test2:
     - "FUCK"
     - "THIS"
     - "KIT"
-  price: 300
+  price: 99999999
