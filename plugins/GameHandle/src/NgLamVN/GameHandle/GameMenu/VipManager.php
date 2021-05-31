@@ -37,15 +37,17 @@ class VipManager
                     break;
                 case 2:
                 case 3:
+                case 4:
                     $this->CommingSoon($player);
                     break;
             }
         });
         $form->setTitle("§　§lAdvanced Rank");
         $form->addButton("§　§l§cEXIT");
-        $form->addButton("§6§lVIP §r§b[Lifetime]\n§aBuy for 2000 coins");
-        $form->addButton("§6§lVIP§a+\n§aBuy for 50000 VNĐ per month");
-        $form->addButton("§c§lYou§ftuber");
+        $form->addButton("§　§6§lVIP §r§b[Lifetime]\n§aBuy for 2000 coins");
+        $form->addButton("§　§6§lVIP§a+\n§aBuy for 50000 VNĐ per month");
+        $form->addButton("§　§c§lYou§ftuber");
+        $form->addButton("§　§bMember");
 
         $player->sendForm($form);
     }
