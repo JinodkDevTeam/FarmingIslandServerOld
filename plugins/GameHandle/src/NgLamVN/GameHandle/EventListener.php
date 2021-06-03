@@ -4,6 +4,7 @@ namespace NgLamVN\GameHandle;
 
 use NgLamVN\GameHandle\task\AutoJoinIslandTask;
 use pocketmine\command\ConsoleCommandSender;
+use pocketmine\event\block\SignChangeEvent;
 use pocketmine\event\entity\EntityLevelChangeEvent;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerChangeSkinEvent;
@@ -175,6 +176,24 @@ class EventListener implements Listener
             $event->setCancelled();
         }
     }
+
+    /**
+     * @param SignChangeEvent $event
+     * @priority HIGHEST
+     * @ignoreCancelled TRUE
+     */
+    /*public function onEditSign (SignChangeEvent $event)
+    {
+        $player = $event->getPlayer();
+        $lines = $event->getLines();
+        $pos = $event->getBlock()->asPosition();
+
+        $this->getCore()->getLogger()->info("[SignAdd][".$player->getName()."] edit sign on pos (".$pos->getX()."-".$pos->getY()."-".$pos->getZ().") world:". $pos->getLevel()->getName());
+        foreach ($lines as $line)
+        {
+            $this->getCore()->getLogger()->info("[SignInfo] " . $line);
+        }
+    }*/
 
     /**
      * @param PlayerMoveEvent $event
