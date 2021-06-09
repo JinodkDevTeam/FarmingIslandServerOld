@@ -32,6 +32,8 @@ class AcaciaTree extends Tree {
 
     public function placeObject(ChunkManager $level, int $x, int $y, int $z, Random $rand) {
         $position = new Vector3($x, $y, $z);
+        $this->placeLogAt($level, $position);
+        $level->setBlockDataAt($x, $y, $z, 0);
         $i = $rand->nextBoundedInt(3) + $rand->nextBoundedInt(3) + 5;
         $flag = true;
 

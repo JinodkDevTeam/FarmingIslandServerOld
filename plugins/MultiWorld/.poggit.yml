@@ -5,6 +5,6 @@ branches:
 - Generators
 projects:
   MultiWorld:
-    path: ""
-    icon: "icon.png"
+    path: MultiWorld
+    icon: icon.png
 ...
