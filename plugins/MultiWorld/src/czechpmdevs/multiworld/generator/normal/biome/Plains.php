@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2021  CzechPMDevs
+ * Copyright (C) 2018 - 2020  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,8 +32,15 @@ use czechpmdevs\multiworld\generator\normal\populator\object\Plant;
 use pocketmine\block\Dandelion;
 use pocketmine\block\Flower;
 
+/**
+ * Class Plains
+ * @package czechpmdevs\multiworld\generator\normal\biome
+ */
 class Plains extends GrassyBiome {
 
+    /**
+     * Plains constructor.
+     */
     public function __construct() {
         parent::__construct(0.8, 0.4);
 
@@ -44,7 +51,7 @@ class Plains extends GrassyBiome {
         $daisy = new PlantPopulator(9, 7, 85);
         $daisy->addPlant(new Plant(new Flower(8)));
 
-        $bluet = new PlantPopulator(9, 7, 85);
+        $bluet = new PlantPopulator(9,7, 85);
         $bluet->addPlant(new Plant(new Flower(3)));
 
         $tulips = new PlantPopulator(9, 7, 85);
@@ -55,11 +62,14 @@ class Plains extends GrassyBiome {
         $lake = new LakePopulator();
         $tallGrass = new TallGrassPopulator(89, 26);
 
-        $this->addPopulators([$lake, $flowers, $daisy, $bluet, $tulips, $tree, $tallGrass]);
+        $this->addPopulators([new StructurePopulator(), $lake, $flowers, $daisy, $bluet, $tulips, $tree, $tallGrass]);
 
         $this->setElevation(64, 68);
     }
 
+    /**
+     * @return string
+     */
     public function getName(): string {
         return "Plains";
     }

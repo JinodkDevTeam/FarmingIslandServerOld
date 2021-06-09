@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2021  CzechPMDevs
+ * Copyright (C) 2018 - 2020  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,13 +22,23 @@ declare(strict_types=1);
 
 namespace czechpmdevs\multiworld\generator\normal\biome;
 
+/**
+ * Class ForestHills
+ * @package czechpmdevs\multiworld\generator\normal\biome
+ */
 class ForestHills extends Forest {
 
+    /**
+     * ForestHills constructor.
+     */
     public function __construct() {
         parent::__construct();
         $this->setElevation(66, 89);
     }
 
+    /**
+     * @return string
+     */
     public function getName(): string {
         return "Forest Hills";
     }

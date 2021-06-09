@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2021  CzechPMDevs
+ * Copyright (C) 2018 - 2020  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,28 +27,43 @@ use czechpmdevs\multiworld\util\LanguageManager;
 use pocketmine\command\CommandSender;
 use pocketmine\Server;
 
+/**
+ * Class UnloadSubcommand
+ * @package czechpmdevs\multiworld\command\subcommand
+ */
 class UnloadSubcommand implements SubCommand {
 
-    public function executeSub(CommandSender $sender, array $args, string $name): void {
+    /**
+     * @param CommandSender $sender
+     * @param array $args
+     * @param string $name
+     *
+     * @return mixed|void
+     */
+    public function executeSub(CommandSender $sender, array $args, string $name) {
         if (!isset($args[0])) {
             $sender->sendMessage(LanguageManager::getMsg($sender, "unload-usage"));
             return;
         }
 
-        if (!$this->getServer()->isLevelGenerated($args[0])) {
+        if(!$this->getServer()->isLevelGenerated($args[0])) {
             $sender->sendMessage(MultiWorld::getPrefix() . LanguageManager::getMsg($sender, "unload-levelnotexists", [$args[0]]));
             return;
         }
 
-        if (!$this->getServer()->isLevelLoaded($args[0])) {
+        if(!$this->getServer()->isLevelLoaded($args[0])) {
             $sender->sendMessage(MultiWorld::getPrefix() . LanguageManager::getMsg($sender, "unload-unloaded"));
             return;
         }
 
         $this->getServer()->unloadLevel($this->getServer()->getLevelByName($args[0]));
         $sender->sendMessage(MultiWorld::getPrefix() . LanguageManager::getMsg($sender, "unload-done"));
+        return;
     }
 
+    /**
+     * @return Server $server
+     */
     private function getServer(): Server {
         return Server::getInstance();
     }

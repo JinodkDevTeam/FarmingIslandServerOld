@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2021  CzechPMDevs
+ * Copyright (C) 2018 - 2020  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,28 +27,38 @@ use czechpmdevs\multiworld\MultiWorld;
 use czechpmdevs\multiworld\util\LanguageManager;
 use pocketmine\command\CommandSender;
 
+/**
+ * Class CreateSubcommand
+ * @package czechpmdevs\multiworld\command\subcommand
+ */
 class CreateSubcommand implements SubCommand {
 
-    public function executeSub(CommandSender $sender, array $args, string $name): void {
-        if (!isset($args[0])) {
+    /**
+     * @param CommandSender $sender
+     * @param array $args
+     * @param string $name
+     * @return mixed|void
+     */
+    public function executeSub(CommandSender $sender, array $args, string $name) {
+        if(!isset($args[0])) {
             $sender->sendMessage(LanguageManager::getMsg($sender, "create-usage"));
             return;
         }
 
-        if (MultiWorld::getInstance()->getServer()->isLevelGenerated($args[0])) {
+        if(MultiWorld::getInstance()->getServer()->isLevelGenerated($args[0])) {
             $sender->sendMessage(LanguageManager::getMsg($sender, "create-exists", [$args[0]]));
             return;
         }
 
         $seed = 0;
-        if (isset($args[1]) && is_numeric($args[1])) {
-            $seed = (int)$args[1];
+        if(isset($args[1]) && is_numeric($args[1])) {
+            $seed = (int) $args[1];
         }
 
         $generatorName = "normal";
         $generator = null;
 
-        if (isset($args[2])) {
+        if(isset($args[2])) {
             $generatorName = $args[2];
         }
 

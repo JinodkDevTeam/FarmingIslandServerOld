@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2021  CzechPMDevs
+ * Copyright (C) 2018 - 2020  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,24 +23,25 @@ declare(strict_types=1);
 
 namespace czechpmdevs\multiworld\api;
 
-use Generator;
-use function glob;
-use function is_dir;
-
+/**
+ * Class FileBrowsingApi
+ * @package czechpmdevs\multiworld\api
+ */
 class FileBrowsingApi {
 
     /**
+     * @api
+     *
      * Returns all subdirectories in the path
      *
-     * @return string[]
+     * @param string $dir
+     * @return array
      */
     public static function getAllSubdirectories(string $dir): array {
-        $scanDirectory = function (string $dir): Generator {
-            if($subDirs = glob($dir . "/*")) {
-                foreach ($subDirs as $subDir) {
-                    if (is_dir($subDir)) {
-                        yield $subDir;
-                    }
+        $scanDirectory = function (string $dir): \Generator {
+            foreach (glob($dir . "/*") as $subDir) {
+                if(is_dir($subDir)) {
+                    yield $subDir;
                 }
             }
         };
@@ -51,7 +52,7 @@ class FileBrowsingApi {
         check:
         foreach (array_keys($toCheck) as $scanning) {
             foreach ($scanDirectory($scanning) as $subDirectory) {
-                if (!in_array($subDirectory, $all)) {
+                if(!in_array($subDirectory, $all)) {
                     $all[] = $subDirectory;
                     $toCheck[$subDirectory] = 0;
                 }
@@ -60,7 +61,7 @@ class FileBrowsingApi {
             unset($toCheck[$scanning]);
         }
 
-        if (!empty($toCheck)) {
+        if(!empty($toCheck)) {
             goto check;
         }
 
@@ -68,13 +69,22 @@ class FileBrowsingApi {
     }
 
     /**
+     * @api
+     *
      * Saves resources with subdirectories
+     *
+     * @param string $sourceFile
+     * @param string $targetFile
+     * @param bool $rewrite
+     *
+     * @return bool $isChanged
      */
     public static function saveResource(string $sourceFile, string $targetFile, bool $rewrite = false): bool {
-        if (file_exists($targetFile)) {
-            if ($rewrite) {
+        if(file_exists($targetFile)) {
+            if($rewrite) {
                 unlink($targetFile);
-            } else {
+            }
+            else {
                 return false;
             }
         }
@@ -85,7 +95,7 @@ class FileBrowsingApi {
         $tested = "";
         foreach ($dirs as $dir) {
             $tested .= $dir . DIRECTORY_SEPARATOR;
-            if (!file_exists($tested)) {
+            if(!file_exists($tested)) {
                 @mkdir($tested);
             }
         }
@@ -96,14 +106,21 @@ class FileBrowsingApi {
 
 
     /**
+     * @api
+     *
      * Example:
      * $path = 'D:\JetBrains\PhpstormProjects\ProjectCzechPMDevs\plugins\MultiWorld/resources/structures/village/snowy/houses';
      * $root = 'resources'
      * -> '/structures/village/snowy/houses'
+     *
+     * @param string $path
+     * @param string $root
+     *
+     * @return string
      */
     public static function removePathFromRoot(string $path, string $root): string {
         $position = strpos($path, $root);
-        if ($position === false) {
+        if($position === false) {
             return $path;
         }
 

@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2021  CzechPMDevs
+ * Copyright (C) 2018 - 2020  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,8 +26,15 @@ use czechpmdevs\multiworld\generator\normal\populator\impl\PlantPopulator;
 use czechpmdevs\multiworld\generator\normal\populator\object\Plant;
 use pocketmine\block\DoublePlant;
 
+/**
+ * Class SunflowerPlains
+ * @package czechpmdevs\multiworld\generator\normal\biome
+ */
 class SunflowerPlains extends Plains {
 
+    /**
+     * SunflowerPlains constructor.
+     */
     public function __construct() {
         parent::__construct();
 
@@ -37,6 +44,9 @@ class SunflowerPlains extends Plains {
         $this->addPopulator($sunflowers);
     }
 
+    /**
+     * @return string
+     */
     public function getName(): string {
         return "Sunflower Plains";
     }

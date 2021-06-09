@@ -1,23 +1,5 @@
 <?php
 
-/**
- * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2021  CzechPMDevs
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
-
 declare(strict_types=1);
 
 namespace czechpmdevs\multiworld\util;
@@ -29,6 +11,10 @@ use czechpmdevs\multiworld\MultiWorld;
 use pocketmine\form\Form;
 use pocketmine\Player;
 
+/**
+ * Class FormManager
+ * @package czechpmdevs\multiworld\util
+ */
 class FormManager {
 
     public const FORM_CREATE = 0;
@@ -40,18 +26,24 @@ class FormManager {
     public const FORM_TELEPORT_PLAYER = 6;
     public const FORM_UPDATE = 7;
 
-    /** @var MultiWorld */
-    public MultiWorld $plugin;
+    /** @var MultiWorld $plugin */
+    public $plugin;
 
+    /**
+     * FormManager constructor.
+     * @param MultiWorld $plugin
+     */
     public function __construct(MultiWorld $plugin) {
         $this->plugin = $plugin;
     }
 
     /**
+     * @param Player $player
      * @param mixed $data
+     * @param Form $form
      */
-    public function handleFormResponse(Player $player, $data, Form $form): void {
-        if ($data === null) return;
+    public function handleFormResponse(Player $player, $data, Form $form) {
+        if($data === null) return;
         $customForm = new CustomForm("World Manager");
         $customForm->mwId = $data;
 
@@ -70,7 +62,7 @@ class FormManager {
                 break;
             case self::FORM_GAMERULES:
                 $customForm->addLabel("Update level GameRules");
-                $rules = WorldGameRulesAPI::getLevelGameRules($player->getLevelNonNull());
+                $rules = WorldGameRulesAPI::getLevelGameRules($player->getLevel());
                 foreach ($rules as $rule => [1 => $value]) {
                     $customForm->addToggle((string)$rule, $value);
                 }
@@ -112,13 +104,15 @@ class FormManager {
     }
 
     /**
+     * @param Player $player
      * @param mixed $data
+     * @param CustomForm $form
      */
-    public function handleCustomFormResponse(Player $player, $data, CustomForm $form): void {
-        if ($data === null) return;
+    public function handleCustomFormResponse(Player $player, $data, CustomForm $form) {
+        if($data === null) return;
         switch ($form->mwId) {
             case self::FORM_CREATE:
-                if ($data[1] === "" || (strlen($data[2]) > 2 && !is_numeric($data[2]))) {
+                if($data[1] === "" || (strlen($data[2]) > 2 && !is_numeric($data[2]))) {
                     LanguageManager::getMsg($player, "forms-invalid");
                     break;
                 }
@@ -155,7 +149,7 @@ class FormManager {
                 break;
             case self::FORM_GAMERULES:
                 array_shift($data);
-                $gameRules = array_keys(WorldGameRulesAPI::getLevelGameRules($player->getLevelNonNull()));
+                $gameRules = array_keys(WorldGameRulesAPI::getLevelGameRules($player->getLevel()));
                 foreach ($data as $i => $v) {
                     $this->plugin->getServer()->dispatchCommand($player, "gamerule {$gameRules[$i]} " . ((bool)$v ? "true" : "false"));
                 }
@@ -164,10 +158,10 @@ class FormManager {
                 $this->plugin->getServer()->dispatchCommand($player, "mw info " . WorldManagementAPI::getAllLevels()[(int)$data[1]]);
                 break;
             case self::FORM_LOAD_UNLOAD:
-                if ($data[1] != "") {
+                if($data[1] != "") {
                     $this->plugin->getServer()->dispatchCommand($player, "mw load {$data[1]}");
                 }
-                if ($data[2] != "") {
+                if($data[2] != "") {
                     $this->plugin->getServer()->dispatchCommand($player, "mw unload {$data[2]}");
                 }
                 break;
@@ -183,10 +177,10 @@ class FormManager {
                 break;
             case self::FORM_UPDATE:
                 array_shift($data);
-                if ((bool)array_shift($data)) {
+                if((bool)array_shift($data)) {
                     $this->plugin->getServer()->dispatchCommand($player, "mw update spawn");
                 }
-                if ((bool)array_shift($data)) {
+                if((bool)array_shift($data)) {
                     $this->plugin->getServer()->dispatchCommand($player, "mw update lobby");
                 }
                 break;

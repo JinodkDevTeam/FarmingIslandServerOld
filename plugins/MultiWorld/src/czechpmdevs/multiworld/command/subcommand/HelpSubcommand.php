@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2021  CzechPMDevs
+ * Copyright (C) 2018 - 2020  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,22 +25,39 @@ namespace czechpmdevs\multiworld\command\subcommand;
 use czechpmdevs\multiworld\util\LanguageManager;
 use pocketmine\command\CommandSender;
 
+/**
+ * Class HelpSubcommand
+ * @package czechpmdevs\multiworld\command\subcommand
+ */
 class HelpSubcommand implements SubCommand {
 
-    public function executeSub(CommandSender $sender, array $args, string $name): void {
-        if (!isset($args[0])) {
+    /**
+     * @param CommandSender $sender
+     * @param array $args
+     * @param string $name
+     *
+     * @return mixed|void
+     */
+    public function executeSub(CommandSender $sender, array $args, string $name) {
+        if(!isset($args[0])) {
             $sender->sendMessage($this->getHelpPage($sender, 1));
             return;
         }
 
-        if (!is_numeric($args[0])) {
-            $sender->sendMessage($this->getHelpPage($sender, 1));
+        if(!is_numeric($args[0])) {
+            $sender->sendMessage($this->getHelpPage($sender,1));
             return;
         }
 
         $sender->sendMessage($this->getHelpPage($sender, (int)$args[0]));
     }
 
+    /**
+     * @param CommandSender $sender
+     * @param int $page
+     *
+     * @return string
+     */
     public function getHelpPage(CommandSender $sender, int $page): string {
         $title = LanguageManager::getMsg($sender, "help", [$page, "2"]);
 

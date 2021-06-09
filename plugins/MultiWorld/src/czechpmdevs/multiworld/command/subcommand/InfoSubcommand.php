@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2021  CzechPMDevs
+ * Copyright (C) 2018 - 2020  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,19 +28,29 @@ use pocketmine\command\CommandSender;
 use pocketmine\level\Level;
 use pocketmine\Player;
 
+/**
+ * Class InfoSubcommand
+ * @package czechpmdevs\multiworld\command\subcommand
+ */
 class InfoSubcommand implements SubCommand {
 
-    public function executeSub(CommandSender $sender, array $args, string $name): void {
-        if (!$sender instanceof Player) {
+    /**
+     * @param CommandSender $sender
+     * @param array $args
+     * @param string $name
+     * @return mixed|void
+     */
+    public function executeSub(CommandSender $sender, array $args, string $name) {
+        if(!$sender instanceof Player) {
             $sender->sendMessage("§cThis command can be used only in-game!");
             return;
         }
-        if (isset($args[0])) {
-            if (!WorldManagementAPI::isLevelGenerated($args[0])) {
+        if(isset($args[0])) {
+            if(!WorldManagementAPI::isLevelGenerated($args[0])) {
                 $sender->sendMessage(LanguageManager::getMsg($sender, "info.levelnotexists", [$args[0]]));
                 return;
             }
-            if (!WorldManagementAPI::isLevelLoaded($args[0])) {
+            if(!WorldManagementAPI::isLevelLoaded($args[0])) {
                 WorldManagementAPI::loadLevel($args[0]);
             }
             $sender->sendMessage($this->getInfoMsg($sender, WorldManagementAPI::getLevel($args[0])));
@@ -49,6 +59,11 @@ class InfoSubcommand implements SubCommand {
         $sender->sendMessage($this->getInfoMsg($sender, $sender->getLevel()));
     }
 
+    /**
+     * @param CommandSender $sender
+     * @param Level $level
+     * @return string
+     */
     public function getInfoMsg(CommandSender $sender, Level $level): string {
         $name = $level->getName();
         $folderName = $level->getFolderName();
@@ -58,12 +73,12 @@ class InfoSubcommand implements SubCommand {
         $time = $level->getTime();
 
         $msg = LanguageManager::getMsg($sender, "info", [$name]);
-        $msg .= "\n" . LanguageManager::getMsg($sender, "info-name", [$name]);
-        $msg .= "\n" . LanguageManager::getMsg($sender, "info-folderName", [$folderName]);
-        $msg .= "\n" . LanguageManager::getMsg($sender, "info-players", [$players]);
-        $msg .= "\n" . LanguageManager::getMsg($sender, "info-generator", [$generator]);
-        $msg .= "\n" . LanguageManager::getMsg($sender, "info-seed", [$seed]);
-        $msg .= "\n" . LanguageManager::getMsg($sender, "info-time", [$time]);
+        $msg .= "\n".LanguageManager::getMsg($sender, "info-name", [$name]);
+        $msg .= "\n".LanguageManager::getMsg($sender, "info-folderName", [$folderName]);
+        $msg .= "\n".LanguageManager::getMsg($sender, "info-players", [$players]);
+        $msg .= "\n".LanguageManager::getMsg($sender, "info-generator", [$generator]);
+        $msg .= "\n".LanguageManager::getMsg($sender, "info-seed", [$seed]);
+        $msg .= "\n".LanguageManager::getMsg($sender,"info-time", [$time]);
 
         return $msg;
     }

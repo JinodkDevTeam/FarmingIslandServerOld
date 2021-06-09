@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2021  CzechPMDevs
+ * Copyright (C) 2018 - 2020  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,14 +27,25 @@ use czechpmdevs\multiworld\generator\normal\biome\types\SnowyBiome;
 use czechpmdevs\multiworld\generator\normal\object\Tree;
 use czechpmdevs\multiworld\generator\normal\populator\impl\TreePopulator;
 
+/**
+ * Class IcePlains
+ * @package czechpmdevs\multiworld\generator\normal\biome
+ */
 class IcePlains extends GrassyBiome implements SnowyBiome {
 
+    /**
+     * IcePlains constructor.
+     */
     public function __construct() {
         parent::__construct(0, 0.5);
         $this->addPopulator(new TreePopulator(2, 2, 90, Tree::SPRUCE));
         $this->setElevation(100, 106);
     }
 
+
+    /**
+     * @return string
+     */
     public function getName(): string {
         return "Ice Plains";
     }

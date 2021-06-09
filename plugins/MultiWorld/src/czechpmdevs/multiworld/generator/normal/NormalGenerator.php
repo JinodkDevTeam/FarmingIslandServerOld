@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2021  CzechPMDevs
+ * Copyright (C) 2018 - 2020  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,6 @@ declare(strict_types=1);
 
 namespace czechpmdevs\multiworld\generator\normal;
 
-use Exception;
 use pocketmine\block\Block;
 use pocketmine\block\CoalOre;
 use pocketmine\block\DiamondOre;
@@ -35,7 +34,6 @@ use pocketmine\block\RedstoneOre;
 use pocketmine\block\Stone;
 use pocketmine\level\biome\Biome;
 use pocketmine\level\ChunkManager;
-use pocketmine\level\format\Chunk;
 use pocketmine\level\generator\Generator;
 use pocketmine\level\generator\noise\Simplex;
 use pocketmine\level\generator\object\OreType;
@@ -44,64 +42,85 @@ use pocketmine\level\generator\populator\Ore;
 use pocketmine\level\generator\populator\Populator;
 use pocketmine\math\Vector3;
 use pocketmine\utils\Random;
-use ReflectionException;
 use function exp;
 
 class NormalGenerator extends Generator {
 
-    /** @var float[][] */
-    private static ?array $GAUSSIAN_KERNEL = null;
-    /** @var int */
-    private static int $SMOOTH_SIZE = 5;
-    
     /** @var Populator[] */
-    private array $populators = [];
-    /** @var Populator[] */
-    private array $generationPopulators = [];
-    
-    /** @var Simplex */
-    private Simplex $noiseBase;
-    /** @var BiomeSelector */
-    private BiomeSelector $selector; // TODO - Make it different for each biome
+    private $populators = [];
 
-    /** @phpstan-ignore-next-line */
-    public function __construct(array $options = []) {
-        if (NormalGenerator::$GAUSSIAN_KERNEL === null) {
-            NormalGenerator::generateKernel();
+    /** @var Populator[] */
+    private $generationPopulators = [];
+    /** @var Simplex */
+    private $noiseBase;
+
+    /** @var BiomeSelector */
+    private $selector;
+
+    /** @var float[][] $GAUSSIAN_KERNEL */
+    private static $GAUSSIAN_KERNEL = null;
+    /** @var int $SMOOTH_SIZE */
+    private static $SMOOTH_SIZE = 5; // TODO - Make it different for each biome
+
+    /**
+     * NormalGenerator constructor.
+     *
+     * @param array $options
+     *
+     * @throws \ReflectionException
+     */
+    public function __construct(array $options = []){
+        if(self::$GAUSSIAN_KERNEL === null){
+            self::generateKernel();
         }
     }
 
-    private static function generateKernel(): void {
-        NormalGenerator::$GAUSSIAN_KERNEL = [];
+    private static function generateKernel() : void{
+        self::$GAUSSIAN_KERNEL = [];
 
-        $bellSize = 1 / NormalGenerator::$SMOOTH_SIZE;
-        $bellHeight = 2 * NormalGenerator::$SMOOTH_SIZE;
+        $bellSize = 1 / self::$SMOOTH_SIZE;
+        $bellHeight = 2 * self::$SMOOTH_SIZE;
 
-        for ($sx = -NormalGenerator::$SMOOTH_SIZE; $sx <= NormalGenerator::$SMOOTH_SIZE; ++$sx) {
-            NormalGenerator::$GAUSSIAN_KERNEL[$sx + NormalGenerator::$SMOOTH_SIZE] = [];
+        for($sx = -self::$SMOOTH_SIZE; $sx <= self::$SMOOTH_SIZE; ++$sx){
+            self::$GAUSSIAN_KERNEL[$sx + self::$SMOOTH_SIZE] = [];
 
-            for ($sz = -NormalGenerator::$SMOOTH_SIZE; $sz <= NormalGenerator::$SMOOTH_SIZE; ++$sz) {
+            for($sz = -self::$SMOOTH_SIZE; $sz <= self::$SMOOTH_SIZE; ++$sz){
                 $bx = $bellSize * $sx;
                 $bz = $bellSize * $sz;
-                NormalGenerator::$GAUSSIAN_KERNEL[$sx + NormalGenerator::$SMOOTH_SIZE][$sz + NormalGenerator::$SMOOTH_SIZE] = $bellHeight * exp(-($bx * $bx + $bz * $bz) / 2);
+                self::$GAUSSIAN_KERNEL[$sx + self::$SMOOTH_SIZE][$sz + self::$SMOOTH_SIZE] = $bellHeight * exp(-($bx * $bx + $bz * $bz) / 2);
             }
         }
     }
 
-    public function getName(): string {
+    public function getName() : string{
         return "custom";
     }
 
-    public function getSettings(): array {
+    public function getSettings() : array{
         return [];
+    }
+
+    private function pickBiome(int $x, int $z): Biome {
+        $hash = $x * 2345803 ^ $z * 9236449 ^ $this->level->getSeed();
+        $hash *= $hash + 223;
+        $xNoise = $hash >> 20 & 3;
+        $zNoise = $hash >> 22 & 3;
+        if($xNoise == 3){
+            $xNoise = 1;
+        }
+        if($zNoise == 3){
+            $zNoise = 1;
+        }
+
+        return $this->selector->pickBiome($x + $xNoise - 1, $z + $zNoise - 1);
     }
 
     /**
      * @param ChunkManager $level
      * @param Random $random
-     * @throws ReflectionException
+     * @throws \ReflectionException
      */
-    public function init(ChunkManager $level, Random $random): void {
+    public function init(ChunkManager $level, Random $random) : void{
         parent::init($level, $random);
         BiomeManager::registerBiomes();
 
@@ -131,17 +150,16 @@ class NormalGenerator extends Generator {
         $this->populators[] = $ores;
     }
 
-    public function generateChunk(int $chunkX, int $chunkZ): void {
+    public function generateChunk(int $chunkX, int $chunkZ) : void{
         $this->random->setSeed(0xdeadbeef ^ ($chunkX << 8) ^ $chunkZ ^ $this->level->getSeed());
 
-        /** @phpstan-var Chunk $chunk */
-        $chunk = $this->level->getChunk($chunkX, $chunkZ);
         $noise = $this->noiseBase->getFastNoise3D(16, 128, 16, 4, 8, 4, $chunkX * 16, 0, $chunkZ * 16);
+        $chunk = $this->level->getChunk($chunkX, $chunkZ);
 
         $biomeCache = [];
 
-        for ($x = 0; $x < 16; ++$x) {
-            for ($z = 0; $z < 16; ++$z) {
+        for($x = 0; $x < 16; ++$x){
+            for($z = 0; $z < 16; ++$z){
                 $minSum = 0;
                 $maxSum = 0;
                 $weightSum = 0;
@@ -149,18 +167,18 @@ class NormalGenerator extends Generator {
                 $biome = $this->pickBiome($chunkX * 16 + $x, $chunkZ * 16 + $z);
                 $chunk->setBiomeId($x, $z, $biome->getId());
 
-                for ($sx = -NormalGenerator::$SMOOTH_SIZE; $sx <= NormalGenerator::$SMOOTH_SIZE; ++$sx) {
-                    for ($sz = -NormalGenerator::$SMOOTH_SIZE; $sz <= NormalGenerator::$SMOOTH_SIZE; ++$sz) {
+                for($sx = -self::$SMOOTH_SIZE; $sx <= self::$SMOOTH_SIZE; ++$sx){
+                    for($sz = -self::$SMOOTH_SIZE; $sz <= self::$SMOOTH_SIZE; ++$sz){
 
-                        $weight = NormalGenerator::$GAUSSIAN_KERNEL[$sx + NormalGenerator::$SMOOTH_SIZE][$sz + NormalGenerator::$SMOOTH_SIZE];
+                        $weight = self::$GAUSSIAN_KERNEL[$sx + self::$SMOOTH_SIZE][$sz + self::$SMOOTH_SIZE];
 
-                        if ($sx === 0 and $sz === 0) {
+                        if($sx === 0 and $sz === 0){
                             $adjacent = $biome;
-                        } else {
-                            $index = ((($chunkX * 16 + $x + $sx) & 0xFFFFFFFF) << 32) | (($chunkZ * 16 + $z + $sz) & 0xFFFFFFFF);
-                            if (isset($biomeCache[$index])) {
+                        }else{
+                            $index = ((($chunkX * 16 + $x + $sx) & 0xFFFFFFFF) << 32) | (( $chunkZ * 16 + $z + $sz) & 0xFFFFFFFF);
+                            if(isset($biomeCache[$index])){
                                 $adjacent = $biomeCache[$index];
-                            } else {
+                            }else{
                                 $biomeCache[$index] = $adjacent = $this->pickBiome($chunkX * 16 + $x + $sx, $chunkZ * 16 + $z + $sz);
                             }
                         }
@@ -170,10 +188,11 @@ class NormalGenerator extends Generator {
                             $maxSum += $adjacent->getMaxElevation() * $weight;
 
                             $weightSum += $weight;
-                        } catch (Exception $e) {
-//                            echo "[MultiWorld/Debug] Error appeared, maybe will cause generation bug\n";
-//                            echo "[MultiWorld/Debug] class: " . get_class($adjacent) . "; index: " . $index . "\n";
-//                            echo "[MultiWorld/Debug] Please, submit this to https://github.com/CzechPMDevs/MultiWorld/issues.\n";
+                        }
+                        catch (\Exception $e) {
+                            echo "[MultiWorld/Debug] Error appeared, maybe will cause generation bug\n";
+                            echo "[MultiWorld/Debug] class: " . get_class($adjacent) . "; index: " . $index ."\n";
+                            echo "[MultiWorld/Debug] Please, submit this to https://github.com/CzechPMDevs/MultiWorld/issues.\n";
                         }
 
                     }
@@ -184,56 +203,41 @@ class NormalGenerator extends Generator {
 
                 $smoothHeight = ($maxSum - $minSum) / 2;
 
-                for ($y = 0; $y < 128; ++$y) {
-                    if ($y === 0) {
+                for($y = 0; $y < 128; ++$y){
+                    if($y === 0){
                         $chunk->setBlockId($x, $y, $z, Block::BEDROCK);
                         continue;
                     }
 
                     $noiseValue = $noise[$x][$z][$y] - 1 / $smoothHeight * ($y - $smoothHeight - $minSum);
 
-                    if ($noiseValue > 0) {
+                    if($noiseValue > 0){
                         $chunk->setBlockId($x, $y, $z, Block::STONE);
-                    } elseif ($y < 63) {
+                    }
+                    elseif($y < 63) {
                         $chunk->setBlockId($x, $y, $z, Block::WATER);
                     }
                 }
             }
         }
 
-        foreach ($this->generationPopulators as $populator) {
+        foreach($this->generationPopulators as $populator){
             $populator->populate($this->level, $chunkX, $chunkZ, $this->random);
         }
     }
 
-    private function pickBiome(int $x, int $z): Biome {
-        $hash = $x * 2345803 ^ $z * 9236449 ^ $this->level->getSeed();
-        $hash *= $hash + 223;
-        $xNoise = $hash >> 20 & 3;
-        $zNoise = $hash >> 22 & 3;
-        if ($xNoise == 3) {
-            $xNoise = 1;
-        }
-        if ($zNoise == 3) {
-            $zNoise = 1;
-        }
-
-        return $this->selector->pickBiome($x + $xNoise - 1, $z + $zNoise - 1);
-    }
-
-    public function populateChunk(int $chunkX, int $chunkZ): void {
+    public function populateChunk(int $chunkX, int $chunkZ) : void{
         $this->random->setSeed(0xdeadbeef ^ ($chunkX << 8) ^ $chunkZ ^ $this->level->getSeed());
-        foreach ($this->populators as $populator) {
+        foreach($this->populators as $populator){
             $populator->populate($this->level, $chunkX, $chunkZ, $this->random);
         }
 
-        /** @phpstan-var Chunk $chunk */
         $chunk = $this->level->getChunk($chunkX, $chunkZ);
         $biome = BiomeManager::getBiome($chunk->getBiomeId(7, 7));
         $biome->populateChunk($this->level, $chunkX, $chunkZ, $this->random);
     }
 
-    public function getSpawn(): Vector3 {
+    public function getSpawn() : Vector3{
         return new Vector3(127.5, 128, 127.5);
     }
 }

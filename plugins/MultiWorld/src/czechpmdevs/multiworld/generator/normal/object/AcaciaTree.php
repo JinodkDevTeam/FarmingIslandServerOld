@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2021  CzechPMDevs
+ * Copyright (C) 2018 - 2020  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,9 +30,6 @@ use pocketmine\utils\Random;
 
 class AcaciaTree extends Tree {
 
-    /**
-     * @return void
-     */
     public function placeObject(ChunkManager $level, int $x, int $y, int $z, Random $rand) {
         $position = new Vector3($x, $y, $z);
         $i = $rand->nextBoundedInt(3) + $rand->nextBoundedInt(3) + 5;
@@ -68,14 +65,13 @@ class AcaciaTree extends Tree {
             }
 
             if (!$flag) {
-                return;
+                return false;
             } else {
                 $down = $position->down();
                 $block = $level->getBlockIdAt($down->getFloorX(), $down->getFloorY(), $down->getFloorZ());
 
                 if (($block == Block::GRASS || $block == Block::DIRT) && $position->getY() < 256 - $i - 1) {
-                    /** @phpstan-ignore-next-line */
-                    $level->setBlockIdAt($position->getX(), $position->getY() - 1, $position->getZ(), Block::DIRT);
+                    $level->setBlockIdAt($position->getX(), $position->getY()-1, $position->getZ(), Block::DIRT);
                     $face = $rand->nextRange(0, 3);
                     $k2 = $i - $rand->nextBoundedInt(4) - 1;
                     $l2 = 3 - $rand->nextBoundedInt(3);
@@ -106,7 +102,6 @@ class AcaciaTree extends Tree {
                     for ($j3 = -3; $j3 <= 3; ++$j3) {
                         for ($i4 = -3; $i4 <= 3; ++$i4) {
                             if (abs($j3) != 3 || abs($i4) != 3) {
-                                /** @phpstan-ignore-next-line */
                                 $this->placeLeafAt($level, $blockpos2->add($j3, 0, $i4));
                             }
                         }
@@ -116,7 +111,6 @@ class AcaciaTree extends Tree {
 
                     for ($k3 = -1; $k3 <= 1; ++$k3) {
                         for ($j4 = -1; $j4 <= 1; ++$j4) {
-                            /** @phpstan-ignore-next-line */
                             $this->placeLeafAt($level, $blockpos2->add($k3, 0, $j4));
                         }
                     }
@@ -157,7 +151,6 @@ class AcaciaTree extends Tree {
                             for ($i5 = -2; $i5 <= 2; ++$i5) {
                                 for ($k5 = -2; $k5 <= 2; ++$k5) {
                                     if (abs($i5) != 2 || abs($k5) != 2) {
-                                        /** @phpstan-ignore-next-line */
                                         $this->placeLeafAt($level, $blockpos3->add($i5, 0, $k5));
                                     }
                                 }
@@ -167,21 +160,27 @@ class AcaciaTree extends Tree {
 
                             for ($j5 = -1; $j5 <= 1; ++$j5) {
                                 for ($l5 = -1; $l5 <= 1; ++$l5) {
-                                    /** @phpstan-ignore-next-line */
                                     $this->placeLeafAt($level, $blockpos3->add($j5, 0, $l5));
                                 }
                             }
                         }
                     }
-                    return;
+
+                    return true;
                 } else {
-                    return;
+                    return false;
                 }
             }
+        } else {
+            return false;
         }
     }
 
-    private function getXYFromDirection(int $direction): Vector2 {
+    /**
+     * @param $direction
+     * @return Vector2
+     */
+    private function getXYFromDirection($direction) {
         switch ($direction) {
             case 0:
                 return new Vector2(1, 0);
@@ -194,12 +193,12 @@ class AcaciaTree extends Tree {
         }
     }
 
-    private function placeLogAt(ChunkManager $worldIn, Vector3 $pos): void {
+    private function placeLogAt(ChunkManager $worldIn, Vector3 $pos) {
         $worldIn->setBlockIdAt((int)$pos->getX(), (int)$pos->getY(), (int)$pos->getZ(), Block::WOOD2);
     }
 
-    private function placeLeafAt(ChunkManager $worldIn, Vector3 $pos): void {
-        $material = $worldIn->getBlockIdAt($pos->getFloorX(), $pos->getFloorY(), $pos->getFloorZ());
+    private function placeLeafAt(ChunkManager $worldIn, Vector3 $pos) {
+        $material = $worldIn->getBlockIdAt((int)$pos->getFloorX(), (int)$pos->getFloorY(), (int)$pos->getFloorZ());
 
         if ($material == Block::AIR || $material == Block::LEAVES) {
             $worldIn->setBlockIdAt((int)$pos->getX(), (int)$pos->getY(), (int)$pos->getZ(), Block::LEAVES2);

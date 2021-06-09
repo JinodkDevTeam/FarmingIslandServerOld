@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2021  CzechPMDevs
+ * Copyright (C) 2018 - 2020  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,9 +28,20 @@ use czechpmdevs\multiworld\util\LanguageManager;
 use pocketmine\command\CommandSender;
 use pocketmine\Server;
 
+/**
+ * Class RenameSubcommand
+ * @package czechpmdevs\multiworld\command\subcommand
+ */
 class RenameSubcommand implements SubCommand {
-    
-    public function executeSub(CommandSender $sender, array $args, string $name): void {
+
+    /**
+     * @param CommandSender $sender
+     * @param array $args
+     * @param string $name
+     *
+     * @return mixed|void
+     */
+    public function executeSub(CommandSender $sender, array $args, string $name) {
         if (!isset($args[0]) || !isset($args[1])) {
             $sender->sendMessage(MultiWorld::getPrefix() . LanguageManager::getMsg($sender, "rename-usage"));
             return;
@@ -41,12 +52,12 @@ class RenameSubcommand implements SubCommand {
             return;
         }
 
-        if (!WorldManagementAPI::isLevelGenerated($args[0])) {
+        if(!WorldManagementAPI::isLevelGenerated($args[0])) {
             $sender->sendMessage(MultiWorld::getPrefix() . LanguageManager::getMsg($sender, "rename-levelnotfound", $args[0]));
             return;
         }
 
-        if (WorldManagementAPI::isLevelLoaded($args[0])) WorldManagementAPI::unloadLevel(WorldManagementAPI::getLevel($args[0]));
+        if(WorldManagementAPI::isLevelLoaded($args[0])) WorldManagementAPI::unloadLevel(WorldManagementAPI::getLevel($args[0]));
 
         if ($this->getServer()->getDefaultLevel()->getFolderName() == $args[0]) {
             $sender->sendMessage("§cCould not rename default level!");
@@ -57,6 +68,9 @@ class RenameSubcommand implements SubCommand {
         $sender->sendMessage(MultiWorld::getPrefix() . LanguageManager::getMsg($sender, "rename-done", [$args[0], $args[1]]));
     }
 
+    /**
+     * @return Server $server
+     */
     private function getServer(): Server {
         return Server::getInstance();
     }

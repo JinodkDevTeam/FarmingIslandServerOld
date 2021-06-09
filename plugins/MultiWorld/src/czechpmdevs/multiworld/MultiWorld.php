@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2021  CzechPMDevs
+ * Copyright (C) 2018 - 2020  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,6 +22,8 @@ declare(strict_types=1);
 
 namespace czechpmdevs\multiworld;
 
+use czechpmdevs\multiworld\api\FileBrowsingApi;
+use czechpmdevs\multiworld\api\WorldManagementAPI;
 use czechpmdevs\multiworld\command\GameruleCommand;
 use czechpmdevs\multiworld\command\MultiWorldCommand;
 use czechpmdevs\multiworld\generator\ender\EnderGenerator;
@@ -29,38 +31,46 @@ use czechpmdevs\multiworld\generator\nether\NetherGenerator;
 use czechpmdevs\multiworld\generator\normal\NormalGenerator;
 use czechpmdevs\multiworld\generator\skyblock\SkyBlockGenerator;
 use czechpmdevs\multiworld\generator\void\VoidGenerator;
-use czechpmdevs\multiworld\level\gamerules\GameRules;
+use czechpmdevs\multiworld\structure\StructureManager;
 use czechpmdevs\multiworld\util\ConfigManager;
 use czechpmdevs\multiworld\util\FormManager;
 use czechpmdevs\multiworld\util\LanguageManager;
 use pocketmine\command\Command;
 use pocketmine\level\generator\GeneratorManager;
-use pocketmine\level\Level;
+use pocketmine\nbt\BigEndianNBTStream;
+use pocketmine\nbt\NetworkLittleEndianNBTStream;
+use pocketmine\nbt\tag\CompoundTag;
+use pocketmine\nbt\tag\ListTag;
+use pocketmine\network\mcpe\protocol\types\RuntimeBlockMapping;
 use pocketmine\plugin\PluginBase;
+use const pocketmine\RESOURCE_PATH;
 
+/**
+ * Class MultiWorld
+ * @package multiworld
+ */
 class MultiWorld extends PluginBase {
 
-    /** @var MultiWorld */
-    private static MultiWorld $instance;
+    /** @var  MultiWorld $instance */
+    private static $instance;
 
-    /** @var GameRules[] */
-    public static array $gameRules = [];
+    /** @var LanguageManager $languageManager */
+    public $languageManager;
 
-    /** @var LanguageManager */
-    public LanguageManager $languageManager;
-    /** @var ConfigManager */
-    public ConfigManager $configManager;
-    /** @var FormManager */
-    public FormManager $formManager;
+    /** @var ConfigManager $configManager */
+    public $configManager;
 
-    /** @var Command[] */
-    public array $commands = [];
+    /** @var FormManager $formManager */
+    public $formManager;
+
+    /** @var Command[] $commands */
+    public $commands = [];
 
     public function onLoad() {
-        MultiWorld::$instance = $this;
-        $start = !(MultiWorld::$instance instanceof $this);
+        $start = (bool) !(self::$instance instanceof $this);
+        self::$instance = $this;
 
-        if ($start) {
+        if($start) {
             $generators = [
                 "ender" => EnderGenerator::class,
                 "void" => VoidGenerator::class,
@@ -72,16 +82,21 @@ class MultiWorld extends PluginBase {
             foreach ($generators as $name => $class) {
                 GeneratorManager::addGenerator($class, $name, true);
             }
+
+            StructureManager::saveResources($this->getResources());
         }
     }
 
+    /**
+     * @throws \ReflectionException
+     */
     public function onEnable() {
         $this->configManager = new ConfigManager($this);
         $this->languageManager = new LanguageManager($this);
         $this->formManager = new FormManager($this);
 
         $this->commands = [
-            "multiworld" => new MultiWorldCommand(),
+            "multiworld" => $cmd = new MultiWorldCommand(),
             "gamerule" => new GameruleCommand()
         ];
 
@@ -89,24 +104,45 @@ class MultiWorld extends PluginBase {
             $this->getServer()->getCommandMap()->register("MultiWorld", $command);
         }
 
-        $this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
+        $this->getServer()->getPluginManager()->registerEvents(new EventListener($this, $cmd), $this);
+        $this->buildBlockIdTable();
+        $this->test();
+    }
+
+    public function buildBlockIdTable() {
+        $stream = new NetworkLittleEndianNBTStream();
+        $values = $stream->read(file_get_contents(RESOURCE_PATH . "/vanilla/canonical_block_states.nbt"));
+
+        $outputStream = new BigEndianNBTStream();
+        $compound = new CompoundTag("Data", [$values]);
+        file_put_contents("states.dat", $outputStream->write($compound));
+    }
+
+    private function test() {
+        if(WorldManagementAPI::isLevelGenerated("Test")) {
+            WorldManagementAPI::removeLevel("Test");
+        }
+        WorldManagementAPI::generateLevel("Test", rand(0, 100), WorldManagementAPI::GENERATOR_NORMAL_CUSTOM);
+
+        foreach (FileBrowsingApi::getAllSubdirectories($this->getServer()->getDataPath() . "/plugins/MultiWorld/resources/") as $dir) {
+            @mkdir($this->getDataFolder() . FileBrowsingApi::removePathFromRoot($dir, "resources"));
+        }
+
+        foreach ($this->getResources() as $resource) {
+            $this->saveResource($resource->getFilename());
+        }
     }
 
     /**
-     * @internal
+     * @return MultiWorld $plugin
      */
-    static function unloadLevel(Level $level): void {
-        unset(MultiWorld::$gameRules[$level->getId()]);
-    }
-
-    public static function getGameRules(Level $level): GameRules {
-        return MultiWorld::$gameRules[$level->getId()] ?? MultiWorld::$gameRules[$level->getId()] = GameRules::loadFromLevel($level);
-    }
-
     public static function getInstance(): MultiWorld {
-        return MultiWorld::$instance;
+        return self::$instance;
     }
 
+    /**
+     * @return string $prefix
+     */
     public static function getPrefix(): string {
         return ConfigManager::getPrefix();
     }

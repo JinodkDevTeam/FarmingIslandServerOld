@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2021  CzechPMDevs
+ * Copyright (C) 2018 - 2020  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,8 +33,15 @@ use pocketmine\block\DoublePlant;
 use pocketmine\block\RedMushroom;
 use pocketmine\block\Sapling;
 
+/**
+ * Class RoofedForest
+ * @package czechpmdevs\multiworld\generator\normal\biome
+ */
 class RoofedForest extends GrassyBiome {
 
+    /**
+     * RoofedForest constructor.
+     */
     public function __construct() {
         parent::__construct(0.7, 0.8);
 
@@ -48,10 +55,10 @@ class RoofedForest extends GrassyBiome {
         $peonys = new PlantPopulator(5, 4, 80);
         $peonys->addPlant(new Plant(new DoublePlant(1), new DoublePlant(9)));
 
-        $tree = new TreePopulator(4, 2, 100, Tree::DARK_OAK);
-        $mushroom = new TreePopulator(1, 1, 95, Tree::MUSHROOM);
+        $tree = new TreePopulator(4,2, 100, Tree::DARK_OAK);
+        $mushroom = new TreePopulator(1,  1, 95, Tree::MUSHROOM);
         $birch = new TreePopulator(1, 2, 100, Sapling::BIRCH);
-        $oak = new TreePopulator(1, 2, 100, Sapling::OAK);
+        $oak = new TreePopulator(1, 2, 100,Sapling::OAK);
 
         $grass = new TallGrassPopulator(56, 20);
 
@@ -59,6 +66,9 @@ class RoofedForest extends GrassyBiome {
         $this->setElevation(64, 74);
     }
 
+    /**
+     * @return string
+     */
     public function getName(): string {
         return "Roofed Forest";
     }

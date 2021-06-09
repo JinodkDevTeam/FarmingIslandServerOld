@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2021  CzechPMDevs
+ * Copyright (C) 2018 - 2020  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,17 +27,27 @@ use czechpmdevs\multiworld\util\LanguageManager;
 use pocketmine\command\CommandSender;
 use pocketmine\Server;
 
+/**
+ * Class ListSubcommand
+ * @package czechpmdevs\multiworld\command\subcommand
+ */
 class ListSubcommand implements SubCommand {
 
-    public function executeSub(CommandSender $sender, array $args, string $name): void {
+    /**
+     * @param CommandSender $sender
+     * @param array $args
+     * @param string $name
+     * @return mixed|void
+     */
+    public function executeSub(CommandSender $sender, array $args, string $name) {
         $levels = [];
 
-        foreach (scandir($this->getServer()->getDataPath() . "worlds") as $file) {
-            if (WorldManagementAPI::isLevelGenerated($file)) {
+        foreach (scandir($this->getServer()->getDataPath()."worlds") as $file) {
+            if(WorldManagementAPI::isLevelGenerated($file)) {
                 $isLoaded = WorldManagementAPI::isLevelLoaded($file);
                 $players = 0;
 
-                if ($isLoaded) {
+                if($isLoaded) {
                     $players = count($this->getServer()->getLevelByName($file)->getPlayers());
                 }
 
@@ -46,7 +56,8 @@ class ListSubcommand implements SubCommand {
         }
 
 
-        $sender->sendMessage(LanguageManager::getMsg($sender, "list-done", [(string)count($levels)]));
+
+        $sender->sendMessage(LanguageManager::getMsg($sender, "list-done", [(string) count($levels)]));
 
         foreach ($levels as $level => [$loaded, $players]) {
             $loaded = $loaded ? "§aloaded§7" : "§cunloaded§7";
@@ -54,6 +65,9 @@ class ListSubcommand implements SubCommand {
         }
     }
 
+    /**
+     * @return Server $server
+     */
     private function getServer(): Server {
         return Server::getInstance();
     }
