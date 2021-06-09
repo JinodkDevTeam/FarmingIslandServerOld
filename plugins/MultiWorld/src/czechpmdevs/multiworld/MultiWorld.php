@@ -57,8 +57,8 @@ class MultiWorld extends PluginBase {
     public array $commands = [];
 
     public function onLoad() {
-        $start = !(MultiWorld::$instance instanceof $this);
         MultiWorld::$instance = $this;
+        $start = !(MultiWorld::$instance instanceof $this);
 
         if ($start) {
             $generators = [

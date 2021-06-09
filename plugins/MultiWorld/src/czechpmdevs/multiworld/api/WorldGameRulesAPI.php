@@ -51,9 +51,9 @@ class WorldGameRulesAPI {
 
         if(!$compound instanceof CompoundTag) {
             $levelProvider->getLevelData()->setTag(new CompoundTag("GameRules", []));
-            $compound = $levelProvider->getLevelData()->getCompoundTag("GameRules");
+            $rules = $levelProvider->getLevelData()->getCompoundTag("GameRules");
             foreach (self::getDefaultGameRules() as $rule => [$type, $value]) {
-                $compound->setString($rule, self::getStringFromValue($value));
+                $rules->setString($rule, self::getStringFromValue($value));
             }
         }
 
@@ -68,7 +68,7 @@ class WorldGameRulesAPI {
         foreach (self::getAllGameRules() as $rule) {
             if($compound->offsetExists($rule)) {
                 $value = self::getValueFromString($compound->getString($rule));
-                $gameRules[$rule] = is_bool($value) ? [1, $value] : [2, $value];
+                $gameRules[$rule] = is_bool($value) ? [1, $value, false] : [2, $value, false];
             }
         }
 
@@ -135,24 +135,25 @@ class WorldGameRulesAPI {
     public static function getDefaultGameRules(): array {
         return [
             //"commandBlockOutput" => [1, true], not implemented
-            "doDaylightCycle" => [1, true],
+            "doDaylightCycle" => [1, true, false],
             //"doEntityDrops" => [1, true], useless
             //"doFireTick" => [1, true], not implemented
             //"doInsomnia" => [1, true], (1.6)
-            "doMobLoot" => [1, true],
+            "doMobLoot" => [1, true, false],
             //"doMobSpawning" => [1, true], not implemented
-            "doTileDrops" => [1, true],
+            "doTileDrops" => [1, true, false],
             //"doWeatherCycle" => [1, true], not implemented
-            "keepInventory" => [1, false],
+            "keepInventory" => [1, false, false],
             //"maxCommandChainLength" => [2, 65536], int ._.
             //"mobGriefing" => [1, true], not implemented
-            "naturalRegeneration" => [1, true],
-            "pvp" => [1, true],
+            "naturalRegeneration" => [1, true, false],
+            "pvp" => [1, true, false],
             //"sendCommandFeedback" => [1, true], not implemented
-            "showcoordinates" => [1, false],
-            "tntexplodes" => [1, true]
+            "showcoordinates" => [1, false, false],
+            "tntexplodes" => [1, true, false]
         ];
     }
+
 
     /**
      * @param string $lowerString
