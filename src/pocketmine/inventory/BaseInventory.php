@@ -97,6 +97,16 @@ abstract class BaseInventory implements Inventory{
 		return $this->maxStackSize;
 	}
 
+	/**
+	 * Checks whether the inventory can store item
+	 *
+	 * @param Item $item
+	 * @return bool
+	 */
+	public function canStoreItem(Item $item) : bool{
+		return true;
+	}
+
 	public function getItem(int $index) : Item{
 		return $this->slots[$index] !== null ? clone $this->slots[$index] : ItemFactory::get(Item::AIR, 0, 0);
 	}
@@ -157,6 +167,8 @@ abstract class BaseInventory implements Inventory{
 	}
 
 	public function setItem(int $index, Item $item, bool $send = true) : bool{
+		if(!$this->canStoreItem($item)) return false;
+
 		if($item->isNull()){
 			$item = ItemFactory::get(Item::AIR, 0, 0);
 		}else{
@@ -248,6 +260,8 @@ abstract class BaseInventory implements Inventory{
 	}
 
 	public function canAddItem(Item $item) : bool{
+		if(!$this->canStoreItem($item)) return false;
+
 		$count = $item->getCount();
 		for($i = 0, $size = $this->getSize(); $i < $size; ++$i){
 			$slot = $this->getItem($i);

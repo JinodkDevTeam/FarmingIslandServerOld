@@ -261,6 +261,11 @@ class NetworkBinaryStream extends BinaryStream{
 			if($netId === ItemTypeDictionary::getInstance()->fromStringId("minecraft:shield")){
 				$extraData->getLLong(); //"blocking tick" (ffs mojang)
 			}
+
+			if(!$extraData->feof()){
+				throw new \UnexpectedValueException("Unexpected trailing extradata for network item $netId");
+			}
+
 			if($nbt !== null){
 				if($nbt->hasTag(self::DAMAGE_TAG, IntTag::class)){
 					$meta = $nbt->getInt(self::DAMAGE_TAG);
@@ -306,8 +311,15 @@ class NetworkBinaryStream extends BinaryStream{
 
 		$writeExtraCrapInTheMiddle($this);
 
-		$block = $item->getBlock();
-		$this->putVarInt($block->getId() === BlockIds::AIR ? 0 : RuntimeBlockMapping::toStaticRuntimeId($block->getId(), $block->getDamage()));
+		$blockRuntimeId = 0;
+		$isBlockItem = $item->getId() < 256;
+		if($isBlockItem){
+			$block = $item->getBlock();
+			if($block->getId() !== BlockIds::AIR){
+				$blockRuntimeId = RuntimeBlockMapping::toStaticRuntimeId($block->getId(), $block->getDamage());
+			}
+		}
+		$this->putVarInt($blockRuntimeId);
 
 		$nbt = null;
 		if($item->hasCompoundTag()){
@@ -324,7 +336,7 @@ class NetworkBinaryStream extends BinaryStream{
 				$nbt = new CompoundTag();
 			}
 			$nbt->setInt(self::DAMAGE_TAG, $coreData);
-		}elseif($block->getId() !== BlockIds::AIR && $coreData !== 0){
+		}elseif($isBlockItem && $coreData !== 0){
 			//TODO HACK: This foul-smelling code ensures that we can correctly deserialize an item when the
 			//client sends it back to us, because as of 1.16.220, blockitems quietly discard their metadata
 			//client-side. Aside from being very annoying, this also breaks various server-side behaviours.
@@ -660,14 +672,15 @@ class NetworkBinaryStream extends BinaryStream{
 	 * Reads gamerules
 	 * TODO: implement this properly
 	 *
-	 * @return mixed[][], members are in the structure [name => [type, value]]
-	 * @phpstan-return array<string, array{0: int, 1: bool|int|float}>
+	 * @return mixed[][], members are in the structure [name => [type, value, isPlayerModifiable]]
+	 * @phpstan-return array<string, array{0: int, 1: bool|int|float, 2: bool}>
 	 */
 	public function getGameRules() : array{
 		$count = $this->getUnsignedVarInt();
 		$rules = [];
 		for($i = 0; $i < $count; ++$i){
 			$name = $this->getString();
+			$isPlayerModifiable = $this->getBool();
 			$type = $this->getUnsignedVarInt();
 			$value = null;
 			switch($type){
@@ -682,23 +695,24 @@ class NetworkBinaryStream extends BinaryStream{
 					break;
 			}
 
-			$rules[$name] = [$type, $value];
+			$rules[$name] = [$type, $value, $isPlayerModifiable];
 		}
 
 		return $rules;
 	}
 
 	/**
-	 * Writes a gamerule array, members should be in the structure [name => [type, value]]
+	 * Writes a gamerule array, members should be in the structure [name => [type, value, isPlayerModifiable]]
 	 * TODO: implement this properly
 	 *
 	 * @param mixed[][] $rules
-	 * @phpstan-param array<string, array{0: int, 1: bool|int|float}> $rules
+	 * @phpstan-param array<string, array{0: int, 1: bool|int|float, 2: bool}> $rules
 	 */
 	public function putGameRules(array $rules) : void{
 		$this->putUnsignedVarInt(count($rules));
 		foreach($rules as $name => $rule){
 			$this->putString($name);
+			$this->putBool($rule[2]);
 			$this->putUnsignedVarInt($rule[0]);
 			switch($rule[0]){
 				case GameRuleType::BOOL:
