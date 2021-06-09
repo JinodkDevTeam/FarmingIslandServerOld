@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,15 +33,8 @@ use pocketmine\block\Sand;
 use pocketmine\block\StainedClay;
 use pocketmine\level\generator\object\OreType;
 
-/**
- * Class Mesa
- * @package czechpmdevs\multiworld\generator\normal\biome
- */
 class Mesa extends CoveredBiome {
 
-    /**
-     * Mesa constructor.
-     */
     public function __construct() {
         parent::__construct(2, 0);
 

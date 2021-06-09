@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,15 +33,8 @@ use pocketmine\block\HardenedClay;
 use pocketmine\block\StainedClay;
 use pocketmine\level\generator\object\OreType;
 
-/**
- * Class MesaPlateau
- * @package czechpmdevs\multiworld\generator\normal\biome
- */
 class MesaPlateau extends Mesa {
 
-    /**
-     * MesaPlateau constructor.
-     */
     public function __construct() {
         parent::__construct();
 
@@ -75,9 +68,6 @@ class MesaPlateau extends Mesa {
         $this->setElevation(84, 87);
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string {
         return "Mesa Plateau";
     }

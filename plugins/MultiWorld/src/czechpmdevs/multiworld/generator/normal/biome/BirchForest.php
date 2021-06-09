@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,15 +34,8 @@ use pocketmine\block\DoublePlant;
 use pocketmine\block\Flower;
 use pocketmine\block\RedMushroom;
 
-/**
- * Class BirchForest
- * @package czechpmdevs\multiworld\generator\normal\biome
- */
 class BirchForest extends GrassyBiome {
 
-    /**
-     * BirchForest constructor.
-     */
     public function __construct() {
         parent::__construct(0.6, 0.6);
 
@@ -68,9 +61,6 @@ class BirchForest extends GrassyBiome {
         $this->setElevation(66, 79);
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string {
         return "Birch Forest";
     }

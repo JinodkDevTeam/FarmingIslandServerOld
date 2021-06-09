@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,15 +26,8 @@ use czechpmdevs\multiworld\generator\normal\object\Tree;
 use czechpmdevs\multiworld\generator\normal\populator\impl\TallGrassPopulator;
 use czechpmdevs\multiworld\generator\normal\populator\impl\TreePopulator;
 
-/**
- * Class ExtremeHillsEdge
- * @package czechpmdevs\multiworld\generator\normal\biome
- */
 class ExtremeHillsEdge extends ExtremeHills {
 
-    /**
-     * ExtremeHillsEdge constructor.
-     */
     public function __construct() {
         parent::__construct();
 
@@ -42,9 +35,6 @@ class ExtremeHillsEdge extends ExtremeHills {
         $this->addPopulators([new TallGrassPopulator(10, 5), new TreePopulator(1, 1, 100, Tree::SPRUCE), new TreePopulator(0, 1)]);
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string {
         return "Extreme Hills Edge";
     }

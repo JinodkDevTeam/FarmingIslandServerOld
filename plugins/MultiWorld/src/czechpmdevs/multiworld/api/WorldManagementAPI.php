@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -52,57 +52,13 @@ class WorldManagementAPI {
 
     /**
      * @param string $levelName
-     *
-     * @return bool
-     */
-    public static function isLevelLoaded(string $levelName): bool {
-        return Server::getInstance()->isLevelLoaded($levelName);
-    }
-
-    /**
-     * @param string $levelName
-     *
-     * @return bool
-     */
-    public static function isLevelGenerated(string $levelName): bool {
-        return Server::getInstance()->isLevelGenerated($levelName) && !in_array($levelName, [".", ".."]);
-    }
-
-    /**
-     * @param string $name
-     * @return null|Level
-     */
-    public static function getLevel(string $name): ?Level {
-        return Server::getInstance()->getLevelByName($name);
-    }
-
-    /**
-     * @param string $name
-     *
-     * @return bool $isLoaded
-     */
-    public static function loadLevel(string $name): bool {
-        return self::isLevelLoaded($name) ? false : Server::getInstance()->loadLevel($name);
-    }
-
-    /**
-     * @param Level $level
-     *
-     * @return bool
-     */
-    public static function unloadLevel(Level $level): bool {
-        return $level->getServer()->unloadLevel($level);
-    }
-
-    /**
-     * @param string $levelName
      * @param int $seed
      * @param int $generator
      *
      * @return bool $isGenerated
      */
     public static function generateLevel(string $levelName, int $seed = 0, int $generator = WorldManagementAPI::GENERATOR_NORMAL): bool {
-        if(self::isLevelGenerated($levelName)) {
+        if (self::isLevelGenerated($levelName)) {
             return false;
         }
 
@@ -135,15 +91,24 @@ class WorldManagementAPI {
     }
 
     /**
+     * @param string $levelName
+     *
+     * @return bool
+     */
+    public static function isLevelGenerated(string $levelName): bool {
+        return Server::getInstance()->isLevelGenerated($levelName) && !in_array($levelName, [".", ".."]);
+    }
+
+    /**
      * @param string $name
      *
      * @return int $files
      */
     public static function removeLevel(string $name): int {
-        if(self::isLevelLoaded($name)) {
+        if (self::isLevelLoaded($name)) {
             $level = self::getLevel($name);
 
-            if(count($level->getPlayers()) > 0) {
+            if (count($level->getPlayers()) > 0) {
                 foreach ($level->getPlayers() as $player) {
                     $player->teleport(Server::getInstance()->getDefaultLevel()->getSpawnLocation());
                 }
@@ -152,7 +117,57 @@ class WorldManagementAPI {
             $level->getServer()->unloadLevel($level);
         }
 
-        return self::removeDir(Server::getInstance()->getDataPath()."/worlds/" . $name);
+        return self::removeDir(Server::getInstance()->getDataPath() . "/worlds/" . $name);
+    }
+
+    /**
+     * @param string $levelName
+     *
+     * @return bool
+     */
+    public static function isLevelLoaded(string $levelName): bool {
+        return Server::getInstance()->isLevelLoaded($levelName);
+    }
+
+    /**
+     * @param string $name
+     * @return null|Level
+     */
+    public static function getLevel(string $name): ?Level {
+        return Server::getInstance()->getLevelByName($name);
+    }
+
+    /**
+     * @param string $dirPath
+     * @return int
+     */
+    private static function removeDir(string $dirPath): int {
+        $files = 1;
+        if (basename($dirPath) == "." || basename($dirPath) == ".." || !is_dir($dirPath)) {
+            return 0;
+        }
+        foreach (scandir($dirPath) as $item) {
+            if ($item != "." || $item != "..") {
+                if (is_dir($dirPath . DIRECTORY_SEPARATOR . $item)) {
+                    $files += self::removeDir($dirPath . DIRECTORY_SEPARATOR . $item);
+                }
+                if (is_file($dirPath . DIRECTORY_SEPARATOR . $item)) {
+                    $files += self::removeFile($dirPath . DIRECTORY_SEPARATOR . $item);
+                }
+            }
+
+        }
+        rmdir($dirPath);
+        return $files;
+    }
+
+    /**
+     * @param string $path
+     * @return int
+     */
+    private static function removeFile(string $path): int {
+        unlink($path);
+        return 1;
     }
 
     /**
@@ -160,7 +175,7 @@ class WorldManagementAPI {
      * @param string $newName
      */
     public static function renameLevel(string $oldName, string $newName) {
-        if(self::isLevelLoaded($oldName)) self::unloadLevel(self::getLevel($oldName));
+        if (self::isLevelLoaded($oldName)) self::unloadLevel(self::getLevel($oldName));
 
         $from = Server::getInstance()->getDataPath() . "/worlds/" . $oldName;
         $to = Server::getInstance()->getDataPath() . "/worlds/" . $newName;
@@ -170,7 +185,7 @@ class WorldManagementAPI {
         self::loadLevel($newName);
         $provider = self::getLevel($newName)->getProvider();
 
-        if(!$provider instanceof BaseLevelProvider) return;
+        if (!$provider instanceof BaseLevelProvider) return;
         $provider->getLevelData()->setString("LevelName", $newName);
         $provider->saveLevelData();
 
@@ -179,47 +194,33 @@ class WorldManagementAPI {
     }
 
     /**
+     * @param Level $level
+     *
+     * @return bool
+     */
+    public static function unloadLevel(Level $level): bool {
+        return $level->getServer()->unloadLevel($level);
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return bool $isLoaded
+     */
+    public static function loadLevel(string $name): bool {
+        return self::isLevelLoaded($name) ? false : Server::getInstance()->loadLevel($name);
+    }
+
+    /**
      * @return string[] $levels
      */
     public static function getAllLevels(): array {
         $levels = [];
         foreach (glob(Server::getInstance()->getDataPath() . "/worlds/*") as $world) {
-            if(count(scandir($world)) >= 4) { // don't forget to .. & .
+            if (count(scandir($world)) >= 4) { // don't forget to .. & .
                 $levels[] = basename($world);
             }
         }
         return $levels;
-    }
-
-    /**
-     * @param string $path
-     * @return int
-     */
-    private static function removeFile(string $path): int {
-        unlink($path); return 1;
-    }
-
-    /**
-     * @param string $dirPath
-     * @return int
-     */
-    private static function removeDir(string $dirPath): int {
-        $files = 1;
-        if(basename($dirPath) == "." || basename($dirPath) == ".." || !is_dir($dirPath)) {
-            return 0;
-        }
-        foreach (scandir($dirPath) as $item) {
-            if($item != "." || $item != "..") {
-                if(is_dir($dirPath . DIRECTORY_SEPARATOR . $item)) {
-                    $files += self::removeDir($dirPath . DIRECTORY_SEPARATOR . $item);
-                }
-                if(is_file($dirPath . DIRECTORY_SEPARATOR . $item)) {
-                    $files += self::removeFile($dirPath . DIRECTORY_SEPARATOR . $item);
-                }
-            }
-
-        }
-        rmdir($dirPath);
-        return $files;
     }
 }

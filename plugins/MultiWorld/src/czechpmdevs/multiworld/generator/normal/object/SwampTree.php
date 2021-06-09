@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,21 +27,8 @@ use pocketmine\level\ChunkManager;
 use pocketmine\math\Vector3;
 use pocketmine\utils\Random;
 
-/**
- * Class SwampTree
- * @package czechpmdevs\multiworld\generator\normal\object
- */
 class SwampTree extends Tree {
 
-    /**
-     * @param ChunkManager $worldIn
-     * @param int $x
-     * @param int $y
-     * @param int $z
-     * @param Random $rand
-     *
-     * @return bool|void
-     */
     public function placeObject(ChunkManager $worldIn, int $x, int $y, int $z, Random $rand) {
         $vectorPosition = new Vector3($x, $y, $z);
         $position = new Vector3($vectorPosition->getFloorX(), $vectorPosition->getFloorY(), $vectorPosition->getFloorZ());
@@ -161,11 +148,6 @@ class SwampTree extends Tree {
         }
     }
 
-    private function addVine(ChunkManager $worldIn, Vector3 $pos, int $meta) {
-        $worldIn->setBlockIdAt((int)$pos->getX(), (int)$pos->getY(), (int)$pos->getZ(), Block::VINE);
-        $worldIn->setBlockDataAt((int)$pos->getX(), (int)$pos->getY(), (int)$pos->getZ(), $meta);
-    }
-
     private function addHangingVine(ChunkManager $worldIn, Vector3 $pos, int $meta) {
         $this->addVine($worldIn, $pos, $meta);
         $i = 4;
@@ -174,6 +156,11 @@ class SwampTree extends Tree {
             $this->addVine($worldIn, $pos, $meta);
             $pos = $pos->down();
         }
+    }
+
+    private function addVine(ChunkManager $worldIn, Vector3 $pos, int $meta) {
+        $worldIn->setBlockIdAt((int)$pos->getX(), (int)$pos->getY(), (int)$pos->getZ(), Block::VINE);
+        $worldIn->setBlockDataAt((int)$pos->getX(), (int)$pos->getY(), (int)$pos->getZ(), $meta);
     }
 }
 

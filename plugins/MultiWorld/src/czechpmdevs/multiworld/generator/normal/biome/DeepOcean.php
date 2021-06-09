@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,24 +22,14 @@ declare(strict_types=1);
 
 namespace czechpmdevs\multiworld\generator\normal\biome;
 
-/**
- * Class DeepOcean
- * @package czechpmdevs\multiworld\generator\normal\biome
- */
 class DeepOcean extends Ocean {
 
-    /**
-     * DeepOcean constructor.
-     */
     public function __construct() {
         parent::__construct();
 
         $this->setElevation(40, 56);
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string {
         return "Deep Ocean";
     }

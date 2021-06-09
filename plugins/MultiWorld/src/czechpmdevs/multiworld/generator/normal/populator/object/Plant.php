@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,23 +24,14 @@ namespace czechpmdevs\multiworld\generator\normal\populator\object;
 
 use pocketmine\block\Block;
 
-/**
- * Class Plant
- * @package czechpmdevs\multiworld\generator\normal\populator\object
- */
 class Plant {
 
-    /** @var Block[] $blocks */
-    public $blocks = [];
+    /** @var Block[] */
+    public array $blocks = [];
 
-    /**
-     * Plant constructor.
-     * @param Block $baseBlock
-     * @param Block|null $secondaryBlock
-     */
     public function __construct(Block $baseBlock, Block $secondaryBlock = null) {
         $this->blocks = [$baseBlock];
-        if($secondaryBlock !== null) {
+        if ($secondaryBlock !== null) {
             $this->blocks[] = $secondaryBlock;
         }
     }

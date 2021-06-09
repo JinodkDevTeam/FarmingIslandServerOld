@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,87 +24,55 @@ namespace czechpmdevs\multiworld\generator\skyblock;
 
 use czechpmdevs\multiworld\generator\skyblock\populator\Island;
 use pocketmine\level\ChunkManager;
+use pocketmine\level\format\Chunk;
 use pocketmine\level\generator\Generator;
 use pocketmine\math\Vector3;
 use pocketmine\utils\Random;
 
-/**
- * Class SkyBlockGenerator
- * @package czechpmdevs\multiworld\generator\skyblock
- */
 class SkyBlockGenerator extends Generator {
 
-    /** @var ChunkManager $level */
+    /** @var ChunkManager */
     protected $level;
-
-    /** @var Random $random */
+    /** @var Random */
     protected $random;
 
-    /** @var array $options */
-    private $options;
+    /** @phpstan-ignore-next-line */
+    public function __construct(array $settings = []) {}
 
-    /**
-     * SkyBlockGenerator constructor.
-     * @param array $settings
-     */
-    public function __construct(array $settings = []) {
-        $this->options = $settings;
-    }
-
-    /**
-     * @param ChunkManager $level
-     * @param Random $random
-     */
     public function init(ChunkManager $level, Random $random): void {
         $this->level = $level;
         $this->random = $random;
     }
 
-    /**
-     * @param int $chunkX
-     * @param int $chunkZ
-     */
     public function generateChunk(int $chunkX, int $chunkZ): void {
+        /** @phpstan-var Chunk $chunk */
         $chunk = $this->level->getChunk($chunkX, $chunkZ);
-        for($x = 0; $x < 16; ++$x) {
-            for($z = 0; $z < 16; ++$z) {
-                for($y = 0; $y < 168; ++$y) {
+        for ($x = 0; $x < 16; ++$x) {
+            for ($z = 0; $z < 16; ++$z) {
+                for ($y = 0; $y < 168; ++$y) {
                     $chunk->setBlockId($x, $y, $z, 0);
                 }
             }
         }
     }
 
-    /**
-     * @param int $chunkX
-     * @param int $chunkZ
-     */
     public function populateChunk(int $chunkX, int $chunkZ): void {
-        if($chunkX === 16 && $chunkZ === 16) {
+        if ($chunkX === 16 && $chunkZ === 16) {
             $island = new Island;
             $island->populate($this->level, $chunkX, $chunkZ, $this->random);
         }
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string {
         return "skyblock";
     }
 
-    /**
-     * @return array
-     */
-    public function getSettings(): array {
-        return [];
-    }
-
-    /**
-     * @return Vector3
-     */
     public function getSpawn(): Vector3 {
         return new Vector3(256, 70, 256);
+    }
+
+    public function getSettings(): array {
+        return [];
     }
 
 }

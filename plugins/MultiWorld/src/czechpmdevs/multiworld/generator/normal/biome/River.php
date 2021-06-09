@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,18 +23,10 @@ declare(strict_types=1);
 namespace czechpmdevs\multiworld\generator\normal\biome;
 
 use czechpmdevs\multiworld\generator\normal\biome\types\Biome;
-use pocketmine\block\Block;
 use pocketmine\block\Sand;
 
-/**
- * Class River
- * @package czechpmdevs\multiworld\generator\normal\biome
- */
 class River extends Biome {
 
-    /**
-     * River constructor.
-     */
     public function __construct() {
         parent::__construct(0.5, 0.5);
         $this->setGroundCover([
@@ -45,9 +37,6 @@ class River extends Biome {
         $this->setElevation(54, 57);
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string {
         return "River";
     }

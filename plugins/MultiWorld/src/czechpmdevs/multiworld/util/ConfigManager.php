@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,20 +24,15 @@ namespace czechpmdevs\multiworld\util;
 
 use czechpmdevs\multiworld\MultiWorld;
 
-/**
- * Class ConfigManager
- * @package multiworld\Util
- */
 class ConfigManager {
 
-    /** @var  MultiWorld */
-    public $plugin;
-
-    // prefix
-    public static $prefix;
-
-    /** @var  array $configData */
-    public $configData;
+    /** @var string */
+    public static string $prefix;
+    
+    /** @var MultiWorld */
+    public MultiWorld $plugin;
+    /** @var mixed[] */
+    public array $configData;
 
     /**
      * ConfigManager constructor.
@@ -49,26 +44,25 @@ class ConfigManager {
         $this->initConfig();
     }
 
-    public function checkConfigUpdates() {
-        if(file_exists(self::getDataFolder() . "/config.yml")) {
-            $data = @yaml_parse_file(self::getDataFolder() . "/config.yml");
+    public function checkConfigUpdates(): void {
+        if (file_exists(ConfigManager::getDataFolder() . "/config.yml")) {
+            $data = @yaml_parse_file(ConfigManager::getDataFolder() . "/config.yml");
 
             $currentVersion = "1.5";
 
-            if(isset($data["config-version"])) $configVersion = $data["config-version"];
+            if (isset($data["config-version"])) $configVersion = $data["config-version"];
             else $configVersion = "1.4";
 
-            if($data["config-version"] == "1.5.0") $data["config-version"] = "1.5";
+            if ($data["config-version"] == "1.5.0") $data["config-version"] = "1.5";
 
-            if($configVersion !== $currentVersion) {
+            if ($configVersion !== $currentVersion) {
                 $this->plugin->getLogger()->notice("Old config found, updating config...");
-                if(in_array($configVersion, ["1.4"])) {
-                    @rename(self::getDataFolder() . "/config.yml", $old = self::getDataFolder() . "/config.{$configVersion}.yml");
+                if (in_array($configVersion, ["1.4"])) {
+                    @rename(ConfigManager::getDataFolder() . "/config.yml", $old = ConfigManager::getDataFolder() . "/config.{$configVersion}.yml");
                     $this->plugin->saveResource("/config.yml");
                     $this->plugin->getLogger()->notice("Config updated! Old config can be found at $old.");
-                }
-                else {
-                    @unlink(self::getDataFolder() . "/config.yml");
+                } else {
+                    @unlink(ConfigManager::getDataFolder() . "/config.yml");
                     $this->plugin->saveResource("/config.yml");
                     $this->plugin->getLogger()->notice("Config updated!");
                 }
@@ -76,63 +70,51 @@ class ConfigManager {
         }
     }
 
-    /**
-     * @return void
-     */
-    public function initConfig() {
-        if(!is_dir(self::getDataFolder())) {
-            @mkdir(self::getDataFolder());
+    public static function getDataFolder(): string {
+        return MultiWorld::getInstance()->getDataFolder();
+    }
+
+    public function initConfig(): void {
+        if (!is_dir(ConfigManager::getDataFolder())) {
+            @mkdir(ConfigManager::getDataFolder());
         }
-        if(!is_dir(self::getDataFolder()."languages")) {
-            @mkdir(self::getDataFolder()."languages");
+        if (!is_dir(ConfigManager::getDataFolder() . "languages")) {
+            @mkdir(ConfigManager::getDataFolder() . "languages");
         }
-        if(!is_file(self::getDataFolder()."/config.yml")) {
+        if (!is_file(ConfigManager::getDataFolder() . "/config.yml")) {
             MultiWorld::getInstance()->saveResource("/config.yml");
         }
-        if(!is_file(self::getDataFolder()."languages/cs_CZ.yml")) {
-          MultiWorld::getInstance()->saveResource("languages/cs_CZ.yml");
+        if (!is_file(ConfigManager::getDataFolder() . "languages/cs_CZ.yml")) {
+            MultiWorld::getInstance()->saveResource("languages/cs_CZ.yml");
         }
-        if(!is_file(self::getDataFolder()."languages/en_US.yml")) {
+        if (!is_file(ConfigManager::getDataFolder() . "languages/en_US.yml")) {
             MultiWorld::getInstance()->saveResource("languages/en_US.yml");
         }
-        if(!is_file(self::getDataFolder()."languages/de_DE.yml")) {
-          MultiWorld::getInstance()->saveResource("languages/de_DE.yml");
+        if (!is_file(ConfigManager::getDataFolder() . "languages/de_DE.yml")) {
+            MultiWorld::getInstance()->saveResource("languages/de_DE.yml");
         }
-        if(!is_file(self::getDataFolder()."languages/ja_JP.yml")) {
+        if (!is_file(ConfigManager::getDataFolder() . "languages/ja_JP.yml")) {
             MultiWorld::getInstance()->saveResource("languages/ja_JP.yml");
         }
-        if(!is_file(self::getDataFolder()."languages/ru_RU.yml")) {
+        if (!is_file(ConfigManager::getDataFolder() . "languages/ru_RU.yml")) {
             MultiWorld::getInstance()->saveResource("languages/ru_RU.yml");
         }
-        if(!is_file(self::getDataFolder()."languages/zh_CN.yml")) {
+        if (!is_file(ConfigManager::getDataFolder() . "languages/zh_CN.yml")) {
             MultiWorld::getInstance()->saveResource("languages/zh_CN.yml");
         }
-        if(!is_file(self::getDataFolder()."languages/ina_IND.yml")) {
+        if (!is_file(ConfigManager::getDataFolder() . "languages/ina_IND.yml")) {
             MultiWorld::getInstance()->saveResource("languages/ina_IND.yml");
         }
 
         // load prefix
-        self::$prefix = MultiWorld::getInstance()->getConfig()->get("prefix")." §a";
+        ConfigManager::$prefix = MultiWorld::getInstance()->getConfig()->get("prefix") . " §a";
     }
 
-    /**
-     * @return string
-     */
-    public static function getDataFolder() {
-        return MultiWorld::getInstance()->getDataFolder();
-    }
-
-    /**
-     * @return string
-     */
-    public static function getDataPath() {
+    public static function getDataPath(): string {
         return MultiWorld::getInstance()->getServer()->getDataPath();
     }
-
-    /**
-     * @return string $prefix
-     */
-    public static function getPrefix():string {
-        return is_string(self::$prefix) ? self::$prefix : "[MultiWorld]";
+    
+    public static function getPrefix(): string {
+        return isset(ConfigManager::$prefix) ? ConfigManager::$prefix : "[MultiWorld]";
     }
 }

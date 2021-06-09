@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,69 +25,41 @@ namespace czechpmdevs\multiworld\generator\nether;
 use czechpmdevs\multiworld\generator\nether\populator\GlowstoneSphere;
 use czechpmdevs\multiworld\generator\nether\populator\Ore;
 use czechpmdevs\multiworld\generator\nether\populator\SoulSand;
-use pocketmine\block\Block;
+use pocketmine\block\BlockIds;
 use pocketmine\block\NetherQuartzOre;
 use pocketmine\level\biome\Biome;
 use pocketmine\level\ChunkManager;
+use pocketmine\level\format\Chunk;
 use pocketmine\level\generator\Generator;
 use pocketmine\level\generator\noise\Simplex;
 use pocketmine\level\generator\object\OreType;
 use pocketmine\level\generator\populator\Populator;
 use pocketmine\math\Vector3;
 use pocketmine\utils\Random;
+use function abs;
 
-
-/**
- * Edited PocketMine-MP generator (https://github.com/pmmp/PocketMine-MP/blob/master/src/pocketmine/level/generator/hell/Nether.php) for MultiWorld
- *
- * Features:
- *  - Glowstone populator
- *  - Soulsand with netherwarts generator
- *  - Quartz ore generator
- *  - Nether base - TODO
- *
- * Class NetherGenerator
- * @package czechpmdevs\multiworld\generator\nether
- */
 class NetherGenerator extends Generator {
 
     /** @var Populator[] */
-    private $populators = [];
+    private array $populators = [];
     /** @var int */
-    private $waterHeight = 32;
+    private int $waterHeight = 32;
     /** @var int */
-    private $emptyHeight = 64;
+    private int $emptyHeight = 64;
     /** @var int */
-    private $emptyAmplitude = 1;
+    private int $emptyAmplitude = 1;
     /** @var float */
-    private $density = 0.5;
+    private float $density = 0.5;
 
     /** @var Populator[] */
-    private $generationPopulators = [];
+    private array $generationPopulators = [];
     /** @var Simplex $noiseBase */
-    private $noiseBase;
+    private Simplex $noiseBase;
 
+    /** @phpstan-ignore-next-line */
     public function __construct(array $options = []) {}
-
-    /**
-     * @return string
-     */
-    public function getName(): string {
-        return "nether";
-    }
-
-    /**
-     * @return array
-     */
-    public function getSettings(): array {
-        return [];
-    }
-
-    /**
-     * @param ChunkManager $level
-     * @param Random $random
-     */
-    public function init(ChunkManager $level, Random $random) : void{
+   
+    public function init(ChunkManager $level, Random $random): void {
         parent::init($level, $random);
         $this->random->setSeed($this->level->getSeed());
         $this->noiseBase = new Simplex($this->random, 4, 1 / 4, 1 / 64);
@@ -102,67 +74,66 @@ class NetherGenerator extends Generator {
         $this->populators[] = new SoulSand();
     }
 
-    /**
-     * @param int $chunkX
-     * @param int $chunkZ
-     */
-    public function generateChunk(int $chunkX, int $chunkZ) : void{
+    public function generateChunk(int $chunkX, int $chunkZ): void {
         $this->random->setSeed(0xdeadbeef ^ ($chunkX << 8) ^ $chunkZ ^ $this->level->getSeed());
 
-        $noise = $this->noiseBase->getFastNoise3D(16, 128, 16, 4, 8, 4, $chunkX * 16, 0, $chunkZ * 16);
+        /** @phpstan-var Chunk $chunk */
         $chunk = $this->level->getChunk($chunkX, $chunkZ);
+        $noise = $this->noiseBase->getFastNoise3D(16, 128, 16, 4, 8, 4, $chunkX * 16, 0, $chunkZ * 16);
 
-        for($x = 0; $x < 16; ++$x){
-            for($z = 0; $z < 16; ++$z){
+        for ($x = 0; $x < 16; ++$x) {
+            for ($z = 0; $z < 16; ++$z) {
 
                 $biome = Biome::getBiome(Biome::HELL);
                 $chunk->setBiomeId($x, $z, $biome->getId());
 
-                for($y = 0; $y < 128; ++$y){
-                    if($y === 0 or $y === 127){
-                        $chunk->setBlockId($x, $y, $z, Block::BEDROCK);
+                for ($y = 0; $y < 128; ++$y) {
+                    if ($y === 0 or $y === 127) {
+                        $chunk->setBlockId($x, $y, $z, BlockIds::BEDROCK);
                         continue;
                     }
-                    if($y === 126) {
-                        $chunk->setBlockId($x, $y, $z, Block::NETHERRACK);
+                    if ($y === 126) {
+                        $chunk->setBlockId($x, $y, $z, BlockIds::NETHERRACK);
                         continue;
                     }
-                    $noiseValue = (\abs($this->emptyHeight - $y) / $this->emptyHeight) * $this->emptyAmplitude - $noise[$x][$z][$y];
+                    $noiseValue = (abs($this->emptyHeight - $y) / $this->emptyHeight) * $this->emptyAmplitude - $noise[$x][$z][$y];
                     $noiseValue -= 1 - $this->density;
 
-                    if($noiseValue > 0){
-                        $chunk->setBlockId($x, $y, $z, Block::NETHERRACK);
-                    }elseif($y <= $this->waterHeight){
-                        $chunk->setBlockId($x, $y, $z, Block::STILL_LAVA);
+                    if ($noiseValue > 0) {
+                        $chunk->setBlockId($x, $y, $z, BlockIds::NETHERRACK);
+                    } elseif ($y <= $this->waterHeight) {
+                        $chunk->setBlockId($x, $y, $z, BlockIds::STILL_LAVA);
                     }
                 }
             }
         }
 
-        foreach($this->generationPopulators as $populator){
+        foreach ($this->generationPopulators as $populator) {
             $populator->populate($this->level, $chunkX, $chunkZ, $this->random);
         }
     }
-
-    /**
-     * @param int $chunkX
-     * @param int $chunkZ
-     */
-    public function populateChunk(int $chunkX, int $chunkZ) : void{
+    
+    public function populateChunk(int $chunkX, int $chunkZ): void {
         $this->random->setSeed(0xdeadbeef ^ ($chunkX << 8) ^ $chunkZ ^ $this->level->getSeed());
-        foreach($this->populators as $populator){
+        foreach ($this->populators as $populator) {
             $populator->populate($this->level, $chunkX, $chunkZ, $this->random);
         }
 
+        /** @phpstan-var Chunk $chunk */
         $chunk = $this->level->getChunk($chunkX, $chunkZ);
         $biome = Biome::getBiome($chunk->getBiomeId(7, 7));
         $biome->populateChunk($this->level, $chunkX, $chunkZ, $this->random);
     }
 
-    /**
-     * @return Vector3
-     */
-    public function getSpawn() : Vector3 {
+    public function getName(): string {
+        return "nether";
+    }
+    
+    public function getSpawn(): Vector3 {
         return new Vector3(127.5, 128, 127.5);
+    }
+    
+    public function getSettings(): array {
+        return [];
     }
 }

@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,44 +28,28 @@ use pocketmine\level\ChunkManager;
 use pocketmine\math\Vector3;
 use pocketmine\utils\Random;
 
-/**
- * Class CactusPopulator
- * @package czechpmdevs\multiworld\generator\normal\populator\impl
- */
 class CactusPopulator extends AmountPopulator {
 
-    /**
-     * @param ChunkManager $level
-     * @param int $chunkX
-     * @param int $chunkZ
-     * @param Random $random
-     */
     public function populateObject(ChunkManager $level, int $chunkX, int $chunkZ, Random $random): void {
         $this->getRandomSpawnPosition($level, $chunkX, $chunkZ, $random, $x, $y, $z);
 
-        if($y !== -1 && $this->canCactusStay($level, new Vector3($x, $y, $z))){
-            for($aY = 0; $aY < $random->nextRange(0, 3); $aY++) {
+        if ($y !== -1 && $this->canCactusStay($level, new Vector3($x, $y, $z))) {
+            for ($aY = 0; $aY < $random->nextRange(0, 3); $aY++) {
                 $level->setBlockIdAt($x, $y + $aY, $z, Block::CACTUS);
                 $level->setBlockDataAt($x, $y, $z, 1);
             }
         }
     }
 
-    /**
-     * @param ChunkManager $level
-     * @param Vector3 $pos
-     *
-     * @return bool
-     */
-    private function canCactusStay(ChunkManager $level, Vector3 $pos) : bool{
+    private function canCactusStay(ChunkManager $level, Vector3 $pos): bool {
+        /** @phpstan-ignore-next-line */
         $b = $level->getBlockIdAt($pos->getX(), $pos->getY(), $pos->getZ());
-        if($level->getBlockIdAt($pos->getX() + 1, $pos->getY(), $pos->getZ()) != 0 ||
-            $level->getBlockIdAt($pos->getX() - 1, $pos->getY(), $pos->getZ()) != 0 ||
-            $level->getBlockIdAt($pos->getX(), $pos->getY(), $pos->getZ() + 1) != 0 ||
-            $level->getBlockIdAt($pos->getX(), $pos->getY(), $pos->getZ() - 1) != 0) {
+        /** @phpstan-ignore-next-line */
+        if ($level->getBlockIdAt($pos->getX() + 1, $pos->getY(), $pos->getZ()) != 0 || $level->getBlockIdAt($pos->getX() - 1, $pos->getY(), $pos->getZ()) != 0 || $level->getBlockIdAt($pos->getX(), $pos->getY(), $pos->getZ() + 1) != 0 || $level->getBlockIdAt($pos->getX(), $pos->getY(), $pos->getZ() - 1) != 0) {
             return false;
         }
 
+        /** @phpstan-ignore-next-line */
         return ($b === Block::AIR) && $level->getBlockIdAt($pos->getX(), $pos->getY() - 1, $pos->getZ()) === Block::SAND;
     }
 }

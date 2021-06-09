@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,21 +24,11 @@ namespace czechpmdevs\multiworld\generator\normal\biome\types;
 
 use czechpmdevs\multiworld\generator\normal\populator\Populator;
 
-/**
- * Class Biome
- * @package czechpmdevs\multiworld\generator\normal\biome
- */
 abstract class Biome extends \pocketmine\level\biome\Biome {
 
-    /** @var bool $isFrozen */
-    private $isFrozen = false;
+    /** @var bool */
+    private bool $isFrozen;
 
-    /**
-     * Biome constructor.
-     *
-     * @param float $temperature
-     * @param float $rainfall
-     */
     public function __construct(float $temperature, float $rainfall) {
         $this->temperature = $temperature;
         $this->rainfall = $rainfall;
@@ -46,16 +36,10 @@ abstract class Biome extends \pocketmine\level\biome\Biome {
         $this->isFrozen = ($temperature <= 0);
     }
 
-    /**
-     * @return bool
-     */
     public function isFrozen(): bool {
         return $this->isFrozen;
     }
 
-    /**
-     * @param bool $isFrozen
-     */
     public function setFrozen(bool $isFrozen = true): void {
         $this->isFrozen = $isFrozen;
     }
@@ -63,7 +47,7 @@ abstract class Biome extends \pocketmine\level\biome\Biome {
     /**
      * @param Populator[] $populators
      */
-    public function addPopulators(array $populators = []) {
+    public function addPopulators(array $populators = []): void {
         foreach ($populators as $populator) {
             $this->addPopulator($populator);
         }

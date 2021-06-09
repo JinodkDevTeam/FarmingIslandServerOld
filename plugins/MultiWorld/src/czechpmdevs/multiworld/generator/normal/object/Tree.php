@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,10 +30,6 @@ use pocketmine\level\generator\object\SpruceTree;
 use pocketmine\level\generator\object\Tree as TreeObject;
 use pocketmine\utils\Random;
 
-/**
- * Class TreePopulator
- * @package czechpmdevs\multiworld\generator\normal\object
- */
 abstract class Tree extends TreeObject {
 
     public const OAK = 0;
@@ -59,14 +55,14 @@ abstract class Tree extends TreeObject {
      * @param bool $vines
      */
     public static function growTree(ChunkManager $level, int $x, int $y, int $z, Random $random, int $type = 0, bool $vines = false) {
-        switch($type){
+        switch ($type) {
             case self::SPRUCE:
                 $tree = new SpruceTree();
                 break;
             case self::BIRCH:
-                if($random->nextBoundedInt(39) === 0){
+                if ($random->nextBoundedInt(39) === 0) {
                     $tree = new BirchTree(true);
-                }else{
+                } else {
                     $tree = new BirchTree();
                 }
                 break;
@@ -86,22 +82,21 @@ abstract class Tree extends TreeObject {
                 $tree = new HugeMushroom();
                 break;
             default:
-                if($vines) {
+                if ($vines) {
                     $tree = new SwampTree();
                     goto place;
                 }
 
-                if($type !== self::SMALL_OAK && $random->nextRange(0, 9) === 0){
+                if ($type !== self::SMALL_OAK && $random->nextRange(0, 9) === 0) {
                     $tree = new BigOakTree($random, $level);
-                }
-                else {
+                } else {
                     $tree = new OakTree();
                 }
                 break;
         }
 
         place:
-        if($tree->canPlaceObject($level, $x, $y, $z, $random)){
+        if ($tree->canPlaceObject($level, $x, $y, $z, $random)) {
             $tree->placeObject($level, $x, $y, $z, $random);
         }
     }

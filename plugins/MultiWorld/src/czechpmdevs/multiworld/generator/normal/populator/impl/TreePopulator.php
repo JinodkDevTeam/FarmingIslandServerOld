@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,54 +24,34 @@ namespace czechpmdevs\multiworld\generator\normal\populator\impl;
 
 use czechpmdevs\multiworld\generator\normal\object\Tree;
 use czechpmdevs\multiworld\generator\normal\populator\AmountPopulator;
-use pocketmine\block\Block;
 use pocketmine\block\BlockIds;
 use pocketmine\level\ChunkManager;
 use pocketmine\utils\Random;
 
-/**
- * Class TreePopulator
- * @package czechpmdevs\multiworld\generator\normal\populator\impl
- */
 class TreePopulator extends AmountPopulator {
 
-    /** @var int $type */
-	private $type;
-	/** @var bool $vines */
-	private $vines = false;
+    /** @var int */
+    private int $type;
+    /** @var bool */
+    private bool $vines = false;
 
-    /**
-     * TreePopulator constructor.
-     *
-     * @param int $baseAmount
-     * @param int $randomAmount
-     * @param int $spawnPercentage
-     * @param int $type
-     * @param bool $vines
-     */
-	public function __construct(int $baseAmount, int $randomAmount, int $spawnPercentage = 100, $type = Tree::OAK, bool $vines = false){
-		$this->type = $type;
-		$this->vines = $vines;
+    public function __construct(int $baseAmount, int $randomAmount, int $spawnPercentage = 100, int $type = Tree::OAK, bool $vines = false) {
+        $this->type = $type;
+        $this->vines = $vines;
 
-		parent::__construct($baseAmount, $randomAmount, $spawnPercentage);
-	}
+        parent::__construct($baseAmount, $randomAmount, $spawnPercentage);
+    }
 
-    /**
-     * @param ChunkManager $level
-     * @param int $chunkX
-     * @param int $chunkZ
-     * @param Random $random
-     */
-	public function populateObject(ChunkManager $level, int $chunkX, int $chunkZ, Random $random): void {
-	    $this->getRandomSpawnPosition($level, $chunkX, $chunkZ, $random, $x, $y, $z);
-        if($y === -1){
+    public function populateObject(ChunkManager $level, int $chunkX, int $chunkZ, Random $random): void {
+        $this->getRandomSpawnPosition($level, $chunkX, $chunkZ, $random, $x, $y, $z);
+        if ($y === -1) {
             return;
         }
 
-        if(!in_array($level->getBlockIdAt($x, $y-1, $z), [BlockIds::GRASS, BlockIds::MYCELIUM])) {
+        if (!in_array($level->getBlockIdAt($x, $y - 1, $z), [BlockIds::GRASS, BlockIds::MYCELIUM])) {
             return;
         }
 
         Tree::growTree($level, $x, $y, $z, $random, $this->type, $this->vines);
-	}
+    }
 }

@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,34 +25,26 @@ namespace czechpmdevs\multiworld\generator\normal\object;
 use pocketmine\block\Block;
 use pocketmine\block\BlockIds;
 use pocketmine\level\ChunkManager;
-use pocketmine\math\Vector2;
-use pocketmine\math\Vector3;
 use pocketmine\utils\Random;
 
 class DarkOakTree extends Tree {
 
+    /**
+     * @return void
+     */
     public function placeObject(ChunkManager $level, int $x, int $y, int $z, Random $rand) {
         $i = $rand->nextBoundedInt(3) + $rand->nextBoundedInt(2) + 6;
-
-        // j k l
 
         if ($y >= 1 && $y + $i + 1 < 256) {
             $block = $level->getBlockIdAt($x, $y - 1, $z);
 
-            if ($block!= Block::GRASS && $block != Block::DIRT) {
-                return false;
+            if ($block != Block::GRASS && $block != Block::DIRT) {
+                return;
             } else {
                 $level->setBlockIdAt($x, $y - 1, $z, Block::DIRT);
-
-                $level->setBlockIdAt($x, $y, $z, Block::LOG2);
-                $level->setBlockIdAt($x + 1, $y, $z, Block::LOG2);
-                $level->setBlockIdAt($x + 1, $y, $z + 1, Block::LOG2);
-                $level->setBlockIdAt($x, $y, $z + 1, Block::LOG2);
-
-                $level->setBlockDataAt($x, $y, $z, 1);
-                $level->setBlockDataAt($x + 1, $y, $z, 1);
-                $level->setBlockDataAt($x + 1, $y, $z + 1, 1);
-                $level->setBlockDataAt($x, $y, $z + 1, 1);
+                $level->setBlockIdAt($x + 1, $y - 1, $z, Block::DIRT);
+                $level->setBlockIdAt($x + 1, $y - 1, $z + 1, Block::DIRT);
+                $level->setBlockIdAt($x, $y - 1, $z + 1, Block::DIRT);
 
                 $i1 = $i - $rand->nextBoundedInt(4);
                 $j1 = 2 - $rand->nextBoundedInt(3); // x1 -> j1
@@ -162,11 +154,7 @@ class DarkOakTree extends Tree {
                         }
                     }
                 }
-
-                return true;
             }
-        } else {
-            return false;
         }
     }
 
@@ -182,6 +170,6 @@ class DarkOakTree extends Tree {
         return parent::canPlaceObject($level, $x, $y, $z, $random) &&
             parent::canPlaceObject($level, $x + 1, $y, $z, $random) &&
             parent::canPlaceObject($level, $x + 1, $y, $z + 1, $random) &&
-            parent::canPlaceObject($level, $x, $y, $z +1, $random);
+            parent::canPlaceObject($level, $x, $y, $z + 1, $random);
     }
 }

@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,10 +22,4 @@ declare(strict_types=1);
 
 namespace czechpmdevs\multiworld\generator\normal\biome\types;
 
-/**
- * TODO - Better looking mesa biome
- *
- * Class CoveredBiome
- * @package czechpmdevs\multiworld\generator\normal\biome\types
- */
 abstract class CoveredBiome extends Biome {}

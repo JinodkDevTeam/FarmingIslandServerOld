@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,82 +25,46 @@ namespace czechpmdevs\multiworld\generator\normal\populator;
 use pocketmine\level\ChunkManager;
 use pocketmine\utils\Random;
 
-/**
- * Class AmountPopulator
- * @package czechpmdevs\multiworld\generator\normal\populator
- */
 abstract class AmountPopulator extends Populator {
 
-    /** @var int $baseAmount */
-    private $baseAmount = 1;
-    /** @var int $randomAmount */
-    private $randomAmount = 0;
-    /** @var int $spawnPercentage */
-    private $spawnPercentage = 100;
+    /** @var int */
+    private int $baseAmount = 1;
+    /** @var int */
+    private int $randomAmount = 0;
+    /** @var int */
+    private int $spawnPercentage = 100;
 
-    /**
-     * AmountPopulator constructor.
-     *
-     * @param int $baseAmount
-     * @param int $randomAmount
-     * @param int|null $spawnPercentage
-     */
     public function __construct(int $baseAmount, int $randomAmount, ?int $spawnPercentage = null) {
         $this->baseAmount = $baseAmount;
         $this->randomAmount = $randomAmount;
 
-        if(!is_null($spawnPercentage)) {
+        if (!is_null($spawnPercentage)) {
             $this->spawnPercentage = $spawnPercentage;
         }
     }
 
-    /**
-     * @param int $baseAmount
-     */
     public function setBaseAmount(int $baseAmount): void {
         $this->baseAmount = $baseAmount;
     }
 
-    /**
-     * @param int $randomAmount
-     */
     public function setRandomAmount(int $randomAmount): void {
         $this->randomAmount = $randomAmount;
     }
 
-    /**
-     * @param int $percentage
-     */
     public function setSpawnPercentage(int $percentage): void {
         $this->spawnPercentage = $percentage;
     }
 
-    /**
-     * @param ChunkManager $level
-     * @param int $chunkX
-     * @param int $chunkZ
-     * @param Random $random
-     *
-     * @return void
-     */
     public final function populate(ChunkManager $level, int $chunkX, int $chunkZ, Random $random): void {
-        if($random->nextRange($this->spawnPercentage, 100) != 100) {
+        if ($random->nextRange($this->spawnPercentage, 100) != 100) {
             return;
         }
 
         $amount = $random->nextBoundedInt($this->randomAmount + 1) + $this->baseAmount;
-        for($i = 0; $i < $amount; $i++) {
+        for ($i = 0; $i < $amount; $i++) {
             $this->populateObject($level, $chunkX, $chunkZ, $random);
         }
     }
 
-    /**
-     * @param ChunkManager $level
-     * @param int $chunkX
-     * @param int $chunkZ
-     * @param Random $random
-     *
-     * @return void
-     */
     abstract public function populateObject(ChunkManager $level, int $chunkX, int $chunkZ, Random $random): void;
 }

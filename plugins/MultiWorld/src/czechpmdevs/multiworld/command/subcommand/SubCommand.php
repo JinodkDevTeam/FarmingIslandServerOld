@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,20 +24,10 @@ namespace czechpmdevs\multiworld\command\subcommand;
 
 use pocketmine\command\CommandSender;
 
-/**
- * Interface SubCommand
- * @package czechpmdevs\multiworld\command\subcommand
- */
 interface SubCommand {
 
     /**
-     * @api
-     *
-     * @param CommandSender $sender
-     * @param array $args
-     * @param string $name
-     *
-     * @return mixed
+     * @param string[] $args
      */
-    public function executeSub(CommandSender $sender, array $args, string $name);
+    public function executeSub(CommandSender $sender, array $args, string $name): void;
 }

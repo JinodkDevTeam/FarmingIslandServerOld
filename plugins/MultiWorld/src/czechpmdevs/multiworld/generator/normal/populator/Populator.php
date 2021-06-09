@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,10 +24,6 @@ namespace czechpmdevs\multiworld\generator\normal\populator;
 
 use czechpmdevs\multiworld\util\PositionCalc;
 
-/**
- * Class Populator
- * @package czechpmdevs\multiworld\generator\normal\populator
- */
 abstract class Populator extends \pocketmine\level\generator\populator\Populator {
     use PositionCalc;
 }

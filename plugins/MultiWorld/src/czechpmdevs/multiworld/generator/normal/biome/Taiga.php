@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,15 +33,8 @@ use pocketmine\block\Flower;
 use pocketmine\block\RedMushroom;
 use pocketmine\block\Sapling;
 
-/**
- * Class Taiga
- * @package czechpmdevs\multiworld\generator\normal\biome
- */
 class Taiga extends GrassyBiome {
 
-    /**
-     * Taiga constructor.
-     */
     public function __construct() {
         parent::__construct(0.25, 0.8);
 
@@ -65,9 +58,6 @@ class Taiga extends GrassyBiome {
         $this->setElevation(70, 79);
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string {
         return "Taiga";
     }

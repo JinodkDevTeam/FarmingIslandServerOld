@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,15 +29,8 @@ use czechpmdevs\multiworld\generator\normal\populator\object\Plant;
 use pocketmine\block\Block;
 use pocketmine\block\DeadBush;
 
-/**
- * Class Desert
- * @package czechpmdevs\multiworld\generator\normal\biome
- */
 class Desert extends SandyBiome {
 
-    /**
-     * Desert constructor.
-     */
     public function __construct() {
         parent::__construct(2.0, 0.0);
 
@@ -52,9 +45,6 @@ class Desert extends SandyBiome {
         $this->setElevation(63, 69);
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string {
         return "Desert";
     }

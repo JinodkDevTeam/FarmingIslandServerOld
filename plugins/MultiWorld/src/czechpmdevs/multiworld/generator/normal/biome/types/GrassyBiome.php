@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,10 +25,6 @@ namespace czechpmdevs\multiworld\generator\normal\biome\types;
 use pocketmine\block\Dirt;
 use pocketmine\block\Grass;
 
-/**
- * Class GrassyBiome
- * @package czechpmdevs\multiworld\generator\normal\biome\types
- */
 abstract class GrassyBiome extends Biome {
 
     public function __construct(float $temperature, float $rainfall) {

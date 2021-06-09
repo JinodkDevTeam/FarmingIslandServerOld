@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,10 +25,6 @@ namespace czechpmdevs\multiworld\generator\normal\biome;
 use czechpmdevs\multiworld\generator\normal\biome\types\SandyBiome;
 use czechpmdevs\multiworld\generator\normal\populator\impl\LakePopulator;
 
-/**
- * Class Beach
- * @package czechpmdevs\multiworld\generator\normal\biome
- */
 class Beach extends SandyBiome {
 
     public function __construct() {
@@ -38,9 +34,6 @@ class Beach extends SandyBiome {
         $this->addPopulator(new LakePopulator());
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string {
         return "Beach";
     }

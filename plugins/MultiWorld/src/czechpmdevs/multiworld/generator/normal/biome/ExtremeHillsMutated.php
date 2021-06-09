@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,15 +24,8 @@ namespace czechpmdevs\multiworld\generator\normal\biome;
 
 use pocketmine\block\Block;
 
-/**
- * Class ExtremeHillsMutated
- * @package czechpmdevs\multiworld\generator\normal\biome
- */
 class ExtremeHillsMutated extends ExtremeHills {
 
-    /**
-     * ExtremeHillsMutated constructor.
-     */
     public function __construct() {
         parent::__construct();
 
@@ -46,9 +39,6 @@ class ExtremeHillsMutated extends ExtremeHills {
         ]);
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string {
         return "Extreme Hills Mutated";
     }

@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,20 +28,9 @@ use czechpmdevs\multiworld\util\LanguageManager;
 use pocketmine\command\CommandSender;
 use pocketmine\Server;
 
-/**
- * Class DeleteSubcommand
- * @package czechpmdevs\multiworld\command\subcommand
- */
 class DeleteSubcommand implements SubCommand {
 
-    /**
-     * @param CommandSender $sender
-     * @param array $args
-     * @param string $name
-     *
-     * @return mixed|void
-     */
-    public function executeSub(CommandSender $sender, array $args, string $name) {
+    public function executeSub(CommandSender $sender, array $args, string $name): void {
         if (!isset($args[0])) {
             $sender->sendMessage(MultiWorld::getPrefix() . LanguageManager::getMsg($sender, "delete-usage"));
             return;
@@ -52,7 +41,7 @@ class DeleteSubcommand implements SubCommand {
             return;
         }
 
-        if(!$this->getServer()->isLevelLoaded($args[0])) $this->getServer()->loadLevel($args[0]);
+        if (!$this->getServer()->isLevelLoaded($args[0])) $this->getServer()->loadLevel($args[0]);
 
         if ($this->getServer()->getDefaultLevel()->getFolderName() == $this->getServer()->getLevelByName($args[0])->getFolderName()) {
             $sender->sendMessage("§cCould not remove default level!");
@@ -63,9 +52,6 @@ class DeleteSubcommand implements SubCommand {
         $sender->sendMessage(MultiWorld::getPrefix() . LanguageManager::getMsg($sender, "delete-done", [$files]));
     }
 
-    /**
-     * @return Server $server
-     */
     private function getServer(): Server {
         return Server::getInstance();
     }

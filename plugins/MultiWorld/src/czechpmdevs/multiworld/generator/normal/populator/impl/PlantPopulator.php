@@ -2,7 +2,7 @@
 
 /**
  * MultiWorld - PocketMine plugin that manages worlds.
- * Copyright (C) 2018 - 2020  CzechPMDevs
+ * Copyright (C) 2018 - 2021  CzechPMDevs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,51 +26,35 @@ use czechpmdevs\multiworld\generator\normal\populator\AmountPopulator;
 use czechpmdevs\multiworld\generator\normal\populator\object\Plant;
 use pocketmine\block\Block;
 use pocketmine\level\ChunkManager;
-use pocketmine\math\Vector3;
 use pocketmine\utils\Random;
+use function array_merge;
+use function count;
+use function in_array;
 
-/**
- * Class PlantPopulator
- * @package czechpmdevs\multiworld\generator\normal\populator\impl
- */
 class PlantPopulator extends AmountPopulator {
 
-    /** @var Plant[] $plants */
-    private $plants = [];
+    /** @var Plant[] */
+    private array $plants = [];
+    /** @var int[] */
+    private array $allowedBlocks = [];
 
-    /** @var array $allowedBlocks */
-    private $allowedBlocks = [];
-
-    /**
-     * @param Plant $plant
-     */
-    public function addPlant(Plant $plant) {
+    public function addPlant(Plant $plant): void {
         $this->plants[] = $plant;
     }
 
-    /**
-     * @param int $blockId
-     */
-    public function allowBlockToStayAt(int $blockId) {
+    public function allowBlockToStayAt(int $blockId): void {
         $this->allowedBlocks[] = $blockId;
     }
 
-    /**
-     * @param ChunkManager $level
-     * @param int $chunkX
-     * @param int $chunkZ
-     * @param Random $random
-     * @return void
-     */
     public function populateObject(ChunkManager $level, int $chunkX, int $chunkZ, Random $random): void {
-        if(count($this->plants) === 0) {
+        if (count($this->plants) === 0) {
             return;
         }
 
         $this->getRandomSpawnPosition($level, $chunkX, $chunkZ, $random, $x, $y, $z);
 
-        if($y !== -1 and $this->canPlantStay($level, $x, $y, $z)){
-            $plant = $random->nextRange(0, (int)(count($this->plants)-1));
+        if ($y !== -1 and $this->canPlantStay($level, $x, $y, $z)) {
+            $plant = $random->nextRange(0, (int)(count($this->plants) - 1));
             $pY = $y;
             foreach ($this->plants[$plant]->blocks as $block) {
                 $level->setBlockIdAt($x, $pY, $z, $block->getId());
@@ -80,15 +64,8 @@ class PlantPopulator extends AmountPopulator {
         }
     }
 
-    /**
-     * @param int $x
-     * @param int $y
-     * @param int $z
-     *
-     * @return bool
-     */
     private function canPlantStay(ChunkManager $level, int $x, int $y, int $z): bool {
         $b = $level->getBlockIdAt($x, $y, $z);
-        return ($b === Block::AIR or $b === Block::SNOW_LAYER or $b === Block::WATER) and in_array($level->getBlockIdAt($x, $y - 1, $z), array_merge([Block::GRASS], $this->allowedBlocks)) ;
+        return ($b === Block::AIR or $b === Block::SNOW_LAYER or $b === Block::WATER) and in_array($level->getBlockIdAt($x, $y - 1, $z), array_merge([Block::GRASS], $this->allowedBlocks));
     }
 }
