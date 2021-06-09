@@ -39,9 +39,7 @@ class UpdateInfo
         });
         $text = [
             "§　Updates:",
-            "- Fix Lumberjack enchants",
-            "- New Crops: Inferium Seed",
-            "- Some bug fixes.",
+            "- Update server to 1.17",
             "Thông báo: GUI không còn được update trên Island Menu, các bạn vui lòng chuyển sang sử dụng UI trên Island Menu",
             "Official wiki: bit.ly/fi-wiki",
             "Vote for server: bit.ly/fi-vote",
