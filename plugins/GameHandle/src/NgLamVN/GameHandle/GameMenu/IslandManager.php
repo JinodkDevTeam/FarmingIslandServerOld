@@ -52,13 +52,20 @@ class IslandManager
         $form->addButton("§lRename island\nĐổi tên đảo");
         $form->addButton("§lChange island biome\n Thay đổi hệ sinh thái đảo");
         $plot = MyPlot::getInstance()->getPlotByPosition($player->asPosition());
-        if ($plot->pvp == true)
+        if (isset($plot->pvp))
         {
-            $form->addButton("§lDisable PvP\nTắt PvP");
+            if ($plot->pvp == true)
+            {
+                $form->addButton("§lDisable PvP\nTắt PvP");
+            }
+            else
+            {
+                $form->addButton("§lEnable PvP\nBật PvP");
+            }
         }
         else
         {
-            $form->addButton("§lEnable PvP\nBật PvP");
+            $form->addButton("Đã có lỗi xảy ra với đảo của bạn (Error type: Missing pvp data)");
         }
 
         $player->sendForm($form);
