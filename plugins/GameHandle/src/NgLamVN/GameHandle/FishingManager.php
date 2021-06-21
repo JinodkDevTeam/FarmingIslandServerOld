@@ -9,7 +9,6 @@ use pocketmine\item\Item;
 use pocketmine\math\Vector3;
 use pocketmine\nbt\NBT;
 use pocketmine\nbt\tag\ListTag;
-use pocketmine\Player;
 use pocketmine\utils\SingletonTrait;
 
 class FishingManager
