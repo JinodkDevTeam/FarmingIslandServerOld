@@ -6,8 +6,10 @@ namespace NgLamVN\GameHandle;
 
 use pocketmine\event\player\PlayerFishEvent;
 use pocketmine\item\Item;
+use pocketmine\math\Vector3;
 use pocketmine\nbt\NBT;
 use pocketmine\nbt\tag\ListTag;
+use pocketmine\Player;
 use pocketmine\utils\SingletonTrait;
 
 class FishingManager
@@ -149,6 +151,19 @@ class FishingManager
         if ($event->getState() == PlayerFishEvent::STATE_CAUGHT_FISH)
         {
             $event->setItemResult($this->getRandomItems());
+        }
+
+        if ($event->getState() == PlayerFishEvent::STATE_CAUGHT_NOTHING)
+        {
+            $angler = $event->getPlayer();
+            $hook = $event->getHook();
+            $d0 = $hook->x - $angler->x;
+            $d2 = $hook->y - $angler->y;
+            $d4 = $hook->z - $angler->z;
+            $d6 = sqrt($d0 * $d0 + $d2 * $d2 + $d4 * $d4);
+            $d8 = 0.1;
+            $vct = (new Vector3($d0 * $d8, $d2 * $d8 + sqrt($d6) * 0.08, $d4 * $d8))->multiply(2);
+            $angler->setMotion($vct);
         }
     }
 

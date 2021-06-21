@@ -36,6 +36,7 @@ class PlayerFishEvent extends PlayerEvent implements Cancellable{
 	public const STATE_FISHING = 0;
 	public const STATE_CAUGHT_FISH = 1;
 	public const STATE_CAUGHT_ENTITY = 2;
+	public const STATE_CAUGHT_NOTHING = 3;
 
 	/** @var FishingHook */
 	protected $hook;

@@ -301,6 +301,13 @@
             "version": "1.9.5",
             "update": null,
             "state": 3
+        },
+        "chatfx": {
+            "source": "Poggit",
+            "name": "ChatFX",
+            "version": "1.1.0",
+            "update": null,
+            "state": 3
         }
     }
 }

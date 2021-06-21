@@ -324,7 +324,10 @@ class FishingHook extends Projectile{
                     }
 					$this->level->dropExperience($angler, $ev->getXpDropAmount());
 				}
-			}
+			}else{
+			    $ev = new PlayerFishEvent($angler, $this, PlayerFishEvent::STATE_CAUGHT_NOTHING);
+			    $ev->call();
+            }
 
 			$this->flagForDespawn();
 		}
