@@ -65,7 +65,7 @@ class IslandManager
         }
         else
         {
-            $form->addButton("Đã có lỗi xảy ra với đảo của bạn (Error type: Missing pvp data)");
+            $form->addButton("Đã có lỗi xảy ra với đảo của bạn, vui lòng báo admin để có phương án xử lý! (Error type: Missing pvp data)");
         }
 
         $player->sendForm($form);
