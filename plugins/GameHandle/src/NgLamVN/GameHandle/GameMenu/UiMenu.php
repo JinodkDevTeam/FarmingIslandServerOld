@@ -40,6 +40,7 @@ class UiMenu
         array_push($list, "vip");
         array_push($list, "tutorial");
         array_push($list, "invcraft");
+        array_push($list, "event");
         if (in_array($this->getCore()->getPlayerGroupName($player), ["Vip", "VipPlus", "Staff", "Admin", "Youtuber", "Member"]))
         {
             array_push($list, "rankcolor");
@@ -90,6 +91,9 @@ class UiMenu
                 case "invcraft":
                     Server::getInstance()->dispatchCommand($player, "invcraft");
                     break;
+                case "event":
+                    Server::getInstance()->dispatchCommand($player, "event");
+                    break;
             }
         });
         if ($player->getLevel()->getName() == "island")
@@ -106,6 +110,7 @@ class UiMenu
         $form->addButton("§　§lVIP");
         $form->addButton("§lTutorial\nXem cách chơi");
         $form->addButton("§lInvCraft\nBàn chế tạo siêu to khổng lồ");
+        $form->addButton("§　§l§eEVENT §0INFO");
         if (in_array($this->getCore()->getPlayerGroupName($player), ["Vip", "VipPlus", "Staff", "Admin", "Youtuber", "Member"]))
         {
             $form->addButton("§　§lRankColor");

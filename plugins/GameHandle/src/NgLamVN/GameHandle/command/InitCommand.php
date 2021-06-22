@@ -34,5 +34,6 @@ class InitCommand
         $cmd->register("unfreeze", new UnFreeze($plugin));
         $cmd->register("notp", new NoTP($plugin));
         $cmd->register("icgive", new IcGive($plugin));
+        $cmd->register("event", new Event($plugin));
     }
 }

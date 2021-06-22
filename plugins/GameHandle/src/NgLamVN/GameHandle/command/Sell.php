@@ -80,7 +80,7 @@ class Sell extends PluginCommand
             $sender->sendMessage("/sell <hand|all>");
             return;
         }
-        $cp = 0;
+        $cp = 100;
 
         switch ($args[0])
         {
@@ -90,9 +90,9 @@ class Sell extends PluginCommand
                 {
                     if (in_array($this->getCore()->getPlayerGroupName($sender), self::VIP_RANK))
                     {
-                        $price = $this->toPrice($item) + $this->toPrice($item)*(1/10 + $cp/100);
+                        $price = $this->toPrice($item) + $this->toPrice($item)*($cp/100);
                         EconomyAPI::getInstance()->addMoney($sender, $price);
-                        $sender->sendMessage("Sell ".$item->getCount() ." item for ". $price . "xu (+".(10 + $cp)." percent)");
+                        $sender->sendMessage("Sell ".$item->getCount() ." item for ". $price . "xu (+".($cp)." percent)");
                         $sender->getInventory()->removeItem($item);
                         return;
                     }
@@ -121,9 +121,9 @@ class Sell extends PluginCommand
                 }
                 if (in_array($this->getCore()->getPlayerGroupName($sender), self::VIP_RANK))
                 {
-                    $price = $price + $price*(1/10 + $cp/100);
+                    $price = $price + $price*($cp/100);
 
-                    $sender->sendMessage("Sell ". $count . " items for " . $price . "xu (+".(10 + $cp)." percent)");
+                    $sender->sendMessage("Sell ". $count . " items for " . $price . "xu (+".($cp)." percent)");
                     EconomyAPI::getInstance()->addMoney($sender, $price);
                     return;
                 }

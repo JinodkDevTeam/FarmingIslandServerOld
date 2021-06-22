@@ -9,20 +9,21 @@ use NgLamVN\GameHandle\GameMenu\UpdateInfo;
 use pocketmine\command\PluginCommand;
 use pocketmine\command\CommandSender;
 
-class Tutorial extends PluginCommand
+class Event extends PluginCommand
 {
     private Core $plugin;
 
     public function __construct(Core $plugin)
     {
-        parent::__construct("tutorial", $plugin);
+        parent::__construct("event", $plugin);
         $this->plugin = $plugin;
-        $this->setDescription("View tutorial");
-        $this->setPermission("gh.tutorial");
+        $this->setDescription("View Event Info");
+        $this->setPermission("gh.event");
     }
     public function execute(CommandSender $sender, string $commandLabel, array $args)
     {
-        new UpdateInfo($sender, "tutorial");
+        new UpdateInfo($sender, "event");
         return;
     }
 }
+

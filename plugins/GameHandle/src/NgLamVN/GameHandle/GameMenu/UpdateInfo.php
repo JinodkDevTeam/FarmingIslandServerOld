@@ -16,7 +16,14 @@ class UpdateInfo
     {
         $this->version = Server::getInstance()->getPluginManager()->getPlugin("FI-GameHandle")->getDescription()->getVersion();
         if ($mode == "") $this->execute($player);
-        else $this->TutorialForm($player);
+        elseif ($mode == "tutorial")
+        {
+            $this->TutorialForm($player);
+        }
+        elseif ($mode == "event")
+        {
+            $this->eventForm($player);
+        }
     }
 
     public function ArrayToString(array $array): string
@@ -36,10 +43,11 @@ class UpdateInfo
         {
             if ($data == null) return;
             if ($data == 1) $this->TutorialForm($player);
+            if ($data == 2) $this->eventForm($player);
         });
         $text = [
             "§　Updates:",
-            "- Update server to 1.17",
+            "- Add Event Info Tab",
             "Thông báo: GUI không còn được update trên Island Menu, các bạn vui lòng chuyển sang sử dụng UI trên Island Menu",
             "Official wiki: bit.ly/fi-wiki",
             "Vote for server: bit.ly/fi-vote",
@@ -50,6 +58,7 @@ class UpdateInfo
         $form->setContent($this->ArrayToString($text));
         $form->addButton("§　§lOK");
         $form->addButton("§　§lTutorial\nXem cách chơi.");
+        $form->addButton("§　§l§eEVENT §0INFO");
 
         $player->sendForm($form);
     }
@@ -101,6 +110,39 @@ class UpdateInfo
         $form->setTitle("§　§lTutorial");
         $form->setContent($this->ArrayToString($text));
         $form->addButton("§　§lOK, LEST PLAY !");
+
+        $player->sendForm($form);
+    }
+
+    public function eventForm(Player $player)
+    {
+        $text = [
+            "§l§eEVENT §f#1:",
+            "§r§f * TOP Vote (1/6 - 30/6/2021) *",
+            " - TOP 1: 50.000xu + 5 Superium Essence",
+            " - TOP 2: 50.000xu + 5 Intermedium Essence",
+            " - TOP 3: 30.000xu + 5 Intermedium Essence",
+            " - TOP 4: 30.000xu + 5 Prudentium Essence",
+            " - TOP 5: 30.000xu",
+            "§o**Giải thưởng chỉ có tác dụng nếu tổng số vote trong tháng của server > 150.**",
+            "",
+            "§r§l§eEVENT §f#2:",
+            "§r§f * Sell Price Buff x2 * (22/6 - 26/6/2021)",
+            "",
+            "§r§l§eEVENT §f#3:",
+            "§r§f * Grow Speed Buff * (22/6 - 22/6/2021)",
+            " - Guest rank buff: x2",
+            " - Member and Youtuber rank buff: x4",
+            " - VIP rank buff: x6"
+        ];
+
+        $form = new SimpleForm(function (Player $player, ?int $data)
+        {
+            //NOTHING
+        });
+        $form->setTitle("§　§l§eEVENT §0INFO");
+        $form->setContent($this->ArrayToString($text));
+        $form->addButton("§　§lOK");
 
         $player->sendForm($form);
     }
