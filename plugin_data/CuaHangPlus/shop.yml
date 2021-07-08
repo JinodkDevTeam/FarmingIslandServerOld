@@ -163,3 +163,50 @@
   IC_Code: 1f8b080000000000000ae36260606260ca4c619460646075ce2fcd2b616462607349cc4d4c4f6560e062602e494ce762604fc92c2ec849ace46060f14bcc4d65503eb43ce7d0f2d4470d8b0e2d4f763eb43ca9e8d0f294fc43cb1381d82c1b22c3003430b9283f3f9b91810100e63fcdbe66000000
   Item:
     Lore: "§r§fWorrying about leaves ?, this tool will help you :)"
+"13":
+  Sell:
+    money: "true"
+    coin: "false"
+    price: 21111
+  IC_Code: 1f8b080000000000000a25cab10dc2301445d16713487096a0a0628da480868e01bec92758d80e721c243a66a1f11e1e854990925b5e1d054848d38983c0ba19261f85c4a625473d030aab48bd42d999f169e95da1389363ec730a39d99cf8f7f9e6a45bf3e2b0cbe97664eb382e1f1554338d7170a7c80ef58c1620505fbc0e4c0fd296c51605fbeb5d61ee0fbadc877c93000000
+  Item:
+    Lore: "§r§fDo you want to diving under the sea ?, maybe you need this. \n\n§f§lUnbreakable"
+"14":
+  Sell:
+    money: "true"
+    coin: "false"
+    price: 77777
+  IC_Code: 1f8b080000000000000a25ce310e823018c5f1d7828ae512ce2e6e5e0012757173702cf2098d6d3150306e9ec5a5f7e8513c8904b6977f7ec31300075725db322cb2a6b78e712c736964458040e46425b02a55f7d4f29d203e4b43d805df06af83a7dfe71bfcfea09b97b2d526f8225703b5e3b81f491b7233410291f59d6bccc991413aa11930a4175bb4241fb2d0c4d688c9de6a01804dc7f89523d283061bd31f3465fd05ae000000
+  Item:
+    Lore: "§r§fExtended version of Diver Helmet, can use like Glowing Helmet. \n\n§f§lUnbreakable"
+"15":
+  Sell:
+    money: "true"
+    coin: "false"
+    price: 32222
+  Item:
+    Id: "285:0:1"
+    Name: "§l§e•§6Stonk§e•"
+    Lore: "§r§fIs that stonk ? Not sure about that... \n\n§f§lUnbreakable"
+    Unbreakable: "true"
+    Enchantments:
+      1:
+        Id: "efficiency"
+        Level: 15
+"16":
+  Sell:
+    money: "false"
+    coin: "true"
+    price: 10000
+  Item:
+    Id: "303:0:1"
+    Name: "§l§e•§cHit §aMe§f!§e•"
+    Lore: "§r§fHit me ! \n\n§f§lUnbreakable"
+    Unbreakable: "true"
+    Enchantments:
+      1:
+        Id: "thorns"
+        Level: 32767
+      2:
+        Id: "protection"
+        Level: 32767

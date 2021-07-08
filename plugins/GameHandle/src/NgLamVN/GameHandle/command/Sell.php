@@ -8,7 +8,9 @@ use NgLamVN\GameHandle\Core;
 use onebone\economyapi\EconomyAPI;
 use pocketmine\command\CommandSender;
 use pocketmine\command\PluginCommand;
+use pocketmine\event\player\PlayerFishEvent;
 use pocketmine\item\Item;
+use pocketmine\Player;
 use pocketmine\Server;
 use pocketmine\utils\Config;
 
@@ -72,6 +74,11 @@ class Sell extends PluginCommand
 
     public function execute(CommandSender $sender, string $commandLabel, array $args)
     {
+        if (!$sender instanceof Player)
+        {
+            $sender->sendMessage("Please use ingame !");
+            return;
+        }
         if (!$sender->hasPermission("gh.sell.use"))
         {
             return;
@@ -80,7 +87,8 @@ class Sell extends PluginCommand
             $sender->sendMessage("/sell <hand|all>");
             return;
         }
-        $cp = 100;
+        $cp = 0;
+        $rankbuff = 10;
 
         switch ($args[0])
         {
@@ -90,9 +98,9 @@ class Sell extends PluginCommand
                 {
                     if (in_array($this->getCore()->getPlayerGroupName($sender), self::VIP_RANK))
                     {
-                        $price = $this->toPrice($item) + $this->toPrice($item)*($cp/100);
+                        $price = $this->toPrice($item) + $this->toPrice($item)*($cp/100) + $this->toPrice($item)*($rankbuff/100);
                         EconomyAPI::getInstance()->addMoney($sender, $price);
-                        $sender->sendMessage("Sell ".$item->getCount() ." item for ". $price . "xu (+".($cp)." percent)");
+                        $sender->sendMessage("Sell ".$item->getCount() ." item for ". $price . "xu (+".($cp + $rankbuff)." percent)");
                         $sender->getInventory()->removeItem($item);
                         return;
                     }
@@ -121,9 +129,9 @@ class Sell extends PluginCommand
                 }
                 if (in_array($this->getCore()->getPlayerGroupName($sender), self::VIP_RANK))
                 {
-                    $price = $price + $price*($cp/100);
+                    $price = $price + $price*($cp/100) + $price*($rankbuff/100);
 
-                    $sender->sendMessage("Sell ". $count . " items for " . $price . "xu (+".($cp)." percent)");
+                    $sender->sendMessage("Sell ". $count . " items for " . $price . "xu (+".($cp + $rankbuff)." percent)");
                     EconomyAPI::getInstance()->addMoney($sender, $price);
                     return;
                 }

@@ -4,3 +4,5 @@ version: 0.1
 author: NgLamVN
 description: Handle Custom Stuff for FarmingIslandServer
 api: 3.19.0
+depend:
+  - PiggyCustomEnchants

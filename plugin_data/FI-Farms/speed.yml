@@ -1,6 +1,6 @@
 ---
-growing-time: 600
-vip-growing-time: 200
+growing-time: 1200
+vip-growing-time: 600
 op-growing-time: 5
-member-growing-time: 300
+member-growing-time: 1080
 ...
