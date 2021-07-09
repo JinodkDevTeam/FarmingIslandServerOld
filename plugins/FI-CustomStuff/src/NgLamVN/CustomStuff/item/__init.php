@@ -14,6 +14,6 @@ class __init
         $plmng = $this->core->getServer()->getPluginManager();
 
         $plmng->registerEvents(new Crook($core), $core);
-        $plmng->registerEvents(new DiverHelmet($core), $core);
+        $plmng->registerEvents(new DivingHelmet($core), $core);
     }
 }

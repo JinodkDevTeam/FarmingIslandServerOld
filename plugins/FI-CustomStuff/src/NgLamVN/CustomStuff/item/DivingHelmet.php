@@ -7,9 +7,10 @@ use pocketmine\entity\Effect;
 use pocketmine\entity\EffectInstance;
 use pocketmine\event\entity\EntityArmorChangeEvent;
 use pocketmine\event\Listener;
+use pocketmine\inventory\ArmorInventory;
 use pocketmine\Player;
 
-class DiverHelmet implements Listener
+class DivingHelmet implements Listener
 {
     public CustomStuff $core;
 
@@ -23,10 +24,14 @@ class DiverHelmet implements Listener
      * @priority HIGHEST
      * @ignoreCancelled TRUE
      */
-    public function onArmorEquip (EntityArmorChangeEvent $event)
+    public function onArmorChange (EntityArmorChangeEvent $event)
     {
         $entity = $event->getEntity();
         if (!$entity instanceof Player)
+        {
+            return;
+        }
+        if ($event->getSlot() !== ArmorInventory::SLOT_HEAD)
         {
             return;
         }
@@ -37,7 +42,7 @@ class DiverHelmet implements Listener
             $this->removeEffect($entity);
             return;
         }
-        if ($nbt->getTag("CustomItem")->getValue() == "DiverHelmet")
+        if ($nbt->getTag("CustomItem")->getValue() == "DivingHelmet")
         {
             $this->addEffect($entity);
         }

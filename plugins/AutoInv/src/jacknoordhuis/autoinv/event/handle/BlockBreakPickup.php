@@ -43,7 +43,7 @@ class BlockBreakPickup extends EventHandler {
 	}
 
 	public function getEventPriority() : int {
-		return EventPriority::HIGHEST;
+		return EventPriority::MONITOR;
 	}
 
 }

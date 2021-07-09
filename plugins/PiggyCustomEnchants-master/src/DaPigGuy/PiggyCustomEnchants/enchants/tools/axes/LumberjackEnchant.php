@@ -39,8 +39,13 @@ class LumberjackEnchant extends RecursiveEnchant
             $block = $event->getBlock();
             if ($player->isSneaking()) {
                 if ($block->getId() == Block::WOOD || $block->getId() == Block::WOOD2) {
-                    $event->setCancelled();
-                    /*$this->breakTree($block, $player);*/
+                    foreach ($block->getAllSides() as $side) {
+                        if ($side->getId() == Block::WOOD || $side->getId() == Block::WOOD2) {
+                            $event->setDrops([]);
+                            $this->breakTree($block, $player);
+                            break;
+                        }
+                    }
                 }
             }
         }
