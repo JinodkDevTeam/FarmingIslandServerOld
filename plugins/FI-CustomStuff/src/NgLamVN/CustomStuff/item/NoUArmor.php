@@ -6,7 +6,7 @@ use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\Listener;
 use pocketmine\Player;
 
-class NoYouArmor implements Listener
+class NoUArmor implements Listener
 {
 
     public function onDamage(EntityDamageEvent $event)
@@ -24,7 +24,7 @@ class NoYouArmor implements Listener
             {
                 continue;
             }
-            if ($nbt->getTag("CustomItem")->getValue() == "NoYouArmor")
+            if ($nbt->getTag("CustomItem")->getValue() == "NoUArmor")
             {
                 $event->setBaseDamage(0);
                 break;

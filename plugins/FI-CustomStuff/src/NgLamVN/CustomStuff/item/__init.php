@@ -16,6 +16,6 @@ class __init
         $plmng->registerEvents(new Crook($core), $core);
         $plmng->registerEvents(new DivingHelmet($core), $core);
         $plmng->registerEvents(new GrapplingHook(), $core);
-        $plmng->registerEvents(new NoYouArmor(), $core);
+        $plmng->registerEvents(new NoUArmor(), $core);
     }
 }
