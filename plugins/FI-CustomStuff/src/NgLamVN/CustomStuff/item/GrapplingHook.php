@@ -19,6 +19,10 @@ class GrapplingHook implements Listener
         }
         if ($nbt->getTag("CustomItem")->getValue() == "GrapplingHook")
         {
+            if ($event->getState() == PlayerFishEvent::STATE_FISHING)
+            {
+                return;
+            }
             if ($event->getState() !== PlayerFishEvent::STATE_CAUGHT_NOTHING)
             {
                 $event->setCancelled();

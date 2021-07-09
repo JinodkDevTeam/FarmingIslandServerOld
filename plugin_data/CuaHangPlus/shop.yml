@@ -210,3 +210,11 @@
       2:
         Id: "protection"
         Level: 32767
+"17":
+  Sell:
+    money: "true"
+    coin: "false"
+    price: 5000
+  IC_Code: 1f8b080000000000000a3dcabd0dc2301446d1cf2640306206d8259180868e86ee25b18c15ffc9710aba6ce33dbc0a8b2028b8edb902e0e07a600f8675e3679718c7a6254b4a0202ab444a603be829187ad5a86e64258e25c792dfcb52b229b93f470ac168a74e25d3c5fb113544334fc9db6b921687fff04586fddd7551d2489d916c874abafe29f0eb03ea9d9f1e90000000
+  Item:
+    Lore: "§r§fActually, its grappling hook. \n\n§f§lUnbreakable"

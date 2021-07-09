@@ -24,20 +24,20 @@ class CustomStuff extends PluginBase
         $init = new __init($this);
         $blocinit = new __initBlock($this);
 
-        /*$this->piggyCE = $this->getServer()->getPluginManager()->getPlugin("PiggyCustomEnchants");
+        $this->piggyCE = $this->getServer()->getPluginManager()->getPlugin("PiggyCustomEnchants");
 
         $edian = new BigEndianNBTStream();
-        $item = Item::get(Item::DYE, 5);
-        $item->setCustomName("§r§dInsanium §fEssence");
+        $item = Item::get(Item::IRON_CHESTPLATE);
+        $item->setCustomName("§r§　§l§cNo §eYou");
         $nbt = $item->getNamedTag();
-        $nbt->setString("CustomItem", "InsaniumEssence");*/
-        /*$nbt->setByte("Unbreakable", 1);
+        $nbt->setString("CustomItem", "NoYouArmor");
+        $nbt->setByte("Unbreakable", 1);
         $item->setNamedTag($nbt);
-        $this->enchantItem($item, 5, "thorns");
+        /*$this->enchantItem($item, 5, "thorns");
         $item->setLore(["§r§fWhat cactus can do ? \n\n§f§lUnbreakable"]);*/
-        /*$item->setNamedTagEntry(new ListTag(Item::TAG_ENCH, [], NBT::TAG_Compound));
+        /*$item->setNamedTagEntry(new ListTag(Item::TAG_ENCH, [], NBT::TAG_Compound));*/
         $data = bin2hex($edian->writeCompressed($item->nbtSerialize()));
-        $this->getLogger()->info($data);*/
+        $this->getLogger()->info($data);
     }
 
     /*public function enchantItem(Item $item, int $level, $enchantment): void
