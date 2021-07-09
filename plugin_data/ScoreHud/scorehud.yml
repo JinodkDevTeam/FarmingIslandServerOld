@@ -66,7 +66,7 @@ titles:
 # with 'multi-world.use-default' keys to true in config.yml.
 default-board:
   - "§　§l§eWelcome:§r §f{fi-scoreloader.name}"
-  - "§　§l§eOnline: §r §f{fi-scoreloader.online}/{fi-scoreloader.max_online}"
+  - "§　§l§eOnline: §r §f{fi-scoreloader.online}"
   - "§　§l§eXu:     §r §f{fi-scoreloader.money}$"
   - "§　§l§ePing:   §r §f{fi-scoreloader.ping}"
   - ""

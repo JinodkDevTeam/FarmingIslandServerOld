@@ -22,6 +22,7 @@ use MyPlot\MyPlot;
 use pocketmine\event\player\PlayerMoveEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerRespawnEvent;
+use pocketmine\event\server\QueryRegenerateEvent;
 use pocketmine\level\Position;
 use pocketmine\Player;
 use pocketmine\Server;
@@ -31,6 +32,10 @@ class EventListener implements Listener
     public Core $plugin;
     public Menu $menu;
     public FishingManager $fish;
+
+    public const MAX_PLAYER = 69;
+
+    public $max_player = 5;
 
     public function __construct(Core $plugin)
     {
@@ -63,6 +68,18 @@ class EventListener implements Listener
         $this->getCore()->skin[$player->getName()] = $player->getSkin();
 
         $this->getCore()->getPlayerStatManager()->registerPlayerStat($player);
+
+        if ($this->plugin->getServer()->getQueryInformation()->getPlayerCount() == $this->max_player)
+        {
+            if (($this->max_player + 5) >= self::MAX_PLAYER)
+            {
+                $this->max_player = self::MAX_PLAYER;
+            }
+            else
+            {
+                $this->max_player += 5;
+            }
+        }
     }
     public function onSkinChange (PlayerChangeSkinEvent $event)
     {
@@ -161,6 +178,14 @@ class EventListener implements Listener
         $player = $event->getPlayer();
         $this->getCore()->afktime[$player->getName()] = 0;
         $this->getCore()->getPlayerStatManager()->removePlayerStat($player);
+
+        if ($this->plugin->getServer()->getQueryInformation()->getPlayerCount() < $this->max_player)
+        {
+            if ($this->max_player > 5)
+            {
+                $this->max_player -= 5;
+            }
+        }
     }
 
     /**
@@ -207,5 +232,10 @@ class EventListener implements Listener
         {
             $event->setCancelled();
         }
+    }
+
+    public function onQuery (QueryRegenerateEvent $event)
+    {
+        $event->setMaxPlayerCount($this->max_player);
     }
 }
