@@ -6,7 +6,6 @@ namespace NgLamVN\GameHandle;
 
 use pocketmine\event\player\PlayerFishEvent;
 use pocketmine\item\Item;
-use pocketmine\math\Vector3;
 use pocketmine\nbt\NBT;
 use pocketmine\nbt\tag\ListTag;
 use pocketmine\utils\SingletonTrait;
