@@ -1,6 +1,6 @@
 name: FI-GameHandle
 main: NgLamVN\GameHandle\Core
-version: 0.4.2
+version: 0.4.3
 api: 3.20.0
 description: "Make only for jinodk network"
 author: NgLamVN

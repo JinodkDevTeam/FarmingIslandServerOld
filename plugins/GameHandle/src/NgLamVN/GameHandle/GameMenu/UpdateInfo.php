@@ -47,7 +47,8 @@ class UpdateInfo
         });
         $text = [
             "§　Updates:",
-            "- Add new VipItems",
+            "- Add new VipItems.",
+            "- Fix some bug related to Lazy Axe, Diving Helmet.",
             "Thông báo: GUI không còn được update trên Island Menu, các bạn vui lòng chuyển sang sử dụng UI trên Island Menu",
             "Official wiki: bit.ly/fi-wiki",
             "Vote for server: bit.ly/fi-vote",
