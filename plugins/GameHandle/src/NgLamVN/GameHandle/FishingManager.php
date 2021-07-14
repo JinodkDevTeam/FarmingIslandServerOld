@@ -35,9 +35,9 @@ class FishingManager
     public array $items = [];
     /** @var int[] */
     public array $rlevel = [];
-    /** @var int[] */
+    /** @var array[] */
     public array $multiply = [];
-    /** @var int[] */
+    /** @var array[] */
     public array $more_items = [];
     /** @var int[] */
     public array $customItem_rlevel = [];
