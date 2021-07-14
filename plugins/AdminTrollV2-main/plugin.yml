@@ -1,0 +1,12 @@
+name: AdminTrollV2
+main: Rushil13579\AdminTrollV2\Main
+api: 3.0.0
+version: 1.2.0
+mcpe-protocol: [448]
+author: Rushil13579
+
+permissions:
+    admintrollv2.all:
+        description: Master permission for AdminTrollV2!
+    admintrollv2.immune:
+        description: Makes you immune to all trolls!

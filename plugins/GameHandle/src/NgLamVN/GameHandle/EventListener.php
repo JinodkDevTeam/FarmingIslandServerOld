@@ -2,7 +2,6 @@
 
 namespace NgLamVN\GameHandle;
 
-use NgLamVN\GameHandle\task\AutoJoinIslandTask;
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\event\block\SignChangeEvent;
 use pocketmine\event\entity\EntityLevelChangeEvent;
@@ -23,7 +22,6 @@ use pocketmine\event\player\PlayerMoveEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\event\server\QueryRegenerateEvent;
-use pocketmine\level\Position;
 use pocketmine\Player;
 use pocketmine\Server;
 
@@ -179,7 +177,7 @@ class EventListener implements Listener
         $this->getCore()->afktime[$player->getName()] = 0;
         $this->getCore()->getPlayerStatManager()->removePlayerStat($player);
 
-        if ($this->plugin->getServer()->getQueryInformation()->getPlayerCount() < $this->max_player)
+        if ($this->plugin->getServer()->getQueryInformation()->getPlayerCount() < ($this->max_player - 5))
         {
             if ($this->max_player > 5)
             {
