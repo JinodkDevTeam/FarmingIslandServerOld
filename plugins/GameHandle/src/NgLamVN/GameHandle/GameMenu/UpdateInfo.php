@@ -47,7 +47,7 @@ class UpdateInfo
         });
         $text = [
             "§　Updates:",
-            "- Update server to mcbe 1.17.10",
+            "- Update server to mcbe 1.17.30",
             "Thông báo: GUI không còn được update trên Island Menu, các bạn vui lòng chuyển sang sử dụng UI trên Island Menu",
             "Official wiki: bit.ly/fi-wiki",
             "Vote for server: bit.ly/fi-vote",
