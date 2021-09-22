@@ -1,11 +1,11 @@
 {
    "name": "pocketmine/pocketmine-mp",
-   "description": "A server software for Minecraft: Pocket Edition written in PHP",
+   "description": "A server software for Minecraft: Bedrock Edition written in PHP",
    "type": "project",
    "homepage": "https://pmmp.io",
    "license": "LGPL-3.0",
    "require": {
-      "php": "^7.3 || ^8.0",
+      "php": "^7.4 || ^8.0",
       "php-64bit": "*",
       "ext-ctype": "*",
       "ext-curl": "*",
@@ -18,13 +18,14 @@
       "ext-phar": "*",
       "ext-pthreads": "~3.2.0",
       "ext-reflection": "*",
+      "ext-simplexml": "*",
       "ext-sockets": "*",
       "ext-spl": "*",
       "ext-yaml": ">=2.0.0",
       "ext-zip": "*",
       "ext-zlib": ">=1.2.11",
       "composer-runtime-api": "^2.0",
-      "adhocore/json-comment": "^0.1.0",
+      "adhocore/json-comment": "^1.1",
       "pocketmine/binaryutils": "^0.1.9",
       "pocketmine/callback-validator": "^1.0.2",
       "pocketmine/classloader": "^0.1.0",
@@ -37,7 +38,7 @@
       "pocketmine/spl": "^0.4.0"
    },
    "require-dev": {
-      "phpstan/phpstan": "0.12.81",
+      "phpstan/phpstan": "0.12.98",
       "phpstan/phpstan-phpunit": "^0.12.6",
       "phpstan/phpstan-strict-rules": "^0.12.2",
       "phpunit/phpunit": "^9.2"
@@ -59,14 +60,14 @@
    },
    "config": {
       "platform": {
-         "php": "7.3.0"
+         "php": "7.4.0"
       },
       "sort-packages": true
    },
    "scripts": {
       "make-devtools": "@php -dphar.readonly=0 tests/plugins/DevTools/src/DevTools/ConsoleScript.php --make tests/plugins/DevTools --out plugins/DevTools.phar",
       "make-server": [
-         "@composer install --no-dev --classmap-authoritative",
+         "@composer install --no-dev --classmap-authoritative --ignore-platform-reqs",
          "@php -dphar.readonly=0 build/server-phar.php"
       ]
    }

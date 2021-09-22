@@ -23,7 +23,9 @@ declare(strict_types=1);
 
 namespace pocketmine\network\mcpe\protocol\types;
 
+use pocketmine\entity\InvalidSkinException;
 use pocketmine\entity\Skin;
+use pocketmine\network\mcpe\protocol\ProtocolInfo;
 
 class LegacySkinAdapter implements SkinAdapter{
 
@@ -36,21 +38,36 @@ class LegacySkinAdapter implements SkinAdapter{
 			$skin->getAnimations(),
 			$skin->getCape()->getImage(),
 			$skin->getGeometryData(),
+            ProtocolInfo::MINECRAFT_VERSION_NETWORK,
 			$skin->getAnimationData(),
-			$skin->isPremium(),
-			$skin->isPersona(),
-			$skin->getCape()->isOnClassicSkin(),
-			$skin->getCape()->getId(),
-			null,
-			$skin->getArmSize(),
-			$skin->getSkinColor(),
-			$skin->getPersonaPieces(),
-			$skin->getPieceTintColors(),
-			$skin->isVerified()
+            $skin->getCape()->getId(),
+            null,
+            $skin->getArmSize(),
+            $skin->getSkinColor(),
+            $skin->getPersonaPieces(),
+            $skin->getPieceTintColors(),
+            $skin->isVerified(),
+            $skin->isPremium(),
+            $skin->isPersona(),
+            $skin->getCape()->isOnClassicSkin()
 		);
+
 	}
 
 	public function fromSkinData(SkinData $data) : Skin{
+		if($data->isPersona()){
+			return new Skin("Standard_Custom", str_repeat(random_bytes(3) . "\xff", 4096));
+		}
+
+		$capeData = $data->isPersonaCapeOnClassic() ? "" : $data->getCapeImage()->getData();
+
+		$resourcePatch = json_decode($data->getResourcePatch(), true);
+		if(is_array($resourcePatch) && isset($resourcePatch["geometry"]["default"]) && is_string($resourcePatch["geometry"]["default"])){
+			$geometryName = $resourcePatch["geometry"]["default"];
+		}else{
+			throw new InvalidSkinException("Missing geometry name field");
+		}
+
 		return (new Skin(
 			$data->getSkinId(),
 			"",
@@ -58,15 +75,15 @@ class LegacySkinAdapter implements SkinAdapter{
 			$data->getResourcePatch(),
 			$data->getGeometryData()
 		))->setSkinImage($data->getSkinImage())
-			->setCape(new Cape($data->getCapeId(), $data->getCapeImage(), $data->isPersonaCapeOnClassic()))
-			->setAnimations($data->getAnimations())
-			->setAnimationData($data->getAnimationData())
-			->setPremium($data->isPremium())
-			->setPersona($data->isPersona())
-			->setArmSize($data->getArmSize())
-			->setSkinColor($data->getSkinColor())
-			->setPersonaPieces($data->getPersonaPieces())
-			->setPieceTintColors($data->getPieceTintColors())
-			->setVerified($data->isVerified());
+		->setCape(new Cape($data->getCapeId(), $data->getCapeImage(), $data->isPersonaCapeOnClassic()))
+		->setAnimations($data->getAnimations())
+		->setAnimationData($data->getAnimationData())
+		->setPremium($data->isPremium())
+		->setPersona($data->isPersona())
+		->setArmSize($data->getArmSize())
+		->setSkinColor($data->getSkinColor())
+		->setPersonaPieces($data->getPersonaPieces())
+		->setPieceTintColors($data->getPieceTintColors())
+		->setVerified($data->isVerified());
 	}
 }

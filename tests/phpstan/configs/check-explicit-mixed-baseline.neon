@@ -1,17 +1,12 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Cannot access offset \\(float\\|int\\) on mixed\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/CrashDump.php
+
+		-
 			message: "#^Cannot access offset string on mixed\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/CrashDump.php
-
-		-
-			message: "#^Parameter \\#3 \\$subject of function preg_replace expects array\\|string, mixed given\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/CrashDump.php
-
-		-
-			message: "#^Cannot access offset float\\|int on mixed\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/CrashDump.php
 
@@ -21,19 +16,9 @@ parameters:
 			path: ../../../src/pocketmine/CrashDump.php
 
 		-
-			message: "#^Cannot access offset 'name' on mixed\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/CrashDump.php
-
-		-
 			message: "#^Cannot cast mixed to int\\.$#"
 			count: 7
 			path: ../../../src/pocketmine/MemoryManager.php
-
-		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/Player.php
 
 		-
 			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
@@ -41,13 +26,8 @@ parameters:
 			path: ../../../src/pocketmine/Player.php
 
 		-
-			message: "#^Parameter \\#1 \\$skinId of class pocketmine\\\\network\\\\mcpe\\\\protocol\\\\types\\\\SkinData constructor expects string, mixed given\\.$#"
+			message: "#^Cannot cast mixed to int\\.$#"
 			count: 1
-			path: ../../../src/pocketmine/Player.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function base64_decode expects string, mixed given\\.$#"
-			count: 5
 			path: ../../../src/pocketmine/Player.php
 
 		-
@@ -56,38 +36,13 @@ parameters:
 			path: ../../../src/pocketmine/Player.php
 
 		-
-			message: "#^Parameter \\#2 \\$width of class pocketmine\\\\network\\\\mcpe\\\\protocol\\\\types\\\\SkinImage constructor expects int, mixed given\\.$#"
-			count: 2
-			path: ../../../src/pocketmine/Player.php
-
-		-
-			message: "#^Parameter \\#8 \\$premium of class pocketmine\\\\network\\\\mcpe\\\\protocol\\\\types\\\\SkinData constructor expects bool, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$skinId of class pocketmine\\\\network\\\\mcpe\\\\protocol\\\\types\\\\SkinData constructor expects string, mixed given\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/Player.php
 
 		-
-			message: "#^Parameter \\#9 \\$persona of class pocketmine\\\\network\\\\mcpe\\\\protocol\\\\types\\\\SkinData constructor expects bool, mixed given\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/Player.php
-
-		-
-			message: "#^Parameter \\#10 \\$personaCapeOnClassic of class pocketmine\\\\network\\\\mcpe\\\\protocol\\\\types\\\\SkinData constructor expects bool, mixed given\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/Player.php
-
-		-
-			message: "#^Parameter \\#11 \\$capeId of class pocketmine\\\\network\\\\mcpe\\\\protocol\\\\types\\\\SkinData constructor expects string, mixed given\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/Player.php
-
-		-
-			message: "#^Parameter \\#13 \\$armSize of class pocketmine\\\\network\\\\mcpe\\\\protocol\\\\types\\\\SkinData constructor expects string, mixed given\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/Player.php
-
-		-
-			message: "#^Parameter \\#14 \\$skinColor of class pocketmine\\\\network\\\\mcpe\\\\protocol\\\\types\\\\SkinData constructor expects string, mixed given\\.$#"
-			count: 1
+			message: "#^Parameter \\#1 \\$string of function base64_decode expects string, mixed given\\.$#"
+			count: 6
 			path: ../../../src/pocketmine/Player.php
 
 		-
@@ -96,17 +51,57 @@ parameters:
 			path: ../../../src/pocketmine/Player.php
 
 		-
+			message: "#^Parameter \\#10 \\$capeId of class pocketmine\\\\network\\\\mcpe\\\\protocol\\\\types\\\\SkinData constructor expects string, mixed given\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/Player.php
+
+		-
+			message: "#^Parameter \\#12 \\$armSize of class pocketmine\\\\network\\\\mcpe\\\\protocol\\\\types\\\\SkinData constructor expects string, mixed given\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/Player.php
+
+		-
+			message: "#^Parameter \\#13 \\$skinColor of class pocketmine\\\\network\\\\mcpe\\\\protocol\\\\types\\\\SkinData constructor expects string, mixed given\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/Player.php
+
+		-
+			message: "#^Parameter \\#17 \\$premium of class pocketmine\\\\network\\\\mcpe\\\\protocol\\\\types\\\\SkinData constructor expects bool, mixed given\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/Player.php
+
+		-
+			message: "#^Parameter \\#18 \\$persona of class pocketmine\\\\network\\\\mcpe\\\\protocol\\\\types\\\\SkinData constructor expects bool, mixed given\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/Player.php
+
+		-
+			message: "#^Parameter \\#19 \\$personaCapeOnClassic of class pocketmine\\\\network\\\\mcpe\\\\protocol\\\\types\\\\SkinData constructor expects bool, mixed given\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/Player.php
+
+		-
+			message: "#^Parameter \\#2 \\$playFabId of class pocketmine\\\\network\\\\mcpe\\\\protocol\\\\types\\\\SkinData constructor expects string, mixed given\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/Player.php
+
+		-
+			message: "#^Parameter \\#2 \\$width of class pocketmine\\\\network\\\\mcpe\\\\protocol\\\\types\\\\SkinImage constructor expects int, mixed given\\.$#"
+			count: 2
+			path: ../../../src/pocketmine/Player.php
+
+		-
 			message: "#^Cannot access offset 'git' on mixed\\.$#"
 			count: 2
 			path: ../../../src/pocketmine/PocketMine.php
 
 		-
-			message: "#^Parameter \\#1 \\$name of static method pocketmine\\\\level\\\\format\\\\io\\\\LevelProviderManager\\:\\:getProviderByName\\(\\) expects string, mixed given\\.$#"
+			message: "#^Cannot access offset 'type' on mixed\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/Server.php
 
 		-
-			message: "#^Cannot cast mixed to string\\.$#"
+			message: "#^Cannot cast mixed to float\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/Server.php
 
@@ -116,17 +111,22 @@ parameters:
 			path: ../../../src/pocketmine/Server.php
 
 		-
-			message: "#^Parameter \\#1 \\$str of function strtolower expects string, mixed given\\.$#"
+			message: "#^Cannot cast mixed to string\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/Server.php
+
+		-
+			message: "#^Parameter \\#1 \\$name of static method pocketmine\\\\level\\\\format\\\\io\\\\LevelProviderManager\\:\\:getProviderByName\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/Server.php
+
+		-
+			message: "#^Parameter \\#1 \\$string of function strtolower expects string, mixed given\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/Server.php
 
 		-
 			message: "#^Parameter \\#2 \\$defaultValue of method pocketmine\\\\Server\\:\\:getConfigString\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/Server.php
-
-		-
-			message: "#^Cannot cast mixed to float\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/Server.php
 
@@ -141,11 +141,6 @@ parameters:
 			path: ../../../src/pocketmine/Server.php
 
 		-
-			message: "#^Cannot access offset 'type' on mixed\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/Server.php
-
-		-
 			message: "#^Method pocketmine\\\\ThreadManager\\:\\:getAll\\(\\) should return array\\<pocketmine\\\\Thread\\|pocketmine\\\\Worker\\> but returns array\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/ThreadManager.php
@@ -156,14 +151,9 @@ parameters:
 			path: ../../../src/pocketmine/command/CommandReader.php
 
 		-
-			message: "#^Parameter \\#1 \\$number of function round expects float, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$num of function round expects float\\|int, mixed given\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/command/defaults/StatusCommand.php
-
-		-
-			message: "#^Parameter \\#2 \\$host of class class@anonymous/src/pocketmine/command/defaults/TimingsCommand\\.php\\:126 constructor expects string, mixed given\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/command/defaults/TimingsCommand.php
 
 		-
 			message: "#^Cannot access offset 0 on mixed\\.$#"
@@ -171,12 +161,17 @@ parameters:
 			path: ../../../src/pocketmine/command/defaults/TimingsCommand.php
 
 		-
-			message: "#^Cannot cast mixed to int\\.$#"
+			message: "#^Parameter \\#2 \\$host of class class@anonymous/src/pocketmine/command/defaults/TimingsCommand\\.php\\:126 constructor expects string, mixed given\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/command/defaults/TimingsCommand.php
+
+		-
+			message: "#^Cannot cast mixed to float\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/command/defaults/VanillaCommand.php
 
 		-
-			message: "#^Cannot cast mixed to float\\.$#"
+			message: "#^Cannot cast mixed to int\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/command/defaults/VanillaCommand.php
 
@@ -236,12 +231,12 @@ parameters:
 			path: ../../../src/pocketmine/level/format/io/leveldb/LevelDB.php
 
 		-
-			message: "#^Parameter \\#2 \\$value of class pocketmine\\\\nbt\\\\tag\\\\StringTag constructor expects string, mixed given\\.$#"
+			message: "#^Parameter \\#2 \\$string of function explode expects string, mixed given\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/level/format/io/leveldb/LevelDB.php
 
 		-
-			message: "#^Parameter \\#2 \\$str of function explode expects string, mixed given\\.$#"
+			message: "#^Parameter \\#2 \\$value of class pocketmine\\\\nbt\\\\tag\\\\StringTag constructor expects string, mixed given\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/level/format/io/leveldb/LevelDB.php
 
@@ -261,54 +256,9 @@ parameters:
 			path: ../../../src/pocketmine/level/generator/Flat.php
 
 		-
-			message: "#^Parameter \\#4 \\$q0 of static method pocketmine\\\\level\\\\generator\\\\noise\\\\Noise\\:\\:linearLerp\\(\\) expects float, mixed given\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/level/generator/noise/Noise.php
-
-		-
-			message: "#^Parameter \\#5 \\$q1 of static method pocketmine\\\\level\\\\generator\\\\noise\\\\Noise\\:\\:linearLerp\\(\\) expects float, mixed given\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/level/generator/noise/Noise.php
-
-		-
-			message: "#^Cannot access offset int on mixed\\.$#"
-			count: 6
-			path: ../../../src/pocketmine/level/generator/noise/Noise.php
-
-		-
 			message: "#^Parameter \\#1 \\$buffer of class pocketmine\\\\network\\\\mcpe\\\\protocol\\\\BatchPacket constructor expects string, mixed given\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/network/CompressBatchedTask.php
-
-		-
-			message: "#^Parameter \\#1 \\$v of method pocketmine\\\\utils\\\\BinaryStream\\:\\:putByte\\(\\) expects int, mixed given\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/network/mcpe/NetworkBinaryStream.php
-
-		-
-			message: "#^Parameter \\#1 \\$v of method pocketmine\\\\utils\\\\BinaryStream\\:\\:putLShort\\(\\) expects int, mixed given\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/network/mcpe/NetworkBinaryStream.php
-
-		-
-			message: "#^Parameter \\#1 \\$v of method pocketmine\\\\utils\\\\BinaryStream\\:\\:putVarInt\\(\\) expects int, mixed given\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/network/mcpe/NetworkBinaryStream.php
-
-		-
-			message: "#^Parameter \\#1 \\$v of method pocketmine\\\\utils\\\\BinaryStream\\:\\:putLFloat\\(\\) expects float, mixed given\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/network/mcpe/NetworkBinaryStream.php
-
-		-
-			message: "#^Parameter \\#1 \\$v of method pocketmine\\\\network\\\\mcpe\\\\NetworkBinaryStream\\:\\:putString\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/network/mcpe/NetworkBinaryStream.php
-
-		-
-			message: "#^Parameter \\#1 \\$data of method pocketmine\\\\nbt\\\\NBTStream\\:\\:write\\(\\) expects array\\<pocketmine\\\\nbt\\\\tag\\\\NamedTag\\>\\|pocketmine\\\\nbt\\\\tag\\\\NamedTag, mixed given\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/network/mcpe/NetworkBinaryStream.php
 
 		-
 			message: "#^Cannot access property \\$x on mixed\\.$#"
@@ -326,6 +276,36 @@ parameters:
 			path: ../../../src/pocketmine/network/mcpe/NetworkBinaryStream.php
 
 		-
+			message: "#^Parameter \\#1 \\$data of method pocketmine\\\\nbt\\\\NBTStream\\:\\:write\\(\\) expects array\\<pocketmine\\\\nbt\\\\tag\\\\NamedTag\\>\\|pocketmine\\\\nbt\\\\tag\\\\NamedTag, mixed given\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/network/mcpe/NetworkBinaryStream.php
+
+		-
+			message: "#^Parameter \\#1 \\$v of method pocketmine\\\\network\\\\mcpe\\\\NetworkBinaryStream\\:\\:putString\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/network/mcpe/NetworkBinaryStream.php
+
+		-
+			message: "#^Parameter \\#1 \\$v of method pocketmine\\\\utils\\\\BinaryStream\\:\\:putByte\\(\\) expects int, mixed given\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/network/mcpe/NetworkBinaryStream.php
+
+		-
+			message: "#^Parameter \\#1 \\$v of method pocketmine\\\\utils\\\\BinaryStream\\:\\:putLFloat\\(\\) expects float, mixed given\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/network/mcpe/NetworkBinaryStream.php
+
+		-
+			message: "#^Parameter \\#1 \\$v of method pocketmine\\\\utils\\\\BinaryStream\\:\\:putLShort\\(\\) expects int, mixed given\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/network/mcpe/NetworkBinaryStream.php
+
+		-
+			message: "#^Parameter \\#1 \\$v of method pocketmine\\\\utils\\\\BinaryStream\\:\\:putVarInt\\(\\) expects int, mixed given\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/network/mcpe/NetworkBinaryStream.php
+
+		-
 			message: "#^Parameter \\#1 \\$v of method pocketmine\\\\utils\\\\BinaryStream\\:\\:putVarLong\\(\\) expects int, mixed given\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/network/mcpe/NetworkBinaryStream.php
@@ -334,11 +314,6 @@ parameters:
 			message: "#^Parameter \\#1 \\$vector of method pocketmine\\\\network\\\\mcpe\\\\NetworkBinaryStream\\:\\:putVector3Nullable\\(\\) expects pocketmine\\\\math\\\\Vector3\\|null, mixed given\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/network/mcpe/NetworkBinaryStream.php
-
-		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/network/mcpe/RakLibInterface.php
 
 		-
 			message: "#^Cannot access offset 'down' on mixed\\.$#"
@@ -351,14 +326,9 @@ parameters:
 			path: ../../../src/pocketmine/network/mcpe/RakLibInterface.php
 
 		-
-			message: "#^Cannot access offset 'x5u' on mixed\\.$#"
-			count: 2
-			path: ../../../src/pocketmine/network/mcpe/VerifyLoginTask.php
-
-		-
-			message: "#^Cannot access offset 'nbf' on mixed\\.$#"
-			count: 2
-			path: ../../../src/pocketmine/network/mcpe/VerifyLoginTask.php
+			message: "#^Cannot cast mixed to int\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/network/mcpe/RakLibInterface.php
 
 		-
 			message: "#^Cannot access offset 'exp' on mixed\\.$#"
@@ -368,6 +338,16 @@ parameters:
 		-
 			message: "#^Cannot access offset 'identityPublicKey' on mixed\\.$#"
 			count: 1
+			path: ../../../src/pocketmine/network/mcpe/VerifyLoginTask.php
+
+		-
+			message: "#^Cannot access offset 'nbf' on mixed\\.$#"
+			count: 2
+			path: ../../../src/pocketmine/network/mcpe/VerifyLoginTask.php
+
+		-
+			message: "#^Cannot access offset 'x5u' on mixed\\.$#"
+			count: 2
 			path: ../../../src/pocketmine/network/mcpe/VerifyLoginTask.php
 
 		-
@@ -396,8 +376,8 @@ parameters:
 			path: ../../../src/pocketmine/network/mcpe/protocol/AddPlayerPacket.php
 
 		-
-			message: "#^Property pocketmine\\\\network\\\\mcpe\\\\protocol\\\\LoginPacket\\:\\:\\$chainData \\(array\\(\\?'chain' \\=\\> array\\<int, string\\>\\)\\) does not accept mixed\\.$#"
-			count: 1
+			message: "#^Cannot access offset 'XUID' on mixed\\.$#"
+			count: 2
 			path: ../../../src/pocketmine/network/mcpe/protocol/LoginPacket.php
 
 		-
@@ -416,12 +396,7 @@ parameters:
 			path: ../../../src/pocketmine/network/mcpe/protocol/LoginPacket.php
 
 		-
-			message: "#^Cannot access offset 'XUID' on mixed\\.$#"
-			count: 2
-			path: ../../../src/pocketmine/network/mcpe/protocol/LoginPacket.php
-
-		-
-			message: "#^Property pocketmine\\\\network\\\\mcpe\\\\protocol\\\\LoginPacket\\:\\:\\$identityPublicKey \\(string\\) does not accept mixed\\.$#"
+			message: "#^Property pocketmine\\\\network\\\\mcpe\\\\protocol\\\\LoginPacket\\:\\:\\$chainData \\(array\\(\\?'chain' \\=\\> array\\<int, string\\>\\)\\) does not accept mixed\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/network/mcpe/protocol/LoginPacket.php
 
@@ -431,12 +406,17 @@ parameters:
 			path: ../../../src/pocketmine/network/mcpe/protocol/LoginPacket.php
 
 		-
-			message: "#^Property pocketmine\\\\network\\\\mcpe\\\\protocol\\\\LoginPacket\\:\\:\\$serverAddress \\(string\\) does not accept mixed\\.$#"
+			message: "#^Property pocketmine\\\\network\\\\mcpe\\\\protocol\\\\LoginPacket\\:\\:\\$identityPublicKey \\(string\\) does not accept mixed\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/network/mcpe/protocol/LoginPacket.php
 
 		-
 			message: "#^Property pocketmine\\\\network\\\\mcpe\\\\protocol\\\\LoginPacket\\:\\:\\$locale \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/network/mcpe/protocol/LoginPacket.php
+
+		-
+			message: "#^Property pocketmine\\\\network\\\\mcpe\\\\protocol\\\\LoginPacket\\:\\:\\$serverAddress \\(string\\) does not accept mixed\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/network/mcpe/protocol/LoginPacket.php
 
@@ -456,12 +436,37 @@ parameters:
 			path: ../../../src/pocketmine/permission/Permission.php
 
 		-
+			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/plugin/PluginDescription.php
+
+		-
+			message: "#^Array \\(array\\<string\\>\\) does not accept mixed\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/plugin/PluginDescription.php
+
+		-
+			message: "#^Cannot cast mixed to string\\.$#"
+			count: 4
+			path: ../../../src/pocketmine/plugin/PluginDescription.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of static method pocketmine\\\\permission\\\\Permission\\:\\:loadPermissions\\(\\) expects array\\<string, array\\<string, mixed\\>\\>, mixed given\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/plugin/PluginDescription.php
+
+		-
+			message: "#^Parameter \\#1 \\$haystack of function stripos expects string, mixed given\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/plugin/PluginDescription.php
+
+		-
 			message: "#^Parameter \\#1 \\$plugin of method pocketmine\\\\plugin\\\\PluginDescription\\:\\:loadMap\\(\\) expects array, mixed given\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/plugin/PluginDescription.php
 
 		-
-			message: "#^Property pocketmine\\\\plugin\\\\PluginDescription\\:\\:\\$name \\(string\\) does not accept mixed\\.$#"
+			message: "#^Parameter \\#1 \\$string of function mb_strtoupper expects string, mixed given\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/plugin/PluginDescription.php
 
@@ -476,22 +481,12 @@ parameters:
 			path: ../../../src/pocketmine/plugin/PluginDescription.php
 
 		-
-			message: "#^Cannot cast mixed to string\\.$#"
-			count: 4
-			path: ../../../src/pocketmine/plugin/PluginDescription.php
-
-		-
 			message: "#^Property pocketmine\\\\plugin\\\\PluginDescription\\:\\:\\$main \\(string\\) does not accept mixed\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/plugin/PluginDescription.php
 
 		-
-			message: "#^Parameter \\#1 \\$haystack of function stripos expects string, mixed given\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/plugin/PluginDescription.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function mb_strtoupper expects string, mixed given\\.$#"
+			message: "#^Property pocketmine\\\\plugin\\\\PluginDescription\\:\\:\\$name \\(string\\) does not accept mixed\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/plugin/PluginDescription.php
 
@@ -501,27 +496,7 @@ parameters:
 			path: ../../../src/pocketmine/plugin/PluginDescription.php
 
 		-
-			message: "#^Array \\(array\\<string\\>\\) does not accept mixed\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/plugin/PluginDescription.php
-
-		-
-			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/plugin/PluginDescription.php
-
-		-
-			message: "#^Parameter \\#1 \\$data of static method pocketmine\\\\permission\\\\Permission\\:\\:loadPermissions\\(\\) expects array\\<string, array\\<string, mixed\\>\\>, mixed given\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/plugin/PluginDescription.php
-
-		-
 			message: "#^Parameter \\#1 \\$description of method pocketmine\\\\command\\\\Command\\:\\:setDescription\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/plugin/PluginManager.php
-
-		-
-			message: "#^Parameter \\#1 \\$usage of method pocketmine\\\\command\\\\Command\\:\\:setUsage\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/plugin/PluginManager.php
 
@@ -531,9 +506,19 @@ parameters:
 			path: ../../../src/pocketmine/plugin/PluginManager.php
 
 		-
+			message: "#^Parameter \\#1 \\$usage of method pocketmine\\\\command\\\\Command\\:\\:setUsage\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/plugin/PluginManager.php
+
+		-
 			message: "#^Parameter \\#2 \\$code of class pocketmine\\\\resourcepacks\\\\ResourcePackException constructor expects int, mixed given\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/resourcepacks/ZippedResourcePack.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of function unserialize expects string, mixed given\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/scheduler/AsyncTask.php
 
 		-
 			message: "#^Property pocketmine\\\\scheduler\\\\AsyncTask\\:\\:\\$result \\(bool\\|float\\|int\\|string\\|null\\) does not accept mixed\\.$#"
@@ -541,17 +526,12 @@ parameters:
 			path: ../../../src/pocketmine/scheduler/AsyncTask.php
 
 		-
-			message: "#^Parameter \\#1 \\$variable_representation of function unserialize expects string, mixed given\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/scheduler/AsyncTask.php
-
-		-
-			message: "#^Parameter \\#2 \\$timestamp of function date expects int, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$baseVersion of class pocketmine\\\\utils\\\\VersionString constructor expects string, mixed given\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/updater/AutoUpdater.php
 
 		-
-			message: "#^Parameter \\#1 \\$baseVersion of class pocketmine\\\\utils\\\\VersionString constructor expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$string of function strtolower expects string, mixed given\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/updater/AutoUpdater.php
 
@@ -561,29 +541,24 @@ parameters:
 			path: ../../../src/pocketmine/updater/AutoUpdater.php
 
 		-
+			message: "#^Parameter \\#2 \\$timestamp of function date expects int\\|null, mixed given\\.$#"
+			count: 1
+			path: ../../../src/pocketmine/updater/AutoUpdater.php
+
+		-
 			message: "#^Parameter \\#3 \\$buildNumber of class pocketmine\\\\utils\\\\VersionString constructor expects int, mixed given\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/updater/AutoUpdater.php
 
 		-
-			message: "#^Parameter \\#1 \\$str of function strtolower expects string, mixed given\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/updater/AutoUpdater.php
-
-		-
-			message: "#^Parameter \\#3 \\$length of function substr expects int, mixed given\\.$#"
+			message: "#^Parameter \\#2 \\$offset of function substr expects int, mixed given\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/utils/Internet.php
 
 		-
-			message: "#^Parameter \\#2 \\$start of function substr expects int, mixed given\\.$#"
+			message: "#^Parameter \\#3 \\$length of function substr expects int\\|null, mixed given\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/utils/Internet.php
-
-		-
-			message: "#^Parameter \\#2 \\$str of function fwrite expects string, mixed given\\.$#"
-			count: 1
-			path: ../../../src/pocketmine/utils/MainLogger.php
 
 		-
 			message: "#^Cannot access offset 'status' on mixed\\.$#"
@@ -596,12 +571,12 @@ parameters:
 			path: ../../../src/pocketmine/utils/Timezone.php
 
 		-
-			message: "#^Parameter \\#2 \\$input1 of function array_map expects array, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$path of static method pocketmine\\\\utils\\\\Utils\\:\\:cleanPath\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/utils/Utils.php
 
 		-
-			message: "#^Parameter \\#1 \\$path of static method pocketmine\\\\utils\\\\Utils\\:\\:cleanPath\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#2 \\$array of function array_map expects array, mixed given\\.$#"
 			count: 1
 			path: ../../../src/pocketmine/utils/Utils.php
 

@@ -25,31 +25,31 @@ namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
 
-use pocketmine\nbt\NetworkLittleEndianNBTStream;
-use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\mcpe\NetworkSession;
+use pocketmine\network\mcpe\protocol\types\EducationUriResource;
 
-class UpdateBlockPropertiesPacket extends DataPacket{
-	public const NETWORK_ID = ProtocolInfo::UPDATE_BLOCK_PROPERTIES_PACKET;
+class EduUriResourcePacket extends DataPacket{
+	public const NETWORK_ID = ProtocolInfo::EDU_URI_RESOURCE_PACKET;
 
-	/** @var string */
-	private $nbt;
+	private EducationUriResource $resource;
 
-	public static function create(CompoundTag $data) : self{
+	public static function create(EducationUriResource $resource) : self{
 		$result = new self;
-		$result->nbt = (new NetworkLittleEndianNBTStream())->write($data);
+		$result->resource = $resource;
 		return $result;
 	}
 
+	public function getResource() : EducationUriResource{ return $this->resource; }
+
 	protected function decodePayload() : void{
-		$this->nbt = $this->getRemaining();
+		$this->resource = EducationUriResource::read($this);
 	}
 
 	protected function encodePayload() : void{
-		$this->put($this->nbt);
+		$this->resource->write($this);
 	}
 
 	public function handle(NetworkSession $handler) : bool{
-		return $handler->handleUpdateBlockProperties($this);
+		return $handler->handleEduUriResource($this);
 	}
 }

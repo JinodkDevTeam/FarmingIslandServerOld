@@ -50,7 +50,7 @@ abstract class Particle extends Vector3{
 	public const TYPE_TERRAIN = 20;
 	public const TYPE_SUSPENDED_TOWN = 21, TYPE_TOWN_AURA = 21;
 	public const TYPE_PORTAL = 22;
-	//23 same as 22
+	public const TYPE_MOB_PORTAL = 23;
 	public const TYPE_SPLASH = 24, TYPE_WATER_SPLASH = 24;
 	public const TYPE_WATER_SPLASH_MANUAL = 25;
 	public const TYPE_WATER_WAKE = 26;

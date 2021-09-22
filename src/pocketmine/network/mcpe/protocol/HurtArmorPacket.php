@@ -34,15 +34,19 @@ class HurtArmorPacket extends DataPacket{
 	public $cause;
 	/** @var int */
 	public $health;
+	/** @var int */
+	public $armorSlotFlags;
 
 	protected function decodePayload(){
 		$this->cause = $this->getVarInt();
 		$this->health = $this->getVarInt();
+		$this->armorSlotFlags = $this->getUnsignedVarLong();
 	}
 
 	protected function encodePayload(){
 		$this->putVarInt($this->cause);
 		$this->putVarInt($this->health);
+		$this->putUnsignedVarLong($this->armorSlotFlags);
 	}
 
 	public function handle(NetworkSession $session) : bool{
