@@ -81,3 +81,16 @@ plugin_data/BuyKitFM/kits.yml
 vendor/
 run.cmd
 plugin_data/InvCraft/recipes.yml
+plugin_data/PvPCounter/config.yml
+plugin_data/PvPCounter/playersetting.db
+plugins/PvPCouter/plugin.yml
+plugins/PvPCouter/resources/config.yml
+plugins/PvPCouter/resources/sqlite.sql
+plugins/PvPCouter/src/NgLamVN/PvPCounter/command/PvPCounterCommand.php
+plugins/PvPCouter/src/NgLamVN/PvPCounter/event/StatUpdateEvent.php
+plugins/PvPCouter/src/NgLamVN/PvPCounter/EventListener.php
+plugins/PvPCouter/src/NgLamVN/PvPCounter/Loader.php
+plugins/PvPCouter/src/NgLamVN/PvPCounter/PlayerPvPStat.php
+plugins/PvPCouter/src/NgLamVN/PvPCounter/PlayerPvPStatManager.php
+plugins/PvPCouter/src/NgLamVN/PvPCounter/provider/SqliteProvider.php
+plugins/PvPCouter/src/NgLamVN/PvPCounter/task/AutoSendTask.php
