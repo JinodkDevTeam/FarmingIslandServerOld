@@ -27,29 +27,26 @@ namespace pocketmine\network\mcpe\protocol;
 
 use pocketmine\network\mcpe\NetworkSession;
 
-class ActorFallPacket extends DataPacket{
-	public const NETWORK_ID = ProtocolInfo::ACTOR_FALL_PACKET;
+class PhotoInfoRequestPacket extends DataPacket{
+	public const NETWORK_ID = ProtocolInfo::PHOTO_INFO_REQUEST_PACKET;
 
-	/** @var int */
-	public $entityRuntimeId;
-	/** @var float */
-	public $fallDistance;
-	/** @var bool */
-	public $isInVoid;
+	private int $photoId;
 
-	protected function decodePayload(){
-		$this->entityRuntimeId = $this->getEntityRuntimeId();
-		$this->fallDistance = $this->getLFloat();
-		$this->isInVoid = $this->getBool();
+	public static function create(int $photoId) : self{
+		$result = new self;
+		$result->photoId = $photoId;
+		return $result;
 	}
 
-	protected function encodePayload(){
-		$this->putEntityRuntimeId($this->entityRuntimeId);
-		$this->putLFloat($this->fallDistance);
-		$this->putBool($this->isInVoid);
+	protected function decodePayload() : void{
+		$this->photoId = $this->getEntityUniqueId();
 	}
 
-	public function handle(NetworkSession $session) : bool{
-		return $session->handleActorFall($this);
+	protected function encodePayload() : void{
+		$this->putEntityUniqueId($this->photoId);
+	}
+
+	public function handle(NetworkSession $handler) : bool{
+		return $handler->handlePhotoInfoRequest($this);
 	}
 }

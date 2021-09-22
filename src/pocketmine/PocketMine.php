@@ -127,6 +127,9 @@ namespace pocketmine {
 	 * @return void
 	 */
 	function emit_performance_warnings(\Logger $logger){
+		if(PHP_DEBUG !== 0){
+			$logger->warning("This PHP binary was compiled in debug mode. This has a major impact on performance.");
+		}
 		if(extension_loaded("xdebug")){
 			$logger->warning("Xdebug extension is enabled. This has a major impact on performance.");
 		}
@@ -138,6 +141,24 @@ namespace pocketmine {
 		}
 		if(\Phar::running(true) === ""){
 			$logger->warning("Non-packaged installation detected. This will degrade autoloading speed and make startup times longer.");
+		}
+		if(function_exists('opcache_get_status') && ($opcacheStatus = opcache_get_status(false)) !== false){
+			$jitEnabled = $opcacheStatus["jit"]["on"] ?? false;
+			if($jitEnabled !== false){
+				$logger->warning(<<<'JIT_WARNING'
+
+
+	--------------------------------------- ! WARNING ! ---------------------------------------
+	You're using PHP 8.0 with JIT enabled. This provides significant performance improvements.
+	HOWEVER, it is EXPERIMENTAL, and has already been seen to cause weird and unexpected bugs.
+	Proceed with caution.
+	If you want to report any bugs, make sure to mention that you are using PHP 8.0 with JIT.
+	To turn off JIT, change `opcache.jit` to `0` in your php.ini file.
+	-------------------------------------------------------------------------------------------
+
+JIT_WARNING
+);
+			}
 		}
 	}
 
@@ -159,10 +180,12 @@ namespace pocketmine {
 		if(count($messages = check_platform_dependencies()) > 0){
 			echo PHP_EOL;
 			$binary = version_compare(PHP_VERSION, "5.4") >= 0 ? PHP_BINARY : "unknown";
-			critical_error("Selected PHP binary ($binary) does not satisfy some requirements.");
+			critical_error("Selected PHP binary does not satisfy some requirements.");
 			foreach($messages as $m){
 				echo " - $m" . PHP_EOL;
 			}
+			critical_error("PHP binary used: " . $binary);
+			critical_error("Loaded php.ini: " . (($file = php_ini_loaded_file()) !== false ? $file : "none"));
 			critical_error("Please recompile PHP with the needed configuration, or refer to the installation instructions at http://pmmp.rtfd.io/en/rtfd/installation.html.");
 			echo PHP_EOL;
 			exit(1);

@@ -51,22 +51,35 @@ class LegacySkinAdapter implements SkinAdapter{
 	}
 
 	public function fromSkinData(SkinData $data) : Skin{
-		return (new Skin(
+		if($data->isPersona()){
+			return new Skin("Standard_Custom", str_repeat(random_bytes(3) . "\xff", 4096));
+		}
+
+		$capeData = $data->isPersonaCapeOnClassic() ? "" : $data->getCapeImage()->getData();
+
+		$resourcePatch = json_decode($data->getResourcePatch(), true);
+		if(is_array($resourcePatch) && isset($resourcePatch["geometry"]["default"]) && is_string($resourcePatch["geometry"]["default"])){
+			$geometryName = $resourcePatch["geometry"]["default"];
+		}else{
+			throw new InvalidSkinException("Missing geometry name field");
+		}
+
+		return return (new Skin(
 			$data->getSkinId(),
 			"",
 			"",
 			$data->getResourcePatch(),
 			$data->getGeometryData()
 		))->setSkinImage($data->getSkinImage())
-			->setCape(new Cape($data->getCapeId(), $data->getCapeImage(), $data->isPersonaCapeOnClassic()))
-			->setAnimations($data->getAnimations())
-			->setAnimationData($data->getAnimationData())
-			->setPremium($data->isPremium())
-			->setPersona($data->isPersona())
-			->setArmSize($data->getArmSize())
-			->setSkinColor($data->getSkinColor())
-			->setPersonaPieces($data->getPersonaPieces())
-			->setPieceTintColors($data->getPieceTintColors())
-			->setVerified($data->isVerified());
+		->setCape(new Cape($data->getCapeId(), $data->getCapeImage(), $data->isPersonaCapeOnClassic()))
+		->setAnimations($data->getAnimations())
+		->setAnimationData($data->getAnimationData())
+		->setPremium($data->isPremium())
+		->setPersona($data->isPersona())
+		->setArmSize($data->getArmSize())
+		->setSkinColor($data->getSkinColor())
+		->setPersonaPieces($data->getPersonaPieces())
+		->setPieceTintColors($data->getPieceTintColors())
+		->setVerified($data->isVerified());
 	}
 }
